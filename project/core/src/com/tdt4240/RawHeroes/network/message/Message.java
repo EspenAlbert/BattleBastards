@@ -13,4 +13,11 @@ public abstract class Message {
         this.content = content;
     }
 
+    public MessageType getType() {
+        return type;
+    }
+
+    public Object getContent() {
+        return content;
+    }
 }

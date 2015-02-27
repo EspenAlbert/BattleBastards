@@ -8,6 +8,12 @@ import com.tdt4240.RawHeroes.logic.unit.UnitName;
  * Created by espen1 on 27.02.2015.
  */
 public class RenderBuilding implements IRenderBulding {
+    private static IRenderBulding instance;
+
+    public static IRenderBulding getInstance() {
+        return instance == null ? new RenderBuilding(): instance;
+    }
+
     @Override
     public IRenderObject getStillRender(IUnit unit) {
         UnitName unitName = unit.getIdentifier();

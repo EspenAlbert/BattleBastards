@@ -9,4 +9,5 @@ import com.tdt4240.RawHeroes.logic.unit.IUnit;
 public interface ICell {
     Vector2 getPos();
     IUnit getUnit();
+    CellStatus getStatus();
 }
