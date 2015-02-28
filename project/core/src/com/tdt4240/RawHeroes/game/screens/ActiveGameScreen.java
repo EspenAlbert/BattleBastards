@@ -1,15 +1,13 @@
 package com.tdt4240.RawHeroes.game.screens;
 
-import com.tdt4240.RawHeroes.controller.BoardController;
+import com.tdt4240.RawHeroes.controller.BoardController.BoardController;
 import com.tdt4240.RawHeroes.controller.BoardMover;
-import com.tdt4240.RawHeroes.controller.IBoardController;
+import com.tdt4240.RawHeroes.controller.BoardController.IBoardController;
 import com.tdt4240.RawHeroes.controller.IBoardMover;
 import com.tdt4240.RawHeroes.game.gameState.GameState;
 import com.tdt4240.RawHeroes.logic.model.IBoard;
 import com.tdt4240.RawHeroes.network.client.ClientConnection;
 import com.tdt4240.RawHeroes.render.view.BoardView;
-import com.tdt4240.RawHeroes.render.view.Player1CellConverter;
-import com.tdt4240.RawHeroes.render.view.Player2CellConverter;
 
 /**
  * Created by espen1 on 27.02.2015.

@@ -10,10 +10,16 @@ import java.util.ArrayList;
  * Created by espen1 on 27.02.2015.
  */
 public class AttackMove extends Move {
+
+    private ArrayList<ICell> victims;
     public AttackMove(ICell selectedCell, ICell target) {
         super(selectedCell);
 
         IUnit unit = selectedCell.getUnit();
         ArrayList<Vector2> inflictionZone = unit.getInflictionZone(selectedCell.getPos(), target.getPos());
+    }
+
+    public ArrayList<ICell> getVictims() {
+        return victims;
     }
 }

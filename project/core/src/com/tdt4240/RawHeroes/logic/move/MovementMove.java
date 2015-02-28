@@ -8,6 +8,7 @@ import com.tdt4240.RawHeroes.logic.cell.ICell;
  */
 public class MovementMove extends Move {
     public MovementMove(ICell selectedCell, ICell target) {
+        super(selectedCell);
 
     }
 }

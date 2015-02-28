@@ -55,7 +55,7 @@ public class BoardView implements IBoardListener, IBoardView, IRenderObject {
         cameraY = 0;
         Vector2 buttonPos = new Vector2(0, 0);
         buttons = new ArrayList<ArrayList<Button>>();
-        ArrayList<Vector2> unitPositions = new ArrayList<>();
+        ArrayList<Vector2> unitPositions = new ArrayList<Vector2>();
         for (int x = 0; x < boardWidth; x++) {
             ArrayList<Button> currentColumn = new ArrayList<Button>();
             for (int y = 0; y < boardHeight; y++) {

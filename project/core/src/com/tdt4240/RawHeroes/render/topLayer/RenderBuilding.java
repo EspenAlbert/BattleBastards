@@ -1,5 +1,6 @@
 package com.tdt4240.RawHeroes.render.topLayer;
 
+import com.tdt4240.RawHeroes.logic.move.AttackMove;
 import com.tdt4240.RawHeroes.logic.move.Move;
 import com.tdt4240.RawHeroes.logic.unit.IUnit;
 import com.tdt4240.RawHeroes.logic.unit.UnitName;
@@ -33,6 +34,11 @@ public class RenderBuilding implements IRenderBulding {
 
     @Override
     public IRenderObject getRenderForMove(Move move) {
+        return null;
+    }
+
+    @Override
+    public IRenderObject getAnimationAttackRender(AttackMove move) {
         return null;
     }
 }

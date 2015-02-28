@@ -17,4 +17,6 @@ public interface IUnit {
     boolean myPlayer();
 
     ArrayList<Vector2> getAttackablePosisions(Vector2 pos, int movesLeft);
+
+    int getHealth();
 }

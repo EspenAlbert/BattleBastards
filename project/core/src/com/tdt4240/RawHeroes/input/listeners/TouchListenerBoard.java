@@ -1,9 +1,8 @@
 package com.tdt4240.RawHeroes.input.listeners;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tdt4240.RawHeroes.controller.IBoardController;
+import com.tdt4240.RawHeroes.controller.BoardController.IBoardController;
 import com.tdt4240.RawHeroes.input.TouchDown;
-import com.tdt4240.RawHeroes.logic.model.IBoard;
 import com.tdt4240.RawHeroes.render.view.IBoardView;
 
 /**

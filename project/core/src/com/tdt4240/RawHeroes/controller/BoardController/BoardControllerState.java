@@ -1,0 +1,22 @@
+package com.tdt4240.RawHeroes.controller.BoardController;
+
+import com.tdt4240.RawHeroes.logic.cell.ICell;
+import com.tdt4240.RawHeroes.logic.model.IBoard;
+
+/**
+ * Created by espen1 on 28.02.2015.
+ */
+public abstract class BoardControllerState {
+    protected final IBoardController boardController;
+    protected IBoard board;
+
+    public abstract void attackButtonPressed();
+    public abstract void cellSelected(ICell cell);
+
+    public BoardControllerState(IBoardController boardController, IBoard board) {
+        this.boardController = boardController;
+        this.board = board;
+    }
+
+    public abstract void poped();
+}
