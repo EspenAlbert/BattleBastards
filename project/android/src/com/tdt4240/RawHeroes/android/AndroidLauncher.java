@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.tdt4240.RawHeroes.game.launcher.RawHeroesOfBegredeligeStudenter;
+import com.tdt4240.RawHeroes.topLayer.launcher.RawHeroesOfBegredeligeStudenter;
 
 public class AndroidLauncher extends AndroidApplication {
 	@Override

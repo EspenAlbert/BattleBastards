@@ -1,0 +1,25 @@
+package com.tdt4240.RawHeroes.event.move;
+
+import com.badlogic.gdx.math.Vector2;
+import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
+import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
+
+import java.util.ArrayList;
+
+/**
+ * Created by espen1 on 27.02.2015.
+ */
+public class AttackMove extends Move {
+
+    private ArrayList<ICell> victims;
+    public AttackMove(ICell selectedCell, ICell target) {
+        super(selectedCell);
+
+        IUnit unit = selectedCell.getUnit();
+        ArrayList<Vector2> inflictionZone = unit.getInflictionZone(selectedCell.getPos(), target.getPos());
+    }
+
+    public ArrayList<ICell> getVictims() {
+        return victims;
+    }
+}

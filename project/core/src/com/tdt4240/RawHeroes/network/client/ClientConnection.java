@@ -1,7 +1,7 @@
 package com.tdt4240.RawHeroes.network.client;
 
-import com.tdt4240.RawHeroes.logic.move.Move;
-import com.tdt4240.RawHeroes.network.message.Message;
+import com.tdt4240.RawHeroes.event.move.Move;
+import com.tdt4240.RawHeroes.network.communication.Response.ResponseMessage;
 
 /**
  * Created by espen1 on 27.02.2015.
@@ -29,12 +29,12 @@ public class ClientConnection implements IClientConnection {
     }
 
     @Override
-    public Message doMove(int id, Move[] moves) {
+    public ResponseMessage doMove(int id, Move[] moves) {
         return null;
     }
 
     @Override
-    public Message login(String userName, String password) {
+    public ResponseMessage login(String userName, String password) {
         return null;
     }
 
@@ -48,7 +48,7 @@ public class ClientConnection implements IClientConnection {
     }
 
     @Override
-    public Message getGame(int gameId) {
+    public ResponseMessage getGame(int gameId) {
         return null;
     }
 
