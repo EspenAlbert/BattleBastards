@@ -4,10 +4,10 @@ import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardControll
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardMover;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.IBoardController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.IBoardMover;
-import com.tdt4240.RawHeroes.topLayer.gameState.GameState;
+import com.tdt4240.RawHeroes.topLayer.commonObjects.Game;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.network.client.ClientConnection;
-import com.tdt4240.RawHeroes.view.topLayer.UIElements.CustomUIElements.GameView;
+import com.tdt4240.RawHeroes.view.topLayer.GameView;
 
 /**
  * Created by espen1 on 27.02.2015.
@@ -19,16 +19,16 @@ public class ActiveGameScreen extends ScreenState {
     private final IBoard board;
     private final boolean iAmPlayer1;
 
-    public ActiveGameScreen(ScreenStateManager gsm, GameState gameState) {
+    public ActiveGameScreen(ScreenStateManager gsm, Game game) {
         super(gsm);
-        board = gameState.getBoard();
-        iAmPlayer1 = ClientConnection.getInstance().getUsername().equals(gameState.getPlayer1Nickname());
+        board = game.getBoard();
+        iAmPlayer1 = ClientConnection.getInstance().getUsername().equals(game.getPlayer1Nickname());
         gameView = new GameView(board, iAmPlayer1);
         board.addBoardListener(gameView);
 
         boardMover = new BoardMover(board);
-        boardMover.executeMoves(gameState.getLastMoves());
-        boardController = new BoardController(board, boardMover, gameState.getMoveCount());
+        boardMover.executeMoves(game.getLastMoves());
+        boardController = new BoardController(board, boardMover, game.getMoveCount());
     }
 
     @Override

@@ -2,7 +2,7 @@ package com.tdt4240.RawHeroes.topLayer.screens;
 
 import com.tdt4240.RawHeroes.network.communication.Response.ResponseMessage;
 import com.tdt4240.RawHeroes.network.communication.Response.ResponseType;
-import com.tdt4240.RawHeroes.topLayer.gameState.GameState;
+import com.tdt4240.RawHeroes.topLayer.commonObjects.Game;
 import com.tdt4240.RawHeroes.network.client.ClientConnection;
 import com.tdt4240.RawHeroes.view.topLayer.MainMenuView;
 
@@ -21,8 +21,8 @@ public class MainMenuScreen extends ScreenState {
         ResponseMessage response = ClientConnection.getInstance().getGame(gameId);
         ResponseType type = response.getType();
         if(type.equals(ResponseType.SUCCESS)) {
-            GameState gameState = (GameState) response.getContent();
-            gsm.setState(new ActiveGameScreen(gsm, gameState));
+            Game game = (Game) response.getContent();
+            gsm.setState(new ActiveGameScreen(gsm, game));
         }
     }
 

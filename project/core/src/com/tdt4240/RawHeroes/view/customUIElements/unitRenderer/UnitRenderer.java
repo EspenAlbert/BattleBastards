@@ -2,7 +2,6 @@ package com.tdt4240.RawHeroes.view.customUIElements.unitRenderer;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.tdt4240.RawHeroes.action.IActionListener;
 import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
 import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.ICamera;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
@@ -24,7 +23,7 @@ import java.util.Queue;
 /**
  * Created by espen1 on 27.02.2015.
  */
-public class UnitRenderer implements IMoveListener, IActionListener, ICameraListener {
+public class UnitRenderer implements IMoveListener, ICameraListener {
     private final IBoard board;
     private ICamera view;
 

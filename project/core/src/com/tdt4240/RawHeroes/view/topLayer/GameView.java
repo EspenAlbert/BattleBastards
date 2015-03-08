@@ -3,15 +3,15 @@ package com.tdt4240.RawHeroes.view.topLayer;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.tdt4240.RawHeroes.event.listener.ICellListener;
+import com.tdt4240.RawHeroes.event.events.AttackEvent;
+import com.tdt4240.RawHeroes.event.listener.IBoardListener;
 import com.tdt4240.RawHeroes.event.events.CellChangeEvent;
+import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.ICamera;
 import com.tdt4240.RawHeroes.independent.GameConstants;
 import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
-import com.tdt4240.RawHeroes.event.listener.events.AttackEvent;
 import com.tdt4240.RawHeroes.event.events.BoardEvent;
 import com.tdt4240.RawHeroes.event.events.MovementMove;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
-import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.cameraController.ICamera;
 import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.ICellConverter;
 import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.Player1CellConverter;
 import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.Player2CellConverter;
@@ -22,7 +22,7 @@ import java.util.ArrayList;
 /**
  * Created by espen1 on 27.02.2015.
  */
-public class GameView implements IView, ICellListener, ICamera {
+public class GameView implements IView, IBoardListener, ICamera {
 
     private final UnitRenderer unitRenderer;
 
@@ -72,7 +72,6 @@ public class GameView implements IView, ICellListener, ICamera {
 
     }
 
-    @Override
     public void BoardChanged(BoardEvent event) {
         if (event instanceof CellChangeEvent) {
             // change button for cell
@@ -93,5 +92,10 @@ public class GameView implements IView, ICellListener, ICamera {
     @Override
     public void render(SpriteBatch batch) {
         unitRenderer.render(batch);
+    }
+
+    @Override
+    public void boardChanged(BoardEvent event) {
+
     }
 }
