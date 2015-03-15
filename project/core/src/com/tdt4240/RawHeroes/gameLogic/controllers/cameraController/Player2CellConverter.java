@@ -8,6 +8,6 @@ import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
 public class Player2CellConverter implements ICellConverter {
     @Override
     public ICell[][] convertCells(ICell[][] cells) {
-        return new ICell[0][];
+        return cells;
     }
 }

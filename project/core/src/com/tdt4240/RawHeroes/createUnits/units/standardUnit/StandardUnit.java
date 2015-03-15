@@ -20,7 +20,7 @@ public class StandardUnit implements IUnit {
 
     @Override
     public UnitName getIdentifier() {
-        return null;
+        return UnitName.STANDARD_UNIT;
     }
 
     @Override

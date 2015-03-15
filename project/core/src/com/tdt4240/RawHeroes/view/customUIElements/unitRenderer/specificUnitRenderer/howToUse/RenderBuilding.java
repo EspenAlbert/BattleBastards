@@ -2,6 +2,7 @@ package com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRen
 
 import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
 import com.tdt4240.RawHeroes.gameLogic.unit.UnitName;
+import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.renderObject1.ActualRenderObject;
 
 /**
  * Created by espen1 on 27.02.2015.
@@ -18,7 +19,7 @@ public class RenderBuilding implements IRenderBulding {
         UnitName unitName = unit.getIdentifier();
         switch (unitName) {
             case STANDARD_UNIT:
-                break;//Return new Unit1Renderer(pos);
+                return new ActualRenderObject();
             case UNIT2:
                 break;
         }

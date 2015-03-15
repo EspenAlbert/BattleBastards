@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.tdt4240.RawHeroes.topLayer.screens.ScreenStateManager;
 import com.tdt4240.RawHeroes.independent.MyInputProcessor;
 
-public class RawHeroesOfBegredeligeStudenter extends ApplicationAdapter {
+public class BattleBastards extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
     private ScreenStateManager gameScreenManager;
@@ -15,9 +15,10 @@ public class RawHeroesOfBegredeligeStudenter extends ApplicationAdapter {
     @Override
 	public void create () {
 		batch = new SpriteBatch();
+        Gdx.graphics.setTitle("GAME NAME");
 		img = new Texture("badlogic.jpg");
-        gameScreenManager = new ScreenStateManager(this);
         Gdx.input.setInputProcessor(MyInputProcessor.getInstance());
+        gameScreenManager = new ScreenStateManager(this);
 
 	}
 

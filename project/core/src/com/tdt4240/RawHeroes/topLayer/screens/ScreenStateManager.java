@@ -1,6 +1,6 @@
 package com.tdt4240.RawHeroes.topLayer.screens;
 
-import com.tdt4240.RawHeroes.topLayer.launcher.RawHeroesOfBegredeligeStudenter;
+import com.tdt4240.RawHeroes.topLayer.launcher.BattleBastards;
 import com.tdt4240.RawHeroes.independent.MyInputProcessor;
 
 import java.util.Stack;
@@ -10,7 +10,7 @@ import java.util.Stack;
  */
 public class ScreenStateManager {
 
-    private RawHeroesOfBegredeligeStudenter game;
+    private BattleBastards game;
     private Stack<ScreenState> screenStates;
 
 
@@ -20,13 +20,13 @@ public class ScreenStateManager {
     public static final int TASK4 = 912840;
     public static final int END_GAME_SCREEN = 912841;
 
-    public ScreenStateManager(RawHeroesOfBegredeligeStudenter game) {
+    public ScreenStateManager(BattleBastards game) {
         this.game = game;
         screenStates = new Stack<ScreenState>();
 
         pushState(new LoginScreen(this));
     }
-    public RawHeroesOfBegredeligeStudenter getGame() {
+    public BattleBastards getGame() {
         return game;
     }
 

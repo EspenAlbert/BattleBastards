@@ -1,11 +1,16 @@
 package com.tdt4240.RawHeroes.network.server.serverConnection.worker;
 
+import com.tdt4240.RawHeroes.event.move.Move;
 import com.tdt4240.RawHeroes.network.communication.Response.ResponseCreator;
 import com.tdt4240.RawHeroes.network.communication.Response.ResponseMessage;
 import com.tdt4240.RawHeroes.network.communication.Response.ResponseType;
 import com.tdt4240.RawHeroes.network.communication.request.RequestMessage;
 import com.tdt4240.RawHeroes.network.communication.request.RequestTypes;
 import com.tdt4240.RawHeroes.network.server.serverConnection.player.Player;
+import com.tdt4240.RawHeroes.network.server.serverConnection.worker.exceptions.GameNotFoundException;
+import com.tdt4240.RawHeroes.network.server.serverConnection.worker.exceptions.NotYourGameException;
+import com.tdt4240.RawHeroes.network.server.serverConnection.worker.exceptions.NotYourTurnException;
+import com.tdt4240.RawHeroes.topLayer.commonObjects.Game;
 import com.tdt4240.RawHeroes.topLayer.commonObjects.Games;
 
 import org.json.simple.JSONObject;
@@ -14,6 +19,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 
 /**
  * Created by espen on 13.03.14.
@@ -50,6 +56,7 @@ public class Worker extends Thread {
         try {
             System.out.println("Sending message"+ json);
             toClient.writeObject(json);
+            disconnect();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -67,15 +74,35 @@ public class Worker extends Thread {
         }
         RequestTypes requestType = request.getType();
         try {
+            boolean loginFirst = true;
+            //Login no matter what, woops, not if you want to create a new user...
+            if(requestType == RequestTypes.CREATE_USER) {
+                loginFirst = false;
+            }
+            ResponseMessage loginResponse = null;
+            if(loginFirst) {
+                loginResponse = login(new RequestMessage(RequestTypes.LOGIN, request.getPlayer()));
+                if(loginResponse.getType() == ResponseType.FAILURE) {
+                    response.put("response", loginResponse);
+                    sendJSON(response);
+                    return;
+                }
+            }
             switch (requestType) {
                 case CREATE_USER:
                     response.put("response", createUser(request));
                     break;
                 case LOGIN:
-                    response.put("response", login(request));
+                    response.put("response", loginResponse);
                     break;
                 case CREATE_GAME:
                     response.put("response", createGame(request));
+                    break;
+                case DO_MOVES:
+                    response.put("response", doMoves(request));
+                    break;
+                case GET_GAME:
+                    response.put("response", getGame(request));
                     break;
             }
         }catch(Exception exception) {
@@ -85,11 +112,38 @@ public class Worker extends Thread {
         sendJSON(response);
     }
 
+    private ResponseMessage getGame(RequestMessage request) throws Exception {
+        GameHandler gameHandler = GameHandler.getInstance();
+        Integer gameId = (Integer) request.getParameters().get(0);
+        try {
+            Game game = gameHandler.getGame(request.getPlayer().getUsername(), gameId);
+            return ResponseCreator.getGameSuccess(game);
+        } catch (GameNotFoundException e) {
+            return ResponseCreator.getInvalidGameException(gameId);
+        } catch (NotYourGameException e) {
+            return ResponseCreator.getNotYourGameException(gameId);
+        }
+    }
+
+    private ResponseMessage doMoves(RequestMessage request) throws Exception {
+        GameHandler gameHandler = GameHandler.getInstance();
+        Integer gameId = (Integer) request.getParameters().get(0);
+        ArrayList<Move> moves  = (ArrayList<Move>) request.getParameters().get(1);
+        try {
+            gameHandler.doMoves(gameId, request.getPlayer().getUsername(), moves);
+            return ResponseCreator.getDoMovesSuccess(gameId);
+        }catch (GameNotFoundException exception) {
+            return ResponseCreator.getInvalidGameException(gameId);
+        } catch (NotYourGameException e) {
+            return ResponseCreator.getNotYourGameException(gameId);
+        } catch (NotYourTurnException e) {
+            return ResponseCreator.getNotYourTurnException(gameId);
+        }
+    }
+
     private ResponseMessage createGame(RequestMessage request) throws Exception {
-        //Check both players
         String hostUsername = request.getPlayer().getUsername();
-        ResponseMessage loginResponse = login(new RequestMessage(RequestTypes.LOGIN, request.getPlayer()));
-        if(loginResponse.getType() == ResponseType.FAILURE) return loginResponse;
+        //Check challenged player
 
         String challengedPlayer = (String) request.getParameters().get(0);
         PlayerHandler playerHandler = PlayerHandler.getInstance();

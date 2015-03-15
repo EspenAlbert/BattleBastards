@@ -20,6 +20,10 @@ import java.util.HashMap;
  * Created by espen1 on 05.03.2015.
  */
 public class DatabaseConnector implements IDatabaseConnector {
+    public static final String TABLE_PLAYERS = "players";
+    public static final String PLAYERS_PRIMARY_KEY = "username";
+    public static final String TABLE_GAMES = "games";
+    public static final String GAMES_PRIMARY_KEY = "gameId";
     private static DatabaseConnector instance;
     private final Connection myConnection;
 
@@ -36,15 +40,27 @@ public class DatabaseConnector implements IDatabaseConnector {
 
     @Override
     public boolean usernameAvailable(String username) throws SQLException {
+        return !rowExist(TABLE_PLAYERS, PLAYERS_PRIMARY_KEY, username, -1);
+    }
+    @Override
+    public boolean isActiveGame(int gameId) throws SQLException {
+        return rowExist(TABLE_GAMES, GAMES_PRIMARY_KEY, "", gameId);
+    }
 
+    @Override
+    public void updateGame(Game game) throws Exception {
+        updateJavaObject(TABLE_GAMES, GAMES_PRIMARY_KEY, game.getId(), game);
+    }
+
+    private boolean rowExist(String table, String primaryKey, String primaryKeyValue, int primaryKeyValueInt) throws SQLException {
         PreparedStatement ps = null;
         String sql = null;
-        sql = "select * from players where username = ?";
+        sql = "select * from " + table + " where " + primaryKey + "= ?";
         ps = myConnection.prepareStatement(sql);
-        ps.setObject(1, username);
+        if(primaryKeyValueInt > 0) ps.setInt(1,primaryKeyValueInt);
+        else ps.setString(1, primaryKeyValue);
         ResultSet result = ps.executeQuery();
-        return !result.next();
-
+        return result.next();
     }
 
     @Override
@@ -86,14 +102,15 @@ public class DatabaseConnector implements IDatabaseConnector {
 
 
     @Override
-    public Object getJavaObject(String table, String primaryKey, String primaryKeyValue) throws Exception {
+    public Object getJavaObject(String table, String primaryKey, String primaryKeyValue, int primaryKeyValueInt) throws Exception {
         PreparedStatement ps = null;
         ResultSet rs = null;
         String sql = null;
 
         sql = "select javaObject from " + table + " where " + primaryKey + " = ?;";
         ps = myConnection.prepareStatement(sql);
-        ps.setString(1, primaryKeyValue);
+        if(primaryKeyValueInt > 0) ps.setInt(1, primaryKeyValueInt);
+        else ps.setString(1, primaryKeyValue);
         rs = ps.executeQuery();
         if (rs.next()) {
             ByteArrayInputStream bais;
@@ -105,6 +122,11 @@ public class DatabaseConnector implements IDatabaseConnector {
             return mc;
         }
         throw new Exception("Couldn't find row");
+    }
+
+    @Override
+    public Game getGame(int gameId) throws Exception {
+        return (Game) getJavaObject(TABLE_GAMES, GAMES_PRIMARY_KEY,"", gameId);
     }
 
     @Override
@@ -126,6 +148,8 @@ public class DatabaseConnector implements IDatabaseConnector {
         }
         return response;
     }
+
+
     @Override
     public void updateJavaObject(String table, String primaryKey, int primaryKeyValue, Object javaObject) throws Exception {
         PreparedStatement ps = null;

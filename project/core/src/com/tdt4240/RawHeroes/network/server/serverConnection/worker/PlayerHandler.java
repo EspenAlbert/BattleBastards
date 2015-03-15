@@ -1,6 +1,5 @@
 package com.tdt4240.RawHeroes.network.server.serverConnection.worker;
 
-import com.tdt4240.RawHeroes.network.server.database.DatabaseConnection;
 import com.tdt4240.RawHeroes.network.server.database.DatabaseConnector;
 import com.tdt4240.RawHeroes.network.server.serverConnection.player.Player;
 
@@ -43,7 +42,7 @@ public class PlayerHandler implements IPlayerHandler{
 
     @Override
     public boolean checkPlayer(Player player) throws Exception {
-        Player storedPlayer = (Player) databaseConnector.getJavaObject("players", "username", player.getUsername());
+        Player storedPlayer = (Player) databaseConnector.getJavaObject("players", "username", player.getUsername(), -1);
         return player.getPassword().equals(storedPlayer.getPassword());
 
     }

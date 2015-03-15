@@ -5,4 +5,5 @@ package com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRen
  */
 public interface IRenderObject extends IRender {
     void changeRenderMode(RenderMode renderMode);
+    RenderMode getRenderMode();
 }

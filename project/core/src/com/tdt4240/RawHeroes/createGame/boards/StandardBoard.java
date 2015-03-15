@@ -20,6 +20,7 @@ public class StandardBoard implements IBoard {
     private final int width = 4;
     private final int height = 8;
     private ICell[][] cells;
+    private ArrayList<IBoardListener> listeners;
 
     public StandardBoard() {
         cells = new ICell[width][height];
@@ -32,10 +33,9 @@ public class StandardBoard implements IBoard {
         cells[0][0].setUnit(UnitBuilding.getInstance().createUnit(UnitName.STANDARD_UNIT, true));
         //Player 2 unit
         cells[width-1][height-1].setUnit(UnitBuilding.getInstance().createUnit(UnitName.STANDARD_UNIT, false));
-
+        listeners = new ArrayList<IBoardListener>();
     }
 
-    private ArrayList<IBoardListener> listeners;
 
     @Override
     public void addBoardListener(IBoardListener listener) {

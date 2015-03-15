@@ -4,6 +4,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
 import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.ICamera;
+import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.ICellConverter;
+import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.Player1CellConverter;
+import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.Player2CellConverter;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.event.move.AttackMove;
 import com.tdt4240.RawHeroes.event.listener.IMoveListener;
@@ -11,7 +14,6 @@ import com.tdt4240.RawHeroes.event.move.Move;
 import com.tdt4240.RawHeroes.event.move.MovementMove;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.IRenderBulding;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.IRenderObject;
-import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.RenderMode;
 import com.tdt4240.RawHeroes.event.listener.ICameraListener;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.RenderBuilding;
 
@@ -27,46 +29,35 @@ public class UnitRenderer implements IMoveListener, ICameraListener {
     private final IBoard board;
     private ICamera view;
 
-    private HashMap<Vector2, IRenderObject> unitPositionsAndAnimations;
     private IRenderBulding renderBulding = RenderBuilding.getInstance();
-    private Queue<Move> currentAnimations2 = new LinkedList<Move>();//TODO: Continue
-    private ArrayList<IRenderObject> currentAnimations;
+    private HashMap<Vector2, IRenderObject> unitPositionsAndRenderObjects;
+    private Queue<Move> currentAnimations = new LinkedList<Move>();//TODO: Continue
+    private boolean animationActive = false;
 
-    public UnitRenderer(ArrayList<Vector2> unitPositions, IBoard board, ICamera view) {
+    public UnitRenderer(IBoard board, ICamera view, boolean iAmPlayer1) {
         this.board = board;
         this.view = view;
-        unitPositionsAndAnimations = new HashMap<Vector2, IRenderObject>();
-        for(Vector2 pos: unitPositions) {
-            unitPositionsAndAnimations.put(pos, renderBulding.getRenderObject(board.getCell(pos).getUnit()));
-        }
-        currentAnimations = new ArrayList<IRenderObject>();
+        ICellConverter cellConverter = iAmPlayer1 ? new Player1CellConverter() : new Player2CellConverter();
 
-    }
-
-
-    public void attackMoveExecuted(AttackMove move) {
-        Vector2 attackerPos = move.getStartCell().getPos();
-        unitPositionsAndAnimations.get(attackerPos).changeRenderMode(RenderMode.ATTACKING);
-        ArrayList<ICell> victims = move.getVictims();
-        for(ICell cell : victims) {
-            if(cell.getUnit().getHealth() > 0) {
-                unitPositionsAndAnimations.get(cell.getPos()).changeRenderMode(RenderMode.HURT);
-            } else {
-                unitPositionsAndAnimations.get(cell.getPos()).changeRenderMode(RenderMode.KILLED);
+        ICell[][] cells = cellConverter.convertCells(board.getCells());
+        ArrayList<Vector2> unitPositions = new ArrayList<Vector2>();
+        for (int x = 0; x < cells.length; x++) {
+            for (int y = 0; y < cells[0].length; y++) {
+                if (cells[x][y].getUnit() != null) {
+                    unitPositions.add(new Vector2(x, y));
+                }
             }
         }
-       // currentAnimations.add(renderBulding.getAnimationAttackRender(move));CurrentMoves...
-
+        unitPositionsAndRenderObjects = new HashMap<Vector2, IRenderObject>();
+        for (Vector2 pos : unitPositions) {
+            unitPositionsAndRenderObjects.put(pos, renderBulding.getRenderObject(board.getCell(pos).getUnit()));
+        }
     }
+
+
     @Override
     public void moveExecuted(Move move) {
-        if (move instanceof AttackMove) {
-            attackMoveExecuted((AttackMove) move);
-        }
-        else if(move instanceof MovementMove) {
-            movementMove((MovementMove) move);
-        }
-        //TODO: Implement animation
+       currentAnimations.add(move);
     }
 
     private void movementMove(MovementMove move) {
@@ -77,12 +68,24 @@ public class UnitRenderer implements IMoveListener, ICameraListener {
     }
 
     public void render(SpriteBatch batch) {
+        if(!animationActive && !currentAnimations.isEmpty()) {
+            executeMove(currentAnimations.poll());
+        }
+    }
 
+    private void executeMove(Move move) {
+        animationActive = true;
+        if (move instanceof AttackMove) {
+            //attackMoveExecuted((AttackMove) move);
+        }
+        else if(move instanceof MovementMove) {
+            movementMove((MovementMove) move);
+        }
     }
 
     public void render(SpriteBatch batch, Vector2 pos) {
-        for(Vector2 key : unitPositionsAndAnimations.keySet()) {
-            unitPositionsAndAnimations.get(key).render(batch, key);
+        for(Vector2 key : unitPositionsAndRenderObjects.keySet()) {
+            unitPositionsAndRenderObjects.get(key).render(batch, key);
         }
     }
 

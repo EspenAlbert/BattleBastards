@@ -1,15 +1,12 @@
 package com.tdt4240.RawHeroes.network.server.serverConnection;
-import com.tdt4240.RawHeroes.network.server.serverConnection.player.Player;
 import com.tdt4240.RawHeroes.network.server.serverConnection.worker.Worker;
-
-import org.json.simple.JSONObject;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.HashMap;
+
 /**
  * Created by espen1 on 03.03.2015.
  */

@@ -52,6 +52,7 @@ public class MyInputProcessor implements InputProcessor {
         for(TouchDown listener: touchDownsListeners) {
             listener.touchDown(screenX, screenY, pointer, button);
         }
+        System.out.println("touch..");
         return false;
     }
 

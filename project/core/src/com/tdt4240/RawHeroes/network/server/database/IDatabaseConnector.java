@@ -1,10 +1,8 @@
 package com.tdt4240.RawHeroes.network.server.database;
 
-import com.tdt4240.RawHeroes.network.server.serverConnection.player.Player;
 import com.tdt4240.RawHeroes.topLayer.commonObjects.Game;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -16,7 +14,12 @@ public interface IDatabaseConnector {
     int findGame(String player1, String player2) throws SQLException;
     void insertRow(String table, HashMap<String, Object> javaObjectColumns, String primaryKeyCol, String primaryKeyValue) throws Exception;
     void updateJavaObject(String table, String primaryKey, int primaryKeyValue, Object javaObject) throws Exception;
-    Object getJavaObject(String table, String primaryKey, String primaryKeyValue) throws Exception;
+    Object getJavaObject(String table, String primaryKey, String primaryKeyValue, int primaryKeyValueInt) throws Exception;
 
+    Game getGame(int gameId) throws Exception;
     int insertGame(Game game) throws Exception;
+
+    boolean isActiveGame(int gameId) throws SQLException;
+
+    void updateGame(Game game) throws Exception;
 }

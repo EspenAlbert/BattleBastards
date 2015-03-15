@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 
 /**
  * Created by espen1 on 27.02.2015.
@@ -50,13 +51,24 @@ public class ClientConnection implements IClientConnection {
         clientSocket = null;
         //ResponseMessage responseMessage= createUser("Espen4", "1234");
         //ResponseMessage responseMessage= login("Espen4", "1234");
-        String[] challengers = {"Espen", "Espen2", "Espen3", "XXXX"};
+        //String[] challengers = {"Espen", "Espen2", "Espen3", "XXXX"};
         username = "Espen4";
         password = "1234";
-        for (String challenger : challengers) {
-            ResponseMessage responseMessage = createNewGame(challenger, Games.KILL_ALL_ENEMY_UNITS);
-            System.out.println("Got response: " + responseMessage.getType() + responseMessage.getContent());
-        }
+        /*
+        ResponseMessage createGameResponse = createNewGame("Espen3", Games.KILL_ALL_ENEMY_UNITS);
+        System.out.println("Got response: " + createGameResponse.getType() + createGameResponse.getContent());
+        ResponseMessage responseMessage = getGame((Integer) createGameResponse.getContent());
+        System.out.println("Got response: " + responseMessage.getType() + responseMessage.getContent());
+        ResponseMessage responseMessageDoMoves = doMoves((Integer) createGameResponse.getContent(), null);
+        System.out.println("Got response: " + responseMessageDoMoves.getType() + responseMessageDoMoves.getContent());
+
+*/
+
+
+//        for (String challenger : challengers) {
+ //           ResponseMessage responseMessage = createNewGame(challenger, Games.KILL_ALL_ENEMY_UNITS);
+ //          System.out.println("Got response: " + responseMessage.getType() + responseMessage.getContent());
+  //      }
         System.out.println("Done creating client connection");
     }
 
@@ -93,8 +105,11 @@ public class ClientConnection implements IClientConnection {
     }
 
     @Override
-    public ResponseMessage doMove(int id, Move[] moves) {
-        return null;
+    public ResponseMessage doMoves(int id, ArrayList<Move> moves) {
+        ArrayList<Move> dummyMoves = new ArrayList<Move>();
+        dummyMoves.add(null);
+        dummyMoves.add(null);
+        return sendRequestAndWaitForResponse(RequestCreator.getDoMoveRequest(username, password, id,dummyMoves));
     }
 
     @Override
@@ -113,7 +128,7 @@ public class ClientConnection implements IClientConnection {
 
     @Override
     public ResponseMessage getGame(int gameId) {
-        return null;
+        return sendRequestAndWaitForResponse(RequestCreator.getGetGameRequest(username, password, gameId));
     }
 
     public void setPassword(String password) {

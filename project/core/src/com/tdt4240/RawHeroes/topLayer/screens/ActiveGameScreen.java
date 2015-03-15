@@ -1,5 +1,7 @@
 package com.tdt4240.RawHeroes.topLayer.screens;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardMover;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.IBoardController;
@@ -22,6 +24,7 @@ public class ActiveGameScreen extends ScreenState {
     public ActiveGameScreen(ScreenStateManager gsm, Game game) {
         super(gsm);
         board = game.getBoard();
+        System.out.println("in active game screen!!!!!");
         iAmPlayer1 = ClientConnection.getInstance().getUsername().equals(game.getPlayer1Nickname());
         gameView = new GameView(board, iAmPlayer1);
         board.addBoardListener(gameView);
@@ -38,7 +41,10 @@ public class ActiveGameScreen extends ScreenState {
 
     @Override
     public void render() {
-
+        Gdx.gl.glClearColor(0.36f, 0.32f, 0.27f, 1.0f);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        spriteBatch.begin();
+        spriteBatch.end();
     }
 
     @Override
