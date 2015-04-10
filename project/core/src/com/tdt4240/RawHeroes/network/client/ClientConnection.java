@@ -34,7 +34,7 @@ public class ClientConnection implements IClientConnection {
 
     public static ClientConnection getInstance() {
         if (ourInstance == null) {
-            ourInstance = new ClientConnection("10.0.0.2", 7777);
+            ourInstance = new ClientConnection("localhost", 7777);
 
         }
         return ourInstance;
