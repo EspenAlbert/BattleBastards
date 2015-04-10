@@ -6,6 +6,9 @@ import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardControll
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardMover;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.IBoardController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.IBoardMover;
+import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.Player1Camera;
+import com.tdt4240.RawHeroes.gameLogic.models.ICamera;
+import com.tdt4240.RawHeroes.independent.MyInputProcessor;
 import com.tdt4240.RawHeroes.topLayer.commonObjects.Game;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.network.client.ClientConnection;
@@ -26,12 +29,15 @@ public class ActiveGameScreen extends ScreenState {
         board = game.getBoard();
         System.out.println("in active game screen!!!!!");
         iAmPlayer1 = ClientConnection.getInstance().getUsername().equals(game.getPlayer1Nickname());
-        gameView = new GameView(board, iAmPlayer1);
+        ICamera camera = new Player1Camera();
+        gameView = new GameView(board, iAmPlayer1,camera);
         board.addBoardListener(gameView);
 
         boardMover = new BoardMover(board);
         boardMover.executeMoves(game.getLastMoves());
         boardController = new BoardController(board, boardMover, game.getMoveCount());
+        Gdx.input.setInputProcessor(MyInputProcessor.getInstance());
+        MyInputProcessor.getInstance().setCamera(camera);
     }
 
     @Override
@@ -44,6 +50,7 @@ public class ActiveGameScreen extends ScreenState {
         Gdx.gl.glClearColor(0.36f, 0.32f, 0.27f, 1.0f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         spriteBatch.begin();
+        gameView.render(spriteBatch);
         spriteBatch.end();
     }
 

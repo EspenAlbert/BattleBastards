@@ -6,7 +6,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.tdt4240.RawHeroes.event.events.AttackEvent;
 import com.tdt4240.RawHeroes.event.listener.IBoardListener;
 import com.tdt4240.RawHeroes.event.events.CellChangeEvent;
-import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.ICamera;
+import com.tdt4240.RawHeroes.event.listener.ICameraListener;
+import com.tdt4240.RawHeroes.gameLogic.models.ICamera;
 import com.tdt4240.RawHeroes.event.events.BoardEvent;
 import com.tdt4240.RawHeroes.event.events.MovementEvent;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 /**
  * Created by espen1 on 27.02.2015.
  */
-public class GameView implements IView, IBoardListener, ICamera {
+public class GameView implements IView, IBoardListener, ICameraListener {
 
     private final UnitRenderer unitRenderer;
     private final BoardRenderer boardRenderer;
@@ -29,9 +30,9 @@ public class GameView implements IView, IBoardListener, ICamera {
     private int cameraY;
     private int cameraX;
 
-    public GameView(IBoard board, boolean iAmPlayer1) {
+    public GameView(IBoard board, boolean iAmPlayer1, ICamera camera) {
         boardRenderer = new BoardRenderer(board, iAmPlayer1);
-        unitRenderer = new UnitRenderer(board, this, iAmPlayer1);
+        unitRenderer = new UnitRenderer(board, camera, iAmPlayer1);
 
 
     }
@@ -47,19 +48,18 @@ public class GameView implements IView, IBoardListener, ICamera {
     }
 
     @Override
-    public Vector2 convertPixelCoordinateToCell(Vector2 pixelCoordinate) {
-        return null;
-    }
-
-
-
-    @Override
     public void render(SpriteBatch batch) {
         unitRenderer.render(batch);
+        boardRenderer.render(batch, null);
     }
 
     @Override
     public void boardChanged(BoardEvent event) {
+
+    }
+
+    @Override
+    public void cameraShifted(int dx, int dy) {
 
     }
 }

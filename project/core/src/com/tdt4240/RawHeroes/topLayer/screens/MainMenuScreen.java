@@ -41,20 +41,21 @@ public class MainMenuScreen extends ScreenState {
         skin = new Skin(Gdx.files.internal("uiskin.json"), new TextureAtlas(Gdx.files.internal("uiskin.atlas")));
         stage = new Stage();
 
+        int xpos = 50;
         buttonCreateGame = new TextButton("CreateGame", skin);
-        buttonCreateGame.setPosition(200, 150);
+        buttonCreateGame.setPosition(xpos, 150);
         buttonCreateGame.setSize(300, 60);
         labelInstruction = new Label("", skin);
         labelInstruction.setSize(100, 40);
-        labelInstruction.setPosition(300, 250);
+        labelInstruction.setPosition(xpos, 250);
 
-        textFieldGetGame = new TextField("gameId", skin);
+        textFieldGetGame = new TextField("29", skin);
         textFieldGetGame.setSize(300, 60);
-        textFieldGetGame.setPosition(200, 80);
+        textFieldGetGame.setPosition(xpos, 80);
         textFieldGetGame.setTextFieldFilter(new TextField.TextFieldFilter.DigitsOnlyFilter());
 
         buttonGetGame = new TextButton("getGameById", skin);
-        buttonGetGame.setPosition(200, 20);
+        buttonGetGame.setPosition(xpos, 20);
         buttonGetGame.setSize(300, 60);
 
         buttonCreateGame.addListener(new ClickListener() {

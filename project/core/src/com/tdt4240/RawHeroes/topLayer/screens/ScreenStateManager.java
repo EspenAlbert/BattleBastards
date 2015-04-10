@@ -1,5 +1,7 @@
 package com.tdt4240.RawHeroes.topLayer.screens;
 
+import com.tdt4240.RawHeroes.network.client.ClientConnection;
+import com.tdt4240.RawHeroes.topLayer.commonObjects.Game;
 import com.tdt4240.RawHeroes.topLayer.launcher.BattleBastards;
 import com.tdt4240.RawHeroes.independent.MyInputProcessor;
 
@@ -23,7 +25,6 @@ public class ScreenStateManager {
     public ScreenStateManager(BattleBastards game) {
         this.game = game;
         screenStates = new Stack<ScreenState>();
-
         pushState(new LoginScreen(this));
     }
     public BattleBastards getGame() {

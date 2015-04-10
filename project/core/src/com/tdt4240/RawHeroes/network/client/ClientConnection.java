@@ -34,7 +34,7 @@ public class ClientConnection implements IClientConnection {
 
     public static ClientConnection getInstance() {
         if (ourInstance == null) {
-            ourInstance = new ClientConnection("10.0.0.2", 7777);
+            ourInstance = new ClientConnection("78.91.66.237", 3310);
 
         }
         return ourInstance;
@@ -50,13 +50,14 @@ public class ClientConnection implements IClientConnection {
         this.serverPort = port;
         clientSocket = null;
         //ResponseMessage responseMessage= createUser("Espen4", "1234");
-        //ResponseMessage responseMessage= login("Espen4", "1234");
+        ResponseMessage responseMessage = sendRequestAndWaitForResponse(RequestCreator.getLoginRequest("Espen4", "1234"));
+
         //String[] challengers = {"Espen", "Espen2", "Espen3", "XXXX"};
         username = "Espen4";
         password = "1234";
+        System.out.println("Got response: " + responseMessage.getType() + responseMessage.getContent());
         /*
         ResponseMessage createGameResponse = createNewGame("Espen3", Games.KILL_ALL_ENEMY_UNITS);
-        System.out.println("Got response: " + createGameResponse.getType() + createGameResponse.getContent());
         ResponseMessage responseMessage = getGame((Integer) createGameResponse.getContent());
         System.out.println("Got response: " + responseMessage.getType() + responseMessage.getContent());
         ResponseMessage responseMessageDoMoves = doMoves((Integer) createGameResponse.getContent(), null);

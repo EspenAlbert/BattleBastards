@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.tdt4240.RawHeroes.independent.GameConstants;
 import com.tdt4240.RawHeroes.topLayer.screens.ScreenStateManager;
 import com.tdt4240.RawHeroes.independent.MyInputProcessor;
 
@@ -17,6 +18,7 @@ public class BattleBastards extends ApplicationAdapter {
 		batch = new SpriteBatch();
         Gdx.graphics.setTitle("GAME NAME");
 		img = new Texture("badlogic.jpg");
+        Gdx.graphics.setDisplayMode(GameConstants.RESOLUTION_WIDTH, GameConstants.RESOLUTION_HEIGHT, false);
         Gdx.input.setInputProcessor(MyInputProcessor.getInstance());
         gameScreenManager = new ScreenStateManager(this);
 

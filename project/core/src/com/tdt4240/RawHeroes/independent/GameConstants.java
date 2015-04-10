@@ -8,7 +8,10 @@ import com.badlogic.gdx.Gdx;
 public class GameConstants {
 
     private static final boolean useAndroid = false;
-    public static final int RESOLUTION_WIDTH = useAndroid ? Gdx.graphics.getWidth() : 400;
+    public static final int RESOLUTION_WIDTH = useAndroid ? Gdx.graphics.getWidth() : 480;
     public static final int RESOLUTION_HEIGHT = useAndroid ? Gdx.graphics.getHeight() : 800;
+    public static final int BUTTON_WIDTH = Math.round(GameConstants.RESOLUTION_WIDTH / 5);
+    public static final int BUTTON_HEIGHT = Math.round(GameConstants.RESOLUTION_HEIGHT / 9);
+    public static final int SPACE_BETWEEN = 0;
 
 }

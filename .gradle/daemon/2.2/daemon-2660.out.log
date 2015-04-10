@@ -1,0 +1,1023 @@
+15:24:46.858 [INFO] [org.gradle.launcher.daemon.server.Daemon] start() called on daemon - DefaultDaemonContext[uid=fc3676f5-7cc3-45ea-b3bc-10e9348485b3,javaHome=C:\Program Files\Java\jdk1.7.0_75,daemonRegistryDir=C:\Users\espen1\.gradle\daemon,pid=2660,idleTimeout=10800000,daemonOpts=-Xms128m,-Xmx512m,-Dfile.encoding=windows-1252,-Duser.country=US,-Duser.language=en,-Duser.variant]
+15:24:46.869 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] updating lastActivityAt to 1425565486869
+15:24:46.947 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Software Loopback Interface 1
+15:24:46.950 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? true
+15:24:46.952 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? true
+15:24:46.953 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding loopback address /127.0.0.1
+15:24:46.954 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding loopback address /0:0:0:0:0:0:0:1
+15:24:46.955 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding loopback multicast interface Software Loopback Interface 1
+15:24:46.956 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Microsoft Kernel Debug Network Adapter
+15:24:46.958 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:46.961 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? true
+15:24:46.962 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding loopback multicast interface Microsoft Kernel Debug Network Adapter
+15:24:46.966 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Intel(R) Wireless-N 7260
+15:24:46.970 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:46.975 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? true
+15:24:46.976 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding remote address /78.91.64.180
+15:24:46.976 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding remote address /fe80:0:0:0:25d6:68f1:8562:1041%3
+15:24:46.977 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding remote multicast interface Intel(R) Wireless-N 7260
+15:24:46.978 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Realtek PCIe GBE Family Controller
+15:24:46.980 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:46.982 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? true
+15:24:46.983 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding remote address /fe80:0:0:0:577:32bf:f7d9:efd4%4
+15:24:46.983 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding remote multicast interface Realtek PCIe GBE Family Controller
+15:24:46.984 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Ericsson N5321 gw
+15:24:46.986 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:46.989 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? true
+15:24:46.990 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding remote address /fe80:0:0:0:2cc2:a3c3:2018:847a%5
+15:24:46.991 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding remote multicast interface Ericsson N5321 gw
+15:24:46.991 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Bluetooth Device (RFCOMM Protocol TDI)
+15:24:46.994 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:46.996 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? true
+15:24:46.997 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding loopback multicast interface Bluetooth Device (RFCOMM Protocol TDI)
+15:24:46.997 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Bluetooth Device (Personal Area Network)
+15:24:47.000 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:47.002 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? true
+15:24:47.003 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding remote address /fe80:0:0:0:8839:eda5:2b99:9333%7
+15:24:47.004 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding remote multicast interface Bluetooth Device (Personal Area Network)
+15:24:47.005 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Microsoft ISATAP Adapter
+15:24:47.009 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:47.012 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? true
+15:24:47.014 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding loopback multicast interface Microsoft ISATAP Adapter
+15:24:47.015 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Microsoft ISATAP Adapter #2
+15:24:47.017 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:47.019 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? false
+15:24:47.020 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding remote address /fe80:0:0:0:200:5efe:4e5b:40b4%9
+15:24:47.020 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Microsoft ISATAP Adapter #3
+15:24:47.022 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:47.025 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? true
+15:24:47.025 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding loopback multicast interface Microsoft ISATAP Adapter #3
+15:24:47.026 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Microsoft 6to4 Adapter
+15:24:47.028 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:47.030 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? false
+15:24:47.031 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding remote address /2002:4e5b:40b4:0:0:0:4e5b:40b4
+15:24:47.031 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Teredo Tunneling Pseudo-Interface
+15:24:47.034 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:47.037 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? false
+15:24:47.037 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding remote address /2001:0:5ef5:79fd:2418:1e40:b1a4:ad23
+15:24:47.038 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding remote address /fe80:0:0:0:2418:1e40:b1a4:ad23%12
+15:24:47.038 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Microsoft Hosted Network Virtual Adapter
+15:24:47.040 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:47.042 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? true
+15:24:47.042 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding remote address /fe80:0:0:0:4dc8:3e30:ddfa:e624%13
+15:24:47.043 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding remote multicast interface Microsoft Hosted Network Virtual Adapter
+15:24:47.043 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Microsoft Wi-Fi Direct Virtual Adapter
+15:24:47.045 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:47.047 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? true
+15:24:47.048 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding remote address /fe80:0:0:0:9055:8bb1:c930:8583%14
+15:24:47.049 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding remote multicast interface Microsoft Wi-Fi Direct Virtual Adapter
+15:24:47.049 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Microsoft ISATAP Adapter #4
+15:24:47.052 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:47.055 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? true
+15:24:47.056 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding loopback multicast interface Microsoft ISATAP Adapter #4
+15:24:47.056 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Cisco AnyConnect Secure Mobility Client Virtual Miniport Adapter for Windows x64
+15:24:47.059 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:47.063 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? true
+15:24:47.063 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding loopback multicast interface Cisco AnyConnect Secure Mobility Client Virtual Miniport Adapter for Windows x64
+15:24:47.064 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Microsoft ISATAP Adapter #5
+15:24:47.066 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:47.068 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? true
+15:24:47.069 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding loopback multicast interface Microsoft ISATAP Adapter #5
+15:24:47.069 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Microsoft ISATAP Adapter #6
+15:24:47.071 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:47.072 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? true
+15:24:47.073 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding loopback multicast interface Microsoft ISATAP Adapter #6
+15:24:47.074 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Realtek PCIe GBE Family Controller-WFP Native MAC Layer LightWeight Filter-0000
+15:24:47.075 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:47.078 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? true
+15:24:47.079 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding loopback multicast interface Realtek PCIe GBE Family Controller-WFP Native MAC Layer LightWeight Filter-0000
+15:24:47.079 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Realtek PCIe GBE Family Controller-QoS Packet Scheduler-0000
+15:24:47.081 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:47.084 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? true
+15:24:47.084 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding loopback multicast interface Realtek PCIe GBE Family Controller-QoS Packet Scheduler-0000
+15:24:47.085 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Realtek PCIe GBE Family Controller-WFP 802.3 MAC Layer LightWeight Filter-0000
+15:24:47.087 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:47.089 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? true
+15:24:47.089 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding loopback multicast interface Realtek PCIe GBE Family Controller-WFP 802.3 MAC Layer LightWeight Filter-0000
+15:24:47.090 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Ericsson N5321 gw-WFP Native MAC Layer LightWeight Filter-0000
+15:24:47.091 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:47.093 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? true
+15:24:47.094 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding loopback multicast interface Ericsson N5321 gw-WFP Native MAC Layer LightWeight Filter-0000
+15:24:47.094 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Ericsson N5321 gw-Virtual WiFi Filter Driver-0000
+15:24:47.096 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:47.098 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? true
+15:24:47.098 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding loopback multicast interface Ericsson N5321 gw-Virtual WiFi Filter Driver-0000
+15:24:47.099 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Intel(R) Wireless-N 7260-WFP Native MAC Layer LightWeight Filter-0000
+15:24:47.101 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:47.102 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? true
+15:24:47.103 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding loopback multicast interface Intel(R) Wireless-N 7260-WFP Native MAC Layer LightWeight Filter-0000
+15:24:47.103 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Intel(R) Wireless-N 7260-Virtual WiFi Filter Driver-0000
+15:24:47.105 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:47.107 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? true
+15:24:47.108 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding loopback multicast interface Intel(R) Wireless-N 7260-Virtual WiFi Filter Driver-0000
+15:24:47.108 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Intel(R) Wireless-N 7260-Native WiFi Filter Driver-0000
+15:24:47.110 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:47.111 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? true
+15:24:47.112 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding loopback multicast interface Intel(R) Wireless-N 7260-Native WiFi Filter Driver-0000
+15:24:47.113 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Intel(R) Wireless-N 7260-QoS Packet Scheduler-0000
+15:24:47.115 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:47.117 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? true
+15:24:47.117 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding loopback multicast interface Intel(R) Wireless-N 7260-QoS Packet Scheduler-0000
+15:24:47.118 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Intel(R) Wireless-N 7260-WFP 802.3 MAC Layer LightWeight Filter-0000
+15:24:47.120 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:47.122 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? true
+15:24:47.123 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding loopback multicast interface Intel(R) Wireless-N 7260-WFP 802.3 MAC Layer LightWeight Filter-0000
+15:24:47.123 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Microsoft Hosted Network Virtual Adapter-WFP Native MAC Layer LightWeight Filter-0000
+15:24:47.125 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:47.127 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? true
+15:24:47.127 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding loopback multicast interface Microsoft Hosted Network Virtual Adapter-WFP Native MAC Layer LightWeight Filter-0000
+15:24:47.128 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Microsoft Hosted Network Virtual Adapter-Native WiFi Filter Driver-0000
+15:24:47.131 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:47.134 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? true
+15:24:47.136 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding loopback multicast interface Microsoft Hosted Network Virtual Adapter-Native WiFi Filter Driver-0000
+15:24:47.137 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Microsoft Hosted Network Virtual Adapter-QoS Packet Scheduler-0000
+15:24:47.140 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:47.142 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? true
+15:24:47.143 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding loopback multicast interface Microsoft Hosted Network Virtual Adapter-QoS Packet Scheduler-0000
+15:24:47.144 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Microsoft Wi-Fi Direct Virtual Adapter-WFP Native MAC Layer LightWeight Filter-0000
+15:24:47.146 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:47.149 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? true
+15:24:47.150 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding loopback multicast interface Microsoft Wi-Fi Direct Virtual Adapter-WFP Native MAC Layer LightWeight Filter-0000
+15:24:47.151 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Microsoft Hosted Network Virtual Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+15:24:47.153 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:47.156 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? true
+15:24:47.157 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding loopback multicast interface Microsoft Hosted Network Virtual Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+15:24:47.158 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Microsoft Wi-Fi Direct Virtual Adapter-Native WiFi Filter Driver-0000
+15:24:47.160 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:47.162 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? true
+15:24:47.163 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding loopback multicast interface Microsoft Wi-Fi Direct Virtual Adapter-Native WiFi Filter Driver-0000
+15:24:47.164 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Microsoft Wi-Fi Direct Virtual Adapter-QoS Packet Scheduler-0000
+15:24:47.166 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:47.168 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? true
+15:24:47.169 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding loopback multicast interface Microsoft Wi-Fi Direct Virtual Adapter-QoS Packet Scheduler-0000
+15:24:47.169 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding IP addresses for network interface Microsoft Wi-Fi Direct Virtual Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+15:24:47.171 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a loopback interface? false
+15:24:47.175 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Is this a multicast interface? true
+15:24:47.176 [DEBUG] [org.gradle.messaging.remote.internal.inet.InetAddressFactory] Adding loopback multicast interface Microsoft Wi-Fi Direct Virtual Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+15:24:47.182 [DEBUG] [org.gradle.messaging.remote.internal.inet.TcpIncomingConnector] Listening on [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]].
+15:24:47.187 [DEBUG] [org.gradle.launcher.daemon.server.Daemon] Daemon starting at: Thu Mar 05 15:24:47 CET 2015, with address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+15:24:47.188 [INFO] [org.gradle.launcher.daemon.server.DomainRegistryUpdater] Advertising the daemon address to the clients: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+15:24:47.190 [DEBUG] [org.gradle.launcher.daemon.server.DomainRegistryUpdater] Advertised daemon context: DefaultDaemonContext[uid=fc3676f5-7cc3-45ea-b3bc-10e9348485b3,javaHome=C:\Program Files\Java\jdk1.7.0_75,daemonRegistryDir=C:\Users\espen1\.gradle\daemon,pid=2660,idleTimeout=10800000,daemonOpts=-Xms128m,-Xmx512m,-Dfile.encoding=windows-1252,-Duser.country=US,-Duser.language=en,-Duser.variant]
+15:24:47.191 [DEBUG] [org.gradle.launcher.daemon.registry.PersistentDaemonRegistry] Storing daemon address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]], context: DefaultDaemonContext[uid=fc3676f5-7cc3-45ea-b3bc-10e9348485b3,javaHome=C:\Program Files\Java\jdk1.7.0_75,daemonRegistryDir=C:\Users\espen1\.gradle\daemon,pid=2660,idleTimeout=10800000,daemonOpts=-Xms128m,-Xmx512m,-Dfile.encoding=windows-1252,-Duser.country=US,-Duser.language=en,-Duser.variant]
+15:24:47.210 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on daemon addresses registry.
+15:24:47.216 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired.
+15:24:47.264 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+15:24:47.266 [LIFECYCLE] [org.gradle.launcher.daemon.server.Daemon] Daemon server started.
+15:24:47.271 [DEBUG] [org.gradle.launcher.daemon.bootstrap.DaemonStartupCommunication] Completed writing the daemon greeting. Closing streams...
+15:24:47.274 [DEBUG] [org.gradle.launcher.daemon.server.Daemon] requestStopOnIdleTimeout(10800000 MILLISECONDS) called on daemon
+15:24:47.276 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Idle timeout: waiting for daemon to stop or be idle for 10800000ms
+15:24:47.278 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Daemon is idle, sleeping until state change or idle timeout at Thu Mar 05 18:24:46 CET 2015
+15:24:47.298 [DEBUG] [org.gradle.messaging.remote.internal.inet.TcpIncomingConnector] Accepted connection from /127.0.0.1:49569 to /127.0.0.1:49568.
+15:24:47.367 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 14: received class org.gradle.launcher.daemon.protocol.Build
+15:24:47.367 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received non-IO message from client: Build{id=b367d18f-65f2-4301-ba77-635a4602f14c.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}
+15:24:47.368 [INFO] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Received command: Build{id=b367d18f-65f2-4301-ba77-635a4602f14c.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}.
+15:24:47.369 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Starting executing command: Build{id=b367d18f-65f2-4301-ba77-635a4602f14c.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server} with connection: socket connection from /127.0.0.1:49568 to /127.0.0.1:49569.
+15:24:47.378 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: started DaemonCommandExecution[command = Build{id=b367d18f-65f2-4301-ba77-635a4602f14c.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}, connection = org.gradle.launcher.daemon.server.DefaultDaemonConnection@e4d7781] after 0.0 minutes of idle
+15:24:47.378 [INFO] [org.gradle.launcher.daemon.server.DomainRegistryUpdater] Marking the daemon as busy, address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+15:24:47.379 [DEBUG] [org.gradle.launcher.daemon.registry.PersistentDaemonRegistry] Marking busy by address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+15:24:47.380 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on daemon addresses registry.
+15:24:47.382 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired.
+15:24:47.386 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+15:24:47.387 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] updating lastActivityAt to 1425565487387
+15:24:47.387 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Daemon is busy, sleeping until state changes.
+15:24:47.389 [INFO] [org.gradle.launcher.daemon.server.exec.StartBuildOrRespondWithBusy] Daemon is about to start building Build{id=b367d18f-65f2-4301-ba77-635a4602f14c.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}. Dispatching build started information...
+15:24:47.391 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 16: dispatching class org.gradle.launcher.daemon.protocol.BuildStarted
+15:24:47.395 [DEBUG] [org.gradle.launcher.daemon.server.exec.EstablishBuildEnvironment] Configuring env variables: {USERPROFILE=C:\Users\espen1, ProgramData=C:\ProgramData, PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC, ProgramFiles(x86)=C:\Program Files (x86), TEMP=C:\Users\espen1\AppData\Local\Temp, SystemDrive=C:, ProgramFiles=C:\Program Files, Path=C:\Python27\;C:\ProgramData\Oracle\Java\javapath;C:\Python27\Scripts;C:\Program Files (x86)\Git\cmd;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\CodeBlocks\MinGW\bin;C:\Program Files (x86)\MySQL\MySQL Utilities 1.3.6\;C:\Python27;, HOMEDRIVE=C:, PROCESSOR_REVISION=3c03, USERDOMAIN=espen, ALLUSERSPROFILE=C:\ProgramData, ProgramW6432=C:\Program Files, Python=C:\Python27\, PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 60 Stepping 3, GenuineIntel, SESSIONNAME=Console, TMP=C:\Users\espen1\AppData\Local\Temp, CommonProgramFiles=C:\Program Files\Common Files, =::=::\, LOGONSERVER=\\ESPEN, PROCESSOR_ARCHITECTURE=AMD64, FP_NO_HOST_CHECK=NO, OS=Windows_NT, TVT=C:\Program Files (x86)\Lenovo, HOMEPATH=\Users\espen1, PROCESSOR_LEVEL=6, CommonProgramW6432=C:\Program Files\Common Files, USERDOMAIN_ROAMINGPROFILE=espen, configsetroot=C:\WINDOWS\ConfigSetRoot, LOCALAPPDATA=C:\Users\espen1\AppData\Local, COMPUTERNAME=ESPEN, windir=C:\WINDOWS, SystemRoot=C:\WINDOWS, NUMBER_OF_PROCESSORS=4, USERNAME=espen1, PUBLIC=C:\Users\Public, PSModulePath=C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules\, READYAPPS=C:\ProgramData\Lenovo\ReadyApps, CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files, ComSpec=C:\WINDOWS\system32\cmd.exe, APPDATA=C:\Users\espen1\AppData\Roaming}
+15:24:47.411 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 14: received class org.gradle.launcher.daemon.protocol.CloseInput
+15:24:47.411 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received IO message from client: CloseInput[id=b367d18f-65f2-4301-ba77-635a4602f14c.2]
+15:24:47.416 [INFO] [org.gradle.launcher.daemon.server.exec.LogToClient] About to start relaying all logs to the client via the connection.
+15:24:47.416 [INFO] [org.gradle.launcher.daemon.server.exec.LogToClient] The client will now receive all logging from the daemon (pid: 2660). The daemon log file: C:\Users\espen1\.gradle\daemon\2.2\daemon-2660.out.log
+15:24:47.418 [INFO] [org.gradle.launcher.daemon.server.exec.ForwardClientInput] Closing daemon's stdin at end of input.
+15:24:47.418 [INFO] [org.gradle.launcher.daemon.server.exec.ForwardClientInput] The daemon will no longer process any standard input.
+15:24:47.423 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] The daemon has started executing the build.
+15:24:47.424 [INFO] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] Executing build with daemon context: DefaultDaemonContext[uid=fc3676f5-7cc3-45ea-b3bc-10e9348485b3,javaHome=C:\Program Files\Java\jdk1.7.0_75,daemonRegistryDir=C:\Users\espen1\.gradle\daemon,pid=2660,idleTimeout=10800000,daemonOpts=-Xms128m,-Xmx512m,-Dfile.encoding=windows-1252,-Duser.country=US,-Duser.language=en,-Duser.variant]
+Configuration on demand is an incubating feature.
+:core:compileJavawarning: [options] bootstrap class path not set in conjunction with -source 1.6
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+1 warning
+
+:core:processResources UP-TO-DATE
+:core:classes
+:core:jar
+:core:assemble
+
+BUILD SUCCESSFUL
+
+Total time: 12.851 secs
+15:24:56.166 [DEBUG] [org.gradle.api.internal.tasks.compile.daemon.CompilerDaemonManager] Stopping 0 compiler daemon(s).
+15:24:56.166 [INFO] [org.gradle.api.internal.tasks.compile.daemon.CompilerDaemonManager] Stopped 0 compiler daemon(s).
+15:24:56.167 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for settings file 'C:\git\RawHeroesOfBegredeligeStudenter\project\settings.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\settings_azto2ifi6360hk4n1jk7opqw\SettingsScript\buildscript).
+15:24:56.167 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for settings file 'C:\git\RawHeroesOfBegredeligeStudenter\project\settings.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\settings_azto2ifi6360hk4n1jk7opqw\SettingsScript\no_buildscript).
+15:24:56.168 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_7xhrk7l9u7nbqis8uakom97ma\ProjectScript\buildscript).
+15:24:56.168 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_7xhrk7l9u7nbqis8uakom97ma\ProjectScript\no_buildscript).
+15:24:56.169 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\core\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_8v40sxjn07pqpjpuy17hx11t5\ProjectScript\buildscript).
+15:24:56.169 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\core\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_8v40sxjn07pqpjpuy17hx11t5\ProjectScript\no_buildscript).
+15:24:56.171 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache taskArtifacts.bin (C:\git\RawHeroesOfBegredeligeStudenter\project\.gradle\2.2\taskArtifacts\taskArtifacts.bin)
+15:24:56.172 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache outputFileStates.bin (C:\git\RawHeroesOfBegredeligeStudenter\project\.gradle\2.2\taskArtifacts\outputFileStates.bin)
+15:24:56.173 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache fileHashes.bin (C:\git\RawHeroesOfBegredeligeStudenter\project\.gradle\2.2\taskArtifacts\fileHashes.bin)
+15:24:56.174 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache fileSnapshots.bin (C:\git\RawHeroesOfBegredeligeStudenter\project\.gradle\2.2\taskArtifacts\fileSnapshots.bin)
+15:24:56.175 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on task history cache (C:\git\RawHeroesOfBegredeligeStudenter\project\.gradle\2.2\taskArtifacts).
+15:24:56.176 [DEBUG] [org.gradle.cache.internal.DefaultCacheAccess] Cache jars (C:\Users\espen1\.gradle\caches\jars-1) was closed 0 times.
+15:24:56.177 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache module-metadata.bin (C:\Users\espen1\.gradle\caches\modules-2\metadata-2.14\module-metadata.bin)
+15:24:56.178 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache artifact-at-repository.bin (C:\Users\espen1\.gradle\caches\modules-2\metadata-2.14\artifact-at-repository.bin)
+15:24:56.179 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on artifact cache (C:\Users\espen1\.gradle\caches\modules-2).
+15:24:56.181 [DEBUG] [org.gradle.cache.internal.DefaultCacheAccess] Cache Plugin Resolution Cache (C:\Users\espen1\.gradle\caches\2.2\plugin-resolution) was closed 0 times.
+15:24:56.194 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.CachedStoreFactory] Resolution result cache closed. Cache reads: 0, disk reads: 0 (avg: 0.0 secs, total: 0.0 secs)
+15:24:56.196 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.CachedStoreFactory] Resolved configuration cache closed. Cache reads: 0, disk reads: 0 (avg: 0.0 secs, total: 0.0 secs)
+15:24:56.197 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.ResolutionResultsStoreFactory] Deleted 2 resolution results binary files in 0.011 secs
+15:24:56.197 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.memcache.InMemoryCachedRepositoryFactory] In-memory dependency metadata cache closed. Repos cached: 4, cache instances: 3, modules served from cache: 0, artifacts: 0
+15:24:56.198 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] The daemon has finished executing the build.
+15:24:56.654 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Daemon is busy, sleeping until state changes.
+15:24:56.662 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: finished waiting for DaemonCommandExecution[command = Build{id=b367d18f-65f2-4301-ba77-635a4602f14c.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}, connection = org.gradle.launcher.daemon.server.DefaultDaemonConnection@e4d7781]. Result org.gradle.launcher.daemon.server.DaemonStateCoordinator@6ec80792 with state Running
+15:24:56.662 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: completed DaemonCommandExecution[command = Build{id=b367d18f-65f2-4301-ba77-635a4602f14c.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}, connection = org.gradle.launcher.daemon.server.DefaultDaemonConnection@e4d7781]
+15:24:56.663 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] updating lastActivityAt to 1425565496663
+15:24:56.664 [INFO] [org.gradle.launcher.daemon.server.DomainRegistryUpdater] Marking the daemon as idle, address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+15:24:56.664 [DEBUG] [org.gradle.launcher.daemon.registry.PersistentDaemonRegistry] Marking idle by address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+15:24:56.668 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on daemon addresses registry.
+15:24:56.669 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired.
+15:24:56.673 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+15:24:56.676 [DEBUG] [org.gradle.launcher.daemon.server.exec.ReturnResult] Daemon is dispatching the build result: DaemonCommandResult[type=Success, value=org.gradle.tooling.internal.provider.BuildActionResult@714a8834]
+15:24:56.677 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 13: dispatching class org.gradle.launcher.daemon.protocol.Success
+15:24:56.679 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Daemon is idle, sleeping until state change or idle timeout at Thu Mar 05 18:24:56 CET 2015
+15:24:56.682 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Finishing executing command: Build{id=b367d18f-65f2-4301-ba77-635a4602f14c.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}
+15:24:56.693 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 14: received class org.gradle.launcher.daemon.protocol.Finished
+15:24:56.694 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received non-IO message from client: org.gradle.launcher.daemon.protocol.Finished@5901eae8
+15:24:56.695 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 14: received null
+15:24:56.695 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received end-of-input from client.
+15:24:56.697 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Received finished message: null
+15:24:56.698 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 13: stopping connection
+15:24:56.700 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 13: stopping connection
+15:25:33.946 [DEBUG] [org.gradle.messaging.remote.internal.inet.TcpIncomingConnector] Accepted connection from /127.0.0.1:49581 to /127.0.0.1:49568.
+15:25:33.987 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 19: received class org.gradle.launcher.daemon.protocol.Build
+15:25:33.987 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received non-IO message from client: Build{id=0559a2e0-2f4d-4861-9de6-9e8fecd302b2.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}
+15:25:33.988 [INFO] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Received command: Build{id=0559a2e0-2f4d-4861-9de6-9e8fecd302b2.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}.
+15:25:33.988 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Starting executing command: Build{id=0559a2e0-2f4d-4861-9de6-9e8fecd302b2.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server} with connection: socket connection from /127.0.0.1:49568 to /127.0.0.1:49581.
+15:25:33.989 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: started DaemonCommandExecution[command = Build{id=0559a2e0-2f4d-4861-9de6-9e8fecd302b2.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}, connection = org.gradle.launcher.daemon.server.DefaultDaemonConnection@36afac1d] after 0.0 minutes of idle
+15:25:33.989 [INFO] [org.gradle.launcher.daemon.server.DomainRegistryUpdater] Marking the daemon as busy, address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+15:25:33.989 [DEBUG] [org.gradle.launcher.daemon.registry.PersistentDaemonRegistry] Marking busy by address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+15:25:33.990 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on daemon addresses registry.
+15:25:33.991 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired.
+15:25:33.994 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+15:25:33.995 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] updating lastActivityAt to 1425565533995
+15:25:33.995 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Daemon is busy, sleeping until state changes.
+15:25:33.995 [INFO] [org.gradle.launcher.daemon.server.exec.StartBuildOrRespondWithBusy] Daemon is about to start building Build{id=0559a2e0-2f4d-4861-9de6-9e8fecd302b2.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}. Dispatching build started information...
+15:25:33.996 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 16: dispatching class org.gradle.launcher.daemon.protocol.BuildStarted
+15:25:33.997 [DEBUG] [org.gradle.launcher.daemon.server.exec.EstablishBuildEnvironment] Configuring env variables: {USERPROFILE=C:\Users\espen1, ProgramData=C:\ProgramData, PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC, ProgramFiles(x86)=C:\Program Files (x86), TEMP=C:\Users\espen1\AppData\Local\Temp, SystemDrive=C:, ProgramFiles=C:\Program Files, Path=C:\Python27\;C:\ProgramData\Oracle\Java\javapath;C:\Python27\Scripts;C:\Program Files (x86)\Git\cmd;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\CodeBlocks\MinGW\bin;C:\Program Files (x86)\MySQL\MySQL Utilities 1.3.6\;C:\Python27;, HOMEDRIVE=C:, PROCESSOR_REVISION=3c03, USERDOMAIN=espen, ALLUSERSPROFILE=C:\ProgramData, ProgramW6432=C:\Program Files, Python=C:\Python27\, PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 60 Stepping 3, GenuineIntel, SESSIONNAME=Console, TMP=C:\Users\espen1\AppData\Local\Temp, CommonProgramFiles=C:\Program Files\Common Files, =::=::\, LOGONSERVER=\\ESPEN, PROCESSOR_ARCHITECTURE=AMD64, FP_NO_HOST_CHECK=NO, OS=Windows_NT, TVT=C:\Program Files (x86)\Lenovo, HOMEPATH=\Users\espen1, PROCESSOR_LEVEL=6, CommonProgramW6432=C:\Program Files\Common Files, USERDOMAIN_ROAMINGPROFILE=espen, configsetroot=C:\WINDOWS\ConfigSetRoot, LOCALAPPDATA=C:\Users\espen1\AppData\Local, COMPUTERNAME=ESPEN, windir=C:\WINDOWS, SystemRoot=C:\WINDOWS, NUMBER_OF_PROCESSORS=4, USERNAME=espen1, PUBLIC=C:\Users\Public, PSModulePath=C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules\, READYAPPS=C:\ProgramData\Lenovo\ReadyApps, CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files, ComSpec=C:\WINDOWS\system32\cmd.exe, APPDATA=C:\Users\espen1\AppData\Roaming}
+15:25:34.000 [INFO] [org.gradle.launcher.daemon.server.exec.LogToClient] About to start relaying all logs to the client via the connection.
+15:25:34.000 [INFO] [org.gradle.launcher.daemon.server.exec.LogToClient] The client will now receive all logging from the daemon (pid: 2660). The daemon log file: C:\Users\espen1\.gradle\daemon\2.2\daemon-2660.out.log
+15:25:34.001 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] The daemon has started executing the build.
+15:25:34.002 [INFO] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] Executing build with daemon context: DefaultDaemonContext[uid=fc3676f5-7cc3-45ea-b3bc-10e9348485b3,javaHome=C:\Program Files\Java\jdk1.7.0_75,daemonRegistryDir=C:\Users\espen1\.gradle\daemon,pid=2660,idleTimeout=10800000,daemonOpts=-Xms128m,-Xmx512m,-Dfile.encoding=windows-1252,-Duser.country=US,-Duser.language=en,-Duser.variant]
+15:25:34.013 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 19: received class org.gradle.launcher.daemon.protocol.CloseInput
+15:25:34.013 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received IO message from client: CloseInput[id=0559a2e0-2f4d-4861-9de6-9e8fecd302b2.2]
+15:25:34.014 [INFO] [org.gradle.launcher.daemon.server.exec.ForwardClientInput] Closing daemon's stdin at end of input.
+15:25:34.015 [INFO] [org.gradle.launcher.daemon.server.exec.ForwardClientInput] The daemon will no longer process any standard input.
+Configuration on demand is an incubating feature.
+:core:compileJavawarning: [options] bootstrap class path not set in conjunction with -source 1.6
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+1 warning
+
+:core:processResources UP-TO-DATE
+:core:classes
+:core:jar
+:core:assemble
+
+BUILD SUCCESSFUL
+
+Total time: 3.228 secs
+15:25:35.999 [DEBUG] [org.gradle.api.internal.tasks.compile.daemon.CompilerDaemonManager] Stopping 0 compiler daemon(s).
+15:25:35.999 [INFO] [org.gradle.api.internal.tasks.compile.daemon.CompilerDaemonManager] Stopped 0 compiler daemon(s).
+15:25:36.000 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for settings file 'C:\git\RawHeroesOfBegredeligeStudenter\project\settings.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\settings_azto2ifi6360hk4n1jk7opqw\SettingsScript\buildscript).
+15:25:36.000 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for settings file 'C:\git\RawHeroesOfBegredeligeStudenter\project\settings.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\settings_azto2ifi6360hk4n1jk7opqw\SettingsScript\no_buildscript).
+15:25:36.001 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_7xhrk7l9u7nbqis8uakom97ma\ProjectScript\buildscript).
+15:25:36.001 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_7xhrk7l9u7nbqis8uakom97ma\ProjectScript\no_buildscript).
+15:25:36.002 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\core\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_8v40sxjn07pqpjpuy17hx11t5\ProjectScript\buildscript).
+15:25:36.002 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\core\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_8v40sxjn07pqpjpuy17hx11t5\ProjectScript\no_buildscript).
+15:25:36.004 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache taskArtifacts.bin (C:\git\RawHeroesOfBegredeligeStudenter\project\.gradle\2.2\taskArtifacts\taskArtifacts.bin)
+15:25:36.004 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache fileHashes.bin (C:\git\RawHeroesOfBegredeligeStudenter\project\.gradle\2.2\taskArtifacts\fileHashes.bin)
+15:25:36.005 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache fileSnapshots.bin (C:\git\RawHeroesOfBegredeligeStudenter\project\.gradle\2.2\taskArtifacts\fileSnapshots.bin)
+15:25:36.005 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on task history cache (C:\git\RawHeroesOfBegredeligeStudenter\project\.gradle\2.2\taskArtifacts).
+15:25:36.006 [DEBUG] [org.gradle.cache.internal.DefaultCacheAccess] Cache jars (C:\Users\espen1\.gradle\caches\jars-1) was closed 0 times.
+15:25:36.007 [DEBUG] [org.gradle.cache.internal.DefaultCacheAccess] Cache Plugin Resolution Cache (C:\Users\espen1\.gradle\caches\2.2\plugin-resolution) was closed 0 times.
+15:25:36.007 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache module-metadata.bin (C:\Users\espen1\.gradle\caches\modules-2\metadata-2.14\module-metadata.bin)
+15:25:36.008 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache artifact-at-repository.bin (C:\Users\espen1\.gradle\caches\modules-2\metadata-2.14\artifact-at-repository.bin)
+15:25:36.008 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on artifact cache (C:\Users\espen1\.gradle\caches\modules-2).
+15:25:36.010 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.CachedStoreFactory] Resolution result cache closed. Cache reads: 0, disk reads: 0 (avg: 0.0 secs, total: 0.0 secs)
+15:25:36.011 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.CachedStoreFactory] Resolved configuration cache closed. Cache reads: 0, disk reads: 0 (avg: 0.0 secs, total: 0.0 secs)
+15:25:36.012 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.ResolutionResultsStoreFactory] Deleted 2 resolution results binary files in 0.003 secs
+15:25:36.013 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.memcache.InMemoryCachedRepositoryFactory] In-memory dependency metadata cache closed. Repos cached: 4, cache instances: 3, modules served from cache: 0, artifacts: 0
+15:25:36.013 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] The daemon has finished executing the build.
+15:25:36.016 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: finished waiting for DaemonCommandExecution[command = Build{id=0559a2e0-2f4d-4861-9de6-9e8fecd302b2.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}, connection = org.gradle.launcher.daemon.server.DefaultDaemonConnection@36afac1d]. Result org.gradle.launcher.daemon.server.DaemonStateCoordinator@6ec80792 with state Running
+15:25:36.016 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: completed DaemonCommandExecution[command = Build{id=0559a2e0-2f4d-4861-9de6-9e8fecd302b2.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}, connection = org.gradle.launcher.daemon.server.DefaultDaemonConnection@36afac1d]
+15:25:36.017 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] updating lastActivityAt to 1425565536017
+15:25:36.017 [INFO] [org.gradle.launcher.daemon.server.DomainRegistryUpdater] Marking the daemon as idle, address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+15:25:36.017 [DEBUG] [org.gradle.launcher.daemon.registry.PersistentDaemonRegistry] Marking idle by address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+15:25:36.018 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on daemon addresses registry.
+15:25:36.019 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired.
+15:25:36.022 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+15:25:36.023 [DEBUG] [org.gradle.launcher.daemon.server.exec.ReturnResult] Daemon is dispatching the build result: DaemonCommandResult[type=Success, value=org.gradle.tooling.internal.provider.BuildActionResult@c0fc23d]
+15:25:36.023 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Daemon is idle, sleeping until state change or idle timeout at Thu Mar 05 18:25:36 CET 2015
+15:25:36.024 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 13: dispatching class org.gradle.launcher.daemon.protocol.Success
+15:25:36.026 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Finishing executing command: Build{id=0559a2e0-2f4d-4861-9de6-9e8fecd302b2.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}
+15:25:36.033 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 19: received class org.gradle.launcher.daemon.protocol.Finished
+15:25:36.034 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received non-IO message from client: org.gradle.launcher.daemon.protocol.Finished@678db5a9
+15:25:36.035 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Received finished message: org.gradle.launcher.daemon.protocol.Finished@678db5a9
+15:25:36.035 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 19: received null
+15:25:36.036 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received end-of-input from client.
+15:25:36.035 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 13: stopping connection
+15:25:36.039 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 13: stopping connection
+17:06:45.708 [DEBUG] [org.gradle.messaging.remote.internal.inet.TcpIncomingConnector] Accepted connection from /127.0.0.1:49977 to /127.0.0.1:49568.
+17:06:45.744 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 23: received class org.gradle.launcher.daemon.protocol.Build
+17:06:45.744 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received non-IO message from client: Build{id=96321b4e-a3fe-44cd-bf46-f9a782d6c193.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}
+17:06:45.745 [INFO] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Received command: Build{id=96321b4e-a3fe-44cd-bf46-f9a782d6c193.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}.
+17:06:45.746 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Starting executing command: Build{id=96321b4e-a3fe-44cd-bf46-f9a782d6c193.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server} with connection: socket connection from /127.0.0.1:49568 to /127.0.0.1:49977.
+17:06:45.747 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: started DaemonCommandExecution[command = Build{id=96321b4e-a3fe-44cd-bf46-f9a782d6c193.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}, connection = org.gradle.launcher.daemon.server.DefaultDaemonConnection@3f651673] after 101.0 minutes of idle
+17:06:45.747 [INFO] [org.gradle.launcher.daemon.server.DomainRegistryUpdater] Marking the daemon as busy, address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:06:45.748 [DEBUG] [org.gradle.launcher.daemon.registry.PersistentDaemonRegistry] Marking busy by address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:06:45.750 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on daemon addresses registry.
+17:06:45.751 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired.
+17:06:45.756 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+17:06:45.757 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] updating lastActivityAt to 1425571605757
+17:06:45.758 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Daemon is busy, sleeping until state changes.
+17:06:45.759 [INFO] [org.gradle.launcher.daemon.server.exec.StartBuildOrRespondWithBusy] Daemon is about to start building Build{id=96321b4e-a3fe-44cd-bf46-f9a782d6c193.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}. Dispatching build started information...
+17:06:45.760 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 25: dispatching class org.gradle.launcher.daemon.protocol.BuildStarted
+17:06:45.762 [DEBUG] [org.gradle.launcher.daemon.server.exec.EstablishBuildEnvironment] Configuring env variables: {USERPROFILE=C:\Users\espen1, ProgramData=C:\ProgramData, PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC, ProgramFiles(x86)=C:\Program Files (x86), TEMP=C:\Users\espen1\AppData\Local\Temp, SystemDrive=C:, ProgramFiles=C:\Program Files, Path=C:\Python27\;C:\ProgramData\Oracle\Java\javapath;C:\Python27\Scripts;C:\Program Files (x86)\Git\cmd;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\CodeBlocks\MinGW\bin;C:\Program Files (x86)\MySQL\MySQL Utilities 1.3.6\;C:\Python27;, HOMEDRIVE=C:, PROCESSOR_REVISION=3c03, USERDOMAIN=espen, ALLUSERSPROFILE=C:\ProgramData, ProgramW6432=C:\Program Files, Python=C:\Python27\, PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 60 Stepping 3, GenuineIntel, SESSIONNAME=Console, TMP=C:\Users\espen1\AppData\Local\Temp, CommonProgramFiles=C:\Program Files\Common Files, =::=::\, LOGONSERVER=\\ESPEN, PROCESSOR_ARCHITECTURE=AMD64, FP_NO_HOST_CHECK=NO, OS=Windows_NT, TVT=C:\Program Files (x86)\Lenovo, HOMEPATH=\Users\espen1, PROCESSOR_LEVEL=6, CommonProgramW6432=C:\Program Files\Common Files, USERDOMAIN_ROAMINGPROFILE=espen, configsetroot=C:\WINDOWS\ConfigSetRoot, LOCALAPPDATA=C:\Users\espen1\AppData\Local, COMPUTERNAME=ESPEN, windir=C:\WINDOWS, SystemRoot=C:\WINDOWS, NUMBER_OF_PROCESSORS=4, USERNAME=espen1, PUBLIC=C:\Users\Public, PSModulePath=C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules\, READYAPPS=C:\ProgramData\Lenovo\ReadyApps, CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files, ComSpec=C:\WINDOWS\system32\cmd.exe, APPDATA=C:\Users\espen1\AppData\Roaming}
+17:06:45.765 [INFO] [org.gradle.launcher.daemon.server.exec.LogToClient] About to start relaying all logs to the client via the connection.
+17:06:45.766 [INFO] [org.gradle.launcher.daemon.server.exec.LogToClient] The client will now receive all logging from the daemon (pid: 2660). The daemon log file: C:\Users\espen1\.gradle\daemon\2.2\daemon-2660.out.log
+17:06:45.767 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] The daemon has started executing the build.
+17:06:45.768 [INFO] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] Executing build with daemon context: DefaultDaemonContext[uid=fc3676f5-7cc3-45ea-b3bc-10e9348485b3,javaHome=C:\Program Files\Java\jdk1.7.0_75,daemonRegistryDir=C:\Users\espen1\.gradle\daemon,pid=2660,idleTimeout=10800000,daemonOpts=-Xms128m,-Xmx512m,-Dfile.encoding=windows-1252,-Duser.country=US,-Duser.language=en,-Duser.variant]
+17:06:45.773 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 23: received class org.gradle.launcher.daemon.protocol.CloseInput
+17:06:45.774 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received IO message from client: CloseInput[id=96321b4e-a3fe-44cd-bf46-f9a782d6c193.2]
+17:06:45.774 [INFO] [org.gradle.launcher.daemon.server.exec.ForwardClientInput] Closing daemon's stdin at end of input.
+17:06:45.775 [INFO] [org.gradle.launcher.daemon.server.exec.ForwardClientInput] The daemon will no longer process any standard input.
+Configuration on demand is an incubating feature.
+:core:compileJavawarning: [options] bootstrap class path not set in conjunction with -source 1.6
+C:\git\RawHeroesOfBegredeligeStudenter\project\core\src\com\tdt4240\RawHeroes\network\server\serverConnection\worker\PlayerHandler.java:33: error: diamond operator is not supported in -source 1.6
+        HashMap<String, Object> columns = new HashMap<>();
+                                                      ^
+  (use -source 7 or higher to enable diamond operator)
+1 error
+1 warning
+ FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':core:compileJava'.
+> Compilation failed; see the compiler error output for details.
+
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output.
+
+BUILD FAILED
+
+Total time: 2.651 secs
+17:06:47.399 [DEBUG] [org.gradle.api.internal.tasks.compile.daemon.CompilerDaemonManager] Stopping 0 compiler daemon(s).
+17:06:47.399 [INFO] [org.gradle.api.internal.tasks.compile.daemon.CompilerDaemonManager] Stopped 0 compiler daemon(s).
+17:06:47.399 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for settings file 'C:\git\RawHeroesOfBegredeligeStudenter\project\settings.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\settings_azto2ifi6360hk4n1jk7opqw\SettingsScript\buildscript).
+17:06:47.400 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for settings file 'C:\git\RawHeroesOfBegredeligeStudenter\project\settings.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\settings_azto2ifi6360hk4n1jk7opqw\SettingsScript\no_buildscript).
+17:06:47.400 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_7xhrk7l9u7nbqis8uakom97ma\ProjectScript\buildscript).
+17:06:47.400 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_7xhrk7l9u7nbqis8uakom97ma\ProjectScript\no_buildscript).
+17:06:47.401 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\core\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_8v40sxjn07pqpjpuy17hx11t5\ProjectScript\buildscript).
+17:06:47.401 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\core\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_8v40sxjn07pqpjpuy17hx11t5\ProjectScript\no_buildscript).
+17:06:47.403 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache fileHashes.bin (C:\git\RawHeroesOfBegredeligeStudenter\project\.gradle\2.2\taskArtifacts\fileHashes.bin)
+17:06:47.404 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on task history cache (C:\git\RawHeroesOfBegredeligeStudenter\project\.gradle\2.2\taskArtifacts).
+17:06:47.405 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache module-metadata.bin (C:\Users\espen1\.gradle\caches\modules-2\metadata-2.14\module-metadata.bin)
+17:06:47.406 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache artifact-at-repository.bin (C:\Users\espen1\.gradle\caches\modules-2\metadata-2.14\artifact-at-repository.bin)
+17:06:47.407 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on artifact cache (C:\Users\espen1\.gradle\caches\modules-2).
+17:06:47.408 [DEBUG] [org.gradle.cache.internal.DefaultCacheAccess] Cache Plugin Resolution Cache (C:\Users\espen1\.gradle\caches\2.2\plugin-resolution) was closed 0 times.
+17:06:47.410 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.CachedStoreFactory] Resolution result cache closed. Cache reads: 0, disk reads: 0 (avg: 0.0 secs, total: 0.0 secs)
+17:06:47.412 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.CachedStoreFactory] Resolved configuration cache closed. Cache reads: 0, disk reads: 0 (avg: 0.0 secs, total: 0.0 secs)
+17:06:47.413 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.ResolutionResultsStoreFactory] Deleted 2 resolution results binary files in 0.002 secs
+17:06:47.413 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.memcache.InMemoryCachedRepositoryFactory] In-memory dependency metadata cache closed. Repos cached: 4, cache instances: 3, modules served from cache: 0, artifacts: 0
+17:06:47.414 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] The daemon has finished executing the build.
+17:06:47.727 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: finished waiting for DaemonCommandExecution[command = Build{id=96321b4e-a3fe-44cd-bf46-f9a782d6c193.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}, connection = org.gradle.launcher.daemon.server.DefaultDaemonConnection@3f651673]. Result org.gradle.launcher.daemon.server.DaemonStateCoordinator@6ec80792 with state Running
+17:06:47.728 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: completed DaemonCommandExecution[command = Build{id=96321b4e-a3fe-44cd-bf46-f9a782d6c193.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}, connection = org.gradle.launcher.daemon.server.DefaultDaemonConnection@3f651673]
+17:06:47.729 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] updating lastActivityAt to 1425571607729
+17:06:47.729 [INFO] [org.gradle.launcher.daemon.server.DomainRegistryUpdater] Marking the daemon as idle, address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:06:47.730 [DEBUG] [org.gradle.launcher.daemon.registry.PersistentDaemonRegistry] Marking idle by address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:06:47.731 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on daemon addresses registry.
+17:06:47.733 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired.
+17:06:47.743 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+17:06:47.744 [DEBUG] [org.gradle.launcher.daemon.server.exec.ReturnResult] Daemon is dispatching the build result: DaemonCommandResult[type=CommandFailure, value=org.gradle.launcher.exec.ReportedException: org.gradle.internal.exceptions.LocationAwareException: Execution failed for task ':core:compileJava'.]
+17:06:47.744 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 22: dispatching class org.gradle.launcher.daemon.protocol.CommandFailure
+17:06:47.745 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Daemon is idle, sleeping until state change or idle timeout at Thu Mar 05 20:06:47 CET 2015
+17:06:47.763 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Finishing executing command: Build{id=96321b4e-a3fe-44cd-bf46-f9a782d6c193.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}
+17:06:47.782 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 23: received class org.gradle.launcher.daemon.protocol.Finished
+17:06:47.782 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received non-IO message from client: org.gradle.launcher.daemon.protocol.Finished@19ba0a49
+17:06:47.783 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Received finished message: org.gradle.launcher.daemon.protocol.Finished@19ba0a49
+17:06:47.783 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 23: received null
+17:06:47.783 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 22: stopping connection
+17:06:47.783 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received end-of-input from client.
+17:06:47.784 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 22: stopping connection
+17:08:11.525 [DEBUG] [org.gradle.messaging.remote.internal.inet.TcpIncomingConnector] Accepted connection from /127.0.0.1:49989 to /127.0.0.1:49568.
+17:08:11.561 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 28: received class org.gradle.launcher.daemon.protocol.Build
+17:08:11.561 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received non-IO message from client: Build{id=8ed5366c-cfde-4e29-85a8-15f3a848846d.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}
+17:08:11.561 [INFO] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Received command: Build{id=8ed5366c-cfde-4e29-85a8-15f3a848846d.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}.
+17:08:11.562 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Starting executing command: Build{id=8ed5366c-cfde-4e29-85a8-15f3a848846d.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server} with connection: socket connection from /127.0.0.1:49568 to /127.0.0.1:49989.
+17:08:11.562 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: started DaemonCommandExecution[command = Build{id=8ed5366c-cfde-4e29-85a8-15f3a848846d.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}, connection = org.gradle.launcher.daemon.server.DefaultDaemonConnection@7c698b24] after 1.0 minutes of idle
+17:08:11.562 [INFO] [org.gradle.launcher.daemon.server.DomainRegistryUpdater] Marking the daemon as busy, address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:08:11.562 [DEBUG] [org.gradle.launcher.daemon.registry.PersistentDaemonRegistry] Marking busy by address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:08:11.563 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on daemon addresses registry.
+17:08:11.564 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired.
+17:08:11.566 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+17:08:11.567 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] updating lastActivityAt to 1425571691567
+17:08:11.567 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Daemon is busy, sleeping until state changes.
+17:08:11.568 [INFO] [org.gradle.launcher.daemon.server.exec.StartBuildOrRespondWithBusy] Daemon is about to start building Build{id=8ed5366c-cfde-4e29-85a8-15f3a848846d.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}. Dispatching build started information...
+17:08:11.568 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 30: dispatching class org.gradle.launcher.daemon.protocol.BuildStarted
+17:08:11.571 [DEBUG] [org.gradle.launcher.daemon.server.exec.EstablishBuildEnvironment] Configuring env variables: {USERPROFILE=C:\Users\espen1, ProgramData=C:\ProgramData, PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC, ProgramFiles(x86)=C:\Program Files (x86), TEMP=C:\Users\espen1\AppData\Local\Temp, SystemDrive=C:, ProgramFiles=C:\Program Files, Path=C:\Python27\;C:\ProgramData\Oracle\Java\javapath;C:\Python27\Scripts;C:\Program Files (x86)\Git\cmd;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\CodeBlocks\MinGW\bin;C:\Program Files (x86)\MySQL\MySQL Utilities 1.3.6\;C:\Python27;, HOMEDRIVE=C:, PROCESSOR_REVISION=3c03, USERDOMAIN=espen, ALLUSERSPROFILE=C:\ProgramData, ProgramW6432=C:\Program Files, Python=C:\Python27\, PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 60 Stepping 3, GenuineIntel, SESSIONNAME=Console, TMP=C:\Users\espen1\AppData\Local\Temp, CommonProgramFiles=C:\Program Files\Common Files, =::=::\, LOGONSERVER=\\ESPEN, PROCESSOR_ARCHITECTURE=AMD64, FP_NO_HOST_CHECK=NO, OS=Windows_NT, TVT=C:\Program Files (x86)\Lenovo, HOMEPATH=\Users\espen1, PROCESSOR_LEVEL=6, CommonProgramW6432=C:\Program Files\Common Files, USERDOMAIN_ROAMINGPROFILE=espen, configsetroot=C:\WINDOWS\ConfigSetRoot, LOCALAPPDATA=C:\Users\espen1\AppData\Local, COMPUTERNAME=ESPEN, windir=C:\WINDOWS, SystemRoot=C:\WINDOWS, NUMBER_OF_PROCESSORS=4, USERNAME=espen1, PUBLIC=C:\Users\Public, PSModulePath=C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules\, READYAPPS=C:\ProgramData\Lenovo\ReadyApps, CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files, ComSpec=C:\WINDOWS\system32\cmd.exe, APPDATA=C:\Users\espen1\AppData\Roaming}
+17:08:11.572 [INFO] [org.gradle.launcher.daemon.server.exec.LogToClient] About to start relaying all logs to the client via the connection.
+17:08:11.573 [INFO] [org.gradle.launcher.daemon.server.exec.LogToClient] The client will now receive all logging from the daemon (pid: 2660). The daemon log file: C:\Users\espen1\.gradle\daemon\2.2\daemon-2660.out.log
+17:08:11.573 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] The daemon has started executing the build.
+17:08:11.574 [INFO] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] Executing build with daemon context: DefaultDaemonContext[uid=fc3676f5-7cc3-45ea-b3bc-10e9348485b3,javaHome=C:\Program Files\Java\jdk1.7.0_75,daemonRegistryDir=C:\Users\espen1\.gradle\daemon,pid=2660,idleTimeout=10800000,daemonOpts=-Xms128m,-Xmx512m,-Dfile.encoding=windows-1252,-Duser.country=US,-Duser.language=en,-Duser.variant]
+17:08:11.587 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 28: received class org.gradle.launcher.daemon.protocol.CloseInput
+17:08:11.587 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received IO message from client: CloseInput[id=8ed5366c-cfde-4e29-85a8-15f3a848846d.2]
+17:08:11.587 [INFO] [org.gradle.launcher.daemon.server.exec.ForwardClientInput] Closing daemon's stdin at end of input.
+17:08:11.588 [INFO] [org.gradle.launcher.daemon.server.exec.ForwardClientInput] The daemon will no longer process any standard input.
+Configuration on demand is an incubating feature.
+:core:compileJavawarning: [options] bootstrap class path not set in conjunction with -source 1.6
+C:\git\RawHeroesOfBegredeligeStudenter\project\core\src\com\tdt4240\RawHeroes\network\server\database\DatabaseConnector.java:12: error: package javafx.util does not exist
+import javafx.util.Pair;
+                  ^
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+1 error
+1 warning
+ FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':core:compileJava'.
+> Compilation failed; see the compiler error output for details.
+
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output.
+
+BUILD FAILED
+
+Total time: 2.11 secs
+17:08:12.777 [DEBUG] [org.gradle.api.internal.tasks.compile.daemon.CompilerDaemonManager] Stopping 0 compiler daemon(s).
+17:08:12.778 [INFO] [org.gradle.api.internal.tasks.compile.daemon.CompilerDaemonManager] Stopped 0 compiler daemon(s).
+17:08:12.779 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for settings file 'C:\git\RawHeroesOfBegredeligeStudenter\project\settings.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\settings_azto2ifi6360hk4n1jk7opqw\SettingsScript\buildscript).
+17:08:12.779 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for settings file 'C:\git\RawHeroesOfBegredeligeStudenter\project\settings.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\settings_azto2ifi6360hk4n1jk7opqw\SettingsScript\no_buildscript).
+17:08:12.780 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_7xhrk7l9u7nbqis8uakom97ma\ProjectScript\buildscript).
+17:08:12.780 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_7xhrk7l9u7nbqis8uakom97ma\ProjectScript\no_buildscript).
+17:08:12.781 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\core\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_8v40sxjn07pqpjpuy17hx11t5\ProjectScript\buildscript).
+17:08:12.781 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\core\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_8v40sxjn07pqpjpuy17hx11t5\ProjectScript\no_buildscript).
+17:08:12.783 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache fileHashes.bin (C:\git\RawHeroesOfBegredeligeStudenter\project\.gradle\2.2\taskArtifacts\fileHashes.bin)
+17:08:12.784 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on task history cache (C:\git\RawHeroesOfBegredeligeStudenter\project\.gradle\2.2\taskArtifacts).
+17:08:12.785 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache artifact-at-repository.bin (C:\Users\espen1\.gradle\caches\modules-2\metadata-2.14\artifact-at-repository.bin)
+17:08:12.785 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache module-metadata.bin (C:\Users\espen1\.gradle\caches\modules-2\metadata-2.14\module-metadata.bin)
+17:08:12.786 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on artifact cache (C:\Users\espen1\.gradle\caches\modules-2).
+17:08:12.786 [DEBUG] [org.gradle.cache.internal.DefaultCacheAccess] Cache Plugin Resolution Cache (C:\Users\espen1\.gradle\caches\2.2\plugin-resolution) was closed 0 times.
+17:08:12.787 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.CachedStoreFactory] Resolution result cache closed. Cache reads: 0, disk reads: 0 (avg: 0.0 secs, total: 0.0 secs)
+17:08:12.788 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.CachedStoreFactory] Resolved configuration cache closed. Cache reads: 0, disk reads: 0 (avg: 0.0 secs, total: 0.0 secs)
+17:08:12.789 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.ResolutionResultsStoreFactory] Deleted 2 resolution results binary files in 0.001 secs
+17:08:12.789 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.memcache.InMemoryCachedRepositoryFactory] In-memory dependency metadata cache closed. Repos cached: 4, cache instances: 3, modules served from cache: 0, artifacts: 0
+17:08:12.789 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] The daemon has finished executing the build.
+17:08:12.791 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Daemon is busy, sleeping until state changes.
+17:08:12.792 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: finished waiting for DaemonCommandExecution[command = Build{id=8ed5366c-cfde-4e29-85a8-15f3a848846d.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}, connection = org.gradle.launcher.daemon.server.DefaultDaemonConnection@7c698b24]. Result org.gradle.launcher.daemon.server.DaemonStateCoordinator@6ec80792 with state Running
+17:08:12.792 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: completed DaemonCommandExecution[command = Build{id=8ed5366c-cfde-4e29-85a8-15f3a848846d.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}, connection = org.gradle.launcher.daemon.server.DefaultDaemonConnection@7c698b24]
+17:08:12.792 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] updating lastActivityAt to 1425571692792
+17:08:12.793 [INFO] [org.gradle.launcher.daemon.server.DomainRegistryUpdater] Marking the daemon as idle, address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:08:12.793 [DEBUG] [org.gradle.launcher.daemon.registry.PersistentDaemonRegistry] Marking idle by address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:08:12.793 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on daemon addresses registry.
+17:08:12.794 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired.
+17:08:12.797 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+17:08:12.798 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Daemon is idle, sleeping until state change or idle timeout at Thu Mar 05 20:08:12 CET 2015
+17:08:12.798 [DEBUG] [org.gradle.launcher.daemon.server.exec.ReturnResult] Daemon is dispatching the build result: DaemonCommandResult[type=CommandFailure, value=org.gradle.launcher.exec.ReportedException: org.gradle.internal.exceptions.LocationAwareException: Execution failed for task ':core:compileJava'.]
+17:08:12.799 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 27: dispatching class org.gradle.launcher.daemon.protocol.CommandFailure
+17:08:12.807 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Finishing executing command: Build{id=8ed5366c-cfde-4e29-85a8-15f3a848846d.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}
+17:08:12.826 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 28: received class org.gradle.launcher.daemon.protocol.Finished
+17:08:12.826 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received non-IO message from client: org.gradle.launcher.daemon.protocol.Finished@c7acc0d
+17:08:12.827 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Received finished message: org.gradle.launcher.daemon.protocol.Finished@c7acc0d
+17:08:12.827 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 28: received null
+17:08:12.827 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 27: stopping connection
+17:08:12.828 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received end-of-input from client.
+17:08:12.829 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 27: stopping connection
+17:08:29.846 [DEBUG] [org.gradle.messaging.remote.internal.inet.TcpIncomingConnector] Accepted connection from /127.0.0.1:50001 to /127.0.0.1:49568.
+17:08:29.875 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 32: received class org.gradle.launcher.daemon.protocol.Build
+17:08:29.876 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received non-IO message from client: Build{id=c7104172-c527-46ff-bd7b-f7d6d52149e7.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}
+17:08:29.877 [INFO] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Received command: Build{id=c7104172-c527-46ff-bd7b-f7d6d52149e7.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}.
+17:08:29.877 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Starting executing command: Build{id=c7104172-c527-46ff-bd7b-f7d6d52149e7.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server} with connection: socket connection from /127.0.0.1:49568 to /127.0.0.1:50001.
+17:08:29.877 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: started DaemonCommandExecution[command = Build{id=c7104172-c527-46ff-bd7b-f7d6d52149e7.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}, connection = org.gradle.launcher.daemon.server.DefaultDaemonConnection@23603a5f] after 0.0 minutes of idle
+17:08:29.878 [INFO] [org.gradle.launcher.daemon.server.DomainRegistryUpdater] Marking the daemon as busy, address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:08:29.878 [DEBUG] [org.gradle.launcher.daemon.registry.PersistentDaemonRegistry] Marking busy by address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:08:29.878 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on daemon addresses registry.
+17:08:29.879 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired.
+17:08:29.881 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+17:08:29.882 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] updating lastActivityAt to 1425571709882
+17:08:29.882 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Daemon is busy, sleeping until state changes.
+17:08:29.883 [INFO] [org.gradle.launcher.daemon.server.exec.StartBuildOrRespondWithBusy] Daemon is about to start building Build{id=c7104172-c527-46ff-bd7b-f7d6d52149e7.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}. Dispatching build started information...
+17:08:29.883 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 30: dispatching class org.gradle.launcher.daemon.protocol.BuildStarted
+17:08:29.885 [DEBUG] [org.gradle.launcher.daemon.server.exec.EstablishBuildEnvironment] Configuring env variables: {USERPROFILE=C:\Users\espen1, ProgramData=C:\ProgramData, PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC, ProgramFiles(x86)=C:\Program Files (x86), TEMP=C:\Users\espen1\AppData\Local\Temp, SystemDrive=C:, ProgramFiles=C:\Program Files, Path=C:\Python27\;C:\ProgramData\Oracle\Java\javapath;C:\Python27\Scripts;C:\Program Files (x86)\Git\cmd;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\CodeBlocks\MinGW\bin;C:\Program Files (x86)\MySQL\MySQL Utilities 1.3.6\;C:\Python27;, HOMEDRIVE=C:, PROCESSOR_REVISION=3c03, USERDOMAIN=espen, ALLUSERSPROFILE=C:\ProgramData, ProgramW6432=C:\Program Files, Python=C:\Python27\, PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 60 Stepping 3, GenuineIntel, SESSIONNAME=Console, TMP=C:\Users\espen1\AppData\Local\Temp, CommonProgramFiles=C:\Program Files\Common Files, =::=::\, LOGONSERVER=\\ESPEN, PROCESSOR_ARCHITECTURE=AMD64, FP_NO_HOST_CHECK=NO, OS=Windows_NT, TVT=C:\Program Files (x86)\Lenovo, HOMEPATH=\Users\espen1, PROCESSOR_LEVEL=6, CommonProgramW6432=C:\Program Files\Common Files, USERDOMAIN_ROAMINGPROFILE=espen, configsetroot=C:\WINDOWS\ConfigSetRoot, LOCALAPPDATA=C:\Users\espen1\AppData\Local, COMPUTERNAME=ESPEN, windir=C:\WINDOWS, SystemRoot=C:\WINDOWS, NUMBER_OF_PROCESSORS=4, USERNAME=espen1, PUBLIC=C:\Users\Public, PSModulePath=C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules\, READYAPPS=C:\ProgramData\Lenovo\ReadyApps, CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files, ComSpec=C:\WINDOWS\system32\cmd.exe, APPDATA=C:\Users\espen1\AppData\Roaming}
+17:08:29.887 [INFO] [org.gradle.launcher.daemon.server.exec.LogToClient] About to start relaying all logs to the client via the connection.
+17:08:29.887 [INFO] [org.gradle.launcher.daemon.server.exec.LogToClient] The client will now receive all logging from the daemon (pid: 2660). The daemon log file: C:\Users\espen1\.gradle\daemon\2.2\daemon-2660.out.log
+17:08:29.888 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] The daemon has started executing the build.
+17:08:29.888 [INFO] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] Executing build with daemon context: DefaultDaemonContext[uid=fc3676f5-7cc3-45ea-b3bc-10e9348485b3,javaHome=C:\Program Files\Java\jdk1.7.0_75,daemonRegistryDir=C:\Users\espen1\.gradle\daemon,pid=2660,idleTimeout=10800000,daemonOpts=-Xms128m,-Xmx512m,-Dfile.encoding=windows-1252,-Duser.country=US,-Duser.language=en,-Duser.variant]
+17:08:29.897 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 32: received class org.gradle.launcher.daemon.protocol.CloseInput
+17:08:29.897 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received IO message from client: CloseInput[id=c7104172-c527-46ff-bd7b-f7d6d52149e7.2]
+17:08:29.897 [INFO] [org.gradle.launcher.daemon.server.exec.ForwardClientInput] Closing daemon's stdin at end of input.
+17:08:29.898 [INFO] [org.gradle.launcher.daemon.server.exec.ForwardClientInput] The daemon will no longer process any standard input.
+Configuration on demand is an incubating feature.
+:core:compileJavawarning: [options] bootstrap class path not set in conjunction with -source 1.6
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+1 warning
+
+:core:processResources UP-TO-DATE
+:core:classes
+:core:jar
+:core:assemble
+
+BUILD SUCCESSFUL
+
+Total time: 2.276 secs
+17:08:31.246 [DEBUG] [org.gradle.api.internal.tasks.compile.daemon.CompilerDaemonManager] Stopping 0 compiler daemon(s).
+17:08:31.246 [INFO] [org.gradle.api.internal.tasks.compile.daemon.CompilerDaemonManager] Stopped 0 compiler daemon(s).
+17:08:31.247 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for settings file 'C:\git\RawHeroesOfBegredeligeStudenter\project\settings.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\settings_azto2ifi6360hk4n1jk7opqw\SettingsScript\buildscript).
+17:08:31.247 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for settings file 'C:\git\RawHeroesOfBegredeligeStudenter\project\settings.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\settings_azto2ifi6360hk4n1jk7opqw\SettingsScript\no_buildscript).
+17:08:31.248 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_7xhrk7l9u7nbqis8uakom97ma\ProjectScript\buildscript).
+17:08:31.248 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_7xhrk7l9u7nbqis8uakom97ma\ProjectScript\no_buildscript).
+17:08:31.249 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\core\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_8v40sxjn07pqpjpuy17hx11t5\ProjectScript\buildscript).
+17:08:31.250 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\core\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_8v40sxjn07pqpjpuy17hx11t5\ProjectScript\no_buildscript).
+17:08:31.252 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache fileHashes.bin (C:\git\RawHeroesOfBegredeligeStudenter\project\.gradle\2.2\taskArtifacts\fileHashes.bin)
+17:08:31.252 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache taskArtifacts.bin (C:\git\RawHeroesOfBegredeligeStudenter\project\.gradle\2.2\taskArtifacts\taskArtifacts.bin)
+17:08:31.253 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache fileSnapshots.bin (C:\git\RawHeroesOfBegredeligeStudenter\project\.gradle\2.2\taskArtifacts\fileSnapshots.bin)
+17:08:31.254 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on task history cache (C:\git\RawHeroesOfBegredeligeStudenter\project\.gradle\2.2\taskArtifacts).
+17:08:31.256 [DEBUG] [org.gradle.cache.internal.DefaultCacheAccess] Cache Plugin Resolution Cache (C:\Users\espen1\.gradle\caches\2.2\plugin-resolution) was closed 0 times.
+17:08:31.256 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache module-metadata.bin (C:\Users\espen1\.gradle\caches\modules-2\metadata-2.14\module-metadata.bin)
+17:08:31.257 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache artifact-at-repository.bin (C:\Users\espen1\.gradle\caches\modules-2\metadata-2.14\artifact-at-repository.bin)
+17:08:31.257 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on artifact cache (C:\Users\espen1\.gradle\caches\modules-2).
+17:08:31.257 [DEBUG] [org.gradle.cache.internal.DefaultCacheAccess] Cache jars (C:\Users\espen1\.gradle\caches\jars-1) was closed 0 times.
+17:08:31.259 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.CachedStoreFactory] Resolution result cache closed. Cache reads: 0, disk reads: 0 (avg: 0.0 secs, total: 0.0 secs)
+17:08:31.259 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.CachedStoreFactory] Resolved configuration cache closed. Cache reads: 0, disk reads: 0 (avg: 0.0 secs, total: 0.0 secs)
+17:08:31.260 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.ResolutionResultsStoreFactory] Deleted 2 resolution results binary files in 0.002 secs
+17:08:31.260 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.memcache.InMemoryCachedRepositoryFactory] In-memory dependency metadata cache closed. Repos cached: 4, cache instances: 3, modules served from cache: 0, artifacts: 0
+17:08:31.260 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] The daemon has finished executing the build.
+17:08:31.262 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: finished waiting for DaemonCommandExecution[command = Build{id=c7104172-c527-46ff-bd7b-f7d6d52149e7.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}, connection = org.gradle.launcher.daemon.server.DefaultDaemonConnection@23603a5f]. Result org.gradle.launcher.daemon.server.DaemonStateCoordinator@6ec80792 with state Running
+17:08:31.262 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: completed DaemonCommandExecution[command = Build{id=c7104172-c527-46ff-bd7b-f7d6d52149e7.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}, connection = org.gradle.launcher.daemon.server.DefaultDaemonConnection@23603a5f]
+17:08:31.262 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] updating lastActivityAt to 1425571711262
+17:08:31.262 [INFO] [org.gradle.launcher.daemon.server.DomainRegistryUpdater] Marking the daemon as idle, address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:08:31.263 [DEBUG] [org.gradle.launcher.daemon.registry.PersistentDaemonRegistry] Marking idle by address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:08:31.263 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on daemon addresses registry.
+17:08:31.264 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired.
+17:08:31.266 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+17:08:31.266 [DEBUG] [org.gradle.launcher.daemon.server.exec.ReturnResult] Daemon is dispatching the build result: DaemonCommandResult[type=Success, value=org.gradle.tooling.internal.provider.BuildActionResult@202275fd]
+17:08:31.266 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Daemon is idle, sleeping until state change or idle timeout at Thu Mar 05 20:08:31 CET 2015
+17:08:31.267 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 27: dispatching class org.gradle.launcher.daemon.protocol.Success
+17:08:31.269 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Finishing executing command: Build{id=c7104172-c527-46ff-bd7b-f7d6d52149e7.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}
+17:08:31.274 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 32: received class org.gradle.launcher.daemon.protocol.Finished
+17:08:31.274 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received non-IO message from client: org.gradle.launcher.daemon.protocol.Finished@f6eec9b
+17:08:31.274 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Received finished message: org.gradle.launcher.daemon.protocol.Finished@f6eec9b
+17:08:31.275 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 32: received null
+17:08:31.275 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 27: stopping connection
+17:08:31.275 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received end-of-input from client.
+17:08:31.276 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 27: stopping connection
+17:08:45.246 [DEBUG] [org.gradle.messaging.remote.internal.inet.TcpIncomingConnector] Accepted connection from /127.0.0.1:50013 to /127.0.0.1:49568.
+17:08:45.272 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 35: received class org.gradle.launcher.daemon.protocol.Build
+17:08:45.273 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received non-IO message from client: Build{id=283d0e71-25f9-4090-a9b7-c045d50ff9d2.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}
+17:08:45.273 [INFO] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Received command: Build{id=283d0e71-25f9-4090-a9b7-c045d50ff9d2.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}.
+17:08:45.274 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Starting executing command: Build{id=283d0e71-25f9-4090-a9b7-c045d50ff9d2.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server} with connection: socket connection from /127.0.0.1:49568 to /127.0.0.1:50013.
+17:08:45.274 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: started DaemonCommandExecution[command = Build{id=283d0e71-25f9-4090-a9b7-c045d50ff9d2.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}, connection = org.gradle.launcher.daemon.server.DefaultDaemonConnection@42421155] after 0.0 minutes of idle
+17:08:45.274 [INFO] [org.gradle.launcher.daemon.server.DomainRegistryUpdater] Marking the daemon as busy, address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:08:45.275 [DEBUG] [org.gradle.launcher.daemon.registry.PersistentDaemonRegistry] Marking busy by address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:08:45.275 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on daemon addresses registry.
+17:08:45.276 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired.
+17:08:45.278 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+17:08:45.279 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] updating lastActivityAt to 1425571725279
+17:08:45.279 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Daemon is busy, sleeping until state changes.
+17:08:45.279 [INFO] [org.gradle.launcher.daemon.server.exec.StartBuildOrRespondWithBusy] Daemon is about to start building Build{id=283d0e71-25f9-4090-a9b7-c045d50ff9d2.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}. Dispatching build started information...
+17:08:45.280 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 30: dispatching class org.gradle.launcher.daemon.protocol.BuildStarted
+17:08:45.280 [DEBUG] [org.gradle.launcher.daemon.server.exec.EstablishBuildEnvironment] Configuring env variables: {USERPROFILE=C:\Users\espen1, ProgramData=C:\ProgramData, PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC, ProgramFiles(x86)=C:\Program Files (x86), TEMP=C:\Users\espen1\AppData\Local\Temp, SystemDrive=C:, ProgramFiles=C:\Program Files, Path=C:\Python27\;C:\ProgramData\Oracle\Java\javapath;C:\Python27\Scripts;C:\Program Files (x86)\Git\cmd;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\CodeBlocks\MinGW\bin;C:\Program Files (x86)\MySQL\MySQL Utilities 1.3.6\;C:\Python27;, HOMEDRIVE=C:, PROCESSOR_REVISION=3c03, USERDOMAIN=espen, ALLUSERSPROFILE=C:\ProgramData, ProgramW6432=C:\Program Files, Python=C:\Python27\, PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 60 Stepping 3, GenuineIntel, SESSIONNAME=Console, TMP=C:\Users\espen1\AppData\Local\Temp, CommonProgramFiles=C:\Program Files\Common Files, =::=::\, LOGONSERVER=\\ESPEN, PROCESSOR_ARCHITECTURE=AMD64, FP_NO_HOST_CHECK=NO, OS=Windows_NT, TVT=C:\Program Files (x86)\Lenovo, HOMEPATH=\Users\espen1, PROCESSOR_LEVEL=6, CommonProgramW6432=C:\Program Files\Common Files, USERDOMAIN_ROAMINGPROFILE=espen, configsetroot=C:\WINDOWS\ConfigSetRoot, LOCALAPPDATA=C:\Users\espen1\AppData\Local, COMPUTERNAME=ESPEN, windir=C:\WINDOWS, SystemRoot=C:\WINDOWS, NUMBER_OF_PROCESSORS=4, USERNAME=espen1, PUBLIC=C:\Users\Public, PSModulePath=C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules\, READYAPPS=C:\ProgramData\Lenovo\ReadyApps, CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files, ComSpec=C:\WINDOWS\system32\cmd.exe, APPDATA=C:\Users\espen1\AppData\Roaming}
+17:08:45.281 [INFO] [org.gradle.launcher.daemon.server.exec.LogToClient] About to start relaying all logs to the client via the connection.
+17:08:45.282 [INFO] [org.gradle.launcher.daemon.server.exec.LogToClient] The client will now receive all logging from the daemon (pid: 2660). The daemon log file: C:\Users\espen1\.gradle\daemon\2.2\daemon-2660.out.log
+17:08:45.282 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] The daemon has started executing the build.
+17:08:45.282 [INFO] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] Executing build with daemon context: DefaultDaemonContext[uid=fc3676f5-7cc3-45ea-b3bc-10e9348485b3,javaHome=C:\Program Files\Java\jdk1.7.0_75,daemonRegistryDir=C:\Users\espen1\.gradle\daemon,pid=2660,idleTimeout=10800000,daemonOpts=-Xms128m,-Xmx512m,-Dfile.encoding=windows-1252,-Duser.country=US,-Duser.language=en,-Duser.variant]
+17:08:45.292 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 35: received class org.gradle.launcher.daemon.protocol.CloseInput
+17:08:45.293 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received IO message from client: CloseInput[id=283d0e71-25f9-4090-a9b7-c045d50ff9d2.2]
+17:08:45.293 [INFO] [org.gradle.launcher.daemon.server.exec.ForwardClientInput] Closing daemon's stdin at end of input.
+17:08:45.293 [INFO] [org.gradle.launcher.daemon.server.exec.ForwardClientInput] The daemon will no longer process any standard input.
+Configuration on demand is an incubating feature.
+:core:compileJava UP-TO-DATE
+:core:processResources UP-TO-DATE
+:core:classes UP-TO-DATE
+:core:jar UP-TO-DATE
+:core:assemble UP-TO-DATE
+
+BUILD SUCCESSFUL
+
+Total time: 1.699 secs
+17:08:46.035 [DEBUG] [org.gradle.api.internal.tasks.compile.daemon.CompilerDaemonManager] Stopping 0 compiler daemon(s).
+17:08:46.036 [INFO] [org.gradle.api.internal.tasks.compile.daemon.CompilerDaemonManager] Stopped 0 compiler daemon(s).
+17:08:46.036 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for settings file 'C:\git\RawHeroesOfBegredeligeStudenter\project\settings.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\settings_azto2ifi6360hk4n1jk7opqw\SettingsScript\buildscript).
+17:08:46.036 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for settings file 'C:\git\RawHeroesOfBegredeligeStudenter\project\settings.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\settings_azto2ifi6360hk4n1jk7opqw\SettingsScript\no_buildscript).
+17:08:46.037 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_7xhrk7l9u7nbqis8uakom97ma\ProjectScript\buildscript).
+17:08:46.037 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_7xhrk7l9u7nbqis8uakom97ma\ProjectScript\no_buildscript).
+17:08:46.038 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\core\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_8v40sxjn07pqpjpuy17hx11t5\ProjectScript\buildscript).
+17:08:46.038 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\core\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_8v40sxjn07pqpjpuy17hx11t5\ProjectScript\no_buildscript).
+17:08:46.039 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache fileHashes.bin (C:\git\RawHeroesOfBegredeligeStudenter\project\.gradle\2.2\taskArtifacts\fileHashes.bin)
+17:08:46.039 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on task history cache (C:\git\RawHeroesOfBegredeligeStudenter\project\.gradle\2.2\taskArtifacts).
+17:08:46.040 [DEBUG] [org.gradle.cache.internal.DefaultCacheAccess] Cache Plugin Resolution Cache (C:\Users\espen1\.gradle\caches\2.2\plugin-resolution) was closed 0 times.
+17:08:46.040 [DEBUG] [org.gradle.cache.internal.DefaultCacheAccess] Cache jars (C:\Users\espen1\.gradle\caches\jars-1) was closed 0 times.
+17:08:46.041 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache artifact-at-repository.bin (C:\Users\espen1\.gradle\caches\modules-2\metadata-2.14\artifact-at-repository.bin)
+17:08:46.041 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache module-metadata.bin (C:\Users\espen1\.gradle\caches\modules-2\metadata-2.14\module-metadata.bin)
+17:08:46.041 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on artifact cache (C:\Users\espen1\.gradle\caches\modules-2).
+17:08:46.043 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.CachedStoreFactory] Resolution result cache closed. Cache reads: 0, disk reads: 0 (avg: 0.0 secs, total: 0.0 secs)
+17:08:46.044 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.CachedStoreFactory] Resolved configuration cache closed. Cache reads: 0, disk reads: 0 (avg: 0.0 secs, total: 0.0 secs)
+17:08:46.045 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.ResolutionResultsStoreFactory] Deleted 2 resolution results binary files in 0.003 secs
+17:08:46.045 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.memcache.InMemoryCachedRepositoryFactory] In-memory dependency metadata cache closed. Repos cached: 4, cache instances: 3, modules served from cache: 0, artifacts: 0
+17:08:46.046 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] The daemon has finished executing the build.
+17:08:46.047 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: finished waiting for DaemonCommandExecution[command = Build{id=283d0e71-25f9-4090-a9b7-c045d50ff9d2.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}, connection = org.gradle.launcher.daemon.server.DefaultDaemonConnection@42421155]. Result org.gradle.launcher.daemon.server.DaemonStateCoordinator@6ec80792 with state Running
+17:08:46.048 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: completed DaemonCommandExecution[command = Build{id=283d0e71-25f9-4090-a9b7-c045d50ff9d2.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}, connection = org.gradle.launcher.daemon.server.DefaultDaemonConnection@42421155]
+17:08:46.048 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] updating lastActivityAt to 1425571726048
+17:08:46.048 [INFO] [org.gradle.launcher.daemon.server.DomainRegistryUpdater] Marking the daemon as idle, address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:08:46.048 [DEBUG] [org.gradle.launcher.daemon.registry.PersistentDaemonRegistry] Marking idle by address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:08:46.049 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on daemon addresses registry.
+17:08:46.050 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired.
+17:08:46.053 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+17:08:46.053 [DEBUG] [org.gradle.launcher.daemon.server.exec.ReturnResult] Daemon is dispatching the build result: DaemonCommandResult[type=Success, value=org.gradle.tooling.internal.provider.BuildActionResult@54e6b2e6]
+17:08:46.054 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 27: dispatching class org.gradle.launcher.daemon.protocol.Success
+17:08:46.054 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Daemon is idle, sleeping until state change or idle timeout at Thu Mar 05 20:08:46 CET 2015
+17:08:46.055 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Finishing executing command: Build{id=283d0e71-25f9-4090-a9b7-c045d50ff9d2.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}
+17:08:46.060 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 35: received class org.gradle.launcher.daemon.protocol.Finished
+17:08:46.060 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received non-IO message from client: org.gradle.launcher.daemon.protocol.Finished@613759b5
+17:08:46.061 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Received finished message: org.gradle.launcher.daemon.protocol.Finished@613759b5
+17:08:46.061 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 35: received null
+17:08:46.062 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received end-of-input from client.
+17:08:46.061 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 27: stopping connection
+17:08:46.064 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 27: stopping connection
+17:08:59.725 [DEBUG] [org.gradle.messaging.remote.internal.inet.TcpIncomingConnector] Accepted connection from /127.0.0.1:50028 to /127.0.0.1:49568.
+17:08:59.753 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 38: received class org.gradle.launcher.daemon.protocol.Build
+17:08:59.754 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received non-IO message from client: Build{id=b38d29e1-a663-41c8-ba33-08a199b15f11.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}
+17:08:59.754 [INFO] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Received command: Build{id=b38d29e1-a663-41c8-ba33-08a199b15f11.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}.
+17:08:59.755 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Starting executing command: Build{id=b38d29e1-a663-41c8-ba33-08a199b15f11.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server} with connection: socket connection from /127.0.0.1:49568 to /127.0.0.1:50028.
+17:08:59.755 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: started DaemonCommandExecution[command = Build{id=b38d29e1-a663-41c8-ba33-08a199b15f11.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}, connection = org.gradle.launcher.daemon.server.DefaultDaemonConnection@10921acc] after 0.0 minutes of idle
+17:08:59.756 [INFO] [org.gradle.launcher.daemon.server.DomainRegistryUpdater] Marking the daemon as busy, address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:08:59.756 [DEBUG] [org.gradle.launcher.daemon.registry.PersistentDaemonRegistry] Marking busy by address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:08:59.757 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on daemon addresses registry.
+17:08:59.757 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired.
+17:08:59.760 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+17:08:59.761 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] updating lastActivityAt to 1425571739761
+17:08:59.761 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Daemon is busy, sleeping until state changes.
+17:08:59.761 [INFO] [org.gradle.launcher.daemon.server.exec.StartBuildOrRespondWithBusy] Daemon is about to start building Build{id=b38d29e1-a663-41c8-ba33-08a199b15f11.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}. Dispatching build started information...
+17:08:59.762 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 30: dispatching class org.gradle.launcher.daemon.protocol.BuildStarted
+17:08:59.763 [DEBUG] [org.gradle.launcher.daemon.server.exec.EstablishBuildEnvironment] Configuring env variables: {USERPROFILE=C:\Users\espen1, ProgramData=C:\ProgramData, PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC, ProgramFiles(x86)=C:\Program Files (x86), TEMP=C:\Users\espen1\AppData\Local\Temp, SystemDrive=C:, ProgramFiles=C:\Program Files, Path=C:\Python27\;C:\ProgramData\Oracle\Java\javapath;C:\Python27\Scripts;C:\Program Files (x86)\Git\cmd;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\CodeBlocks\MinGW\bin;C:\Program Files (x86)\MySQL\MySQL Utilities 1.3.6\;C:\Python27;, HOMEDRIVE=C:, PROCESSOR_REVISION=3c03, USERDOMAIN=espen, ALLUSERSPROFILE=C:\ProgramData, ProgramW6432=C:\Program Files, Python=C:\Python27\, PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 60 Stepping 3, GenuineIntel, SESSIONNAME=Console, TMP=C:\Users\espen1\AppData\Local\Temp, CommonProgramFiles=C:\Program Files\Common Files, =::=::\, LOGONSERVER=\\ESPEN, PROCESSOR_ARCHITECTURE=AMD64, FP_NO_HOST_CHECK=NO, OS=Windows_NT, TVT=C:\Program Files (x86)\Lenovo, HOMEPATH=\Users\espen1, PROCESSOR_LEVEL=6, CommonProgramW6432=C:\Program Files\Common Files, USERDOMAIN_ROAMINGPROFILE=espen, configsetroot=C:\WINDOWS\ConfigSetRoot, LOCALAPPDATA=C:\Users\espen1\AppData\Local, COMPUTERNAME=ESPEN, windir=C:\WINDOWS, SystemRoot=C:\WINDOWS, NUMBER_OF_PROCESSORS=4, USERNAME=espen1, PUBLIC=C:\Users\Public, PSModulePath=C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules\, READYAPPS=C:\ProgramData\Lenovo\ReadyApps, CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files, ComSpec=C:\WINDOWS\system32\cmd.exe, APPDATA=C:\Users\espen1\AppData\Roaming}
+17:08:59.764 [INFO] [org.gradle.launcher.daemon.server.exec.LogToClient] About to start relaying all logs to the client via the connection.
+17:08:59.765 [INFO] [org.gradle.launcher.daemon.server.exec.LogToClient] The client will now receive all logging from the daemon (pid: 2660). The daemon log file: C:\Users\espen1\.gradle\daemon\2.2\daemon-2660.out.log
+17:08:59.765 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] The daemon has started executing the build.
+17:08:59.766 [INFO] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] Executing build with daemon context: DefaultDaemonContext[uid=fc3676f5-7cc3-45ea-b3bc-10e9348485b3,javaHome=C:\Program Files\Java\jdk1.7.0_75,daemonRegistryDir=C:\Users\espen1\.gradle\daemon,pid=2660,idleTimeout=10800000,daemonOpts=-Xms128m,-Xmx512m,-Dfile.encoding=windows-1252,-Duser.country=US,-Duser.language=en,-Duser.variant]
+17:08:59.775 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 38: received class org.gradle.launcher.daemon.protocol.CloseInput
+17:08:59.775 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received IO message from client: CloseInput[id=b38d29e1-a663-41c8-ba33-08a199b15f11.2]
+17:08:59.775 [INFO] [org.gradle.launcher.daemon.server.exec.ForwardClientInput] Closing daemon's stdin at end of input.
+17:08:59.776 [INFO] [org.gradle.launcher.daemon.server.exec.ForwardClientInput] The daemon will no longer process any standard input.
+Configuration on demand is an incubating feature.
+:core:compileJava UP-TO-DATE
+:core:processResources UP-TO-DATE
+:core:classes UP-TO-DATE
+:core:jar UP-TO-DATE
+:core:assemble UP-TO-DATE
+
+BUILD SUCCESSFUL
+
+Total time: 1.632 secs
+17:09:00.512 [DEBUG] [org.gradle.api.internal.tasks.compile.daemon.CompilerDaemonManager] Stopping 0 compiler daemon(s).
+17:09:00.512 [INFO] [org.gradle.api.internal.tasks.compile.daemon.CompilerDaemonManager] Stopped 0 compiler daemon(s).
+17:09:00.513 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for settings file 'C:\git\RawHeroesOfBegredeligeStudenter\project\settings.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\settings_azto2ifi6360hk4n1jk7opqw\SettingsScript\buildscript).
+17:09:00.513 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for settings file 'C:\git\RawHeroesOfBegredeligeStudenter\project\settings.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\settings_azto2ifi6360hk4n1jk7opqw\SettingsScript\no_buildscript).
+17:09:00.513 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_7xhrk7l9u7nbqis8uakom97ma\ProjectScript\buildscript).
+17:09:00.514 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_7xhrk7l9u7nbqis8uakom97ma\ProjectScript\no_buildscript).
+17:09:00.514 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\core\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_8v40sxjn07pqpjpuy17hx11t5\ProjectScript\buildscript).
+17:09:00.514 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\core\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_8v40sxjn07pqpjpuy17hx11t5\ProjectScript\no_buildscript).
+17:09:00.515 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache fileHashes.bin (C:\git\RawHeroesOfBegredeligeStudenter\project\.gradle\2.2\taskArtifacts\fileHashes.bin)
+17:09:00.516 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on task history cache (C:\git\RawHeroesOfBegredeligeStudenter\project\.gradle\2.2\taskArtifacts).
+17:09:00.516 [DEBUG] [org.gradle.cache.internal.DefaultCacheAccess] Cache jars (C:\Users\espen1\.gradle\caches\jars-1) was closed 0 times.
+17:09:00.517 [DEBUG] [org.gradle.cache.internal.DefaultCacheAccess] Cache Plugin Resolution Cache (C:\Users\espen1\.gradle\caches\2.2\plugin-resolution) was closed 0 times.
+17:09:00.517 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache module-metadata.bin (C:\Users\espen1\.gradle\caches\modules-2\metadata-2.14\module-metadata.bin)
+17:09:00.517 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache artifact-at-repository.bin (C:\Users\espen1\.gradle\caches\modules-2\metadata-2.14\artifact-at-repository.bin)
+17:09:00.518 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on artifact cache (C:\Users\espen1\.gradle\caches\modules-2).
+17:09:00.520 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.CachedStoreFactory] Resolution result cache closed. Cache reads: 0, disk reads: 0 (avg: 0.0 secs, total: 0.0 secs)
+17:09:00.521 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.CachedStoreFactory] Resolved configuration cache closed. Cache reads: 0, disk reads: 0 (avg: 0.0 secs, total: 0.0 secs)
+17:09:00.522 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.ResolutionResultsStoreFactory] Deleted 2 resolution results binary files in 0.003 secs
+17:09:00.523 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.memcache.InMemoryCachedRepositoryFactory] In-memory dependency metadata cache closed. Repos cached: 4, cache instances: 3, modules served from cache: 0, artifacts: 0
+17:09:00.523 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] The daemon has finished executing the build.
+17:09:01.051 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: finished waiting for DaemonCommandExecution[command = Build{id=b38d29e1-a663-41c8-ba33-08a199b15f11.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}, connection = org.gradle.launcher.daemon.server.DefaultDaemonConnection@10921acc]. Result org.gradle.launcher.daemon.server.DaemonStateCoordinator@6ec80792 with state Running
+17:09:01.052 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: completed DaemonCommandExecution[command = Build{id=b38d29e1-a663-41c8-ba33-08a199b15f11.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}, connection = org.gradle.launcher.daemon.server.DefaultDaemonConnection@10921acc]
+17:09:01.053 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] updating lastActivityAt to 1425571741052
+17:09:01.053 [INFO] [org.gradle.launcher.daemon.server.DomainRegistryUpdater] Marking the daemon as idle, address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:09:01.053 [DEBUG] [org.gradle.launcher.daemon.registry.PersistentDaemonRegistry] Marking idle by address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:09:01.054 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on daemon addresses registry.
+17:09:01.055 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired.
+17:09:01.057 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+17:09:01.058 [DEBUG] [org.gradle.launcher.daemon.server.exec.ReturnResult] Daemon is dispatching the build result: DaemonCommandResult[type=Success, value=org.gradle.tooling.internal.provider.BuildActionResult@3167d61e]
+17:09:01.059 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Daemon is idle, sleeping until state change or idle timeout at Thu Mar 05 20:09:01 CET 2015
+17:09:01.059 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 27: dispatching class org.gradle.launcher.daemon.protocol.Success
+17:09:01.060 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Finishing executing command: Build{id=b38d29e1-a663-41c8-ba33-08a199b15f11.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}
+17:09:01.067 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 38: received class org.gradle.launcher.daemon.protocol.Finished
+17:09:01.067 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received non-IO message from client: org.gradle.launcher.daemon.protocol.Finished@344f6a86
+17:09:01.068 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Received finished message: org.gradle.launcher.daemon.protocol.Finished@344f6a86
+17:09:01.068 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 38: received null
+17:09:01.068 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received end-of-input from client.
+17:09:01.068 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 27: stopping connection
+17:09:01.072 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 27: stopping connection
+17:09:11.972 [DEBUG] [org.gradle.messaging.remote.internal.inet.TcpIncomingConnector] Accepted connection from /127.0.0.1:50042 to /127.0.0.1:49568.
+17:09:12.002 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 41: received class org.gradle.launcher.daemon.protocol.Build
+17:09:12.003 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received non-IO message from client: Build{id=af0ccd41-5c39-4386-8cea-3e2e50d6788c.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}
+17:09:12.003 [INFO] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Received command: Build{id=af0ccd41-5c39-4386-8cea-3e2e50d6788c.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}.
+17:09:12.004 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Starting executing command: Build{id=af0ccd41-5c39-4386-8cea-3e2e50d6788c.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server} with connection: socket connection from /127.0.0.1:49568 to /127.0.0.1:50042.
+17:09:12.004 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: started DaemonCommandExecution[command = Build{id=af0ccd41-5c39-4386-8cea-3e2e50d6788c.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}, connection = org.gradle.launcher.daemon.server.DefaultDaemonConnection@17fa725a] after 0.0 minutes of idle
+17:09:12.005 [INFO] [org.gradle.launcher.daemon.server.DomainRegistryUpdater] Marking the daemon as busy, address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:09:12.005 [DEBUG] [org.gradle.launcher.daemon.registry.PersistentDaemonRegistry] Marking busy by address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:09:12.005 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on daemon addresses registry.
+17:09:12.006 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired.
+17:09:12.009 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+17:09:12.010 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] updating lastActivityAt to 1425571752010
+17:09:12.010 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Daemon is busy, sleeping until state changes.
+17:09:12.010 [INFO] [org.gradle.launcher.daemon.server.exec.StartBuildOrRespondWithBusy] Daemon is about to start building Build{id=af0ccd41-5c39-4386-8cea-3e2e50d6788c.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}. Dispatching build started information...
+17:09:12.011 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 30: dispatching class org.gradle.launcher.daemon.protocol.BuildStarted
+17:09:12.012 [DEBUG] [org.gradle.launcher.daemon.server.exec.EstablishBuildEnvironment] Configuring env variables: {USERPROFILE=C:\Users\espen1, ProgramData=C:\ProgramData, PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC, ProgramFiles(x86)=C:\Program Files (x86), TEMP=C:\Users\espen1\AppData\Local\Temp, SystemDrive=C:, ProgramFiles=C:\Program Files, Path=C:\Python27\;C:\ProgramData\Oracle\Java\javapath;C:\Python27\Scripts;C:\Program Files (x86)\Git\cmd;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\CodeBlocks\MinGW\bin;C:\Program Files (x86)\MySQL\MySQL Utilities 1.3.6\;C:\Python27;, HOMEDRIVE=C:, PROCESSOR_REVISION=3c03, USERDOMAIN=espen, ALLUSERSPROFILE=C:\ProgramData, ProgramW6432=C:\Program Files, Python=C:\Python27\, PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 60 Stepping 3, GenuineIntel, SESSIONNAME=Console, TMP=C:\Users\espen1\AppData\Local\Temp, CommonProgramFiles=C:\Program Files\Common Files, =::=::\, LOGONSERVER=\\ESPEN, PROCESSOR_ARCHITECTURE=AMD64, FP_NO_HOST_CHECK=NO, OS=Windows_NT, TVT=C:\Program Files (x86)\Lenovo, HOMEPATH=\Users\espen1, PROCESSOR_LEVEL=6, CommonProgramW6432=C:\Program Files\Common Files, USERDOMAIN_ROAMINGPROFILE=espen, configsetroot=C:\WINDOWS\ConfigSetRoot, LOCALAPPDATA=C:\Users\espen1\AppData\Local, COMPUTERNAME=ESPEN, windir=C:\WINDOWS, SystemRoot=C:\WINDOWS, NUMBER_OF_PROCESSORS=4, USERNAME=espen1, PUBLIC=C:\Users\Public, PSModulePath=C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules\, READYAPPS=C:\ProgramData\Lenovo\ReadyApps, CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files, ComSpec=C:\WINDOWS\system32\cmd.exe, APPDATA=C:\Users\espen1\AppData\Roaming}
+17:09:12.014 [INFO] [org.gradle.launcher.daemon.server.exec.LogToClient] About to start relaying all logs to the client via the connection.
+17:09:12.014 [INFO] [org.gradle.launcher.daemon.server.exec.LogToClient] The client will now receive all logging from the daemon (pid: 2660). The daemon log file: C:\Users\espen1\.gradle\daemon\2.2\daemon-2660.out.log
+17:09:12.015 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] The daemon has started executing the build.
+17:09:12.015 [INFO] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] Executing build with daemon context: DefaultDaemonContext[uid=fc3676f5-7cc3-45ea-b3bc-10e9348485b3,javaHome=C:\Program Files\Java\jdk1.7.0_75,daemonRegistryDir=C:\Users\espen1\.gradle\daemon,pid=2660,idleTimeout=10800000,daemonOpts=-Xms128m,-Xmx512m,-Dfile.encoding=windows-1252,-Duser.country=US,-Duser.language=en,-Duser.variant]
+17:09:12.028 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 41: received class org.gradle.launcher.daemon.protocol.CloseInput
+17:09:12.028 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received IO message from client: CloseInput[id=af0ccd41-5c39-4386-8cea-3e2e50d6788c.2]
+17:09:12.029 [INFO] [org.gradle.launcher.daemon.server.exec.ForwardClientInput] Closing daemon's stdin at end of input.
+17:09:12.029 [INFO] [org.gradle.launcher.daemon.server.exec.ForwardClientInput] The daemon will no longer process any standard input.
+Configuration on demand is an incubating feature.
+:core:compileJava UP-TO-DATE
+:core:processResources UP-TO-DATE
+:core:classes UP-TO-DATE
+:core:jar UP-TO-DATE
+:core:assemble UP-TO-DATE
+
+BUILD SUCCESSFUL
+
+Total time: 1.65 secs
+17:09:12.737 [DEBUG] [org.gradle.api.internal.tasks.compile.daemon.CompilerDaemonManager] Stopping 0 compiler daemon(s).
+17:09:12.737 [INFO] [org.gradle.api.internal.tasks.compile.daemon.CompilerDaemonManager] Stopped 0 compiler daemon(s).
+17:09:12.737 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for settings file 'C:\git\RawHeroesOfBegredeligeStudenter\project\settings.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\settings_azto2ifi6360hk4n1jk7opqw\SettingsScript\buildscript).
+17:09:12.738 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for settings file 'C:\git\RawHeroesOfBegredeligeStudenter\project\settings.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\settings_azto2ifi6360hk4n1jk7opqw\SettingsScript\no_buildscript).
+17:09:12.738 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_7xhrk7l9u7nbqis8uakom97ma\ProjectScript\buildscript).
+17:09:12.738 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_7xhrk7l9u7nbqis8uakom97ma\ProjectScript\no_buildscript).
+17:09:12.739 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\core\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_8v40sxjn07pqpjpuy17hx11t5\ProjectScript\buildscript).
+17:09:12.740 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\core\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_8v40sxjn07pqpjpuy17hx11t5\ProjectScript\no_buildscript).
+17:09:12.741 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache fileHashes.bin (C:\git\RawHeroesOfBegredeligeStudenter\project\.gradle\2.2\taskArtifacts\fileHashes.bin)
+17:09:12.742 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on task history cache (C:\git\RawHeroesOfBegredeligeStudenter\project\.gradle\2.2\taskArtifacts).
+17:09:12.743 [DEBUG] [org.gradle.cache.internal.DefaultCacheAccess] Cache Plugin Resolution Cache (C:\Users\espen1\.gradle\caches\2.2\plugin-resolution) was closed 0 times.
+17:09:12.744 [DEBUG] [org.gradle.cache.internal.DefaultCacheAccess] Cache jars (C:\Users\espen1\.gradle\caches\jars-1) was closed 0 times.
+17:09:12.744 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache module-metadata.bin (C:\Users\espen1\.gradle\caches\modules-2\metadata-2.14\module-metadata.bin)
+17:09:12.745 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache artifact-at-repository.bin (C:\Users\espen1\.gradle\caches\modules-2\metadata-2.14\artifact-at-repository.bin)
+17:09:12.745 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on artifact cache (C:\Users\espen1\.gradle\caches\modules-2).
+17:09:12.746 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.CachedStoreFactory] Resolution result cache closed. Cache reads: 0, disk reads: 0 (avg: 0.0 secs, total: 0.0 secs)
+17:09:12.747 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.CachedStoreFactory] Resolved configuration cache closed. Cache reads: 0, disk reads: 0 (avg: 0.0 secs, total: 0.0 secs)
+17:09:12.747 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.ResolutionResultsStoreFactory] Deleted 2 resolution results binary files in 0.001 secs
+17:09:12.748 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.memcache.InMemoryCachedRepositoryFactory] In-memory dependency metadata cache closed. Repos cached: 4, cache instances: 3, modules served from cache: 0, artifacts: 0
+17:09:12.748 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] The daemon has finished executing the build.
+17:09:12.750 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: finished waiting for DaemonCommandExecution[command = Build{id=af0ccd41-5c39-4386-8cea-3e2e50d6788c.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}, connection = org.gradle.launcher.daemon.server.DefaultDaemonConnection@17fa725a]. Result org.gradle.launcher.daemon.server.DaemonStateCoordinator@6ec80792 with state Running
+17:09:12.751 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: completed DaemonCommandExecution[command = Build{id=af0ccd41-5c39-4386-8cea-3e2e50d6788c.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}, connection = org.gradle.launcher.daemon.server.DefaultDaemonConnection@17fa725a]
+17:09:12.751 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] updating lastActivityAt to 1425571752751
+17:09:12.751 [INFO] [org.gradle.launcher.daemon.server.DomainRegistryUpdater] Marking the daemon as idle, address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:09:12.751 [DEBUG] [org.gradle.launcher.daemon.registry.PersistentDaemonRegistry] Marking idle by address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:09:12.752 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on daemon addresses registry.
+17:09:12.752 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired.
+17:09:12.755 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+17:09:12.756 [DEBUG] [org.gradle.launcher.daemon.server.exec.ReturnResult] Daemon is dispatching the build result: DaemonCommandResult[type=Success, value=org.gradle.tooling.internal.provider.BuildActionResult@d5c921f]
+17:09:12.756 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Daemon is idle, sleeping until state change or idle timeout at Thu Mar 05 20:09:12 CET 2015
+17:09:12.756 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 27: dispatching class org.gradle.launcher.daemon.protocol.Success
+17:09:12.757 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Finishing executing command: Build{id=af0ccd41-5c39-4386-8cea-3e2e50d6788c.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}
+17:09:12.764 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 41: received class org.gradle.launcher.daemon.protocol.Finished
+17:09:12.765 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received non-IO message from client: org.gradle.launcher.daemon.protocol.Finished@248e83f6
+17:09:12.765 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Received finished message: org.gradle.launcher.daemon.protocol.Finished@248e83f6
+17:09:12.765 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 27: stopping connection
+17:09:12.766 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 41: received null
+17:09:12.766 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received end-of-input from client.
+17:09:12.767 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 27: stopping connection
+17:10:37.569 [DEBUG] [org.gradle.messaging.remote.internal.inet.TcpIncomingConnector] Accepted connection from /127.0.0.1:50062 to /127.0.0.1:49568.
+17:10:37.596 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 45: received class org.gradle.launcher.daemon.protocol.Build
+17:10:37.597 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received non-IO message from client: Build{id=08a32eb4-4c00-4f96-b898-96084008f30f.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}
+17:10:37.598 [INFO] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Received command: Build{id=08a32eb4-4c00-4f96-b898-96084008f30f.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}.
+17:10:37.598 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Starting executing command: Build{id=08a32eb4-4c00-4f96-b898-96084008f30f.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server} with connection: socket connection from /127.0.0.1:49568 to /127.0.0.1:50062.
+17:10:37.599 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: started DaemonCommandExecution[command = Build{id=08a32eb4-4c00-4f96-b898-96084008f30f.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}, connection = org.gradle.launcher.daemon.server.DefaultDaemonConnection@35bf7c57] after 1.0 minutes of idle
+17:10:37.599 [INFO] [org.gradle.launcher.daemon.server.DomainRegistryUpdater] Marking the daemon as busy, address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:10:37.599 [DEBUG] [org.gradle.launcher.daemon.registry.PersistentDaemonRegistry] Marking busy by address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:10:37.601 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on daemon addresses registry.
+17:10:37.601 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired.
+17:10:37.604 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+17:10:37.604 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] updating lastActivityAt to 1425571837604
+17:10:37.605 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Daemon is busy, sleeping until state changes.
+17:10:37.605 [INFO] [org.gradle.launcher.daemon.server.exec.StartBuildOrRespondWithBusy] Daemon is about to start building Build{id=08a32eb4-4c00-4f96-b898-96084008f30f.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}. Dispatching build started information...
+17:10:37.605 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 47: dispatching class org.gradle.launcher.daemon.protocol.BuildStarted
+17:10:37.606 [DEBUG] [org.gradle.launcher.daemon.server.exec.EstablishBuildEnvironment] Configuring env variables: {USERPROFILE=C:\Users\espen1, ProgramData=C:\ProgramData, PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC, ProgramFiles(x86)=C:\Program Files (x86), TEMP=C:\Users\espen1\AppData\Local\Temp, SystemDrive=C:, ProgramFiles=C:\Program Files, Path=C:\Python27\;C:\ProgramData\Oracle\Java\javapath;C:\Python27\Scripts;C:\Program Files (x86)\Git\cmd;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\CodeBlocks\MinGW\bin;C:\Program Files (x86)\MySQL\MySQL Utilities 1.3.6\;C:\Python27;, HOMEDRIVE=C:, PROCESSOR_REVISION=3c03, USERDOMAIN=espen, ALLUSERSPROFILE=C:\ProgramData, ProgramW6432=C:\Program Files, Python=C:\Python27\, PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 60 Stepping 3, GenuineIntel, SESSIONNAME=Console, TMP=C:\Users\espen1\AppData\Local\Temp, CommonProgramFiles=C:\Program Files\Common Files, =::=::\, LOGONSERVER=\\ESPEN, PROCESSOR_ARCHITECTURE=AMD64, FP_NO_HOST_CHECK=NO, OS=Windows_NT, TVT=C:\Program Files (x86)\Lenovo, HOMEPATH=\Users\espen1, PROCESSOR_LEVEL=6, CommonProgramW6432=C:\Program Files\Common Files, USERDOMAIN_ROAMINGPROFILE=espen, configsetroot=C:\WINDOWS\ConfigSetRoot, LOCALAPPDATA=C:\Users\espen1\AppData\Local, COMPUTERNAME=ESPEN, windir=C:\WINDOWS, SystemRoot=C:\WINDOWS, NUMBER_OF_PROCESSORS=4, USERNAME=espen1, PUBLIC=C:\Users\Public, PSModulePath=C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules\, READYAPPS=C:\ProgramData\Lenovo\ReadyApps, CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files, ComSpec=C:\WINDOWS\system32\cmd.exe, APPDATA=C:\Users\espen1\AppData\Roaming}
+17:10:37.607 [INFO] [org.gradle.launcher.daemon.server.exec.LogToClient] About to start relaying all logs to the client via the connection.
+17:10:37.607 [INFO] [org.gradle.launcher.daemon.server.exec.LogToClient] The client will now receive all logging from the daemon (pid: 2660). The daemon log file: C:\Users\espen1\.gradle\daemon\2.2\daemon-2660.out.log
+17:10:37.608 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] The daemon has started executing the build.
+17:10:37.608 [INFO] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] Executing build with daemon context: DefaultDaemonContext[uid=fc3676f5-7cc3-45ea-b3bc-10e9348485b3,javaHome=C:\Program Files\Java\jdk1.7.0_75,daemonRegistryDir=C:\Users\espen1\.gradle\daemon,pid=2660,idleTimeout=10800000,daemonOpts=-Xms128m,-Xmx512m,-Dfile.encoding=windows-1252,-Duser.country=US,-Duser.language=en,-Duser.variant]
+17:10:37.618 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 45: received class org.gradle.launcher.daemon.protocol.CloseInput
+17:10:37.619 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received IO message from client: CloseInput[id=08a32eb4-4c00-4f96-b898-96084008f30f.2]
+17:10:37.619 [INFO] [org.gradle.launcher.daemon.server.exec.ForwardClientInput] Closing daemon's stdin at end of input.
+17:10:37.619 [INFO] [org.gradle.launcher.daemon.server.exec.ForwardClientInput] The daemon will no longer process any standard input.
+Configuration on demand is an incubating feature.
+:core:compileJavawarning: [options] bootstrap class path not set in conjunction with -source 1.6
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+1 warning
+
+:core:processResources UP-TO-DATE
+:core:classes
+:core:jar
+:core:assemble
+
+BUILD SUCCESSFUL
+
+Total time: 2.159 secs
+17:10:38.745 [DEBUG] [org.gradle.api.internal.tasks.compile.daemon.CompilerDaemonManager] Stopping 0 compiler daemon(s).
+17:10:38.745 [INFO] [org.gradle.api.internal.tasks.compile.daemon.CompilerDaemonManager] Stopped 0 compiler daemon(s).
+17:10:38.745 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for settings file 'C:\git\RawHeroesOfBegredeligeStudenter\project\settings.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\settings_azto2ifi6360hk4n1jk7opqw\SettingsScript\buildscript).
+17:10:38.746 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for settings file 'C:\git\RawHeroesOfBegredeligeStudenter\project\settings.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\settings_azto2ifi6360hk4n1jk7opqw\SettingsScript\no_buildscript).
+17:10:38.746 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_7xhrk7l9u7nbqis8uakom97ma\ProjectScript\buildscript).
+17:10:38.746 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_7xhrk7l9u7nbqis8uakom97ma\ProjectScript\no_buildscript).
+17:10:38.746 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\core\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_8v40sxjn07pqpjpuy17hx11t5\ProjectScript\buildscript).
+17:10:38.746 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\core\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_8v40sxjn07pqpjpuy17hx11t5\ProjectScript\no_buildscript).
+17:10:38.747 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache fileHashes.bin (C:\git\RawHeroesOfBegredeligeStudenter\project\.gradle\2.2\taskArtifacts\fileHashes.bin)
+17:10:38.748 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache taskArtifacts.bin (C:\git\RawHeroesOfBegredeligeStudenter\project\.gradle\2.2\taskArtifacts\taskArtifacts.bin)
+17:10:38.748 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache fileSnapshots.bin (C:\git\RawHeroesOfBegredeligeStudenter\project\.gradle\2.2\taskArtifacts\fileSnapshots.bin)
+17:10:38.749 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on task history cache (C:\git\RawHeroesOfBegredeligeStudenter\project\.gradle\2.2\taskArtifacts).
+17:10:38.749 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache module-metadata.bin (C:\Users\espen1\.gradle\caches\modules-2\metadata-2.14\module-metadata.bin)
+17:10:38.749 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache artifact-at-repository.bin (C:\Users\espen1\.gradle\caches\modules-2\metadata-2.14\artifact-at-repository.bin)
+17:10:38.750 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on artifact cache (C:\Users\espen1\.gradle\caches\modules-2).
+17:10:38.750 [DEBUG] [org.gradle.cache.internal.DefaultCacheAccess] Cache jars (C:\Users\espen1\.gradle\caches\jars-1) was closed 0 times.
+17:10:38.750 [DEBUG] [org.gradle.cache.internal.DefaultCacheAccess] Cache Plugin Resolution Cache (C:\Users\espen1\.gradle\caches\2.2\plugin-resolution) was closed 0 times.
+17:10:38.751 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.CachedStoreFactory] Resolution result cache closed. Cache reads: 0, disk reads: 0 (avg: 0.0 secs, total: 0.0 secs)
+17:10:38.752 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.CachedStoreFactory] Resolved configuration cache closed. Cache reads: 0, disk reads: 0 (avg: 0.0 secs, total: 0.0 secs)
+17:10:38.752 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.ResolutionResultsStoreFactory] Deleted 2 resolution results binary files in 0.001 secs
+17:10:38.752 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.memcache.InMemoryCachedRepositoryFactory] In-memory dependency metadata cache closed. Repos cached: 4, cache instances: 3, modules served from cache: 0, artifacts: 0
+17:10:38.752 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] The daemon has finished executing the build.
+17:10:38.754 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Daemon is busy, sleeping until state changes.
+17:10:38.754 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: finished waiting for DaemonCommandExecution[command = Build{id=08a32eb4-4c00-4f96-b898-96084008f30f.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}, connection = org.gradle.launcher.daemon.server.DefaultDaemonConnection@35bf7c57]. Result org.gradle.launcher.daemon.server.DaemonStateCoordinator@6ec80792 with state Running
+17:10:38.754 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: completed DaemonCommandExecution[command = Build{id=08a32eb4-4c00-4f96-b898-96084008f30f.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}, connection = org.gradle.launcher.daemon.server.DefaultDaemonConnection@35bf7c57]
+17:10:38.754 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] updating lastActivityAt to 1425571838754
+17:10:38.755 [INFO] [org.gradle.launcher.daemon.server.DomainRegistryUpdater] Marking the daemon as idle, address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:10:38.755 [DEBUG] [org.gradle.launcher.daemon.registry.PersistentDaemonRegistry] Marking idle by address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:10:38.755 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on daemon addresses registry.
+17:10:38.756 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired.
+17:10:38.758 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+17:10:38.759 [DEBUG] [org.gradle.launcher.daemon.server.exec.ReturnResult] Daemon is dispatching the build result: DaemonCommandResult[type=Success, value=org.gradle.tooling.internal.provider.BuildActionResult@2986d6b5]
+17:10:38.759 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Daemon is idle, sleeping until state change or idle timeout at Thu Mar 05 20:10:38 CET 2015
+17:10:38.759 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 44: dispatching class org.gradle.launcher.daemon.protocol.Success
+17:10:38.761 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Finishing executing command: Build{id=08a32eb4-4c00-4f96-b898-96084008f30f.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}
+17:10:38.766 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 45: received class org.gradle.launcher.daemon.protocol.Finished
+17:10:38.766 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received non-IO message from client: org.gradle.launcher.daemon.protocol.Finished@57b9e9f1
+17:10:38.767 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Received finished message: org.gradle.launcher.daemon.protocol.Finished@57b9e9f1
+17:10:38.767 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 44: stopping connection
+17:10:38.767 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 45: received null
+17:10:38.768 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received end-of-input from client.
+17:10:38.770 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 44: stopping connection
+17:10:55.295 [DEBUG] [org.gradle.messaging.remote.internal.inet.TcpIncomingConnector] Accepted connection from /127.0.0.1:50074 to /127.0.0.1:49568.
+17:10:55.320 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 49: received class org.gradle.launcher.daemon.protocol.Build
+17:10:55.321 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received non-IO message from client: Build{id=bd5e2d1a-73e9-430d-a429-c1a5fce17a7f.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}
+17:10:55.321 [INFO] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Received command: Build{id=bd5e2d1a-73e9-430d-a429-c1a5fce17a7f.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}.
+17:10:55.321 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Starting executing command: Build{id=bd5e2d1a-73e9-430d-a429-c1a5fce17a7f.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server} with connection: socket connection from /127.0.0.1:49568 to /127.0.0.1:50074.
+17:10:55.322 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: started DaemonCommandExecution[command = Build{id=bd5e2d1a-73e9-430d-a429-c1a5fce17a7f.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}, connection = org.gradle.launcher.daemon.server.DefaultDaemonConnection@53dc2b19] after 0.0 minutes of idle
+17:10:55.323 [INFO] [org.gradle.launcher.daemon.server.DomainRegistryUpdater] Marking the daemon as busy, address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:10:55.323 [DEBUG] [org.gradle.launcher.daemon.registry.PersistentDaemonRegistry] Marking busy by address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:10:55.323 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on daemon addresses registry.
+17:10:55.324 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired.
+17:10:55.326 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+17:10:55.326 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] updating lastActivityAt to 1425571855326
+17:10:55.326 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Daemon is busy, sleeping until state changes.
+17:10:55.327 [INFO] [org.gradle.launcher.daemon.server.exec.StartBuildOrRespondWithBusy] Daemon is about to start building Build{id=bd5e2d1a-73e9-430d-a429-c1a5fce17a7f.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}. Dispatching build started information...
+17:10:55.327 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 47: dispatching class org.gradle.launcher.daemon.protocol.BuildStarted
+17:10:55.328 [DEBUG] [org.gradle.launcher.daemon.server.exec.EstablishBuildEnvironment] Configuring env variables: {USERPROFILE=C:\Users\espen1, ProgramData=C:\ProgramData, PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC, ProgramFiles(x86)=C:\Program Files (x86), TEMP=C:\Users\espen1\AppData\Local\Temp, SystemDrive=C:, ProgramFiles=C:\Program Files, Path=C:\Python27\;C:\ProgramData\Oracle\Java\javapath;C:\Python27\Scripts;C:\Program Files (x86)\Git\cmd;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\CodeBlocks\MinGW\bin;C:\Program Files (x86)\MySQL\MySQL Utilities 1.3.6\;C:\Python27;, HOMEDRIVE=C:, PROCESSOR_REVISION=3c03, USERDOMAIN=espen, ALLUSERSPROFILE=C:\ProgramData, ProgramW6432=C:\Program Files, Python=C:\Python27\, PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 60 Stepping 3, GenuineIntel, SESSIONNAME=Console, TMP=C:\Users\espen1\AppData\Local\Temp, CommonProgramFiles=C:\Program Files\Common Files, =::=::\, LOGONSERVER=\\ESPEN, PROCESSOR_ARCHITECTURE=AMD64, FP_NO_HOST_CHECK=NO, OS=Windows_NT, TVT=C:\Program Files (x86)\Lenovo, HOMEPATH=\Users\espen1, PROCESSOR_LEVEL=6, CommonProgramW6432=C:\Program Files\Common Files, USERDOMAIN_ROAMINGPROFILE=espen, configsetroot=C:\WINDOWS\ConfigSetRoot, LOCALAPPDATA=C:\Users\espen1\AppData\Local, COMPUTERNAME=ESPEN, windir=C:\WINDOWS, SystemRoot=C:\WINDOWS, NUMBER_OF_PROCESSORS=4, USERNAME=espen1, PUBLIC=C:\Users\Public, PSModulePath=C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules\, READYAPPS=C:\ProgramData\Lenovo\ReadyApps, CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files, ComSpec=C:\WINDOWS\system32\cmd.exe, APPDATA=C:\Users\espen1\AppData\Roaming}
+17:10:55.328 [INFO] [org.gradle.launcher.daemon.server.exec.LogToClient] About to start relaying all logs to the client via the connection.
+17:10:55.329 [INFO] [org.gradle.launcher.daemon.server.exec.LogToClient] The client will now receive all logging from the daemon (pid: 2660). The daemon log file: C:\Users\espen1\.gradle\daemon\2.2\daemon-2660.out.log
+17:10:55.329 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] The daemon has started executing the build.
+17:10:55.330 [INFO] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] Executing build with daemon context: DefaultDaemonContext[uid=fc3676f5-7cc3-45ea-b3bc-10e9348485b3,javaHome=C:\Program Files\Java\jdk1.7.0_75,daemonRegistryDir=C:\Users\espen1\.gradle\daemon,pid=2660,idleTimeout=10800000,daemonOpts=-Xms128m,-Xmx512m,-Dfile.encoding=windows-1252,-Duser.country=US,-Duser.language=en,-Duser.variant]
+17:10:55.341 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 49: received class org.gradle.launcher.daemon.protocol.CloseInput
+17:10:55.341 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received IO message from client: CloseInput[id=bd5e2d1a-73e9-430d-a429-c1a5fce17a7f.2]
+17:10:55.342 [INFO] [org.gradle.launcher.daemon.server.exec.ForwardClientInput] Closing daemon's stdin at end of input.
+17:10:55.342 [INFO] [org.gradle.launcher.daemon.server.exec.ForwardClientInput] The daemon will no longer process any standard input.
+Configuration on demand is an incubating feature.
+:core:compileJava UP-TO-DATE
+:core:processResources UP-TO-DATE
+:core:classes UP-TO-DATE
+:core:jar UP-TO-DATE
+:core:assemble UP-TO-DATE
+
+BUILD SUCCESSFUL
+
+Total time: 1.617 secs
+17:10:56.080 [DEBUG] [org.gradle.api.internal.tasks.compile.daemon.CompilerDaemonManager] Stopping 0 compiler daemon(s).
+17:10:56.081 [INFO] [org.gradle.api.internal.tasks.compile.daemon.CompilerDaemonManager] Stopped 0 compiler daemon(s).
+17:10:56.082 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for settings file 'C:\git\RawHeroesOfBegredeligeStudenter\project\settings.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\settings_azto2ifi6360hk4n1jk7opqw\SettingsScript\buildscript).
+17:10:56.082 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for settings file 'C:\git\RawHeroesOfBegredeligeStudenter\project\settings.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\settings_azto2ifi6360hk4n1jk7opqw\SettingsScript\no_buildscript).
+17:10:56.082 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_7xhrk7l9u7nbqis8uakom97ma\ProjectScript\buildscript).
+17:10:56.082 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_7xhrk7l9u7nbqis8uakom97ma\ProjectScript\no_buildscript).
+17:10:56.083 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\core\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_8v40sxjn07pqpjpuy17hx11t5\ProjectScript\buildscript).
+17:10:56.083 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\core\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_8v40sxjn07pqpjpuy17hx11t5\ProjectScript\no_buildscript).
+17:10:56.085 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache fileHashes.bin (C:\git\RawHeroesOfBegredeligeStudenter\project\.gradle\2.2\taskArtifacts\fileHashes.bin)
+17:10:56.085 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on task history cache (C:\git\RawHeroesOfBegredeligeStudenter\project\.gradle\2.2\taskArtifacts).
+17:10:56.086 [DEBUG] [org.gradle.cache.internal.DefaultCacheAccess] Cache jars (C:\Users\espen1\.gradle\caches\jars-1) was closed 0 times.
+17:10:56.086 [DEBUG] [org.gradle.cache.internal.DefaultCacheAccess] Cache Plugin Resolution Cache (C:\Users\espen1\.gradle\caches\2.2\plugin-resolution) was closed 0 times.
+17:10:56.087 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache module-metadata.bin (C:\Users\espen1\.gradle\caches\modules-2\metadata-2.14\module-metadata.bin)
+17:10:56.087 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache artifact-at-repository.bin (C:\Users\espen1\.gradle\caches\modules-2\metadata-2.14\artifact-at-repository.bin)
+17:10:56.088 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on artifact cache (C:\Users\espen1\.gradle\caches\modules-2).
+17:10:56.090 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.CachedStoreFactory] Resolution result cache closed. Cache reads: 0, disk reads: 0 (avg: 0.0 secs, total: 0.0 secs)
+17:10:56.091 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.CachedStoreFactory] Resolved configuration cache closed. Cache reads: 0, disk reads: 0 (avg: 0.0 secs, total: 0.0 secs)
+17:10:56.091 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.ResolutionResultsStoreFactory] Deleted 2 resolution results binary files in 0.003 secs
+17:10:56.092 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.memcache.InMemoryCachedRepositoryFactory] In-memory dependency metadata cache closed. Repos cached: 4, cache instances: 3, modules served from cache: 0, artifacts: 0
+17:10:56.092 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] The daemon has finished executing the build.
+17:10:56.094 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: finished waiting for DaemonCommandExecution[command = Build{id=bd5e2d1a-73e9-430d-a429-c1a5fce17a7f.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}, connection = org.gradle.launcher.daemon.server.DefaultDaemonConnection@53dc2b19]. Result org.gradle.launcher.daemon.server.DaemonStateCoordinator@6ec80792 with state Running
+17:10:56.095 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: completed DaemonCommandExecution[command = Build{id=bd5e2d1a-73e9-430d-a429-c1a5fce17a7f.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}, connection = org.gradle.launcher.daemon.server.DefaultDaemonConnection@53dc2b19]
+17:10:56.095 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] updating lastActivityAt to 1425571856095
+17:10:56.095 [INFO] [org.gradle.launcher.daemon.server.DomainRegistryUpdater] Marking the daemon as idle, address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:10:56.096 [DEBUG] [org.gradle.launcher.daemon.registry.PersistentDaemonRegistry] Marking idle by address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:10:56.097 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on daemon addresses registry.
+17:10:56.098 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired.
+17:10:56.101 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+17:10:56.101 [DEBUG] [org.gradle.launcher.daemon.server.exec.ReturnResult] Daemon is dispatching the build result: DaemonCommandResult[type=Success, value=org.gradle.tooling.internal.provider.BuildActionResult@5c225f2e]
+17:10:56.102 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Daemon is idle, sleeping until state change or idle timeout at Thu Mar 05 20:10:56 CET 2015
+17:10:56.102 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 44: dispatching class org.gradle.launcher.daemon.protocol.Success
+17:10:56.103 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Finishing executing command: Build{id=bd5e2d1a-73e9-430d-a429-c1a5fce17a7f.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}
+17:10:56.111 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 49: received class org.gradle.launcher.daemon.protocol.Finished
+17:10:56.112 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received non-IO message from client: org.gradle.launcher.daemon.protocol.Finished@77b87e42
+17:10:56.112 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Received finished message: org.gradle.launcher.daemon.protocol.Finished@77b87e42
+17:10:56.113 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 49: received null
+17:10:56.113 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received end-of-input from client.
+17:10:56.114 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 44: stopping connection
+17:10:56.115 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 44: stopping connection
+17:11:15.681 [DEBUG] [org.gradle.messaging.remote.internal.inet.TcpIncomingConnector] Accepted connection from /127.0.0.1:50086 to /127.0.0.1:49568.
+17:11:15.704 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 52: received class org.gradle.launcher.daemon.protocol.Build
+17:11:15.704 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received non-IO message from client: Build{id=8b3c0401-fda2-4be9-8b9b-5f2a27add3dc.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}
+17:11:15.705 [INFO] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Received command: Build{id=8b3c0401-fda2-4be9-8b9b-5f2a27add3dc.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}.
+17:11:15.705 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Starting executing command: Build{id=8b3c0401-fda2-4be9-8b9b-5f2a27add3dc.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server} with connection: socket connection from /127.0.0.1:49568 to /127.0.0.1:50086.
+17:11:15.705 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: started DaemonCommandExecution[command = Build{id=8b3c0401-fda2-4be9-8b9b-5f2a27add3dc.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}, connection = org.gradle.launcher.daemon.server.DefaultDaemonConnection@6800b82c] after 0.0 minutes of idle
+17:11:15.706 [INFO] [org.gradle.launcher.daemon.server.DomainRegistryUpdater] Marking the daemon as busy, address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:11:15.706 [DEBUG] [org.gradle.launcher.daemon.registry.PersistentDaemonRegistry] Marking busy by address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:11:15.707 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on daemon addresses registry.
+17:11:15.707 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired.
+17:11:15.710 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+17:11:15.711 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] updating lastActivityAt to 1425571875711
+17:11:15.711 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Daemon is busy, sleeping until state changes.
+17:11:15.711 [INFO] [org.gradle.launcher.daemon.server.exec.StartBuildOrRespondWithBusy] Daemon is about to start building Build{id=8b3c0401-fda2-4be9-8b9b-5f2a27add3dc.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}. Dispatching build started information...
+17:11:15.712 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 47: dispatching class org.gradle.launcher.daemon.protocol.BuildStarted
+17:11:15.713 [DEBUG] [org.gradle.launcher.daemon.server.exec.EstablishBuildEnvironment] Configuring env variables: {USERPROFILE=C:\Users\espen1, ProgramData=C:\ProgramData, PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC, ProgramFiles(x86)=C:\Program Files (x86), TEMP=C:\Users\espen1\AppData\Local\Temp, SystemDrive=C:, ProgramFiles=C:\Program Files, Path=C:\Python27\;C:\ProgramData\Oracle\Java\javapath;C:\Python27\Scripts;C:\Program Files (x86)\Git\cmd;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\CodeBlocks\MinGW\bin;C:\Program Files (x86)\MySQL\MySQL Utilities 1.3.6\;C:\Python27;, HOMEDRIVE=C:, PROCESSOR_REVISION=3c03, USERDOMAIN=espen, ALLUSERSPROFILE=C:\ProgramData, ProgramW6432=C:\Program Files, Python=C:\Python27\, PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 60 Stepping 3, GenuineIntel, SESSIONNAME=Console, TMP=C:\Users\espen1\AppData\Local\Temp, CommonProgramFiles=C:\Program Files\Common Files, =::=::\, LOGONSERVER=\\ESPEN, PROCESSOR_ARCHITECTURE=AMD64, FP_NO_HOST_CHECK=NO, OS=Windows_NT, TVT=C:\Program Files (x86)\Lenovo, HOMEPATH=\Users\espen1, PROCESSOR_LEVEL=6, CommonProgramW6432=C:\Program Files\Common Files, USERDOMAIN_ROAMINGPROFILE=espen, configsetroot=C:\WINDOWS\ConfigSetRoot, LOCALAPPDATA=C:\Users\espen1\AppData\Local, COMPUTERNAME=ESPEN, windir=C:\WINDOWS, SystemRoot=C:\WINDOWS, NUMBER_OF_PROCESSORS=4, USERNAME=espen1, PUBLIC=C:\Users\Public, PSModulePath=C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules\, READYAPPS=C:\ProgramData\Lenovo\ReadyApps, CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files, ComSpec=C:\WINDOWS\system32\cmd.exe, APPDATA=C:\Users\espen1\AppData\Roaming}
+17:11:15.714 [INFO] [org.gradle.launcher.daemon.server.exec.LogToClient] About to start relaying all logs to the client via the connection.
+17:11:15.714 [INFO] [org.gradle.launcher.daemon.server.exec.LogToClient] The client will now receive all logging from the daemon (pid: 2660). The daemon log file: C:\Users\espen1\.gradle\daemon\2.2\daemon-2660.out.log
+17:11:15.715 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] The daemon has started executing the build.
+17:11:15.715 [INFO] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] Executing build with daemon context: DefaultDaemonContext[uid=fc3676f5-7cc3-45ea-b3bc-10e9348485b3,javaHome=C:\Program Files\Java\jdk1.7.0_75,daemonRegistryDir=C:\Users\espen1\.gradle\daemon,pid=2660,idleTimeout=10800000,daemonOpts=-Xms128m,-Xmx512m,-Dfile.encoding=windows-1252,-Duser.country=US,-Duser.language=en,-Duser.variant]
+17:11:15.723 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 52: received class org.gradle.launcher.daemon.protocol.CloseInput
+17:11:15.724 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received IO message from client: CloseInput[id=8b3c0401-fda2-4be9-8b9b-5f2a27add3dc.2]
+17:11:15.724 [INFO] [org.gradle.launcher.daemon.server.exec.ForwardClientInput] Closing daemon's stdin at end of input.
+17:11:15.724 [INFO] [org.gradle.launcher.daemon.server.exec.ForwardClientInput] The daemon will no longer process any standard input.
+Configuration on demand is an incubating feature.
+:core:compileJava UP-TO-DATE
+:core:processResources UP-TO-DATE
+:core:classes UP-TO-DATE
+:core:jar UP-TO-DATE
+:core:assemble UP-TO-DATE
+
+BUILD SUCCESSFUL
+
+Total time: 1.657 secs
+17:11:16.422 [DEBUG] [org.gradle.api.internal.tasks.compile.daemon.CompilerDaemonManager] Stopping 0 compiler daemon(s).
+17:11:16.422 [INFO] [org.gradle.api.internal.tasks.compile.daemon.CompilerDaemonManager] Stopped 0 compiler daemon(s).
+17:11:16.422 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for settings file 'C:\git\RawHeroesOfBegredeligeStudenter\project\settings.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\settings_azto2ifi6360hk4n1jk7opqw\SettingsScript\buildscript).
+17:11:16.423 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for settings file 'C:\git\RawHeroesOfBegredeligeStudenter\project\settings.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\settings_azto2ifi6360hk4n1jk7opqw\SettingsScript\no_buildscript).
+17:11:16.423 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_7xhrk7l9u7nbqis8uakom97ma\ProjectScript\buildscript).
+17:11:16.423 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_7xhrk7l9u7nbqis8uakom97ma\ProjectScript\no_buildscript).
+17:11:16.423 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\core\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_8v40sxjn07pqpjpuy17hx11t5\ProjectScript\buildscript).
+17:11:16.424 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on no_buildscript class cache for build file 'C:\git\RawHeroesOfBegredeligeStudenter\project\core\build.gradle' (C:\Users\espen1\.gradle\caches\2.2\scripts\build_8v40sxjn07pqpjpuy17hx11t5\ProjectScript\no_buildscript).
+17:11:16.424 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache fileHashes.bin (C:\git\RawHeroesOfBegredeligeStudenter\project\.gradle\2.2\taskArtifacts\fileHashes.bin)
+17:11:16.425 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on task history cache (C:\git\RawHeroesOfBegredeligeStudenter\project\.gradle\2.2\taskArtifacts).
+17:11:16.425 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache module-metadata.bin (C:\Users\espen1\.gradle\caches\modules-2\metadata-2.14\module-metadata.bin)
+17:11:16.426 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache artifact-at-repository.bin (C:\Users\espen1\.gradle\caches\modules-2\metadata-2.14\artifact-at-repository.bin)
+17:11:16.426 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on artifact cache (C:\Users\espen1\.gradle\caches\modules-2).
+17:11:16.427 [DEBUG] [org.gradle.cache.internal.DefaultCacheAccess] Cache jars (C:\Users\espen1\.gradle\caches\jars-1) was closed 0 times.
+17:11:16.427 [DEBUG] [org.gradle.cache.internal.DefaultCacheAccess] Cache Plugin Resolution Cache (C:\Users\espen1\.gradle\caches\2.2\plugin-resolution) was closed 0 times.
+17:11:16.428 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.CachedStoreFactory] Resolution result cache closed. Cache reads: 0, disk reads: 0 (avg: 0.0 secs, total: 0.0 secs)
+17:11:16.429 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.CachedStoreFactory] Resolved configuration cache closed. Cache reads: 0, disk reads: 0 (avg: 0.0 secs, total: 0.0 secs)
+17:11:16.429 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.resolveengine.store.ResolutionResultsStoreFactory] Deleted 2 resolution results binary files in 0.002 secs
+17:11:16.430 [DEBUG] [org.gradle.api.internal.artifacts.ivyservice.ivyresolve.memcache.InMemoryCachedRepositoryFactory] In-memory dependency metadata cache closed. Repos cached: 4, cache instances: 3, modules served from cache: 0, artifacts: 0
+17:11:16.430 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] The daemon has finished executing the build.
+17:11:17.032 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: finished waiting for DaemonCommandExecution[command = Build{id=8b3c0401-fda2-4be9-8b9b-5f2a27add3dc.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}, connection = org.gradle.launcher.daemon.server.DefaultDaemonConnection@6800b82c]. Result org.gradle.launcher.daemon.server.DaemonStateCoordinator@6ec80792 with state Running
+17:11:17.032 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: completed DaemonCommandExecution[command = Build{id=8b3c0401-fda2-4be9-8b9b-5f2a27add3dc.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}, connection = org.gradle.launcher.daemon.server.DefaultDaemonConnection@6800b82c]
+17:11:17.033 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] updating lastActivityAt to 1425571877033
+17:11:17.033 [INFO] [org.gradle.launcher.daemon.server.DomainRegistryUpdater] Marking the daemon as idle, address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:11:17.033 [DEBUG] [org.gradle.launcher.daemon.registry.PersistentDaemonRegistry] Marking idle by address: [00ccd34c-a037-48e8-8e6d-5cf5c0130400 port:49568, addresses:[/127.0.0.1, /0:0:0:0:0:0:0:1]]
+17:11:17.034 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on daemon addresses registry.
+17:11:17.034 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired.
+17:11:17.036 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+17:11:17.037 [DEBUG] [org.gradle.launcher.daemon.server.exec.ReturnResult] Daemon is dispatching the build result: DaemonCommandResult[type=Success, value=org.gradle.tooling.internal.provider.BuildActionResult@5ef4895e]
+17:11:17.037 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Daemon is idle, sleeping until state change or idle timeout at Thu Mar 05 20:11:17 CET 2015
+17:11:17.037 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 44: dispatching class org.gradle.launcher.daemon.protocol.Success
+17:11:17.038 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Finishing executing command: Build{id=8b3c0401-fda2-4be9-8b9b-5f2a27add3dc.1, currentDir=C:\Users\espen1\.AndroidStudio\system\compile-server}
+17:11:17.044 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 52: received class org.gradle.launcher.daemon.protocol.Finished
+17:11:17.044 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received non-IO message from client: org.gradle.launcher.daemon.protocol.Finished@6cabcd7c
+17:11:17.045 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Received finished message: org.gradle.launcher.daemon.protocol.Finished@6cabcd7c
+17:11:17.045 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 52: received null
+17:11:17.045 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 44: stopping connection
+17:11:17.045 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] Received end-of-input from client.
+17:11:17.046 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 44: stopping connection
