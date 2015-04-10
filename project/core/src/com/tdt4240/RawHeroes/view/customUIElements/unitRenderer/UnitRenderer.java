@@ -3,7 +3,7 @@ package com.tdt4240.RawHeroes.view.customUIElements.unitRenderer;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
-import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.ICamera;
+import com.tdt4240.RawHeroes.gameLogic.models.ICamera;
 import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.ICellConverter;
 import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.Player1CellConverter;
 import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.Player2CellConverter;
@@ -27,16 +27,17 @@ import java.util.Queue;
  */
 public class UnitRenderer implements IMoveListener, ICameraListener {
     private final IBoard board;
-    private ICamera view;
+    private ICamera camera;
 
     private IRenderBulding renderBulding = RenderBuilding.getInstance();
     private HashMap<Vector2, IRenderObject> unitPositionsAndRenderObjects;
     private Queue<Move> currentAnimations = new LinkedList<Move>();//TODO: Continue
     private boolean animationActive = false;
 
-    public UnitRenderer(IBoard board, ICamera view, boolean iAmPlayer1) {
+    public UnitRenderer(IBoard board, ICamera camera, boolean iAmPlayer1) {
         this.board = board;
-        this.view = view;
+        this.camera = camera;
+
         ICellConverter cellConverter = iAmPlayer1 ? new Player1CellConverter() : new Player2CellConverter();
 
         ICell[][] cells = cellConverter.convertCells(board.getCells());

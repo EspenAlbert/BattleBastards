@@ -1,6 +1,8 @@
 package com.tdt4240.RawHeroes.independent;
 
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.math.Vector2;
+import com.tdt4240.RawHeroes.gameLogic.models.ICamera;
 import com.tdt4240.RawHeroes.independent.inputListeners.TouchDown;
 
 import java.util.ArrayList;
@@ -11,6 +13,7 @@ import java.util.ArrayList;
  */
 public class MyInputProcessor implements InputProcessor {
     private static MyInputProcessor instance;
+    private ICamera camera;
 
     private MyInputProcessor() {}
 
@@ -27,6 +30,9 @@ public class MyInputProcessor implements InputProcessor {
         touchDownsListeners.add(listener);
     }
 
+    public void setCamera(ICamera camera) {
+        this.camera = camera;
+    }
     public void removeListeners() {
         touchDownsListeners.clear();
     }
@@ -49,10 +55,14 @@ public class MyInputProcessor implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        screenY = Math.abs((screenY - GameConstants.RESOLUTION_HEIGHT) % 800);
+
         for(TouchDown listener: touchDownsListeners) {
             listener.touchDown(screenX, screenY, pointer, button);
         }
-        System.out.println("touch..");
+        System.out.println("touch @ " + screenX + "," + screenY);
+        Vector2 cellCoordinate = camera.convertPixelCoordinateToCell(new Vector2(screenX, screenY));
+        System.out.println("converted to cell: " + cellCoordinate.x + "," + cellCoordinate.y);
         return false;
     }
 

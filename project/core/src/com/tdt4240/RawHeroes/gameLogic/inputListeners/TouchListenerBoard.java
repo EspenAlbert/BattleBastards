@@ -2,7 +2,7 @@ package com.tdt4240.RawHeroes.gameLogic.inputListeners;
 
 import com.badlogic.gdx.math.Vector2;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.IBoardController;
-import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.ICamera;
+import com.tdt4240.RawHeroes.gameLogic.models.ICamera;
 import com.tdt4240.RawHeroes.independent.inputListeners.TouchDown;
 
 /**
