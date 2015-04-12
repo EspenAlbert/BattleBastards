@@ -54,7 +54,7 @@ public class StandardUnit implements IUnit {
     }
 
     @Override
-    public ArrayList<Vector2> getAttackablePosisions(Vector2 pos, int movesLeft) {
+    public ArrayList<Vector2> getAttackablePositions(Vector2 pos, int movesLeft) {
         return null;
     }
 

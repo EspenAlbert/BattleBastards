@@ -6,7 +6,7 @@ import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardControll
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardMover;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.IBoardController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.IBoardMover;
-import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.Player1Camera;
+import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.CameraController;
 import com.tdt4240.RawHeroes.gameLogic.models.ICamera;
 import com.tdt4240.RawHeroes.independent.MyInputProcessor;
 import com.tdt4240.RawHeroes.topLayer.commonObjects.Game;
@@ -29,7 +29,7 @@ public class ActiveGameScreen extends ScreenState {
         board = game.getBoard();
         System.out.println("in active game screen!!!!!");
         iAmPlayer1 = ClientConnection.getInstance().getUsername().equals(game.getPlayer1Nickname());
-        ICamera camera = new Player1Camera();
+        ICamera camera = new CameraController();
         gameView = new GameView(board, iAmPlayer1,camera);
         board.addBoardListener(gameView);
 

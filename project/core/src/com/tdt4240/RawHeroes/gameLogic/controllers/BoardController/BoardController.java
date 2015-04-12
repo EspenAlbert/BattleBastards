@@ -99,7 +99,7 @@ public class BoardController implements IBoardController {
 
     private void disableAttack() {
         /*
-        ArrayList<Vector2> attackableCells = selectedCell.getUnit().getAttackablePosisions(selectedCell.getPos(), movesLeft);
+        ArrayList<Vector2> attackableCells = selectedCell.getUnit().getAttackablePositions(selectedCell.getPos(), movesLeft);
         for (Vector2 attackableCell : attackableCells) {
             if(board.getCell(attackableCell) != null) {
                 board.switchModeOnCell(CellStatus.DEFAULT);
