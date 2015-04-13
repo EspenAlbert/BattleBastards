@@ -33,6 +33,7 @@ public class LoginScreen extends ScreenState {
     private Label title;
 
 
+
     protected LoginScreen(ScreenStateManager gsm) {
         super(gsm);
         img = new Texture("badlogic.jpg");
@@ -40,11 +41,19 @@ public class LoginScreen extends ScreenState {
         stage = new Stage();
         title = new Label("Game Title",skin);
 
-        int xPos = 200;
+        int xPos = GameConstants.RESOLUTION_WIDTH/2 - GameConstants.BUTTON_WIDTH/2;
+        int xPosCheckBox = xPos - GameConstants.RESOLUTION_WIDTH/8;
+        int scaleY = GameConstants.RESOLUTION_HEIGHT/6;
+        int yPosTitle = GameConstants.RESOLUTION_HEIGHT - scaleY;
+        int yPosLabelInstruction = yPosTitle - scaleY;
+        int yPosUserName = yPosLabelInstruction - scaleY;
+        int yPosPassword = yPosUserName - scaleY;
+        int yPosButton = yPosPassword - scaleY;
+
 
         buttonLogin = new TextButton("Login", skin);
-        buttonLogin.setPosition(xPos, 150);
-        buttonLogin.setSize(300, 60);
+        buttonLogin.setSize(GameConstants.BUTTON_WIDTH, GameConstants.BUTTON_HEIGHT);
+        buttonLogin.setPosition(xPos, yPosButton);
         buttonLogin.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -52,23 +61,23 @@ public class LoginScreen extends ScreenState {
             }
         });
         textFieldUsername = new TextField("username", skin);
-        textFieldUsername.setPosition(xPos, 300);
-        textFieldUsername.setSize(300, 40);
+        textFieldUsername.setPosition(xPos, yPosUserName);
+        textFieldUsername.setSize(GameConstants.TEXTFIELD_WIDTH, GameConstants.TEXTFIELD_HEIGHT);
 
         textFieldPassword = new TextField("password", skin);
-        textFieldPassword.setPosition(xPos, 250);
-        textFieldPassword.setSize(300, 40);
+        textFieldPassword.setPosition(xPos, yPosPassword);
+        textFieldPassword.setSize(GameConstants.TEXTFIELD_WIDTH, GameConstants.TEXTFIELD_HEIGHT);
         textFieldPassword.setPasswordCharacter('x');
         textFieldPassword.setPasswordMode(true);
 
         checkBoxNewuser = new CheckBox("New user", skin);
-        checkBoxNewuser.setPosition(xPos-100, 150);
+        checkBoxNewuser.setPosition(xPosCheckBox, yPosButton);
         checkBoxNewuser.setSize(100,50);
 
         labelInstruction = new Label("Please specify username and password", skin);
-        labelInstruction.setPosition(xPos,400);
+        labelInstruction.setPosition(xPos,yPosLabelInstruction);
         labelInstruction.setSize(300,40);
-        title.setPosition(xPos, GameConstants.RESOLUTION_HEIGHT - 100);
+        title.setPosition(xPos, yPosTitle);
         title.setSize(100,50);
 
 
@@ -91,7 +100,8 @@ public class LoginScreen extends ScreenState {
     public void loginButtonClicked() {
         String username = textFieldUsername.getText();
         String pwd = textFieldPassword.getText();
-        ResponseMessage response;
+        gsm.setState(ScreenStateManager.MAINMENU);
+        /*ResponseMessage response;
         if(checkBoxNewuser.isChecked()) response = clientConnection.createUser(username, pwd);
         else response = clientConnection.login(username, pwd);
         ResponseType type = response.getType();
@@ -105,7 +115,7 @@ public class LoginScreen extends ScreenState {
             String errorMessage = (String) response.getContent();
             labelInstruction.setText(errorMessage);
             System.out.println("Failed to login, errormessage: " + errorMessage);
-        }
+        }*/
     }
 
     @Override

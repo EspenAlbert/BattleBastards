@@ -5,12 +5,9 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.tdt4240.RawHeroes.independent.GameConstants;
 import com.tdt4240.RawHeroes.mainMenuGamesHandler.clientGameState.ClientGameState;
 import com.tdt4240.RawHeroes.network.communication.Response.ResponseMessage;
 import com.tdt4240.RawHeroes.network.communication.Response.ResponseType;
@@ -31,6 +28,10 @@ public class MainMenuScreen extends ScreenState {
     private final TextField textFieldGetGame;
     private final TextButton buttonGetGame;
     private ArrayList<ClientGameState> games;
+
+    private Table table;
+    private List list;
+    private ScrollPane scrollPane;
 
     public MainMenuScreen(ScreenStateManager gsm) {
         super(gsm);
@@ -72,11 +73,27 @@ public class MainMenuScreen extends ScreenState {
         });
 
 
+
+        table = new Table(skin);
+        table.setBounds(GameConstants.RESOLUTION_WIDTH/2, 0, GameConstants.RESOLUTION_WIDTH/2, GameConstants.RESOLUTION_HEIGHT);
+
+        list = new List(skin, "Faen");
+
+        scrollPane = new ScrollPane(list, skin);
+
+        //putting stuff together
+        table.add("SELECT GAME").row();
+        table.add(scrollPane);
+
+
+
         Gdx.input.setInputProcessor(stage);
         stage.addActor(buttonCreateGame);
         stage.addActor(labelInstruction);
         stage.addActor(textFieldGetGame);
         stage.addActor(buttonGetGame);
+        stage.addActor(table);
+
 
     }
 

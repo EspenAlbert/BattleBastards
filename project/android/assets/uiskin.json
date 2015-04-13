@@ -60,5 +60,11 @@ com.badlogic.gdx.scenes.scene2d.ui.Touchpad$TouchpadStyle: {
 },
 com.badlogic.gdx.scenes.scene2d.ui.Tree$TreeStyle: {
 	default: { minus: tree-minus, plus: tree-plus, selection: default-select-selection }
-}
+},
+"com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle": {
+    "default": { "font": white, "fontColoredUnselected": white, "fontColoredSelected": black, "selection": "default.selection" }
+    },
+    "com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle": {
+    "default": { "hScrollKnob": "button.up", "vScrollKnob": "button.up" }
+    }
 }
