@@ -1,6 +1,8 @@
 package com.tdt4240.RawHeroes.createUnits.units.standardUnit;
 
 import com.badlogic.gdx.math.Vector2;
+import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.SimpleUnitAttackController;
+import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
 import com.tdt4240.RawHeroes.gameLogic.unit.UnitName;
 
@@ -12,9 +14,13 @@ import java.util.ArrayList;
 public class StandardUnit implements IUnit {
 
     private boolean player1Unit;
+    private boolean hasAttacked;
+    private SimpleUnitAttackController unitController;
 
     public StandardUnit(boolean player1Unit) {
+        this.hasAttacked = false;
         this.player1Unit = player1Unit;
+        this.unitController = new SimpleUnitAttackController(this);
         System.out.println("Created a standard unit");
     }
 
@@ -25,7 +31,7 @@ public class StandardUnit implements IUnit {
 
     @Override
     public ArrayList<Vector2> getInflictionZone(Vector2 myPos, Vector2 target) {
-        return null;
+        return unitController.getInflictionZone(myPos, target);
     }
 
     @Override
@@ -39,13 +45,19 @@ public class StandardUnit implements IUnit {
     }
 
     @Override
-    public void attacked(int damage) {
-
+    public int attacked(int damage) {
+        //TODO
+        return 0;   //Final dmg received (after armor etc. reductions)
     }
 
     @Override
-    public void deAttacked(int damage) {
-
+    public void setHasAttacked() {
+        if (hasAttacked){
+            this.hasAttacked = false;
+        }
+        else {
+            this.hasAttacked = true;
+        }
     }
 
     @Override

@@ -14,8 +14,8 @@ public interface IUnit extends Serializable{
     ArrayList<Vector2> getInflictionZone(Vector2 myPos, Vector2 target);
     ArrayList<Vector2> getMovementZone(Vector2 myPos, int movesLeft);
     int[] inflictDamage(Vector2 myPos, Vector2[] enemies);
-    void attacked(int damage);
-    void deAttacked(int damage);
+    int attacked(int damage);
+    void setHasAttacked();
     boolean isPlayer1Unit();
 
     ArrayList<Vector2> getAttackablePositions(Vector2 pos, int movesLeft);
