@@ -13,5 +13,6 @@ public class GameConstants {
     public static final int BUTTON_WIDTH = Math.round(GameConstants.RESOLUTION_WIDTH / 5);
     public static final int BUTTON_HEIGHT = Math.round(GameConstants.RESOLUTION_HEIGHT / 9);
     public static final int SPACE_BETWEEN = 0;
+    public static final int SUPER_VAR = 0;
 
 }
