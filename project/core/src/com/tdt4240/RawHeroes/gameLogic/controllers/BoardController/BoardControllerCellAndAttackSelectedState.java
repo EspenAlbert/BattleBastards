@@ -30,22 +30,25 @@ public class BoardControllerCellAndAttackSelectedState extends BoardControllerSt
 
     @Override
     public void actionButtonPressed() {
-        //TODO forandre knappen, burde egentlig bli gjort automatisk ved bytte av state
+        //TODO forandre knappen, må finne ut av hvordan
         this.boardController.setState(new BoardControllerCellSelectedState(this.boardController, this.board, this.selectedCell));
     }
 
     @Override
     public void cellSelected(ICell cell) {
         if (cell.getStatus() == CellStatus.ATTACKABLE){
+            //TODO sjekke om man har nok energi før movet gjøres
             this.boardController.addMove(new AttackMove(selectedCell, cell));
+            //TODO disable så samme unit ikke kan angripe flere ganger per tur
         }
+        //TODO også ha tilbakegåing til NoCellSelectedState hvis man trykker på en default
 
     }
 
     @Override
     public void popped() {
-        selectedCell.setStatus(CellStatus.SELECTABLE);
-            for (ICell cell : attackableCells){
+        for (ICell cell : attackableCells){
+            //TODO må sjekke side, altså om uniten er ens egen
                 if (cell.getUnit() == null) cell.setStatus(CellStatus.DEFAULT);
                 else cell.setStatus(CellStatus.SELECTABLE);
             }

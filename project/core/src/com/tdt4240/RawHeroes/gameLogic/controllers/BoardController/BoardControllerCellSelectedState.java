@@ -30,7 +30,7 @@ public class BoardControllerCellSelectedState extends BoardControllerState {
 
     @Override
     public void actionButtonPressed() { //Attack button
-        //TODO forandre knappen, burde egentlig bli gjort automatisk ved bytte av state
+        //TODO forandre knappen, må finne ut av hvordan
         this.boardController.setState(new BoardControllerCellAndAttackSelectedState(this.boardController, this.board, this.selectedCell));
     }
 
@@ -41,16 +41,20 @@ public class BoardControllerCellSelectedState extends BoardControllerState {
             selectedCell = cell;
             selectedCell.setStatus(CellStatus.SELECTED);
         }
-        else if(cell.getStatus()== CellStatus.IN_MOVING_RANGE){
+        else if(cell.getStatus()== CellStatus.IN_MOVING_RANGE){ //Bevege valgt unit til ny celle
             //TODO sjekke om man har nok energi før movet gjøres
+            // Vi burde ha en limit på hvor mange ganger man kan flytte en unit også
             this.boardController.addMove(new MovementMove(selectedCell, cell));
             //TODO endre på hvilken cell som er selected etter move, gjøres her eller i move?
+        }
+        else if(cell.getStatus()== CellStatus.DEFAULT){
+            selectedCell.setStatus(CellStatus.SELECTABLE);
+            this.boardController.setState(new BoardControllerNoCellSelectedState(this.boardController, this.board));
         }
     }
 
     @Override
     public void popped() {
-        selectedCell.setStatus(CellStatus.SELECTABLE);
         for (ICell cell : walkableCells){
             cell.setStatus(CellStatus.DEFAULT);
         }

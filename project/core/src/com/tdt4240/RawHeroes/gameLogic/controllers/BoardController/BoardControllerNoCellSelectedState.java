@@ -15,7 +15,7 @@ public class BoardControllerNoCellSelectedState extends BoardControllerState {
 
     @Override
     public void actionButtonPressed() {//Undo button
-
+        this.boardController.undoMove();
     }
 
     @Override

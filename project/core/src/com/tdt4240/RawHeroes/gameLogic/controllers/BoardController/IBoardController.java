@@ -11,5 +11,6 @@ public interface IBoardController {
     void cellTouchedLong(Vector2 coordinates);
     void actionButtonTouched();
     void addMove(Move move);
+    void undoMove();
     void setState(BoardControllerState state);
 }
