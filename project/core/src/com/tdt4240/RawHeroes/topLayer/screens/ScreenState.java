@@ -28,4 +28,8 @@ public abstract class ScreenState {
     public abstract void render();
 
     public abstract void dispose();
+
+    public void resize(int width, int height) {
+
+    }
 }
