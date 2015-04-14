@@ -74,21 +74,9 @@ public class BoardRenderer implements IBoardListener, IRender {
 
     @Override
     public void render(SpriteBatch batch, Vector2 pos) {
-
-        int yPos = 0;
-        int xPos = 0;
-        for(int x=0; x < 4; x++) {
-            yPos =0;
-            for(int y= 0; y < 8; y++) {
-              //  batch.draw(ordinaryCell, xPos, yPos, 10, 10);
-               // batch.draw(ordinaryCell, buttonWidth * x, buttonHeight * y, buttonWidth, buttonHeight);
-
-                yPos += buttonHeight+spaceBetween;
-            }
-            xPos += buttonWidth+ spaceBetween;
-        }
-
+        batch.begin();
         batch.draw(ordinaryCell, 0, 0, buttonWidth, buttonHeight, 0, 0, ordinaryCell.getWidth(), ordinaryCell.getHeight(), false, false);
+        batch.end();
         //batch.draw(ordinaryCell, 50, 50, ordinaryCell.getWidth() / 2, ordinaryCell.getHeight() / 2, ordinaryCell.getWidth(), ordinaryCell.getHeight(), 1,1, 0, 0, 0, ordinaryCell.getWidth(), ordinaryCell.getHeight(), false, false);
         //sb.draw(texture,x, y, texture.getWidth() / 2, texture.getHeight() / 2, texture.getWidth(), texture.getHeight(), 1, 1, body.getAngle() * MathUtils.radiansToDegrees, 0, 0, texture.getWidth(), texture.getHeight(), false, flipY);
 

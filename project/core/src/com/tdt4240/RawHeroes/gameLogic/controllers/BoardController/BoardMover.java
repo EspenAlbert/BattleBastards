@@ -1,4 +1,4 @@
-package com.tdt4240.RawHeroes.gameLogic.controllers.boardController;
+package com.tdt4240.RawHeroes.gameLogic.controllers.BoardController;
 
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.event.listener.IMoveListener;
