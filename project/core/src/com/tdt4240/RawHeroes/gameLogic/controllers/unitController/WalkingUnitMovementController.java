@@ -40,10 +40,13 @@ public class WalkingUnitMovementController implements IUnitMovementController {
             for (int i=0; i<directions.size();i++){
                 Vector2 w=new Vector2(v);
                 w.add(directions.get(i));//v+directions.get(i)
-                ICell cell=board.getCell(w);
-                if((!discovered.contains(w))&&(!(cell.getStatus()== CellStatus.NOTMOVEABLE))){//not discovered and not notmoveable.
-                    queue.add(new Pair<Vector2, Integer>(w,depth+1));
-                    discovered.add(w);
+                System.out.println("before if: "+w);
+                if (w.x>=0&&w.y>=0&&w.x<(board.getWidth())&&w.y<board.getHeight()){
+                    ICell cell=board.getCell(w);
+                    if((!discovered.contains(w))&&(!(cell.getStatus()== CellStatus.NOTMOVEABLE))) {//not discovered and not notmoveable.
+                        queue.add(new Pair<Vector2, Integer>(w, depth + 1));
+                        discovered.add(w);
+                    }
                 }
             }
             depth=queue.get(0).getValue();
@@ -52,6 +55,7 @@ public class WalkingUnitMovementController implements IUnitMovementController {
     }
 
     @Override
+    //returns null if path isn't found
     public ArrayList<Vector2> getMovementPath(IBoard board, Vector2 myPos, Vector2 targetPos) {
         //uses breadth first search to find the shortest path
         ArrayList<Vector2> path=new ArrayList<Vector2>();//returns path
@@ -64,19 +68,23 @@ public class WalkingUnitMovementController implements IUnitMovementController {
             for (int i=0;i<directions.size();i++){
                 Vector2 w=new Vector2(v);
                 w.add(directions.get(i));//v+directions.get(i)
-                ICell cell=board.getCell(w);
-                if((!discovered.containsKey(w))&&(!(cell.getStatus()== CellStatus.NOTMOVEABLE))){//not discovered and not notmoveable.
-                    if(w==targetPos){
-                        path.add(w);
-                        while (true){
-                            if(discovered.get(w)==null){
-                                return path;
+                if (w.x>=0&&w.y>=0&&w.x<(board.getWidth())&&w.y<board.getHeight()){
+                    ICell cell=board.getCell(w);
+                    if((!discovered.containsKey(w))&&(!(cell.getStatus()== CellStatus.NOTMOVEABLE))) {//not discovered and not notmoveable.
+                        if (w.x==targetPos.x&&w.y==targetPos.y) {
+                            path.add(w);//finds the path
+                            path.add(v);
+                            while (true) {
+                                if (discovered.get(v) == null) {
+                                    return path;
+                                }
+                                v=discovered.get(v);
+                                path.add(0, v);
                             }
-                            path.add(0,discovered.get(w));
                         }
+                        queue.add(w);
+                        discovered.put(w, v);
                     }
-                    queue.add(w);
-                    discovered.put(w,v);
                 }
             }
         }
