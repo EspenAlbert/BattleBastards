@@ -32,7 +32,7 @@ public class BoardRenderer implements IBoardListener, IRender {
     private final int buttonHeight;
     private final int spaceBetween;
     private CellStatus[][] cellStatuses;
-    public static Texture ordinaryCell = new Texture(Gdx.files.internal("cell.png"));
+    public static Texture ordinaryCell = new Texture(Gdx.files.internal("badlogic.jpg"));
 
     private int cameraY;
     private int cameraX;
