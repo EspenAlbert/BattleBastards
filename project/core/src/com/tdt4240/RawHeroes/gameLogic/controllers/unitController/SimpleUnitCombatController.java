@@ -1,7 +1,6 @@
 package com.tdt4240.RawHeroes.gameLogic.controllers.unitController;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
 
 import java.util.ArrayList;
@@ -9,12 +8,12 @@ import java.util.ArrayList;
 /**
  * Created by espen1 on 12.04.2015.
  */
-public class SimpleUnitAttackController implements IUnitAttackController {
+public class SimpleUnitCombatController implements IUnitCombatController {
 
     private IUnit unit;
     private int attackDmg, armor;
 
-    public SimpleUnitAttackController(IUnit u, int attackDmg, int armor){
+    public SimpleUnitCombatController(IUnit u, int attackDmg, int armor){
         this.unit = u;
         this.attackDmg = attackDmg;
         this.armor = armor;

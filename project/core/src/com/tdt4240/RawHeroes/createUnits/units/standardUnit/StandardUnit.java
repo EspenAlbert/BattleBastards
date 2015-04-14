@@ -1,8 +1,10 @@
 package com.tdt4240.RawHeroes.createUnits.units.standardUnit;
 
 import com.badlogic.gdx.math.Vector2;
-import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitAttackController;
-import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.SimpleUnitAttackController;
+import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitCombatController;
+import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitMovementController;
+import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.SimpleUnitCombatController;
+import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.WalkingUnitMovementController;
 import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
 import com.tdt4240.RawHeroes.gameLogic.unit.UnitName;
 
@@ -15,12 +17,14 @@ public class StandardUnit implements IUnit {
 
     private boolean player1Unit;
     private boolean hasAttacked;
-    private IUnitAttackController unitController;
+    private IUnitCombatController unitCombatController;
+    private IUnitMovementController unitMoveController;
 
     public StandardUnit(boolean player1Unit) {
         this.hasAttacked = false;
         this.player1Unit = player1Unit;
-        this.unitController = new SimpleUnitAttackController(this, 5, 1);
+        this.unitCombatController = new SimpleUnitCombatController(this, 5, 1);
+        this.unitMoveController = new WalkingUnitMovementController();
         System.out.println("Created a standard unit");
     }
 
@@ -31,7 +35,7 @@ public class StandardUnit implements IUnit {
 
     @Override
     public ArrayList<Vector2> getInflictionZone(Vector2 myPos, Vector2 target) {
-        return unitController.getInflictionZone(myPos, target);
+        return unitCombatController.getInflictionZone(myPos, target);
     }
 
     @Override
@@ -41,17 +45,22 @@ public class StandardUnit implements IUnit {
 
     @Override
     public int inflictDamage(Vector2 myPos, Vector2 targetPos) {
-        return unitController.inflictDamage(myPos, targetPos);
+        return unitCombatController.inflictDamage(myPos, targetPos);
     }
 
     @Override
     public int attacked(int damage) {
-        return unitController.attacked(damage); //Final dmg received (after armor etc. reductions)
+        return unitCombatController.attacked(damage); //Final dmg received (after armor etc. reductions)
     }
 
     @Override
-    public void setAttackLogic(IUnitAttackController controller) {
-        unitController = controller;
+    public void setAttackLogic(IUnitCombatController controller) {
+        unitCombatController = controller;
+    }
+
+    @Override
+    public void setMovementLogic(IUnitMovementController controller) {
+        unitMoveController = controller;
     }
 
     @Override
@@ -71,11 +80,13 @@ public class StandardUnit implements IUnit {
 
     @Override
     public ArrayList<Vector2> getAttackablePositions(Vector2 pos, int movesLeft) {
+        //TODO
         return null;
     }
 
     @Override
     public int getHealth() {
+        //TODO
         return 0;
     }
 }
