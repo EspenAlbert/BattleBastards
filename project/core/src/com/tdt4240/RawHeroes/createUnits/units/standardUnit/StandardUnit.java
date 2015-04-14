@@ -1,8 +1,8 @@
 package com.tdt4240.RawHeroes.createUnits.units.standardUnit;
 
 import com.badlogic.gdx.math.Vector2;
+import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitAttackController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.SimpleUnitAttackController;
-import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
 import com.tdt4240.RawHeroes.gameLogic.unit.UnitName;
 
@@ -15,12 +15,12 @@ public class StandardUnit implements IUnit {
 
     private boolean player1Unit;
     private boolean hasAttacked;
-    private SimpleUnitAttackController unitController;
+    private IUnitAttackController unitController;
 
     public StandardUnit(boolean player1Unit) {
         this.hasAttacked = false;
         this.player1Unit = player1Unit;
-        this.unitController = new SimpleUnitAttackController(this);
+        this.unitController = new SimpleUnitAttackController(this, 5, 1);
         System.out.println("Created a standard unit");
     }
 
@@ -40,14 +40,18 @@ public class StandardUnit implements IUnit {
     }
 
     @Override
-    public int[] inflictDamage(Vector2 myPos, Vector2[] enemies) {
-        return new int[0];
+    public int inflictDamage(Vector2 myPos, Vector2 targetPos) {
+        return unitController.inflictDamage(myPos, targetPos);
     }
 
     @Override
     public int attacked(int damage) {
-        //TODO
-        return 0;   //Final dmg received (after armor etc. reductions)
+        return unitController.attacked(damage); //Final dmg received (after armor etc. reductions)
+    }
+
+    @Override
+    public void setAttackLogic(IUnitAttackController controller) {
+        unitController = controller;
     }
 
     @Override

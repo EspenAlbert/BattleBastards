@@ -11,5 +11,6 @@ import java.util.ArrayList;
 public interface IUnitAttackController {
     ArrayList<Vector2> getAttackablePositions(Vector2 pos, int movesLeft);
     ArrayList<Vector2> getInflictionZone(Vector2 myPos, Vector2 target);
-    int inflictDamage(Vector2 myPos, Vector2 attackPos);
+    int inflictDamage(Vector2 myPos, Vector2 targetPos);
+    int attacked(int damage);
 }
