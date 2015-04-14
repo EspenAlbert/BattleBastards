@@ -15,22 +15,23 @@ public class BoardController implements IBoardController {
     private final IBoardMover boardMover;
     private Stack<BoardControllerState> boardStates;
 
-    private int movesLeft;
+    private int remaining_energy;
 
 
-    public BoardController(IBoard board, IBoardMover boardMover, int movesLeft) {
+    public BoardController(IBoard board, IBoardMover boardMover, int remaining_energy) {
         this.board = board;
         this.boardMover = boardMover;
-        this.movesLeft = movesLeft;
+        this.remaining_energy = remaining_energy;
+        this.boardStates.push(new BoardControllerNoCellSelectedState(this, this.board));
     }
 
     public void setState(BoardControllerState state) {
-        boardStates.pop().poped();
+        boardStates.pop().popped();
         boardStates.push(state);
     }
 
     public void addMove(Move move) {
-        movesLeft = movesLeft - move.getCost();
+        remaining_energy = remaining_energy - move.getCost();
         boardMover.add(move);
     }
 
@@ -41,7 +42,7 @@ public class BoardController implements IBoardController {
         /*
         if (unitSelected && !attackMode) {
             CellStatus selectedCellStatus = board.getCell(coordinates).getStatus();
-            if (selectedCellStatus.equals(CellStatus.MOVEABLE)) {
+            if (selectedCellStatus.equals(CellStatus.IN_MOVING_RANGE)) {
                 moveSelectedPieceTo(coordinates);
             } else if (selectedCellStatus.equals(CellStatus.SELECTABLE)) {
                 selectPiece(coordinates);
@@ -64,9 +65,14 @@ public class BoardController implements IBoardController {
     }
 
     @Override
-    public void attackButtonTouched() {
-        boardStates.peek().attackButtonPressed();
+    public void actionButtonTouched() {
+        boardStates.peek().actionButtonPressed();
         //TODO: Implement logic
+    }
+
+    @Override
+    public void cellTouchedLong(Vector2 coordinates){
+
     }
 
     //TODO: Move the rest of the function to the corresponding states
@@ -115,7 +121,7 @@ public class BoardController implements IBoardController {
         ArrayList<Vector2> moveableCells = selectedCell.getUnit().getMovementZone(selectedCell.getPos(), movesLeft);
         for (Vector2 moveableCell : moveableCells) {
             if(board.getCell(moveableCell) != null && board.getCell(moveableCell).getUnit() == null) { //The coordinate is one the board and have no unit in it.
-                board.switchModeOnCell(CellStatus.MOVEABLE);
+                board.switchModeOnCell(CellStatus.IN_MOVING_RANGE);
             }
         }
         */

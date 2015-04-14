@@ -70,8 +70,17 @@ public class BoardRenderer implements IBoardListener, IRender {
         batch.begin();
         for (int x = 0; x < this.boardWidth; x++){
             for (int y = 0; y < this.boardHeight; y++){
-                batch.draw(ordinaryCell, x*GameConstants.BUTTON_WIDTH, y*GameConstants.BUTTON_HEIGHT, GameConstants.BUTTON_WIDTH, GameConstants.BUTTON_HEIGHT);
-                batch.draw(gridCell, x*GameConstants.BUTTON_WIDTH, y*GameConstants.BUTTON_HEIGHT, GameConstants.BUTTON_WIDTH, GameConstants.BUTTON_HEIGHT);
+                batch.draw(ordinaryCell,                    //Texture
+                           x*GameConstants.BUTTON_WIDTH,    //xpos for texture
+                           y*GameConstants.BUTTON_HEIGHT,   //ypos for texture
+                           GameConstants.BUTTON_WIDTH,      //Bredden til texture
+                           GameConstants.BUTTON_HEIGHT);    //Høyden til texture
+
+                batch.draw(gridCell,                        //Texture
+                           x*GameConstants.BUTTON_WIDTH,    //xpos for texture
+                           y*GameConstants.BUTTON_HEIGHT,   //ypos for texture
+                           GameConstants.BUTTON_WIDTH,      //Bredden til texture
+                           GameConstants.BUTTON_HEIGHT);    //Høyden til texture
             }
         }
         batch.end();

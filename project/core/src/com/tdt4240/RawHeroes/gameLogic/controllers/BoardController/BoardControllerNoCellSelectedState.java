@@ -1,5 +1,7 @@
 package com.tdt4240.RawHeroes.gameLogic.controllers.boardController;
 
+import com.tdt4240.RawHeroes.gameLogic.cell.Cell;
+import com.tdt4240.RawHeroes.gameLogic.cell.CellStatus;
 import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 
@@ -12,17 +14,19 @@ public class BoardControllerNoCellSelectedState extends BoardControllerState {
     }
 
     @Override
-    public void attackButtonPressed() {
+    public void actionButtonPressed() {//Undo button
 
     }
 
     @Override
     public void cellSelected(ICell cell) {
-
+        if (cell.getStatus() == CellStatus.SELECTABLE){
+            this.boardController.setState(new BoardControllerCellSelectedState(this.boardController, this.board, cell));
+        }
     }
 
     @Override
-    public void poped() {
+    public void popped() {
 
     }
 }
