@@ -15,7 +15,6 @@ import javafx.util.Pair;
  */
 public class WalkingUnitMovementController implements IUnitMovementController {
     private ArrayList<Vector2> directions;
-    //TODO check if w is outside the board
 
     public WalkingUnitMovementController(){
         directions=new ArrayList<Vector2>();

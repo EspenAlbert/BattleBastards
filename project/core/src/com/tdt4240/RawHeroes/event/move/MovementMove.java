@@ -12,29 +12,26 @@ import java.util.ArrayList;
  */
 public class MovementMove extends Move {
     private ArrayList<Vector2> path;
-    private Vector2 start,target;
-    private int length;
+    private Vector2 target;
+    private int cost;
 
     public MovementMove(ICell selectedCell, ICell target, IBoard board, ArrayList<Vector2> path) {//selectedCell is the startCell
         super(selectedCell);
         this.target=target.getPos();
         this.path = path;
-        length=path.size();
+        cost=path.size();
     }
 
     public ArrayList<Vector2> getPath(){
         return path;
     }
 
-    public int getLength(){
-        return length;
-    }
-
-    public Vector2 getStart(){
-        return start;
-    }
-
     public Vector2 getTarget(){
         return target;
+    }
+
+    @Override
+    public int getCost(){
+        return cost;
     }
 }
