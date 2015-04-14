@@ -17,8 +17,8 @@ import java.util.ArrayList;
  */
 public class StandardBoard implements IBoard {
 
-    private final int width = 4;
-    private final int height = 8;
+    private final int width = 8;
+    private final int height = 4;
     private ICell[][] cells;
     private ArrayList<IBoardListener> listeners;
 
