@@ -34,11 +34,7 @@ public class BattleBastards extends ApplicationAdapter {
 	public void render () {
 //        gameScreenManager.update(Gdx.graphics.getDeltaTime());
 //        gameScreenManager.render();
-
-
-		Gdx.gl.glClearColor(1, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        board.render(batch, new Vector2(100, 100));
+          board.render(batch, new Vector2(100, 100));
 
 	}
 

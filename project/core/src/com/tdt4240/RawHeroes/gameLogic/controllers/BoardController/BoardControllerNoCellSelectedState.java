@@ -1,4 +1,4 @@
-package com.tdt4240.RawHeroes.gameLogic.controllers.BoardController;
+package com.tdt4240.RawHeroes.gameLogic.controllers.boardController;
 
 import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
