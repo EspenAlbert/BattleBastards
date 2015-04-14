@@ -17,7 +17,8 @@ public interface IBoard extends Serializable{
     ICell getCell(Vector2 pos);
     ICell[][] getCells();
     void switchModeOnCell(Vector2 pos, CellStatus status);
-
+    int getWidth();
+    int getHeight();
 
 
 }

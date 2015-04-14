@@ -64,4 +64,14 @@ public class StandardBoard implements IBoard {
         cells[((int) pos.x)][((int) pos.y)].setStatus(status);
 
     }
+
+    @Override
+    public int getWidth() {
+        return width;
+    }
+
+    @Override
+    public int getHeight() {
+        return height;
+    }
 }
