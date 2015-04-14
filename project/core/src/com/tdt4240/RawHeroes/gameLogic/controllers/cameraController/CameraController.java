@@ -11,12 +11,12 @@ import java.util.ArrayList;
 /**
  * Created by espen1 on 15.03.2015.
  */
-public class Player1Camera implements ICamera {
+public class CameraController implements ICamera {
 
     private int x, y;
     private ArrayList<ICameraListener> listeners;
 
-    public Player1Camera() {
+    public CameraController() {
         x = 0;
         y = 0;
         listeners = new ArrayList<ICameraListener>();

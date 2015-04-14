@@ -1,4 +1,4 @@
-package com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer;
+package com.tdt4240.RawHeroes.view.customUIElements.unitRenderer;
 
 import com.badlogic.gdx.math.Vector2;
 import com.tdt4240.RawHeroes.event.move.AttackMove;

@@ -18,7 +18,7 @@ public interface IUnit extends Serializable{
     void deAttacked(int damage);
     boolean isPlayer1Unit();
 
-    ArrayList<Vector2> getAttackablePosisions(Vector2 pos, int movesLeft);
+    ArrayList<Vector2> getAttackablePositions(Vector2 pos, int movesLeft);
 
     int getHealth();
 }
