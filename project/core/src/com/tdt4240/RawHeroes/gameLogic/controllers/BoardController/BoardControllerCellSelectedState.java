@@ -1,5 +1,6 @@
 package com.tdt4240.RawHeroes.gameLogic.controllers.boardController;
 
+import com.badlogic.gdx.math.Vector2;
 import com.tdt4240.RawHeroes.event.move.Move;
 import com.tdt4240.RawHeroes.event.move.MovementMove;
 import com.tdt4240.RawHeroes.gameLogic.cell.CellStatus;
@@ -17,6 +18,11 @@ public class BoardControllerCellSelectedState extends BoardControllerState {
     public BoardControllerCellSelectedState(IBoardController boardController, IBoard board, ICell cell) {
         super(boardController, board);
         selectedCell = cell;
+        /*
+        ArrayList<Vector2> attackablePosisions = cell.getUnit().getAttackablePositions(cell.getPos(), //TODO: Moves left);
+        for(Vector2 attackPos : attackablePosisions) {
+            if(attackPos.x > board.getCells().length)
+            board.getCell(attackPos).setStatus(CellStatus.ATTACKABLE);
         selectedCell.setStatus(CellStatus.SELECTED);
         walkableCells = new ArrayList<ICell>();
         //TODO sette IN_MOVING_RANGE status på celler som er innenfor moving rangen til en unit, f.eks.:
@@ -44,7 +50,7 @@ public class BoardControllerCellSelectedState extends BoardControllerState {
         else if(cell.getStatus()== CellStatus.IN_MOVING_RANGE){ //Bevege valgt unit til ny celle
             //TODO sjekke om man har nok energi før movet gjøres
             // Vi burde ha en limit på hvor mange ganger man kan flytte en unit også
-            this.boardController.addMove(new MovementMove(selectedCell, cell));
+            this.boardController.addMove(new MovementMove(selectedCell, cell, null, null));//TODO: Fix this null parameters...
             //TODO endre på hvilken cell som er selected etter move, gjøres her eller i move?
         }
         else if(cell.getStatus()== CellStatus.DEFAULT){
