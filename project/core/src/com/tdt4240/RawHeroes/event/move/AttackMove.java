@@ -46,4 +46,8 @@ public class AttackMove extends Move {
             }
         }
     }
+
+    public ArrayList<ICell> getVictims(){
+        return this.victims;
+    }
 }
