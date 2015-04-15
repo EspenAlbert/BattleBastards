@@ -52,10 +52,10 @@ public class ActiveGameScreen extends ScreenState {
         //iAmPlayer1 = ClientConnection.getInstance().getUsername().equals(game.getPlayer1Nickname());
         iAmPlayer1 = true;
         cameraController = new CameraController();
-        gameView = new GameView(board, iAmPlayer1,cameraController);
-        board.addBoardListener(gameView);
 
         boardMover = new BoardMover(board);
+        gameView = new GameView(board, iAmPlayer1,cameraController,boardMover);
+        board.addBoardListener(gameView);
         boardMover.executeMoves(game.getLastMoves());
         boardController = new BoardController(board, boardMover, game.getMoveCount());
         Gdx.input.setInputProcessor(MyInputProcessor.getInstance());

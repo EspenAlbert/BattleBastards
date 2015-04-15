@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.WalkingUnitMovementController;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
+import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
 
 import java.util.ArrayList;
 
@@ -12,7 +13,7 @@ import java.util.ArrayList;
  */
 public class MovementMove extends Move {
     private ArrayList<Vector2> path;
-    private Vector2 start,target;
+    private Vector2 target;
     private int length;
 
     public MovementMove(ICell selectedCell, ICell target, IBoard board, ArrayList<Vector2> path) {//selectedCell is the startCell
@@ -20,6 +21,9 @@ public class MovementMove extends Move {
         this.target=target.getPos();
         this.path = path;
         length=path.size();
+        IUnit mover = selectedCell.getUnit();
+        selectedCell.setUnit(null);
+        target.setUnit(mover);
     }
 
     //TODO lage en calculate path metode. Den må regnes ut uansett
@@ -32,9 +36,6 @@ public class MovementMove extends Move {
         return length;
     }
 
-    public Vector2 getStart(){
-        return start;
-    }
 
     public Vector2 getTarget(){
         return target;

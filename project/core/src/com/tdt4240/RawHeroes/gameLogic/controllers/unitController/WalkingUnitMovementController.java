@@ -27,6 +27,7 @@ public class WalkingUnitMovementController implements IUnitMovementController {
     @Override
     public ArrayList<Vector2> getMovementZone(IBoard board, Vector2 myPos, int movesLeft, int unitMaxMoves) {
         int maxDepth=Math.min(movesLeft, unitMaxMoves); //max moves for unit
+        System.out.println("Max depth should be 3, is " + maxDepth);
 
         //breadth first search
         ArrayList<Pair<Vector2, Integer>> queue=new ArrayList<Pair<Vector2, Integer>>();
@@ -34,7 +35,7 @@ public class WalkingUnitMovementController implements IUnitMovementController {
         queue.add(new Pair<Vector2, Integer>(myPos,0));
         int depth=0;
         discovered.add(myPos);
-        while ((!queue.isEmpty())&&(depth<=maxDepth)){
+        while ((!queue.isEmpty())&&(depth<maxDepth)){
             Vector2 v=queue.remove(0).getKey();
             for (int i=0; i<directions.size();i++){
                 Vector2 w=new Vector2(v);

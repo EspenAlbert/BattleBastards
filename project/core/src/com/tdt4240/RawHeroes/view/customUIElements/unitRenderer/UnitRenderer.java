@@ -59,11 +59,29 @@ public class UnitRenderer implements IMoveListener, ICameraListener {
     @Override
     public void moveExecuted(Move move) {
        if(move instanceof MovementMove) {
-           MovementMove movement = null;
+           MovementMove movement = (MovementMove) move;
+           Vector2 mover = movement.getStartCell().getPos();
+           Vector2 endCell = movement.getTarget();
+
+           //IRenderObject renderer = getRenderer(mover);
+           IRenderObject renderer = unitPositionsAndRenderObjects.get(mover);
+           System.out.println("This should not be null! : " + renderer);
+           unitPositionsAndRenderObjects.remove(mover);
+           unitPositionsAndRenderObjects.put(endCell, renderer);
           // Vector2 moves = move.getStartCell()
        }
 
        //currentAnimations.add(move);
+    }
+
+    private IRenderObject getRenderer(Vector2 mover) {
+        for(Vector2 key: unitPositionsAndRenderObjects.keySet()) {
+            if(key.x == mover.x && key.y == mover.y) {
+                return unitPositionsAndRenderObjects.get(key);
+            }
+        }
+        System.out.println("Could find the unit!");
+        return null;
     }
 
     private void movementMove(MovementMove move) {

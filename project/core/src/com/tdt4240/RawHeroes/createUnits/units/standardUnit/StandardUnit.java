@@ -21,13 +21,13 @@ public class StandardUnit implements IUnit {
     private IUnitCombatController unitCombatController;
     private IUnitMovementController unitMoveController;
 
-    private int unitMaxMoves;
+    private int remainingMoves;
 
     public StandardUnit(boolean player1Unit) {
         this.hasAttacked = false;
         this.player1Unit = player1Unit;
 
-        this.unitMaxMoves = 3;
+        this.remainingMoves = 3;
 
         this.unitCombatController = new SimpleUnitCombatController(this, 5, 1);
         this.unitMoveController = new WalkingUnitMovementController();
@@ -46,7 +46,7 @@ public class StandardUnit implements IUnit {
 
     @Override
     public ArrayList<Vector2> getMovementZone(IBoard board, Vector2 myPos, int movesLeft) {
-        return this.unitMoveController.getMovementZone(board, myPos, movesLeft, this.unitMaxMoves);
+        return this.unitMoveController.getMovementZone(board, myPos, movesLeft, this.remainingMoves);
     }
 
     @Override

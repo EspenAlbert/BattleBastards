@@ -97,8 +97,10 @@ public class MyInputProcessor implements InputProcessor {
 
     @Override
     public boolean scrolled(int amount) {
+        /*
         System.out.println("Scroll amount:" + amount);
         camera.zoomTest(amount);
+        */
         return false;
     }
 

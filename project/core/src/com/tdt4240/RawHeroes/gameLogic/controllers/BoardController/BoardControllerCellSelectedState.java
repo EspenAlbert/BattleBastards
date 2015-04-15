@@ -20,6 +20,10 @@ public class BoardControllerCellSelectedState extends BoardControllerState {
         selectedCell = cell;
         this.board.switchModeOnCell(selectedCell.getPos(), CellStatus.SELECTED);
         walkableCells = new ArrayList<ICell>();
+        addWalkableCells();
+    }
+
+    private void addWalkableCells() {
         for (Vector2 coordinates : selectedCell.getUnit().getMovementZone(this.board, selectedCell.getPos(), this.boardController.getRemaining_energy())){
             if(board.getCell(coordinates).getUnit() != null) continue;
             this.board.switchModeOnCell(coordinates, CellStatus.IN_MOVING_RANGE);
@@ -38,6 +42,8 @@ public class BoardControllerCellSelectedState extends BoardControllerState {
         if (cell.getUnit() != null){ //Velge ny unit
             this.board.switchModeOnCell(selectedCell.getPos(), CellStatus.DEFAULT);
             selectedCell = cell;
+            popped();
+            addWalkableCells();
             this.board.switchModeOnCell(selectedCell.getPos(), CellStatus.SELECTED);
         }
         else if(cell.getStatus()== CellStatus.IN_MOVING_RANGE){ //Bevege valgt unit til ny celle
@@ -47,6 +53,8 @@ public class BoardControllerCellSelectedState extends BoardControllerState {
             this.boardController.addMove(new MovementMove(selectedCell, cell, this.board, path));
             this.board.switchModeOnCell(selectedCell.getPos(), CellStatus.DEFAULT);
             selectedCell = cell;
+            popped();
+            addWalkableCells();
             this.board.switchModeOnCell(selectedCell.getPos(), CellStatus.SELECTED);
         }
         else if(cell.getStatus()== CellStatus.DEFAULT){
@@ -58,7 +66,7 @@ public class BoardControllerCellSelectedState extends BoardControllerState {
     @Override
     public void popped() {
         for (ICell cell : walkableCells){
-            this.board.switchModeOnCell(selectedCell.getPos(), CellStatus.DEFAULT);
+            this.board.switchModeOnCell(cell.getPos(), CellStatus.DEFAULT);
         }
     }
 }

@@ -7,6 +7,7 @@ import com.tdt4240.RawHeroes.event.events.AttackEvent;
 import com.tdt4240.RawHeroes.event.listener.IBoardListener;
 import com.tdt4240.RawHeroes.event.events.CellChangeEvent;
 import com.tdt4240.RawHeroes.event.listener.ICameraListener;
+import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.IBoardMover;
 import com.tdt4240.RawHeroes.gameLogic.models.ICamera;
 import com.tdt4240.RawHeroes.event.events.BoardEvent;
 import com.tdt4240.RawHeroes.event.events.MovementEvent;
@@ -30,9 +31,10 @@ public class GameView implements IView, IBoardListener, ICameraListener {
     private int cameraY;
     private int cameraX;
 
-    public GameView(IBoard board, boolean iAmPlayer1, ICamera camera) {
+    public GameView(IBoard board, boolean iAmPlayer1, ICamera camera, IBoardMover mover) {
         boardRenderer = new BoardRenderer(board, iAmPlayer1);
         unitRenderer = new UnitRenderer(board, camera, iAmPlayer1);
+        mover.addMoveListener(unitRenderer);
 
 
     }
