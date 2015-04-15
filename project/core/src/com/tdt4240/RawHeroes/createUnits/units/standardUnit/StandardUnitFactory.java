@@ -1,7 +1,6 @@
 package com.tdt4240.RawHeroes.createUnits.units.standardUnit;
 
 import com.tdt4240.RawHeroes.createUnits.factory.IUnitFactory;
-import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.SimpleUnitAttackController;
 import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
 
 /**

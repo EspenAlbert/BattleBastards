@@ -1,6 +1,10 @@
 package com.tdt4240.RawHeroes.createUnits.units.standardUnit;
 
 import com.badlogic.gdx.math.Vector2;
+import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitCombatController;
+import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitMovementController;
+import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.SimpleUnitCombatController;
+import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.WalkingUnitMovementController;
 import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
 import com.tdt4240.RawHeroes.gameLogic.unit.UnitName;
 
@@ -12,9 +16,15 @@ import java.util.ArrayList;
 public class StandardUnit implements IUnit {
 
     private boolean player1Unit;
+    private boolean hasAttacked;
+    private IUnitCombatController unitCombatController;
+    private IUnitMovementController unitMoveController;
 
     public StandardUnit(boolean player1Unit) {
+        this.hasAttacked = false;
         this.player1Unit = player1Unit;
+        this.unitCombatController = new SimpleUnitCombatController(this, 5, 1);
+        this.unitMoveController = new WalkingUnitMovementController();
         System.out.println("Created a standard unit");
     }
 
@@ -25,7 +35,7 @@ public class StandardUnit implements IUnit {
 
     @Override
     public ArrayList<Vector2> getInflictionZone(Vector2 myPos, Vector2 target) {
-        return null;
+        return unitCombatController.getInflictionZone(myPos, target);
     }
 
     @Override
@@ -34,18 +44,33 @@ public class StandardUnit implements IUnit {
     }
 
     @Override
-    public int[] inflictDamage(Vector2 myPos, Vector2[] enemies) {
-        return new int[0];
+    public int inflictDamage(Vector2 myPos, Vector2 targetPos) {
+        return unitCombatController.inflictDamage(myPos, targetPos);
     }
 
     @Override
-    public void attacked(int damage) {
-
+    public int attacked(int damage) {
+        return unitCombatController.attacked(damage); //Final dmg received (after armor etc. reductions)
     }
 
     @Override
-    public void deAttacked(int damage) {
+    public void setAttackLogic(IUnitCombatController controller) {
+        unitCombatController = controller;
+    }
 
+    @Override
+    public void setMovementLogic(IUnitMovementController controller) {
+        unitMoveController = controller;
+    }
+
+    @Override
+    public void setHasAttacked() {
+        if (hasAttacked){
+            this.hasAttacked = false;
+        }
+        else {
+            this.hasAttacked = true;
+        }
     }
 
     @Override
@@ -55,11 +80,13 @@ public class StandardUnit implements IUnit {
 
     @Override
     public ArrayList<Vector2> getAttackablePositions(Vector2 pos, int movesLeft) {
+        //TODO
         return null;
     }
 
     @Override
     public int getHealth() {
+        //TODO
         return 0;
     }
 }

@@ -20,6 +20,7 @@ public class StandardBoard implements IBoard {
 
     private final int width = 7;
     private final int height = 7;
+
     private ICell[][] cells;
     private ArrayList<IBoardListener> listeners;
 
@@ -65,5 +66,15 @@ public class StandardBoard implements IBoard {
         cells[((int) pos.x)][((int) pos.y)].setStatus(status);
         fireBoardChanged(new CellChangeEvent(pos));
 
+    }
+
+    @Override
+    public int getWidth() {
+        return width;
+    }
+
+    @Override
+    public int getHeight() {
+        return height;
     }
 }
