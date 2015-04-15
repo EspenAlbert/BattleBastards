@@ -48,8 +48,8 @@ public class TouchListenerActiveGameScreen implements TouchDown {
         else {
             Vector2 touchedCell = cameraController.convertPixelCoordinateToCell(new Vector2(screenX, screenY));
             System.out.println("Cell touched: " + touchedCell.x + "," + touchedCell.y);
-            //boardController.cellTouched(touchedCell);
-            gameScreen.cellClicked(touchedCell);
+            boardController.cellTouched(touchedCell);
+            //gameScreen.cellClicked(touchedCell);
 
         }
         return false;

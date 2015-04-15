@@ -58,7 +58,12 @@ public class UnitRenderer implements IMoveListener, ICameraListener {
 
     @Override
     public void moveExecuted(Move move) {
-       currentAnimations.add(move);
+       if(move instanceof MovementMove) {
+           MovementMove movement = null;
+          // Vector2 moves = move.getStartCell()
+       }
+
+       //currentAnimations.add(move);
     }
 
     private void movementMove(MovementMove move) {
@@ -69,9 +74,14 @@ public class UnitRenderer implements IMoveListener, ICameraListener {
     }
 
     public void render(SpriteBatch batch) {
+        for(Vector2 key : unitPositionsAndRenderObjects.keySet()) {
+            unitPositionsAndRenderObjects.get(key).render(batch, key);
+        }
+        /*
         if(!animationActive && !currentAnimations.isEmpty()) {
             executeMove(currentAnimations.poll());
         }
+        */
     }
 
     private void executeMove(Move move) {
@@ -83,13 +93,6 @@ public class UnitRenderer implements IMoveListener, ICameraListener {
             movementMove((MovementMove) move);
         }
     }
-
-    public void render(SpriteBatch batch, Vector2 pos) {
-        for(Vector2 key : unitPositionsAndRenderObjects.keySet()) {
-            unitPositionsAndRenderObjects.get(key).render(batch, key);
-        }
-    }
-
     @Override
     public void cameraShifted(int dx, int dy) {
 

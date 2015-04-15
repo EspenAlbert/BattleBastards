@@ -1,7 +1,6 @@
 package com.tdt4240.RawHeroes.view.customUIElements.boardRenderer;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -15,25 +14,29 @@ import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.ICellConvert
 import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.Player1CellConverter;
 import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.Player2CellConverter;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
-import com.tdt4240.RawHeroes.independent.GameConstants;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.IRender;
+import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.IRenderNoPos;
 
 import java.util.ArrayList;
 
 /**
  * Created by espen1 on 12.03.2015.
  */
-public class BoardRenderer implements IBoardListener, IRender {
+public class BoardRenderer implements IBoardListener, IRenderNoPos {
 
     private final int boardWidth;
     private final int boardHeight;
     private final IBoard board;
     private final ICellConverter cellConverter;
-    private ArrayList<ArrayList<Sprite>> sprites;
-    public static Texture attackableCell = new Texture(Gdx.files.internal("badlogic.jpg"));
+    private ArrayList<ArrayList<Sprite>> overlaySprites;
+    private ArrayList<ArrayList<Sprite>> grassSprites;
+    //public static Texture attackableCell = new Texture(Gdx.files.internal("badlogic.jpg"));
     private CellStatus[][] cellStatuses;
     public static Texture ordinaryCell = new Texture(Gdx.files.internal("tiles/Grass.png"));
-    public static Texture gridCell = new Texture(Gdx.files.internal("gridOverlay/gridBlack.png"));
+    public static Texture defaultCell = new Texture(Gdx.files.internal("gridOverlay/gridBlack.png"));
+    public static Texture attackableCell = new Texture(Gdx.files.internal("gridOverlay/gridRed.png"));
+    public static Texture inMovementRangeCell = new Texture(Gdx.files.internal("gridOverlay/gridGreen.png"));
+    public static Texture selectedCell = new Texture(Gdx.files.internal("gridOverlay/gridWhite.png"));
 
     private int cameraY;
     private int cameraX;
@@ -52,7 +55,8 @@ public class BoardRenderer implements IBoardListener, IRender {
 
         cellStatuses = new CellStatus[boardWidth][boardHeight];
 
-        sprites = new ArrayList<ArrayList<Sprite>>();
+        grassSprites = new ArrayList<ArrayList<Sprite>>();
+        overlaySprites = new ArrayList<ArrayList<Sprite>>();
 
         for (int x = 0; x < boardWidth; x++) {
             for (int y = 0; y < boardHeight; y++) {
@@ -61,30 +65,67 @@ public class BoardRenderer implements IBoardListener, IRender {
         }
         for(int x = 0; x< boardWidth; x++) {
             ArrayList<Sprite> columnSprites = new ArrayList<Sprite>();
+            ArrayList<Sprite> columnSpritesOverlay = new ArrayList<Sprite>();
             for(int y =0; y < boardHeight; y++) {
                 Sprite sprite = new Sprite(ordinaryCell);
-                sprite.setSize(0.95f, 0.95f);
+                sprite.setSize(1f, 1f);
                 sprite.setPosition(x, y);
                 columnSprites.add(sprite);
+                columnSpritesOverlay.add(createOverlaySprite(x, y));
             }
-            sprites.add(columnSprites);
+            grassSprites.add(columnSprites);
+            overlaySprites.add(columnSpritesOverlay);
         }
 
+    }
+
+    private Sprite createOverlaySprite(int x, int y) {
+        CellStatus status = cellStatuses[x][y];
+        Sprite spriteOverlay = null;
+        switch (status) {
+            case ATTACKABLE:
+                spriteOverlay = new Sprite(attackableCell);
+                break;
+            case IN_MOVING_RANGE:
+                spriteOverlay = new Sprite(inMovementRangeCell);
+                break;
+            case DEFAULT:
+                spriteOverlay = new Sprite(defaultCell);
+                break;
+            case SELECTED:
+                spriteOverlay = new Sprite(selectedCell);
+                break;
+            case NOTMOVEABLE:
+                spriteOverlay = new Sprite(defaultCell);
+                break;
+        }
+        spriteOverlay.setSize(1f, 1f);
+        spriteOverlay.setPosition(x, y);
+        return spriteOverlay;
     }
 
     @Override
     public void boardChanged(BoardEvent event) {
         if(event instanceof CellChangeEvent) {
             CellChangeEvent cellChangeEvent = (CellChangeEvent) event;
+            Vector2 pos = cellChangeEvent.getPosision();
+            int x = (int) pos.x;
+            int y = (int) pos.y;
+            cellStatuses[x][y] = board.getCell(pos).getStatus();
             System.out.println(cellChangeEvent.getPosision().x + "," + cellChangeEvent.getPosision().y + " cell was changed to:" + board.getCell(cellChangeEvent.getPosision()).getStatus());
-            sprites.get((int) cellChangeEvent.getPosision().x).get((int) cellChangeEvent.getPosision().y).setTexture(attackableCell);
+            overlaySprites.get(x).set(y, createOverlaySprite(x, y));
         }
     }
 
     @Override
-    public void render(SpriteBatch batch, Vector2 pos) {
+    public void render(SpriteBatch batch) {
 
-        for(ArrayList<Sprite> columnSprites: sprites) {
+        for(ArrayList<Sprite> columnSprites: grassSprites) {
+            for(Sprite sprite : columnSprites) {
+                sprite.draw(batch);
+            }
+        }
+        for(ArrayList<Sprite> columnSprites: overlaySprites) {
             for(Sprite sprite : columnSprites) {
                 sprite.draw(batch);
             }
@@ -105,7 +146,7 @@ public class BoardRenderer implements IBoardListener, IRender {
                            GameConstants.BUTTON_WIDTH,      //Bredden til texture
                            GameConstants.BUTTON_HEIGHT);    //Høyden til texture
 
-                batch.draw(gridCell,                        //Texture
+                batch.draw(defaultCell,                        //Texture
                            x*GameConstants.BUTTON_WIDTH,    //xpos for texture
                            y*GameConstants.BUTTON_HEIGHT,   //ypos for texture
                            GameConstants.BUTTON_WIDTH,      //Bredden til texture

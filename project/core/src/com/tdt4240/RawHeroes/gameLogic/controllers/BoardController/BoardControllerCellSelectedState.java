@@ -18,9 +18,11 @@ public class BoardControllerCellSelectedState extends BoardControllerState {
     public BoardControllerCellSelectedState(IBoardController boardController, IBoard board, ICell cell) {
         super(boardController, board);
         selectedCell = cell;
+        board.switchModeOnCell(selectedCell.getPos(), CellStatus.SELECTED);
         walkableCells = new ArrayList<ICell>();
         for (Vector2 coordinates : selectedCell.getUnit().getMovementZone(this.board, selectedCell.getPos(), this.boardController.getRemaining_energy())){
-            this.board.getCell(coordinates).setStatus(CellStatus.IN_MOVING_RANGE);
+            if(board.getCell(coordinates).getUnit() != null) continue;
+            this.board.switchModeOnCell(coordinates, CellStatus.IN_MOVING_RANGE);
             walkableCells.add(this.board.getCell(coordinates));
         }
     }
@@ -41,7 +43,8 @@ public class BoardControllerCellSelectedState extends BoardControllerState {
         else if(cell.getStatus()== CellStatus.IN_MOVING_RANGE){ //Bevege valgt unit til ny celle
             //TODO sjekke om man har nok energi før movet gjøres
             // Vi burde ha en limit på hvor mange ganger man kan flytte en unit også
-            this.boardController.addMove(new MovementMove(selectedCell, cell, this.board, selectedCell.getUnit().getMovementPath(this.board, selectedCell.getPos(), cell.getPos())));
+            ArrayList<Vector2> path = selectedCell.getUnit().getMovementPath(this.board, selectedCell.getPos(), cell.getPos());
+            this.boardController.addMove(new MovementMove(selectedCell, cell, this.board, path));
             this.selectedCell.setStatus(CellStatus.DEFAULT);
             this.selectedCell = cell;
             this.selectedCell.setStatus(CellStatus.SELECTED);

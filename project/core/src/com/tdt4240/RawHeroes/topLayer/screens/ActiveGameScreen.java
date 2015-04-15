@@ -101,6 +101,6 @@ public class ActiveGameScreen extends ScreenState {
     }
 
     public void cellClicked(Vector2 cellCoordinate) {
-        board.switchModeOnCell(cellCoordinate, CellStatus.ATTACKABLE);
+        board.switchModeOnCell(cellCoordinate, CellStatus.SELECTED);
     }
 }

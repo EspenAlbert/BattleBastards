@@ -49,8 +49,8 @@ public class GameView implements IView, IBoardListener, ICameraListener {
 
     @Override
     public void render(SpriteBatch batch) {
+        boardRenderer.render(batch);
         unitRenderer.render(batch);
-        boardRenderer.render(batch, null);
     }
 
     @Override

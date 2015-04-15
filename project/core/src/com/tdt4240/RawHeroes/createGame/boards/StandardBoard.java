@@ -33,6 +33,7 @@ public class StandardBoard implements IBoard {
         }
         //Player 1 unit
         cells[0][0].setUnit(UnitBuilding.getInstance().createUnit(UnitName.STANDARD_UNIT, true));
+        cells[0][1].setUnit(UnitBuilding.getInstance().createUnit(UnitName.STANDARD_UNIT, true));
         //Player 2 unit
         cells[width-1][height-1].setUnit(UnitBuilding.getInstance().createUnit(UnitName.STANDARD_UNIT, false));
         listeners = new ArrayList<IBoardListener>();
