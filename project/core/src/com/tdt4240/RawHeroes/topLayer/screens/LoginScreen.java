@@ -76,9 +76,9 @@ public class LoginScreen extends ScreenState {
 
         labelInstruction = new Label("Please specify username and password", skin);
         labelInstruction.setPosition(xPos,yPosLabelInstruction);
-        labelInstruction.setSize(300,40);
+        labelInstruction.setSize(GameConstants.LABEL_WIDTH,GameConstants.LABEL_HEIGHT);
         title.setPosition(xPos, yPosTitle);
-        title.setSize(100,50);
+        title.setSize(GameConstants.LABEL_WIDTH,GameConstants.LABEL_HEIGHT);
 
 
         stage.addActor(labelInstruction);

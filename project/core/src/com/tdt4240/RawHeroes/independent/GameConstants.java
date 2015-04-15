@@ -14,6 +14,8 @@ public class GameConstants {
     public static final int BUTTON_HEIGHT = Math.round(GameConstants.RESOLUTION_HEIGHT / 9);
     public static final int TEXTFIELD_WIDTH = Math.round(GameConstants.RESOLUTION_WIDTH / 4);
     public static final int TEXTFIELD_HEIGHT = Math.round(GameConstants.RESOLUTION_HEIGHT / 15);
+    public static final int LABEL_WIDTH = Math.round(GameConstants.RESOLUTION_HEIGHT / 9);
+    public static final int LABEL_HEIGHT = Math.round(GameConstants.RESOLUTION_HEIGHT / 15);
     public static final int SPACE_BETWEEN = 0;
 
 }
