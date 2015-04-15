@@ -67,6 +67,7 @@ public class ActiveGameScreen extends ScreenState {
         testSprite3.setSize(100, 100);
         testSprite3.setPosition(ButtonXPos , 100);
         hudBatch = new SpriteBatch(5);
+        resize(GameConstants.RESOLUTION_WIDTH, GameConstants.RESOLUTION_HEIGHT);
 
 
     }

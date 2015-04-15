@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.tdt4240.RawHeroes.createGame.factory.GameBuilding;
 import com.tdt4240.RawHeroes.independent.GameConstants;
 import com.tdt4240.RawHeroes.mainMenuGamesHandler.clientGameState.ClientGameState;
 import com.tdt4240.RawHeroes.network.communication.Response.ResponseMessage;
@@ -109,6 +110,8 @@ public class MainMenuScreen extends ScreenState {
 
     private void getGameButtonClicked() {
         int gameid = Integer.parseInt(textFieldGetGame.getText());
+        gsm.setState(gsm.GAMESCREEN);
+        /*
         ResponseMessage responseMessage = ClientConnection.getInstance().getGame(gameid);
         if(responseMessage.getType() == ResponseType.FAILURE) {
             labelInstruction.setText((CharSequence) responseMessage.getContent());
@@ -117,7 +120,7 @@ public class MainMenuScreen extends ScreenState {
             System.out.println("managed to get game: " + game.getId() + " with players: " + game.getPlayer1Nickname() + " player 2:" + game.getPlayer2Nickname());
             gsm.setState(new ActiveGameScreen(gsm, game));
         }
-
+*/
     }
 
     private void createGameButtonClicked() {
