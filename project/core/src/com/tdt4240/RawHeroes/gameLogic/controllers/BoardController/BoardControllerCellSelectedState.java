@@ -18,20 +18,11 @@ public class BoardControllerCellSelectedState extends BoardControllerState {
     public BoardControllerCellSelectedState(IBoardController boardController, IBoard board, ICell cell) {
         super(boardController, board);
         selectedCell = cell;
-        /*
-        ArrayList<Vector2> attackablePosisions = cell.getUnit().getAttackablePositions(cell.getPos(), //TODO: Moves left);
-        for(Vector2 attackPos : attackablePosisions) {
-            if(attackPos.x > board.getCells().length)
-            board.getCell(attackPos).setStatus(CellStatus.ATTACKABLE);
-        selectedCell.setStatus(CellStatus.SELECTED);
         walkableCells = new ArrayList<ICell>();
-        //TODO sette IN_MOVING_RANGE status på celler som er innenfor moving rangen til en unit, f.eks.:
-        /*for (int x = selectedCell.getPos.getX()-selectedCell.getUnit().getWalkDist(); x <= selectedCell.getPos.getX()+selectedCell.getUnit().getWalkDist(); x++{
-            for (int y = selectedCell.getPos.getY()-selectedCell.getUnit().getWalkDist(); y <= selectedCell.getPos.getY()+selectedCell.getUnit().getWalkDist(); y++{
-                if (this.board.getCells()[x][y].getUnit() == null)this.board.getCells()[x][y].setStatus(CellStatus.IN_MOVING_RANGE)
-            }
+        for (Vector2 coordinates : selectedCell.getUnit().getMovementZone(this.board, selectedCell.getPos(), this.boardController.getRemaining_energy())){
+            this.board.getCell(coordinates).setStatus(CellStatus.IN_MOVING_RANGE);
+            walkableCells.add(this.board.getCell(coordinates));
         }
-        */
     }
 
     @Override
@@ -50,7 +41,7 @@ public class BoardControllerCellSelectedState extends BoardControllerState {
         else if(cell.getStatus()== CellStatus.IN_MOVING_RANGE){ //Bevege valgt unit til ny celle
             //TODO sjekke om man har nok energi før movet gjøres
             // Vi burde ha en limit på hvor mange ganger man kan flytte en unit også
-            //this.boardController.addMove(new MovementMove(selectedCell, cell, this.board, ));
+            this.boardController.addMove(new MovementMove(selectedCell, cell, this.board, selectedCell.getUnit().getMovementPath(this.board, selectedCell.getPos(), cell.getPos())));
             this.selectedCell.setStatus(CellStatus.DEFAULT);
             this.selectedCell = cell;
             this.selectedCell.setStatus(CellStatus.SELECTED);

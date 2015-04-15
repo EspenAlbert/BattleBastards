@@ -13,4 +13,5 @@ public interface IBoardController {
     void addMove(Move move);
     void undoMove();
     void setState(BoardControllerState state);
+    int getRemaining_energy();
 }
