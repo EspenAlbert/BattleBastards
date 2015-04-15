@@ -27,7 +27,7 @@ public class StandardUnit implements IUnit {
         this.hasAttacked = false;
         this.player1Unit = player1Unit;
 
-        this.unitMaxMoves = 1;
+        this.unitMaxMoves = 3;
 
         this.unitCombatController = new SimpleUnitCombatController(this, 5, 1);
         this.unitMoveController = new WalkingUnitMovementController();
