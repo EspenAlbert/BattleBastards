@@ -33,8 +33,8 @@ public class BoardControllerCellSelectedState extends BoardControllerState {
 
     @Override
     public void cellSelected(ICell cell) {
-        if (cell.getStatus() == CellStatus.SELECTABLE){ //Velge ny unit
-            selectedCell.setStatus(CellStatus.SELECTABLE);
+        if (cell.getUnit() != null){ //Velge ny unit
+            selectedCell.setStatus(CellStatus.DEFAULT);
             selectedCell = cell;
             selectedCell.setStatus(CellStatus.SELECTED);
         }
@@ -47,7 +47,7 @@ public class BoardControllerCellSelectedState extends BoardControllerState {
             this.selectedCell.setStatus(CellStatus.SELECTED);
         }
         else if(cell.getStatus()== CellStatus.DEFAULT){
-            selectedCell.setStatus(CellStatus.SELECTABLE);
+            selectedCell.setStatus(CellStatus.DEFAULT);
             this.boardController.setState(new BoardControllerNoCellSelectedState(this.boardController, this.board));
         }
     }

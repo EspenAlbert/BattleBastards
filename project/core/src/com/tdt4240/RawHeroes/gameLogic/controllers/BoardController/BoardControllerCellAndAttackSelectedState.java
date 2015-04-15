@@ -45,9 +45,7 @@ public class BoardControllerCellAndAttackSelectedState extends BoardControllerSt
     @Override
     public void popped() {
         for (ICell cell : attackableCells){
-            //TODO må sjekke side, altså om uniten er ens egen
-                if (cell.getUnit() == null) cell.setStatus(CellStatus.DEFAULT);
-                else cell.setStatus(CellStatus.SELECTABLE);
-            }
+            cell.setStatus(CellStatus.DEFAULT);
+        }
     }
 }
