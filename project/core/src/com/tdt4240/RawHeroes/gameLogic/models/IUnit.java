@@ -14,7 +14,8 @@ import java.util.ArrayList;
 public interface IUnit extends Serializable{
     UnitName getIdentifier();
     ArrayList<Vector2> getInflictionZone(Vector2 myPos, Vector2 target);
-    ArrayList<Vector2> getMovementZone(Vector2 myPos, int movesLeft);
+    ArrayList<Vector2> getMovementZone(IBoard board, Vector2 myPos, int movesLeft);
+    ArrayList<Vector2> getMovementPath(IBoard board, Vector2 myPos, Vector2 targetPos);
     int inflictDamage(Vector2 myPos, Vector2 enemies);
     int attacked(int damage);
     void setAttackLogic(IUnitCombatController controller);

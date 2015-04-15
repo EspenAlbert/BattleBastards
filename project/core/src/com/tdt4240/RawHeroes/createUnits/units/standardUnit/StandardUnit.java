@@ -5,6 +5,7 @@ import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitCombatCon
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitMovementController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.SimpleUnitCombatController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.WalkingUnitMovementController;
+import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
 import com.tdt4240.RawHeroes.gameLogic.unit.UnitName;
 
@@ -20,9 +21,14 @@ public class StandardUnit implements IUnit {
     private IUnitCombatController unitCombatController;
     private IUnitMovementController unitMoveController;
 
+    private int unitMaxMoves;
+
     public StandardUnit(boolean player1Unit) {
         this.hasAttacked = false;
         this.player1Unit = player1Unit;
+
+        this.unitMaxMoves = 1;
+
         this.unitCombatController = new SimpleUnitCombatController(this, 5, 1);
         this.unitMoveController = new WalkingUnitMovementController();
         System.out.println("Created a standard unit");
@@ -39,8 +45,13 @@ public class StandardUnit implements IUnit {
     }
 
     @Override
-    public ArrayList<Vector2> getMovementZone(Vector2 myPos, int movesLeft) {
-        return null;
+    public ArrayList<Vector2> getMovementZone(IBoard board, Vector2 myPos, int movesLeft) {
+        return this.unitMoveController.getMovementZone(board, myPos, movesLeft, this.unitMaxMoves);
+    }
+
+    @Override
+    public ArrayList<Vector2> getMovementPath(IBoard board, Vector2 myPos, Vector2 targetPos){
+        return this.unitMoveController.getMovementPath(board, myPos, targetPos);
     }
 
     @Override
@@ -80,8 +91,7 @@ public class StandardUnit implements IUnit {
 
     @Override
     public ArrayList<Vector2> getAttackablePositions(Vector2 pos, int movesLeft) {
-        //TODO
-        return null;
+        return this.unitCombatController.getAttackablePositions(pos, movesLeft);
     }
 
     @Override

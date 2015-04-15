@@ -22,6 +22,8 @@ public class MovementMove extends Move {
         length=path.size();
     }
 
+    //TODO lage en calculate path metode. Den må regnes ut uansett
+
     public ArrayList<Vector2> getPath(){
         return path;
     }

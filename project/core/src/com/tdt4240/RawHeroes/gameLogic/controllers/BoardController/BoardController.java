@@ -57,4 +57,8 @@ public class BoardController implements IBoardController {
             //TODO åpne et nytt vindu med informasjon om denne uniten
         }
     }
+
+    public int getRemaining_energy(){
+        return this.remaining_energy;
+    }
 }
