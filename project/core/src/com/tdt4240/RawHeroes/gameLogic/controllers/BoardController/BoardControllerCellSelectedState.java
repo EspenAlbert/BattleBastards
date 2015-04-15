@@ -18,7 +18,7 @@ public class BoardControllerCellSelectedState extends BoardControllerState {
     public BoardControllerCellSelectedState(IBoardController boardController, IBoard board, ICell cell) {
         super(boardController, board);
         selectedCell = cell;
-        board.switchModeOnCell(selectedCell.getPos(), CellStatus.SELECTED);
+        this.board.switchModeOnCell(selectedCell.getPos(), CellStatus.SELECTED);
         walkableCells = new ArrayList<ICell>();
         for (Vector2 coordinates : selectedCell.getUnit().getMovementZone(this.board, selectedCell.getPos(), this.boardController.getRemaining_energy())){
             if(board.getCell(coordinates).getUnit() != null) continue;
@@ -36,21 +36,21 @@ public class BoardControllerCellSelectedState extends BoardControllerState {
     @Override
     public void cellSelected(ICell cell) {
         if (cell.getUnit() != null){ //Velge ny unit
-            selectedCell.setStatus(CellStatus.DEFAULT);
+            this.board.switchModeOnCell(selectedCell.getPos(), CellStatus.DEFAULT);
             selectedCell = cell;
-            selectedCell.setStatus(CellStatus.SELECTED);
+            this.board.switchModeOnCell(selectedCell.getPos(), CellStatus.SELECTED);
         }
         else if(cell.getStatus()== CellStatus.IN_MOVING_RANGE){ //Bevege valgt unit til ny celle
             //TODO sjekke om man har nok energi før movet gjøres
             // Vi burde ha en limit på hvor mange ganger man kan flytte en unit også
             ArrayList<Vector2> path = selectedCell.getUnit().getMovementPath(this.board, selectedCell.getPos(), cell.getPos());
             this.boardController.addMove(new MovementMove(selectedCell, cell, this.board, path));
-            this.selectedCell.setStatus(CellStatus.DEFAULT);
-            this.selectedCell = cell;
-            this.selectedCell.setStatus(CellStatus.SELECTED);
+            this.board.switchModeOnCell(selectedCell.getPos(), CellStatus.DEFAULT);
+            selectedCell = cell;
+            this.board.switchModeOnCell(selectedCell.getPos(), CellStatus.SELECTED);
         }
         else if(cell.getStatus()== CellStatus.DEFAULT){
-            selectedCell.setStatus(CellStatus.DEFAULT);
+            this.board.switchModeOnCell(selectedCell.getPos(), CellStatus.DEFAULT);
             this.boardController.setState(new BoardControllerNoCellSelectedState(this.boardController, this.board));
         }
     }
@@ -58,7 +58,7 @@ public class BoardControllerCellSelectedState extends BoardControllerState {
     @Override
     public void popped() {
         for (ICell cell : walkableCells){
-            cell.setStatus(CellStatus.DEFAULT);
+            this.board.switchModeOnCell(selectedCell.getPos(), CellStatus.DEFAULT);
         }
     }
 }

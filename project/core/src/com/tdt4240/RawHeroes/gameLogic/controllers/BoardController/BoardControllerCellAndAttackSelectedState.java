@@ -17,10 +17,10 @@ public class BoardControllerCellAndAttackSelectedState extends BoardControllerSt
     public BoardControllerCellAndAttackSelectedState(IBoardController boardController, IBoard board, ICell cell) {
         super(boardController, board);
         selectedCell = cell;
-        selectedCell.setStatus(CellStatus.SELECTED);
+        this.board.switchModeOnCell(selectedCell.getPos(), CellStatus.SELECTED);
         attackableCells = new ArrayList<ICell>();
         for (Vector2 coordinates : selectedCell.getUnit().getAttackablePositions(selectedCell.getPos(), this.boardController.getRemaining_energy())){
-            this.board.getCell(coordinates).setStatus(CellStatus.ATTACKABLE);
+            this.board.switchModeOnCell(coordinates, CellStatus.ATTACKABLE);
             attackableCells.add(this.board.getCell(coordinates));
         }
     }
@@ -45,7 +45,7 @@ public class BoardControllerCellAndAttackSelectedState extends BoardControllerSt
     @Override
     public void popped() {
         for (ICell cell : attackableCells){
-            cell.setStatus(CellStatus.DEFAULT);
+            this.board.switchModeOnCell(cell.getPos(), CellStatus.DEFAULT);
         }
     }
 }
