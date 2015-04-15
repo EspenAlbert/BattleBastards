@@ -8,7 +8,6 @@ import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javafx.util.Pair;
 
 /**
  * Created by espen1 on 12.04.2015.
