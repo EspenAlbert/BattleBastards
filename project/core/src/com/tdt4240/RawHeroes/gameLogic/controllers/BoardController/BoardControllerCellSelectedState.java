@@ -45,7 +45,9 @@ public class BoardControllerCellSelectedState extends BoardControllerState {
             //TODO sjekke om man har nok energi før movet gjøres
             // Vi burde ha en limit på hvor mange ganger man kan flytte en unit også
             //this.boardController.addMove(new MovementMove(selectedCell, cell, this.board, ));
-            //TODO endre på hvilken cell som er selected etter move, gjøres her eller i move?
+            this.selectedCell.setStatus(CellStatus.DEFAULT);
+            this.selectedCell = cell;
+            this.selectedCell.setStatus(CellStatus.SELECTED);
         }
         else if(cell.getStatus()== CellStatus.DEFAULT){
             selectedCell.setStatus(CellStatus.SELECTABLE);
