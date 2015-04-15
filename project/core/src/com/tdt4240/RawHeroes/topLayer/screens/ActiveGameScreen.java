@@ -15,6 +15,7 @@ import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardMover;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.IBoardController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.IBoardMover;
 import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.CameraController;
+import com.tdt4240.RawHeroes.gameLogic.inputListeners.TouchListenerActiveGameScreen;
 import com.tdt4240.RawHeroes.gameLogic.models.ICamera;
 import com.tdt4240.RawHeroes.independent.GameConstants;
 import com.tdt4240.RawHeroes.independent.MyInputProcessor;
@@ -48,7 +49,8 @@ public class ActiveGameScreen extends ScreenState {
         super(gsm);
         board = game.getBoard();
         System.out.println("in active game screen!!!!!");
-        iAmPlayer1 = ClientConnection.getInstance().getUsername().equals(game.getPlayer1Nickname());
+        //iAmPlayer1 = ClientConnection.getInstance().getUsername().equals(game.getPlayer1Nickname());
+        iAmPlayer1 = true;
         cameraController = new CameraController();
         gameView = new GameView(board, iAmPlayer1,cameraController);
         board.addBoardListener(gameView);
@@ -57,8 +59,9 @@ public class ActiveGameScreen extends ScreenState {
         boardMover.executeMoves(game.getLastMoves());
         boardController = new BoardController(board, boardMover, game.getMoveCount());
         Gdx.input.setInputProcessor(MyInputProcessor.getInstance());
-        MyInputProcessor.getInstance().setCamera(cameraController);
-        MyInputProcessor.getInstance().setScreen(this);
+        MyInputProcessor.getInstance().AddTouchDownListener(new TouchListenerActiveGameScreen(boardController, cameraController, this));
+       // MyInputProcessor.getInstance().setCamera(cameraController);
+       // MyInputProcessor.getInstance().setScreen(this);
 
         testSprite3 = new Sprite(ordinaryCell);
         testSprite3.setSize(100, 100);

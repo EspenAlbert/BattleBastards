@@ -108,4 +108,8 @@ public class CameraController implements ICamera {
         viewport.update(width,height);
         camera.position.set(camera.viewportWidth/2,camera.viewportHeight/2,0);
     }
+
+    public Vector2 getScreenPixelCoordinate(float x, float y) {
+        return viewport.project(new Vector2(x, y));
+    }
 }

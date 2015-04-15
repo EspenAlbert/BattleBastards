@@ -64,6 +64,7 @@ public class MyInputProcessor implements InputProcessor {
         for(TouchDown listener: touchDownsListeners) {
             listener.touchDown(screenX, screenY, pointer, button);
         }
+        /*
         System.out.println("touch @ " + screenX + "," + screenY);
         Vector2 cellCoordinate = camera.convertPixelCoordinateToCell(new Vector2(screenX, screenY));
         System.out.println("converted to cell: " + cellCoordinate.x + "," + cellCoordinate.y);
@@ -75,6 +76,7 @@ public class MyInputProcessor implements InputProcessor {
             camera.translate(0, -1);
         }
         screen.cellClicked(cellCoordinate);
+        */
         return false;
     }
 

@@ -83,14 +83,15 @@ public class BoardRenderer implements IBoardListener, IRender {
 
     @Override
     public void render(SpriteBatch batch, Vector2 pos) {
-        /*
+
         for(ArrayList<Sprite> columnSprites: sprites) {
             for(Sprite sprite : columnSprites) {
                 sprite.draw(batch);
             }
         }
-        */
+
         //batch.draw(ordinaryCell, 0, 0, buttonWidth, buttonHeight, 0, 0, ordinaryCell.getWidth(), ordinaryCell.getHeight(), false, false);
+/*
         Gdx.gl.glClearColor(0.5f, 0.75f, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -112,7 +113,7 @@ public class BoardRenderer implements IBoardListener, IRender {
             }
         }
         batch.end();
-        
+*/
         //batch.draw(ordinaryCell, 50, 50, ordinaryCell.getWidth() / 2, ordinaryCell.getHeight() / 2, ordinaryCell.getWidth(), ordinaryCell.getHeight(), 1,1, 0, 0, 0, ordinaryCell.getWidth(), ordinaryCell.getHeight(), false, false);
         //sb.draw(texture,x, y, texture.getWidth() / 2, texture.getHeight() / 2, texture.getWidth(), texture.getHeight(), 1, 1, body.getAngle() * MathUtils.radiansToDegrees, 0, 0, texture.getWidth(), texture.getHeight(), false, flipY);
 

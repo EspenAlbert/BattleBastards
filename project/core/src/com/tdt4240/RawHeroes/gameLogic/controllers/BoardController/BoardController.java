@@ -22,6 +22,7 @@ public class BoardController implements IBoardController {
         this.board = board;
         this.boardMover = boardMover;
         this.remaining_energy = remaining_energy;
+        boardStates = new Stack<BoardControllerState>();
         this.boardStates.push(new BoardControllerNoCellSelectedState(this, this.board));
         //TODO sette riktig state. Kanskje Replay hvis moveslist ikke er tom eller noe
     }

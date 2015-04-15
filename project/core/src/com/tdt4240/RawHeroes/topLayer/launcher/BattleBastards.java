@@ -23,21 +23,22 @@ public class BattleBastards extends ApplicationAdapter {
 	public void create () {
 		batch = new SpriteBatch();
         //TODO: This depends on your computer... Therefore keeping both options available...
-        board = new BoardRenderer(BoardFactory.getInstance().getBoard("STANDARD-BOARD"), true);
+        //board = new BoardRenderer(BoardFactory.getInstance().getBoard("STANDARD-BOARD"), true);
         Gdx.graphics.setTitle("GAME NAME");
 		img = new Texture("badlogic.jpg");
         Gdx.graphics.setDisplayMode(GameConstants.RESOLUTION_WIDTH, GameConstants.RESOLUTION_HEIGHT, false);
-//        Gdx.input.setInputProcessor(MyInputProcessor.getInstance());
-//        gameScreenManager = new ScreenStateManager(this);
+        Gdx.input.setInputProcessor(MyInputProcessor.getInstance());
+        gameScreenManager = new ScreenStateManager(this);
 
 	}
 
 
 	@Override
 	public void render () {
-//        gameScreenManager.update(Gdx.graphics.getDeltaTime());
-//        gameScreenManager.render();
-          board.render(batch, new Vector2(100, 100));
+
+        gameScreenManager.update(Gdx.graphics.getDeltaTime());
+        gameScreenManager.render();
+        //board.render(batch, new Vector2(100, 100));
 
 /*
 		Gdx.gl.glClearColor(1, 0, 0, 1);
@@ -54,7 +55,7 @@ public class BattleBastards extends ApplicationAdapter {
 
     @Override
     public void resize(int width, int height){
-        //gameScreenManager.resize(width, height);
+        gameScreenManager.resize(width, height);
     }
 
     public SpriteBatch getSpriteBatch() {
