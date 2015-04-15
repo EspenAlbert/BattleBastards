@@ -1,7 +1,9 @@
 package com.tdt4240.RawHeroes.topLayer.screens;
 
+import com.tdt4240.RawHeroes.createGame.factory.GameBuilding;
 import com.tdt4240.RawHeroes.network.client.ClientConnection;
 import com.tdt4240.RawHeroes.topLayer.commonObjects.Game;
+import com.tdt4240.RawHeroes.topLayer.commonObjects.Games;
 import com.tdt4240.RawHeroes.topLayer.launcher.BattleBastards;
 import com.tdt4240.RawHeroes.independent.MyInputProcessor;
 
@@ -24,8 +26,11 @@ public class ScreenStateManager {
 
     public ScreenStateManager(BattleBastards game) {
         this.game = game;
+        Game activeGame = GameBuilding.getInstance().createGame(Games.KILL_ALL_ENEMY_UNITS, "player1", "player2");
+
+
         screenStates = new Stack<ScreenState>();
-        pushState(new LoginScreen(this));
+        pushState(new ActiveGameScreen(this, activeGame));
     }
     public BattleBastards getGame() {
         return game;
@@ -72,6 +77,10 @@ public class ScreenStateManager {
         ScreenState g = screenStates.pop();
         g.dispose();
         MyInputProcessor.getInstance().removeListeners();
+    }
+
+    public void resize(int width, int height) {
+        screenStates.peek().resize(width, height);
     }
 }
 

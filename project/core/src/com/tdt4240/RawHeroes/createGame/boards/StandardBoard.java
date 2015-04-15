@@ -3,6 +3,7 @@ package com.tdt4240.RawHeroes.createGame.boards;
 import com.badlogic.gdx.math.Vector2;
 import com.tdt4240.RawHeroes.createUnits.factory.UnitBuilding;
 import com.tdt4240.RawHeroes.event.events.BoardEvent;
+import com.tdt4240.RawHeroes.event.events.CellChangeEvent;
 import com.tdt4240.RawHeroes.event.listener.IBoardListener;
 import com.tdt4240.RawHeroes.gameLogic.cell.Cell;
 import com.tdt4240.RawHeroes.gameLogic.cell.CellStatus;
@@ -17,8 +18,9 @@ import java.util.ArrayList;
  */
 public class StandardBoard implements IBoard {
 
-    private final int width = 4;
-    private final int height = 8;
+    private final int width = 7;
+    private final int height = 7;
+
     private ICell[][] cells;
     private ArrayList<IBoardListener> listeners;
 
@@ -62,6 +64,17 @@ public class StandardBoard implements IBoard {
     @Override
     public void switchModeOnCell(Vector2 pos, CellStatus status) {
         cells[((int) pos.x)][((int) pos.y)].setStatus(status);
+        fireBoardChanged(new CellChangeEvent(pos));
 
+    }
+
+    @Override
+    public int getWidth() {
+        return width;
+    }
+
+    @Override
+    public int getHeight() {
+        return height;
     }
 }

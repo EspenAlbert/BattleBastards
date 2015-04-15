@@ -12,7 +12,8 @@ import com.tdt4240.RawHeroes.topLayer.launcher.BattleBastards;
 public abstract class ScreenState {
     protected ScreenStateManager gsm;
     protected BattleBastards game;
-    protected IClientConnection clientConnection = ClientConnection.getInstance();
+    //protected IClientConnection clientConnection = ClientConnection.getInstance();
+    protected IClientConnection clientConnection = null;
 
     protected SpriteBatch spriteBatch;
     protected OrthographicCamera cam;
@@ -28,4 +29,8 @@ public abstract class ScreenState {
     public abstract void render();
 
     public abstract void dispose();
+
+    public void resize(int width, int height) {
+
+    }
 }
