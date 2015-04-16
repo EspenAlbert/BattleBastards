@@ -29,7 +29,7 @@ public class StandardUnit implements IUnit {
 
         this.remainingMoves = 3;
 
-        this.unitCombatController = new SimpleUnitCombatController(this, 5, 1);
+        this.unitCombatController = new SimpleUnitCombatController(this, 5, 10, 1);
         this.unitMoveController = new WalkingUnitMovementController();
         System.out.println("Created a standard unit");
     }

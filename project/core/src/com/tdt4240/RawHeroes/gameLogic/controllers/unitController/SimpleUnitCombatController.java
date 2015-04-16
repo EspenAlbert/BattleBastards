@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by espen1 on 12.04.2015.
@@ -11,11 +12,12 @@ import java.util.ArrayList;
 public class SimpleUnitCombatController implements IUnitCombatController {
 
     private IUnit unit;
-    private int attackDmg, armor;
+    private int attackDmgMin, attackDmgMax, armor;
 
-    public SimpleUnitCombatController(IUnit u, int attackDmg, int armor){
+    public SimpleUnitCombatController(IUnit u, int minDmg, int maxDmg, int armor){
         this.unit = u;
-        this.attackDmg = attackDmg;
+        this.attackDmgMin = minDmg;
+        this.attackDmgMax = maxDmg;
         this.armor = armor;
     }
 
@@ -36,7 +38,8 @@ public class SimpleUnitCombatController implements IUnitCombatController {
 
     @Override
     public int inflictDamage(Vector2 myPos, Vector2 attackPos) {
-        return attackDmg;
+        Random rand = new Random();
+        return rand.nextInt((this.attackDmgMax - this.attackDmgMin) + 1 + attackDmgMin);
     }
 
     @Override
