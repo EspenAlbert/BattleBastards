@@ -19,6 +19,8 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.tdt4240.RawHeroes.gameLogic.cell.CellStatus;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardController;
+import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardControllerStateEvent;
+import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardControllerStateListener;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardMover;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.IBoardController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.IBoardMover;
@@ -37,7 +39,7 @@ import java.util.ArrayList;
 /**
  * Created by espen1 on 27.02.2015.
  */
-public class ActiveGameScreen extends ScreenState {
+public class ActiveGameScreen extends ScreenState implements BoardControllerStateListener{
     public static final float ButtonXPos =  ((float) 7 / 8) * GameConstants.RESOLUTION_WIDTH;
 
 
@@ -60,7 +62,7 @@ public class ActiveGameScreen extends ScreenState {
     private Label energyLabel;
 
 
-    public ActiveGameScreen(ScreenStateManager gsm, Game game) {
+    public ActiveGameScreen(ScreenStateManager gsm, Game game){
         super(gsm);
         board = game.getBoard();
         System.out.println("in active game screen!!!!!");
@@ -95,7 +97,7 @@ public class ActiveGameScreen extends ScreenState {
         energyLabel.setAlignment(0);
         energyLabel.setColor(1, 1, 1, 1);
         energyLabel.setPosition(GameConstants.RESOLUTION_WIDTH - energyLabel.getWidth(), abortButton.getHeight() + actionButton.getHeight() + sendButton.getHeight());
-
+        boardController.addBoardControllerStateListener(this);
         Gdx.input.setInputProcessor(MyInputProcessor.getInstance());
         MyInputProcessor.getInstance().AddTouchDownListener(new TouchListenerActiveGameScreen(boardController, cameraController, this));
        // MyInputProcessor.getInstance().setCamera(cameraController);
@@ -145,5 +147,12 @@ public class ActiveGameScreen extends ScreenState {
 
     public void cellClicked(Vector2 cellCoordinate) {
         board.switchModeOnCell(cellCoordinate, CellStatus.SELECTED);
+    }
+
+    @Override
+    public void stateChanged(BoardControllerStateEvent event) {
+        //TODO max energi istedenfor 100
+        this.energyLabel.setText(event.getEnergy() + "/" + "100");
+        this.actionButton.setText(event.getActionButtonText());
     }
 }

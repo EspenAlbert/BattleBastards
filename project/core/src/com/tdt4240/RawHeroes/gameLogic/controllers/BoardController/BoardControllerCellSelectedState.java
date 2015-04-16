@@ -25,7 +25,11 @@ public class BoardControllerCellSelectedState extends BoardControllerState {
 
     private void addWalkableCells() {
         for (Vector2 coordinates : selectedCell.getUnit().getMovementZone(this.board, selectedCell.getPos(), this.boardController.getRemaining_energy())){
-            if(board.getCell(coordinates).getUnit() != null) continue;
+            if(board.getCell(coordinates).getUnit() != null){
+                this.board.switchModeOnCell(coordinates, CellStatus.NOTMOVEABLE);
+                walkableCells.add(this.board.getCell(coordinates));
+                continue;
+            }
             this.board.switchModeOnCell(coordinates, CellStatus.IN_MOVING_RANGE);
             walkableCells.add(this.board.getCell(coordinates));
         }
@@ -61,6 +65,12 @@ public class BoardControllerCellSelectedState extends BoardControllerState {
             this.board.switchModeOnCell(selectedCell.getPos(), CellStatus.DEFAULT);
             this.boardController.setState(new BoardControllerNoCellSelectedState(this.boardController, this.board));
         }
+    }
+
+    @Override
+    public BoardControllerStateEvent getEvent() {
+        //TODO finne en bedre måte å gjøre energy parameteren på
+        return new BoardControllerStateEvent(0, "Attack");
     }
 
     @Override
