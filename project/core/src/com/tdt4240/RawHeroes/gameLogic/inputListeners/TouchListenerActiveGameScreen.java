@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.IBoardController;
 import com.tdt4240.RawHeroes.gameLogic.models.ICamera;
 import com.tdt4240.RawHeroes.independent.GameConstants;
+import com.tdt4240.RawHeroes.independent.Position;
 import com.tdt4240.RawHeroes.independent.inputListeners.TouchDown;
 import com.tdt4240.RawHeroes.topLayer.screens.ActiveGameScreen;
 
@@ -47,8 +48,8 @@ public class TouchListenerActiveGameScreen implements TouchDown {
             return false;//TODO: A invalid area was touched...
         }
         else {
-            Vector2 touchedCell = cameraController.convertPixelCoordinateToCell(new Vector2(screenX, screenY));
-            System.out.println("Cell touched: " + touchedCell.x + "," + touchedCell.y);
+            Position touchedCell = cameraController.convertPixelCoordinateToCell(new Vector2(screenX, screenY));
+            System.out.println("Cell touched: " + touchedCell.getX() + "," + touchedCell.getY());
             boardController.cellTouched(touchedCell);
             //gameScreen.cellClicked(touchedCell);
 

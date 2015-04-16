@@ -3,6 +3,7 @@ package com.tdt4240.RawHeroes.view.customUIElements.unitRenderer;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.tdt4240.RawHeroes.event.move.MovementMove;
+import com.tdt4240.RawHeroes.independent.Position;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.IRenderObject;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.RenderMode;
 
@@ -19,7 +20,7 @@ public class UnitMoveExecutor {
     private float speed;
     private Vector2 currentPos;
     private int movementSteps;
-    private ArrayList<Vector2> path;
+    private ArrayList<Position> path;
     private IRenderObject currentActor;
     private int currentIndex;
     private ArrayList<IRenderObject> victims;
@@ -34,7 +35,7 @@ public class UnitMoveExecutor {
         path = move.getPath();
         currentIndex = 0;
         currentActor = mover;
-        currentPos = move.getStartCell().getPos();
+        currentPos = move.getStartCell().getPos().getVec2Pos();
         currentActor.changeRenderMode(RenderMode.MOVING);
         currentAnimationIsAttack = false;
 
@@ -84,10 +85,10 @@ public class UnitMoveExecutor {
     }
 
     private void move() {
-        direction = path.get(currentIndex).cpy().sub(currentPos);
+        direction = path.get(currentIndex).cpy().getVec2Pos().sub(currentPos);
         Vector2 deltaMovement = direction.setLength(1).scl(speed);
         currentPos.add(deltaMovement);
-        if(positionsIsAlmostTheSame(path.get(currentIndex), currentPos)) currentIndex++;//This check needs to be improved in case that  the coordinate isn't exactly the same
+        if(positionsIsAlmostTheSame(path.get(currentIndex).getVec2Pos(), currentPos)) currentIndex++;//This check needs to be improved in case that  the coordinate isn't exactly the same
     }
 
     private boolean positionsIsAlmostTheSame(Vector2 a, Vector2 b) {

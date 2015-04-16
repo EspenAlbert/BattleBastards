@@ -6,6 +6,7 @@ import com.tdt4240.RawHeroes.event.move.MovementMove;
 import com.tdt4240.RawHeroes.gameLogic.cell.CellStatus;
 import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
+import com.tdt4240.RawHeroes.independent.Position;
 
 import java.util.ArrayList;
 
@@ -24,7 +25,7 @@ public class BoardControllerCellSelectedState extends BoardControllerState {
     }
 
     private void addWalkableCells() {
-        for (Vector2 coordinates : selectedCell.getUnit().getMovementZone(this.board, selectedCell.getPos(), this.boardController.getRemaining_energy())){
+        for (Position coordinates : selectedCell.getUnit().getMovementZone(this.board, selectedCell.getPos(), this.boardController.getRemaining_energy())){
             this.board.switchModeOnCell(coordinates, CellStatus.IN_MOVING_RANGE);
             walkableCells.add(this.board.getCell(coordinates));
         }
@@ -48,7 +49,7 @@ public class BoardControllerCellSelectedState extends BoardControllerState {
         else if(cell.getStatus()== CellStatus.IN_MOVING_RANGE){ //Bevege valgt unit til ny celle
             //TODO sjekke om man har nok energi før movet gjøres
             // Vi burde ha en limit på hvor mange ganger man kan flytte en unit også
-            ArrayList<Vector2> path = selectedCell.getUnit().getMovementPath(this.board, selectedCell.getPos(), cell.getPos());//TODO: Fix movement path
+            ArrayList<Position> path = selectedCell.getUnit().getMovementPath(this.board, selectedCell.getPos(), cell.getPos());//TODO: Fix movement path
             this.boardController.addMove(new MovementMove(selectedCell, cell, path));
             this.board.switchModeOnCell(selectedCell.getPos(), CellStatus.DEFAULT);
             selectedCell = cell;
