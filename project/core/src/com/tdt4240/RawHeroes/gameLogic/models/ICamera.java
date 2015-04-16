@@ -13,4 +13,6 @@ public interface ICamera {
     void addCameraListener(ICameraListener listener);
     Vector2 getScreenPixelCoordinate(float x, float y);
     void translate(int x, int y);
+
+    void makeSureVisible(Vector2 startPos, Vector2 endPos);
 }

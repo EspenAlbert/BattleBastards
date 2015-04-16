@@ -2,21 +2,12 @@ package com.tdt4240.RawHeroes.topLayer.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.tdt4240.RawHeroes.gameLogic.cell.CellStatus;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardControllerStateEvent;
@@ -26,15 +17,11 @@ import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.IBoardControl
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.IBoardMover;
 import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.CameraController;
 import com.tdt4240.RawHeroes.gameLogic.inputListeners.TouchListenerActiveGameScreen;
-import com.tdt4240.RawHeroes.gameLogic.models.ICamera;
 import com.tdt4240.RawHeroes.independent.GameConstants;
 import com.tdt4240.RawHeroes.independent.MyInputProcessor;
 import com.tdt4240.RawHeroes.topLayer.commonObjects.Game;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
-import com.tdt4240.RawHeroes.network.client.ClientConnection;
 import com.tdt4240.RawHeroes.view.topLayer.GameView;
-
-import java.util.ArrayList;
 
 /**
  * Created by espen1 on 27.02.2015.
@@ -49,8 +36,6 @@ public class ActiveGameScreen extends ScreenState implements BoardControllerStat
     private final IBoard board;
     private final boolean iAmPlayer1;
     private final CameraController cameraController;
-    private final Sprite testSprite3;
-    public static Texture ordinaryCell = new Texture(Gdx.files.internal("cell.png"));
     private SpriteBatch hudBatch;
 
     private Skin skin;
@@ -70,6 +55,29 @@ public class ActiveGameScreen extends ScreenState implements BoardControllerStat
         iAmPlayer1 = true;
         cameraController = new CameraController();
 
+        setupUiElements();
+
+        boardMover = new BoardMover(board);
+        gameView = new GameView(board, iAmPlayer1, cameraController);
+        boardController = new BoardController(board, boardMover, game.getMoveCount());
+
+        boardMover.addMoveListener(gameView);
+        board.addBoardListener(gameView);
+
+        boardMover.executeMoves(game.getLastMoves());
+        hudBatch = new SpriteBatch(5);
+        resize(GameConstants.RESOLUTION_WIDTH, GameConstants.RESOLUTION_HEIGHT);
+    }
+    private void initializeTouchListener() {
+        Gdx.input.setInputProcessor(MyInputProcessor.getInstance());
+        MyInputProcessor.getInstance().AddTouchDownListener(new TouchListenerActiveGameScreen(boardController, cameraController, this));
+
+
+
+    }
+
+    //TODO: Put denne metoden i GameView/Action panel eller noe sånt
+    private void setupUiElements() {
         skin = new Skin(Gdx.files.internal("uiskin.json"), new TextureAtlas(Gdx.files.internal("uiskin.atlas")));
 
         int buttonWidth = GameConstants.RESOLUTION_WIDTH - 7*GameConstants.CELL_WIDTH;
@@ -86,11 +94,7 @@ public class ActiveGameScreen extends ScreenState implements BoardControllerStat
         sendButton.setPosition(GameConstants.RESOLUTION_WIDTH - sendButton.getWidth(), sendButton.getHeight() +  actionButton.getHeight());
         abortButton.setPosition(GameConstants.RESOLUTION_WIDTH - abortButton.getWidth(),0);
 
-        boardMover = new BoardMover(board);
-        gameView = new GameView(board, iAmPlayer1,cameraController,boardMover);
-        board.addBoardListener(gameView);
-        boardMover.executeMoves(game.getLastMoves());
-        boardController = new BoardController(board, boardMover, game.getMoveCount());
+
 //TODO ikke bare statisk streng, men faktisk energi
         energyLabel = new Label(Integer.toString(boardController.getRemaining_energy()),skin);
         energyLabel.setSize(buttonWidth, buttonHeight);
@@ -100,14 +104,9 @@ public class ActiveGameScreen extends ScreenState implements BoardControllerStat
         boardController.addBoardControllerStateListener(this);
         Gdx.input.setInputProcessor(MyInputProcessor.getInstance());
         MyInputProcessor.getInstance().AddTouchDownListener(new TouchListenerActiveGameScreen(boardController, cameraController, this));
-       // MyInputProcessor.getInstance().setCamera(cameraController);
-       // MyInputProcessor.getInstance().setScreen(this);
-
-        testSprite3 = new Sprite(ordinaryCell);
-        testSprite3.setSize(100, 100);
-        testSprite3.setPosition(ButtonXPos, 100);
         hudBatch = new SpriteBatch(5);
         resize(GameConstants.RESOLUTION_WIDTH, GameConstants.RESOLUTION_HEIGHT);
+
 
 
     }
@@ -119,6 +118,7 @@ public class ActiveGameScreen extends ScreenState implements BoardControllerStat
 
     @Override
     public void render() {
+        initializeWhenViewReady();
         Gdx.gl.glClearColor(0.36f, 0.32f, 0.27f, 1.0f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         spriteBatch.begin();
@@ -134,6 +134,11 @@ public class ActiveGameScreen extends ScreenState implements BoardControllerStat
         actionButton.draw(hudBatch, 1);
         energyLabel.draw(hudBatch, 1);
         hudBatch.end();
+    }
+
+    private boolean initialized = false;
+    private void initializeWhenViewReady() {
+        if(!initialized && gameView.noAnimationWaiting()) initializeTouchListener();
     }
 
     @Override

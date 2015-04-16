@@ -19,12 +19,13 @@ public class AttackMove extends Move {
     private ArrayList<ICell> victims;
 
     public AttackMove(ICell selectedCell, ICell target) {
-        super(selectedCell);
+        super(selectedCell, target);
         this.damages = new HashMap<Vector2, Integer>();
         this.attackerPos = selectedCell.getPos();
         this.targetPos = target.getPos();
     }
 
+    @Override
     public void execute(IBoard board) {
         if (damages != null) {
             for (Vector2 key : damages.keySet()) {
@@ -32,6 +33,11 @@ public class AttackMove extends Move {
             }
         }
         getDamages(board);
+    }
+
+    @Override
+    public void undo(IBoard board) {
+
     }
 
     private void getDamages(IBoard board) {
