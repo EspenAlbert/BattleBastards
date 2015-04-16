@@ -43,6 +43,12 @@ public class BoardControllerCellAndAttackSelectedState extends BoardControllerSt
     }
 
     @Override
+    public BoardControllerStateEvent getEvent() {
+        //TODO finne en bedre måte å gjøre energy parameteren på
+        return new BoardControllerStateEvent(0, "Move");
+    }
+
+    @Override
     public void popped() {
         for (ICell cell : attackableCells){
             this.board.switchModeOnCell(cell.getPos(), CellStatus.DEFAULT);
