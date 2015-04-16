@@ -11,10 +11,12 @@ import java.util.Random;
  */
 public class SimpleUnitCombatController implements IUnitCombatController {
 
+    private Random rand;
     private IUnit unit;
     private int attackDmgMin, attackDmgMax, armor;
 
     public SimpleUnitCombatController(IUnit u, int minDmg, int maxDmg, int armor){
+        this.rand = new Random();
         this.unit = u;
         this.attackDmgMin = minDmg;
         this.attackDmgMax = maxDmg;
@@ -38,7 +40,6 @@ public class SimpleUnitCombatController implements IUnitCombatController {
 
     @Override
     public int inflictDamage(Vector2 myPos, Vector2 attackPos) {
-        Random rand = new Random();
         return rand.nextInt((this.attackDmgMax - this.attackDmgMin) + 1 + attackDmgMin);
     }
 
