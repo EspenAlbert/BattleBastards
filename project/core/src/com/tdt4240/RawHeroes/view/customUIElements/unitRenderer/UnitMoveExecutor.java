@@ -26,7 +26,7 @@ public class UnitMoveExecutor {
 
     public UnitMoveExecutor(UnitRenderer unitRenderer) {
         this.unitRenderer = unitRenderer;
-        speed = 0.1f;
+        speed = 0.05f;
     }
 
 
@@ -91,7 +91,7 @@ public class UnitMoveExecutor {
     }
 
     private boolean positionsIsAlmostTheSame(Vector2 a, Vector2 b) {
-        float margin = 0.01f;
+        float margin = 0.05f;
         float difference = Math.abs((a.x-b.x) + (a.y - b.y));
 
         return difference < margin;
