@@ -18,7 +18,7 @@ public class Cell implements ICell {
 
     @Override
     public Vector2 getPos() {
-        return null;
+        return pos;
     }
 
     @Override

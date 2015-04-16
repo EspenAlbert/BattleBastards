@@ -8,7 +8,12 @@ import com.tdt4240.RawHeroes.event.move.Move;
  */
 public interface IBoardController {
     void cellTouched(Vector2 coordinates);
-    void attackButtonTouched();
+    void cellTouchedLong(Vector2 coordinates);
+    void actionButtonTouched();
     void addMove(Move move);
+    void undoMove();
     void setState(BoardControllerState state);
+    void fireStateChanged(BoardControllerStateEvent event);
+    public void addBoardControllerStateListener(BoardControllerStateListener listener);
+    int getRemaining_energy();
 }

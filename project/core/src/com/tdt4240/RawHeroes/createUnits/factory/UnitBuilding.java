@@ -29,6 +29,8 @@ public class UnitBuilding implements IUnitBuilding {
                 return standardUnitFactory.createUnit(standardUnitFactory.TYPE1, player1Unit);
             case UNIT2:
                 break;
+            case STANDARD_UNIT_2:
+                break;
         }
         return null;
     }

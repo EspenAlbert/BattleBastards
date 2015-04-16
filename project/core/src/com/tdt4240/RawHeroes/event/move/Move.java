@@ -1,6 +1,7 @@
 package com.tdt4240.RawHeroes.event.move;
 
 import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
+import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 
 import java.io.Serializable;
 
@@ -10,8 +11,11 @@ import java.io.Serializable;
 public abstract class Move implements Serializable{
     private final ICell startCell;
     private int cost;
-    public Move(ICell start) {
+    private final ICell targetCell;
+
+    public Move(ICell start, ICell end) {
         this.startCell = start;
+        targetCell = end;
     }
 
     public int getCost() {
@@ -21,4 +25,11 @@ public abstract class Move implements Serializable{
     public ICell getStartCell() {
         return startCell;
     }
+    public ICell getTargetCell() {
+        return targetCell;
+    }
+
+    public abstract void  execute(IBoard board);
+
+    public abstract void undo(IBoard board);
 }

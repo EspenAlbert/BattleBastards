@@ -22,6 +22,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 /**
+ *
  * Created by espen on 13.03.14.
  */
 public class Worker extends Thread {

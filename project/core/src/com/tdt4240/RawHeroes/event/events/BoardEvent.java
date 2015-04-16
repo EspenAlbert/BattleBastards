@@ -7,13 +7,13 @@ import com.badlogic.gdx.math.Vector2;
  */
 public abstract class BoardEvent {
 
-    private final Vector2 posision;
+    private final Vector2 position;
 
-    public BoardEvent(Vector2 posision) {
-        this.posision = posision;
+    public BoardEvent(Vector2 position) {
+        this.position = position;
     }
 
-    public Vector2 getPosision() {
-        return posision;
+    public Vector2 getPosition() {
+        return position;
     }
 }
