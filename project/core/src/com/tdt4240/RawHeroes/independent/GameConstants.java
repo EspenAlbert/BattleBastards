@@ -19,6 +19,7 @@ public class GameConstants {
     public static final int CELL_WIDTH = Math.round(GameConstants.RESOLUTION_WIDTH / 8);
     public static final int CELL_HEIGHT = CELL_WIDTH;
     public static final int SPACE_BETWEEN = 0;
+    public static final int MAX_ENERGY = 100;
 
     public static final float GAME_WIDTH = 7;
     public static final float GAME_HEIGHT = 5;

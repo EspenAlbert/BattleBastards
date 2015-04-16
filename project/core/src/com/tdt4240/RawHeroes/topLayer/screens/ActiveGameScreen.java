@@ -8,9 +8,13 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.tdt4240.RawHeroes.gameLogic.cell.CellStatus;
@@ -66,7 +70,6 @@ public class ActiveGameScreen extends ScreenState {
 
         skin = new Skin(Gdx.files.internal("uiskin.json"), new TextureAtlas(Gdx.files.internal("uiskin.atlas")));
 
-
         int buttonWidth = GameConstants.RESOLUTION_WIDTH - 7*GameConstants.CELL_WIDTH;
         int buttonHeight = GameConstants.RESOLUTION_HEIGHT /4;
 
@@ -76,23 +79,23 @@ public class ActiveGameScreen extends ScreenState {
         actionButton.setSize(buttonWidth, buttonHeight);
         abortButton= new TextButton("Quit", skin);
         abortButton.setSize(buttonWidth, buttonHeight);
-//TODO ikke bare statisk streng, men faktisk energi
-        energyLabel = new Label("47/100",skin);
-        energyLabel.setSize(buttonWidth, buttonHeight);
-        energyLabel.setAlignment(0);
-        energyLabel.setColor(1, 1, 1, 1);
 
-
-        sendButton.setPosition(GameConstants.RESOLUTION_WIDTH-sendButton.getWidth(), abortButton.getHeight() + actionButton.getHeight());
-        actionButton.setPosition(GameConstants.RESOLUTION_WIDTH - actionButton.getWidth(), abortButton.getHeight());
-        abortButton.setPosition(GameConstants.RESOLUTION_WIDTH-abortButton.getWidth(), 0);
-        energyLabel.setPosition(GameConstants.RESOLUTION_WIDTH-energyLabel.getWidth(), abortButton.getHeight() + actionButton.getHeight() + sendButton.getHeight());
+        actionButton.setPosition(GameConstants.RESOLUTION_WIDTH - actionButton.getWidth(), actionButton.getHeight());
+        sendButton.setPosition(GameConstants.RESOLUTION_WIDTH - sendButton.getWidth(), sendButton.getHeight() +  actionButton.getHeight());
+        abortButton.setPosition(GameConstants.RESOLUTION_WIDTH - abortButton.getWidth(),0);
 
         boardMover = new BoardMover(board);
         gameView = new GameView(board, iAmPlayer1,cameraController,boardMover);
         board.addBoardListener(gameView);
         boardMover.executeMoves(game.getLastMoves());
         boardController = new BoardController(board, boardMover, game.getMoveCount());
+//TODO ikke bare statisk streng, men faktisk energi
+        energyLabel = new Label(Integer.toString(boardController.getRemaining_energy()),skin);
+        energyLabel.setSize(buttonWidth, buttonHeight);
+        energyLabel.setAlignment(0);
+        energyLabel.setColor(1, 1, 1, 1);
+        energyLabel.setPosition(GameConstants.RESOLUTION_WIDTH - energyLabel.getWidth(), abortButton.getHeight() + actionButton.getHeight() + sendButton.getHeight());
+
         Gdx.input.setInputProcessor(MyInputProcessor.getInstance());
         MyInputProcessor.getInstance().AddTouchDownListener(new TouchListenerActiveGameScreen(boardController, cameraController, this));
        // MyInputProcessor.getInstance().setCamera(cameraController);
@@ -122,6 +125,7 @@ public class ActiveGameScreen extends ScreenState {
         gameView.render(spriteBatch);
         spriteBatch.end();
         hudBatch.begin();
+        energyLabel.setText(Integer.toString(boardController.getRemaining_energy()) + "/" + Integer.toString(GameConstants.MAX_ENERGY));
 
         sendButton.draw(hudBatch, 1);
         abortButton.draw(hudBatch, 1);
