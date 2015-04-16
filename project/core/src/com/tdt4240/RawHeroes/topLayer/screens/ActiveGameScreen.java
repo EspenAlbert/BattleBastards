@@ -21,30 +21,26 @@ import com.tdt4240.RawHeroes.independent.GameConstants;
 import com.tdt4240.RawHeroes.independent.MyInputProcessor;
 import com.tdt4240.RawHeroes.topLayer.commonObjects.Game;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
+
+import com.tdt4240.RawHeroes.network.client.ClientConnection;
+import com.tdt4240.RawHeroes.view.customUIElements.hudRenderer.HudRenderer;
 import com.tdt4240.RawHeroes.view.topLayer.GameView;
 
 /**
  * Created by espen1 on 27.02.2015.
  */
-public class ActiveGameScreen extends ScreenState implements BoardControllerStateListener{
+public class ActiveGameScreen extends ScreenState{
     public static final float ButtonXPos =  ((float) 7 / 8) * GameConstants.RESOLUTION_WIDTH;
 
 
     private final GameView gameView;
+    private final HudRenderer hud;
     private final IBoardMover boardMover;
     private final IBoardController boardController;
     private final IBoard board;
     private final boolean iAmPlayer1;
     private final CameraController cameraController;
     private SpriteBatch hudBatch;
-
-    private Skin skin;
-
-    private TextButton sendButton;
-    private TextButton actionButton;
-    private TextButton abortButton;
-
-    private Label energyLabel;
 
 
     public ActiveGameScreen(ScreenStateManager gsm, Game game){
@@ -55,11 +51,11 @@ public class ActiveGameScreen extends ScreenState implements BoardControllerStat
         iAmPlayer1 = true;
         cameraController = new CameraController();
 
-        setupUiElements();
 
         boardMover = new BoardMover(board);
         gameView = new GameView(board, iAmPlayer1, cameraController);
         boardController = new BoardController(board, boardMover, game.getMoveCount());
+        hud = new HudRenderer(boardController);
 
         boardMover.addMoveListener(gameView);
         board.addBoardListener(gameView);
@@ -71,44 +67,6 @@ public class ActiveGameScreen extends ScreenState implements BoardControllerStat
     private void initializeTouchListener() {
         Gdx.input.setInputProcessor(MyInputProcessor.getInstance());
         MyInputProcessor.getInstance().AddTouchDownListener(new TouchListenerActiveGameScreen(boardController, cameraController, this));
-
-
-
-    }
-
-    //TODO: Put denne metoden i GameView/Action panel eller noe sånt
-    private void setupUiElements() {
-        skin = new Skin(Gdx.files.internal("uiskin.json"), new TextureAtlas(Gdx.files.internal("uiskin.atlas")));
-
-        int buttonWidth = GameConstants.RESOLUTION_WIDTH - 7*GameConstants.CELL_WIDTH;
-        int buttonHeight = GameConstants.RESOLUTION_HEIGHT /4;
-
-        sendButton = new TextButton("Done", skin);
-        sendButton.setSize(buttonWidth, buttonHeight);
-        actionButton= new TextButton("Action", skin);
-        actionButton.setSize(buttonWidth, buttonHeight);
-        abortButton= new TextButton("Quit", skin);
-        abortButton.setSize(buttonWidth, buttonHeight);
-
-        actionButton.setPosition(GameConstants.RESOLUTION_WIDTH - actionButton.getWidth(), actionButton.getHeight());
-        sendButton.setPosition(GameConstants.RESOLUTION_WIDTH - sendButton.getWidth(), sendButton.getHeight() +  actionButton.getHeight());
-        abortButton.setPosition(GameConstants.RESOLUTION_WIDTH - abortButton.getWidth(),0);
-
-
-//TODO ikke bare statisk streng, men faktisk energi
-        energyLabel = new Label(Integer.toString(boardController.getRemaining_energy()),skin);
-        energyLabel.setSize(buttonWidth, buttonHeight);
-        energyLabel.setAlignment(0);
-        energyLabel.setColor(1, 1, 1, 1);
-        energyLabel.setPosition(GameConstants.RESOLUTION_WIDTH - energyLabel.getWidth(), abortButton.getHeight() + actionButton.getHeight() + sendButton.getHeight());
-        boardController.addBoardControllerStateListener(this);
-        Gdx.input.setInputProcessor(MyInputProcessor.getInstance());
-        MyInputProcessor.getInstance().AddTouchDownListener(new TouchListenerActiveGameScreen(boardController, cameraController, this));
-        hudBatch = new SpriteBatch(5);
-        resize(GameConstants.RESOLUTION_WIDTH, GameConstants.RESOLUTION_HEIGHT);
-
-
-
     }
 
     @Override
@@ -126,14 +84,7 @@ public class ActiveGameScreen extends ScreenState implements BoardControllerStat
         spriteBatch.setProjectionMatrix(cameraController.getProjectionMatrix());
         gameView.render(spriteBatch);
         spriteBatch.end();
-        hudBatch.begin();
-        energyLabel.setText(Integer.toString(boardController.getRemaining_energy()) + "/" + Integer.toString(GameConstants.MAX_ENERGY));
-
-        sendButton.draw(hudBatch, 1);
-        abortButton.draw(hudBatch, 1);
-        actionButton.draw(hudBatch, 1);
-        energyLabel.draw(hudBatch, 1);
-        hudBatch.end();
+        hud.render(hudBatch);
     }
 
     private boolean initialized = false;
@@ -154,10 +105,4 @@ public class ActiveGameScreen extends ScreenState implements BoardControllerStat
         board.switchModeOnCell(cellCoordinate, CellStatus.SELECTED);
     }
 
-    @Override
-    public void stateChanged(BoardControllerStateEvent event) {
-        //TODO max energi istedenfor 100
-        this.energyLabel.setText(event.getEnergy() + "/" + "100");
-        this.actionButton.setText(event.getActionButtonText());
-    }
 }
