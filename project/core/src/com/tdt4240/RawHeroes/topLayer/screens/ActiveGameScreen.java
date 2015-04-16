@@ -111,20 +111,6 @@ public class ActiveGameScreen extends ScreenState implements BoardControllerStat
         abortButton.setPosition(GameConstants.RESOLUTION_WIDTH-abortButton.getWidth(), 0);
         energyLabel.setPosition(GameConstants.RESOLUTION_WIDTH-energyLabel.getWidth(), abortButton.getHeight() + actionButton.getHeight() + sendButton.getHeight());
 
-        boardMover = new BoardMover(board);
-        gameView = new GameView(board, iAmPlayer1,cameraController,boardMover);
-        board.addBoardListener(gameView);
-        boardMover.executeMoves(game.getLastMoves());
-        boardController = new BoardController(board, boardMover, game.getMoveCount());
-        boardController.addBoardControllerStateListener(this);
-        Gdx.input.setInputProcessor(MyInputProcessor.getInstance());
-        MyInputProcessor.getInstance().AddTouchDownListener(new TouchListenerActiveGameScreen(boardController, cameraController, this));
-       // MyInputProcessor.getInstance().setCamera(cameraController);
-       // MyInputProcessor.getInstance().setScreen(this);
-
-        testSprite3 = new Sprite(ordinaryCell);
-        testSprite3.setSize(100, 100);
-        testSprite3.setPosition(ButtonXPos, 100);
         hudBatch = new SpriteBatch(5);
         resize(GameConstants.RESOLUTION_WIDTH, GameConstants.RESOLUTION_HEIGHT);
 
