@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
+import com.tdt4240.RawHeroes.independent.Position;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,31 +14,37 @@ import java.util.HashMap;
  */
 public class AttackMove extends Move {
 
-    Vector2 attackerPos, targetPos;
-    HashMap<Vector2, Integer> damages;
+    Position attackerPos, targetPos;
+    HashMap<Position, Integer> damages;
 
     private ArrayList<ICell> victims;
 
     public AttackMove(ICell selectedCell, ICell target) {
-        super(selectedCell);
-        this.damages = new HashMap<Vector2, Integer>();
+        super(selectedCell, target);
+        this.damages = new HashMap<Position, Integer>();
         this.attackerPos = selectedCell.getPos();
         this.targetPos = target.getPos();
     }
 
+    @Override
     public void execute(IBoard board) {
         if (damages != null) {
-            for (Vector2 key : damages.keySet()) {
+            for (Position key : damages.keySet()) {
                 board.getCell(key).getUnit().attacked(damages.get(key));
             }
         }
         getDamages(board);
     }
 
+    @Override
+    public void undo(IBoard board) {
+
+    }
+
     private void getDamages(IBoard board) {
         IUnit attacker = board.getCell(attackerPos).getUnit();
-        ArrayList<Vector2> inflictionZone = attacker.getInflictionZone(attackerPos, targetPos);
-        for (Vector2 victimPos : inflictionZone) {
+        ArrayList<Position> inflictionZone = attacker.getInflictionZone(attackerPos, targetPos);
+        for (Position victimPos : inflictionZone) {
             IUnit victim = board.getCell(victimPos).getUnit();
             if (victim != null) {
                 int dmg = attacker.inflictDamage(attackerPos, targetPos);
