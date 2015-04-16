@@ -29,6 +29,7 @@ public class BoardController implements IBoardController {
         boardStates = new Stack<BoardControllerState>();
         listeners = new ArrayList<BoardControllerStateListener>();
         this.boardStates.push(new BoardControllerNoCellSelectedState(this, this.board));
+        fireStateChanged(boardStates.peek().getEvent());
         //TODO sette riktig state. Kanskje Replay hvis moveslist ikke er tom eller noe
     }
 

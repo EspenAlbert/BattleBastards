@@ -23,7 +23,7 @@ public interface IUnit extends Serializable{
     void setHasAttacked();
     boolean isPlayer1Unit();
 
-    ArrayList<Vector2> getAttackablePositions(Vector2 pos, int movesLeft);
+    ArrayList<Vector2> getAttackablePositions(Vector2 pos, int movesLeft, IBoard board);
 
     int getHealth();
 }

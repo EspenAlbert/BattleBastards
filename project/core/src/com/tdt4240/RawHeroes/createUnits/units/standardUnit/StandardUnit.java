@@ -90,8 +90,8 @@ public class StandardUnit implements IUnit {
     }
 
     @Override
-    public ArrayList<Vector2> getAttackablePositions(Vector2 pos, int movesLeft) {
-        return this.unitCombatController.getAttackablePositions(pos, movesLeft);
+    public ArrayList<Vector2> getAttackablePositions(Vector2 pos, int movesLeft, IBoard board) {
+        return this.unitCombatController.getAttackablePositions(pos, movesLeft, board);
     }
 
     @Override

@@ -37,7 +37,8 @@ public class TouchListenerActiveGameScreen implements TouchDown {
             screenY = Math.abs((screenY - GameConstants.RESOLUTION_HEIGHT) % GameConstants.RESOLUTION_HEIGHT);
             //Converts the coordinate so that the y-coordinate is 0 when the bottom of the screen is touched...
 
-            actionPanelTouch(screenX, screenY);
+            hudTouch(screenY);
+            //TODO
             System.out.println("Action panel touch" + " y coordinate: " + screenY);
             return false;
         }
@@ -55,15 +56,27 @@ public class TouchListenerActiveGameScreen implements TouchDown {
         return false;
     }
 
-    private void actionPanelTouch(int screenX, int screenY) {
+    private void hudTouch(int screenY) {
+        int buttonHeight = GameConstants.RESOLUTION_HEIGHT /4;
         //TODO: If screenY  is within action button y
-
-        //TODO: Change the state of the button
-        if(screenY > (GameConstants.RESOLUTION_HEIGHT / 2)) {
+        if (screenY > 0 && screenY < 1*buttonHeight){
+            System.out.println("Quit");
+            this.gameScreen.backToMainMenu();
+        }
+        else if (screenY > 1*buttonHeight && screenY < 2*buttonHeight){
+            System.out.println("Action");
+            this.boardController.actionButtonTouched();
+        }
+        else if (screenY > 2*buttonHeight && screenY < 3*buttonHeight){
+            System.out.println("Send");
+            //TODO send
+        }
+        /*if(screenY > (GameConstants.RESOLUTION_HEIGHT / 2)) {
             cameraController.translate(0, 1);
         }
         else {
             cameraController.translate(0, -1);
-        }
+        }*/
     }
+
 }

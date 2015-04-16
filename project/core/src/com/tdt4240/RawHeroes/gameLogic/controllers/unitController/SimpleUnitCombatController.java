@@ -1,6 +1,7 @@
 package com.tdt4240.RawHeroes.gameLogic.controllers.unitController;
 
 import com.badlogic.gdx.math.Vector2;
+import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
 
 import java.util.ArrayList;
@@ -20,12 +21,24 @@ public class SimpleUnitCombatController implements IUnitCombatController {
     }
 
     @Override
-    public ArrayList<Vector2> getAttackablePositions(Vector2 pos, int movesLeft) {
+    public ArrayList<Vector2> getAttackablePositions(Vector2 pos, int movesLeft, IBoard board) {
         ArrayList<Vector2> temp = new ArrayList<Vector2>();
-        temp.add(new Vector2(pos.x+1, pos.y));
-        temp.add(new Vector2(pos.x-1, pos.y));
-        temp.add(new Vector2(pos.x, pos.y+1));
-        temp.add(new Vector2(pos.x, pos.y-1));
+        if(pos.x < board.getWidth()-1){
+            temp.add(new Vector2(pos.x+1, pos.y));
+            System.out.println("Added to the right");
+        }
+        if(pos.x > 0){
+            temp.add(new Vector2(pos.x-1, pos.y));
+            System.out.println("Added to the left");
+        }
+        if(pos.y < board.getHeight()-1){
+            temp.add(new Vector2(pos.x, pos.y+1));
+            System.out.println("Added above");
+        }
+        if(pos.y > 0){
+            temp.add(new Vector2(pos.x, pos.y-1));
+            System.out.println("Added below");
+        }
         return temp;
     }
 

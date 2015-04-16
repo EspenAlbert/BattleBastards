@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * Created by espen1 on 12.04.2015.
  */
 public interface IUnitCombatController {
-    ArrayList<Vector2> getAttackablePositions(Vector2 pos, int movesLeft);
+    ArrayList<Vector2> getAttackablePositions(Vector2 pos, int movesLeft, IBoard board);
     ArrayList<Vector2> getInflictionZone(Vector2 myPos, Vector2 target);
     int inflictDamage(Vector2 myPos, Vector2 targetPos);
     int attacked(int damage);

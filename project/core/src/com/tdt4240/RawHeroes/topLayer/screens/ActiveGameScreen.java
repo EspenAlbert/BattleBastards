@@ -101,7 +101,6 @@ public class ActiveGameScreen extends ScreenState{
 
     @Override
     public void dispose() {
-
     }
     @Override
     public void resize(int width, int height) {
@@ -110,6 +109,10 @@ public class ActiveGameScreen extends ScreenState{
 
     public void cellClicked(Vector2 cellCoordinate) {
         board.switchModeOnCell(cellCoordinate, CellStatus.SELECTED);
+    }
+
+    public void backToMainMenu(){
+        this.gsm.popState();
     }
 
 }

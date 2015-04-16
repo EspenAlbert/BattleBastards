@@ -43,7 +43,7 @@ public class WalkingUnitMovementController implements IUnitMovementController {
                 System.out.println("before if: "+w);
                 if (w.x>=0&&w.y>=0&&w.x<(board.getWidth())&&w.y<board.getHeight()){
                     ICell cell=board.getCell(w);
-                    if((!discovered.contains(w))&&(!(cell.getStatus()== CellStatus.NOTMOVEABLE))) {//not discovered and not notmoveable.
+                    if((!discovered.contains(w))&& (cell.getStatus()!= CellStatus.NOTMOVEABLE) && (cell.getUnit() == null)) {//not discovered and not notmoveable.
                         queue.add(new Pair<Vector2, Integer>(w, depth + 1));
                         discovered.add(w);
                     }
@@ -70,7 +70,7 @@ public class WalkingUnitMovementController implements IUnitMovementController {
                 w.add(directions.get(i));//v+directions.get(i)
                 if (w.x>=0&&w.y>=0&&w.x<(board.getWidth())&&w.y<board.getHeight()){
                     ICell cell=board.getCell(w);
-                    if((!discovered.containsKey(w))&&(!(cell.getStatus()== CellStatus.NOTMOVEABLE))) {//not discovered and not notmoveable.
+                    if((!discovered.containsKey(w))&& (cell.getStatus() != CellStatus.NOTMOVEABLE) && (cell.getStatus() != CellStatus.SELECTED)) {//not discovered and not notmoveable.
                         if (w.x==targetPos.x&&w.y==targetPos.y) {
                             path.add(w);//finds the path
                             path.add(v);
