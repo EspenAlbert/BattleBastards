@@ -14,6 +14,7 @@ import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.ICellConvert
 import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.Player1CellConverter;
 import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.Player2CellConverter;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
+import com.tdt4240.RawHeroes.independent.Position;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.IRenderNoPos;
 
 import java.util.ArrayList;
@@ -107,11 +108,11 @@ public class BoardRenderer implements IBoardListener, IRenderNoPos {
     public void boardChanged(BoardEvent event) {
         if(event instanceof CellChangeEvent) {
             CellChangeEvent cellChangeEvent = (CellChangeEvent) event;
-            Vector2 pos = cellChangeEvent.getPosition();
-            int x = (int) pos.x;
-            int y = (int) pos.y;
+            Position pos = cellChangeEvent.getPosition();
+            int x = (int) pos.getX();
+            int y = (int) pos.getY();
             cellStatuses[x][y] = board.getCell(pos).getStatus();
-            System.out.println(cellChangeEvent.getPosition().x + "," + cellChangeEvent.getPosition().y + " cell was changed to:" + board.getCell(cellChangeEvent.getPosition()).getStatus());
+            System.out.println(cellChangeEvent.getPosition().getX() + "," + cellChangeEvent.getPosition().getY() + " cell was changed to:" + board.getCell(cellChangeEvent.getPosition()).getStatus());
             overlaySprites.get(x).set(y, createOverlaySprite(x, y));
         }
     }

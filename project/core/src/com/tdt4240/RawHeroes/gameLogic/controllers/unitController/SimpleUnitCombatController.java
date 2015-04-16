@@ -1,7 +1,9 @@
 package com.tdt4240.RawHeroes.gameLogic.controllers.unitController;
 
 import com.badlogic.gdx.math.Vector2;
+import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
+import com.tdt4240.RawHeroes.independent.Position;
 
 import java.util.ArrayList;
 
@@ -20,22 +22,34 @@ public class SimpleUnitCombatController implements IUnitCombatController {
     }
 
     @Override
-    public ArrayList<Vector2> getAttackablePositions(Vector2 pos, int movesLeft) {
-        ArrayList<Vector2> temp = new ArrayList<Vector2>();
-        temp.add(new Vector2(pos.x+1, pos.y));
-        temp.add(new Vector2(pos.x-1, pos.y));
-        temp.add(new Vector2(pos.x, pos.y+1));
-        temp.add(new Vector2(pos.x, pos.y-1));
+    public ArrayList<Position> getAttackablePositions(Position pos, int movesLeft, IBoard board) {
+        ArrayList<Position> temp = new ArrayList<Position>();
+        if(pos.getX() < board.getWidth()-1){
+            temp.add(new Position(pos.getX()+1, pos.getY()));
+            System.out.println("Added to the right");
+        }
+        if(pos.getX() > 0){
+            temp.add(new Position(pos.getX()-1, pos.getY()));
+            System.out.println("Added to the left");
+        }
+        if(pos.getY() < board.getHeight()-1){
+            temp.add(new Position(pos.getX(), pos.getY()+1));
+            System.out.println("Added above");
+        }
+        if(pos.getY() > 0){
+            temp.add(new Position(pos.getX(), pos.getY()-1));
+            System.out.println("Added below");
+        }
         return temp;
     }
 
     @Override
-    public ArrayList<Vector2> getInflictionZone(Vector2 myPos, Vector2 target) {
+    public ArrayList<Position> getInflictionZone(Position myPos, Position target) {
         return null;
     }
 
     @Override
-    public int inflictDamage(Vector2 myPos, Vector2 attackPos) {
+    public int inflictDamage(Position myPos, Position attackPos) {
         return attackDmg;
     }
 

@@ -52,6 +52,8 @@ public class ScreenStateManager {
     }
 
     public void setState(int state) {
+        System.out.println(screenStates.peek());
+        System.out.println("hello");
         popState();
         pushState(state);
     }
