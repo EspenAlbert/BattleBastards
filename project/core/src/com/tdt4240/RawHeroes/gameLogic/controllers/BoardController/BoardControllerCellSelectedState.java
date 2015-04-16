@@ -27,6 +27,7 @@ public class BoardControllerCellSelectedState extends BoardControllerState {
         for (Vector2 coordinates : selectedCell.getUnit().getMovementZone(this.board, selectedCell.getPos(), this.boardController.getRemaining_energy())){
             if(board.getCell(coordinates).getUnit() != null){
                 this.board.switchModeOnCell(coordinates, CellStatus.NOTMOVEABLE);
+                walkableCells.add(this.board.getCell(coordinates));
                 continue;
             }
             this.board.switchModeOnCell(coordinates, CellStatus.IN_MOVING_RANGE);
