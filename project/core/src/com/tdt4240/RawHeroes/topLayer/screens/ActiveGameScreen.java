@@ -134,6 +134,7 @@ public class ActiveGameScreen extends ScreenState {
     public void dispose() {
 
     }
+
     @Override
     public void resize(int width, int height) {
         cameraController.resize(width, height);
