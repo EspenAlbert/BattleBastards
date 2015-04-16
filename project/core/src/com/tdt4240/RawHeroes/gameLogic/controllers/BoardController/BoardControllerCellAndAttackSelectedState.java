@@ -5,6 +5,7 @@ import com.tdt4240.RawHeroes.event.move.AttackMove;
 import com.tdt4240.RawHeroes.gameLogic.cell.CellStatus;
 import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
+import com.tdt4240.RawHeroes.independent.Position;
 
 import java.util.ArrayList;
 
@@ -19,7 +20,7 @@ public class BoardControllerCellAndAttackSelectedState extends BoardControllerSt
         selectedCell = cell;
         this.board.switchModeOnCell(selectedCell.getPos(), CellStatus.SELECTED);
         attackableCells = new ArrayList<ICell>();
-        for (Vector2 coordinates : selectedCell.getUnit().getAttackablePositions(selectedCell.getPos(), this.boardController.getRemaining_energy(), this.board)){
+        for (Position coordinates : selectedCell.getUnit().getAttackablePositions(selectedCell.getPos(), this.boardController.getRemaining_energy(), this.board)){
             this.board.switchModeOnCell(coordinates, CellStatus.ATTACKABLE);
             attackableCells.add(this.board.getCell(coordinates));
         }
@@ -35,7 +36,7 @@ public class BoardControllerCellAndAttackSelectedState extends BoardControllerSt
     public void cellSelected(ICell cell) {
         if (cell.getStatus() == CellStatus.ATTACKABLE){
             AttackMove move = new AttackMove(selectedCell, cell);
-            if (move.getCost() <= this.boardController.getRemaining_energy())this.boardController.addMove(new AttackMove(selectedCell, cell));
+            if (move.getCost() <= this.boardController.getRemaining_energy())this.boardController.addMove(move);
             //TODO disable så samme unit ikke kan angripe flere ganger per tur
         }
         //TODO også ha tilbakegåing til NoCellSelectedState hvis man trykker på en default

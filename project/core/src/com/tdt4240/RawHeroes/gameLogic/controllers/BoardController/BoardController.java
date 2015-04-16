@@ -3,6 +3,7 @@ package com.tdt4240.RawHeroes.gameLogic.controllers.boardController;
 import com.badlogic.gdx.math.Vector2;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.event.move.Move;
+import com.tdt4240.RawHeroes.independent.Position;
 
 import java.util.ArrayList;
 import java.util.Stack;
@@ -56,7 +57,7 @@ public class BoardController implements IBoardController {
     }
 
     @Override
-    public void cellTouched(Vector2 coordinates) {
+    public void cellTouched(Position coordinates) {
         boardStates.peek().cellSelected(board.getCell(coordinates));
     }
 
@@ -66,7 +67,7 @@ public class BoardController implements IBoardController {
     }
 
     @Override
-    public void cellTouchedLong(Vector2 coordinates){
+    public void cellTouchedLong(Position coordinates){
         if (board.getCell(coordinates).getUnit() != null){
             //TODO åpne et nytt vindu med informasjon om denne uniten
         }

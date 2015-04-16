@@ -25,6 +25,7 @@ import com.tdt4240.RawHeroes.gameLogic.inputListeners.TouchListenerActiveGameScr
 import com.tdt4240.RawHeroes.gameLogic.models.ICamera;
 import com.tdt4240.RawHeroes.independent.GameConstants;
 import com.tdt4240.RawHeroes.independent.MyInputProcessor;
+import com.tdt4240.RawHeroes.independent.Position;
 import com.tdt4240.RawHeroes.topLayer.commonObjects.Game;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.network.client.ClientConnection;
@@ -107,7 +108,7 @@ public class ActiveGameScreen extends ScreenState{
         cameraController.resize(width, height);
     }
 
-    public void cellClicked(Vector2 cellCoordinate) {
+    public void cellClicked(Position cellCoordinate) {
         board.switchModeOnCell(cellCoordinate, CellStatus.SELECTED);
     }
 
