@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.event.move.Move;
 
+import java.util.ArrayList;
 import java.util.Stack;
 
 /**
@@ -15,7 +16,10 @@ public class BoardController implements IBoardController {
     private final IBoardMover boardMover;
     private Stack<BoardControllerState> boardStates;
 
+    private ArrayList<BoardControllerStateListener> listeners;
+
     private int remaining_energy;
+    private String actionButtonText = "Action";
 
 
     public BoardController(IBoard board, IBoardMover boardMover, int remaining_energy) {
@@ -23,6 +27,7 @@ public class BoardController implements IBoardController {
         this.boardMover = boardMover;
         this.remaining_energy = remaining_energy;
         boardStates = new Stack<BoardControllerState>();
+        listeners = new ArrayList<BoardControllerStateListener>();
         this.boardStates.push(new BoardControllerNoCellSelectedState(this, this.board));
         //TODO sette riktig state. Kanskje Replay hvis moveslist ikke er tom eller noe
     }
@@ -30,6 +35,14 @@ public class BoardController implements IBoardController {
     public void setState(BoardControllerState state) {
         boardStates.pop().popped();
         boardStates.push(state);
+        fireStateChanged(state.getEvent());
+    }
+
+    @Override
+    public void fireStateChanged(BoardControllerStateEvent event) {
+        for (BoardControllerStateListener listener : listeners){
+            listener.stateChanged(event);
+        }
     }
 
     public void addMove(Move move) {
@@ -60,5 +73,9 @@ public class BoardController implements IBoardController {
 
     public int getRemaining_energy(){
         return this.remaining_energy;
+    }
+
+    public void addBoardControllerStateListener(BoardControllerStateListener listener){
+        this.listeners.add(listener);
     }
 }

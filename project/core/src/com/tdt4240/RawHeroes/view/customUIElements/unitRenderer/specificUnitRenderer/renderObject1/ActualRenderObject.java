@@ -13,7 +13,7 @@ import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRend
  */
 public class ActualRenderObject implements IRenderObject{
 
-    public static Texture texture = new Texture(Gdx.files.internal("units/soldier.png"));
+    public static Texture texture = new Texture(Gdx.files.internal("units/soldierpluss.png"));
     private Sprite sprite;
 
     public ActualRenderObject() {
