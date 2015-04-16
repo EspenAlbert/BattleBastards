@@ -20,5 +20,6 @@ public interface IBoard extends Serializable{
     int getWidth();
     int getHeight();
 
+    IBoard deepCopy();
 
 }

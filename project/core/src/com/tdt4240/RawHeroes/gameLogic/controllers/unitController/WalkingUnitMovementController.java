@@ -8,7 +8,6 @@ import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javafx.util.Pair;
 
 /**
  * Created by espen1 on 12.04.2015.
@@ -27,6 +26,7 @@ public class WalkingUnitMovementController implements IUnitMovementController {
     @Override
     public ArrayList<Vector2> getMovementZone(IBoard board, Vector2 myPos, int movesLeft, int unitMaxMoves) {
         int maxDepth=Math.min(movesLeft, unitMaxMoves); //max moves for unit
+        System.out.println("Max depth should be 3, is " + maxDepth);
 
         //breadth first search
         ArrayList<Pair<Vector2, Integer>> queue=new ArrayList<Pair<Vector2, Integer>>();
@@ -34,7 +34,7 @@ public class WalkingUnitMovementController implements IUnitMovementController {
         queue.add(new Pair<Vector2, Integer>(myPos,0));
         int depth=0;
         discovered.add(myPos);
-        while ((!queue.isEmpty())&&(depth<=maxDepth)){
+        while ((!queue.isEmpty())&&(depth<maxDepth)){
             Vector2 v=queue.remove(0).getKey();
             for (int i=0; i<directions.size();i++){
                 Vector2 w=new Vector2(v);
@@ -42,7 +42,7 @@ public class WalkingUnitMovementController implements IUnitMovementController {
                 System.out.println("before if: "+w);
                 if (w.x>=0&&w.y>=0&&w.x<(board.getWidth())&&w.y<board.getHeight()){
                     ICell cell=board.getCell(w);
-                    if((!discovered.contains(w))&&(!(cell.getStatus()== CellStatus.NOTMOVEABLE))) {//not discovered and not notmoveable.
+                    if((!discovered.contains(w))&& (cell.getStatus()!= CellStatus.NOTMOVEABLE) && (cell.getUnit() == null)) {//not discovered and not notmoveable.
                         queue.add(new Pair<Vector2, Integer>(w, depth + 1));
                         discovered.add(w);
                     }
@@ -69,7 +69,7 @@ public class WalkingUnitMovementController implements IUnitMovementController {
                 w.add(directions.get(i));//v+directions.get(i)
                 if (w.x>=0&&w.y>=0&&w.x<(board.getWidth())&&w.y<board.getHeight()){
                     ICell cell=board.getCell(w);
-                    if((!discovered.containsKey(w))&&(!(cell.getStatus()== CellStatus.NOTMOVEABLE))) {//not discovered and not notmoveable.
+                    if((!discovered.containsKey(w))&& (cell.getStatus() != CellStatus.NOTMOVEABLE) && (cell.getStatus() != CellStatus.SELECTED)) {//not discovered and not notmoveable.
                         if (w.x==targetPos.x&&w.y==targetPos.y) {
                             path.add(w);//finds the path
                             path.add(v);

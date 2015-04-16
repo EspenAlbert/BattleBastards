@@ -25,17 +25,16 @@ import java.util.Queue;
 /**
  * Created by espen1 on 27.02.2015.
  */
-public class UnitRenderer implements IMoveListener, ICameraListener {
-    private final IBoard board;
+public class UnitRenderer implements IMoveListener {
+    private final UnitMoveExecutor moveExecutor;
     private ICamera camera;
 
     private IRenderBulding renderBulding = RenderBuilding.getInstance();
     private HashMap<Vector2, IRenderObject> unitPositionsAndRenderObjects;
     private Queue<Move> currentAnimations = new LinkedList<Move>();//TODO: Continue
-    private boolean animationActive = false;
+    private boolean animationIsActive = false;
 
     public UnitRenderer(IBoard board, ICamera camera, boolean iAmPlayer1) {
-        this.board = board;
         this.camera = camera;
 
         ICellConverter cellConverter = iAmPlayer1 ? new Player1CellConverter() : new Player2CellConverter();
@@ -53,45 +52,79 @@ public class UnitRenderer implements IMoveListener, ICameraListener {
         for (Vector2 pos : unitPositions) {
             unitPositionsAndRenderObjects.put(pos, renderBulding.getRenderObject(board.getCell(pos).getUnit()));
         }
+        moveExecutor = new UnitMoveExecutor(this);
     }
 
 
     @Override
     public void moveExecuted(Move move) {
-       currentAnimations.add(move);
+        currentAnimations.add(move);
     }
 
-    private void movementMove(MovementMove move) {
+    private void executeMove(Move move) {
+        animationIsActive = true;
+        Vector2 startPos = move.getStartCell().getPos();
+        Vector2 endPos = move.getTargetCell().getPos();
+        camera.makeSureVisible(startPos, endPos);
+
+        if (move instanceof AttackMove) {
+            IRenderObject attacker = unitPositionsAndRenderObjects.get(startPos);
+            ArrayList<IRenderObject> victims = getVictims((AttackMove) move);
+            moveExecutor.attackMove(attacker, victims);
+        }
+        else if(move instanceof MovementMove) {
+            IRenderObject mover = unitPositionsAndRenderObjects.get(startPos);
+            unitPositionsAndRenderObjects.remove(startPos);
+            moveExecutor.movementMove(mover, (MovementMove) move);
+        }
         /*
-        1. Set unit renderMode = moving
-        2. AnimationQueue.add(new MovementAnimation(move))
-         */
+        if(move instanceof MovementMove) {
+            MovementMove movement = (MovementMove) move;
+            Vector2 mover = movement.getStartCell().getPos();
+            Vector2 endCell = movement.getTarget();
+            IRenderObject renderer = unitPositionsAndRenderObjects.get(mover);
+            System.out.println("This should not be null! : " + renderer);
+            unitPositionsAndRenderObjects.remove(mover);
+            unitPositionsAndRenderObjects.put(endCell, renderer);
+        }
+        */
     }
+
+    private ArrayList<IRenderObject> getVictims(AttackMove move) {
+        ArrayList<ICell> victims = move.getVictims();
+        ArrayList<IRenderObject> victimsRenderObjects = new ArrayList<IRenderObject>();
+        if(victims != null) {
+            for(ICell cell : victims){
+                victimsRenderObjects.add(unitPositionsAndRenderObjects.get(cell.getPos()));
+            }
+        }
+        return victimsRenderObjects;
+    }
+
 
     public void render(SpriteBatch batch) {
-        if(!animationActive && !currentAnimations.isEmpty()) {
+        if(animationIsActive) moveExecutor.update(batch);
+
+        for(Vector2 key : unitPositionsAndRenderObjects.keySet()) {
+            unitPositionsAndRenderObjects.get(key).render(batch, key);
+        }
+
+
+        if(!animationIsActive && !currentAnimations.isEmpty()) {
             executeMove(currentAnimations.poll());
         }
     }
 
-    private void executeMove(Move move) {
-        animationActive = true;
-        if (move instanceof AttackMove) {
-            //attackMoveExecuted((AttackMove) move);
-        }
-        else if(move instanceof MovementMove) {
-            movementMove((MovementMove) move);
-        }
+    public boolean noAnimationWaiting() {
+        return currentAnimations.size() > 0 && !animationIsActive;
     }
 
-    public void render(SpriteBatch batch, Vector2 pos) {
-        for(Vector2 key : unitPositionsAndRenderObjects.keySet()) {
-            unitPositionsAndRenderObjects.get(key).render(batch, key);
-        }
+    public void movementMoveComplete(IRenderObject currentActor, Vector2 endPos) {
+        unitPositionsAndRenderObjects.put(endPos, currentActor);
+        animationIsActive = false;
     }
 
-    @Override
-    public void cameraShifted(int dx, int dy) {
-
+    public void attackMoveFinished() {
+        animationIsActive = false;
     }
 }

@@ -10,13 +10,14 @@ public abstract class BoardControllerState {
     protected final IBoardController boardController;
     protected IBoard board;
 
-    public abstract void attackButtonPressed();
+    public abstract void actionButtonPressed();
     public abstract void cellSelected(ICell cell);
+    public abstract BoardControllerStateEvent getEvent();
 
     public BoardControllerState(IBoardController boardController, IBoard board) {
         this.boardController = boardController;
         this.board = board;
     }
 
-    public abstract void poped();
+    public abstract void popped();
 }
