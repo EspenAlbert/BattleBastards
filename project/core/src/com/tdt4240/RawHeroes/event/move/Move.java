@@ -17,6 +17,9 @@ public abstract class Move implements Serializable{
     public int getCost() {
         return cost;
     }
+    public void setCost(int moves){
+        cost = moves;
+    }
 
     public ICell getStartCell() {
         return startCell;

@@ -21,6 +21,7 @@ public class MovementMove extends Move {
         this.target=target.getPos();
         this.path = path;
         length=path.size();
+        setCost(length);
         IUnit mover = selectedCell.getUnit();
         selectedCell.setUnit(null);
         target.setUnit(mover);
