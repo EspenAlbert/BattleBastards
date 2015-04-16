@@ -23,12 +23,14 @@ public class HudRenderer implements IRenderNoPos, BoardControllerStateListener {
     private TextButton sendButton;
     private TextButton actionButton;
     private TextButton abortButton;
+    private IBoardController boardController;
 
     private Label energyLabel;
 
     public HudRenderer(IBoardController boardController){
-        setupUiElements();
         boardController.addBoardControllerStateListener(this);
+        this.boardController = boardController;
+        setupUiElements();
     }
     @Override
     public void stateChanged(BoardControllerStateEvent event) {
@@ -41,6 +43,7 @@ public class HudRenderer implements IRenderNoPos, BoardControllerStateListener {
         sendButton.draw(batch, 1);
         abortButton.draw(batch, 1);
         actionButton.draw(batch, 1);
+        energyLabel.setText(Integer.toString(boardController.getRemaining_energy()) + "/" + GameConstants.MAX_ENERGY);
         energyLabel.draw(batch, 1);
         batch.end();
     }
@@ -58,7 +61,7 @@ public class HudRenderer implements IRenderNoPos, BoardControllerStateListener {
         actionButton.setSize(buttonWidth, buttonHeight);
         abortButton= new TextButton("Quit", skin);
         abortButton.setSize(buttonWidth, buttonHeight);
-        energyLabel = new Label("47/100",skin);
+        energyLabel = new Label(Integer.toString(boardController.getRemaining_energy()),skin);
         energyLabel.setSize(buttonWidth, buttonHeight);
         energyLabel.setAlignment(0);
         energyLabel.setColor(1, 1, 1, 1);
