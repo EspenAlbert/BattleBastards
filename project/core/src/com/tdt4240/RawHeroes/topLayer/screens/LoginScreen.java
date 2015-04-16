@@ -101,7 +101,7 @@ public class LoginScreen extends ScreenState {
     public void loginButtonClicked() {
         String username = textFieldUsername.getText();
         String pwd = textFieldPassword.getText();
-        //gsm.setState(ScreenStateManager.MAINMENU);
+        gsm.setState(ScreenStateManager.MAINMENU);
         if (loginAttempts > 4){
             dispose();
         } else {
