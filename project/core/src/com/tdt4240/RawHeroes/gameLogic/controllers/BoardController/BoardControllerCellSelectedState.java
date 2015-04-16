@@ -49,8 +49,8 @@ public class BoardControllerCellSelectedState extends BoardControllerState {
         else if(cell.getStatus()== CellStatus.IN_MOVING_RANGE){ //Bevege valgt unit til ny celle
             //TODO sjekke om man har nok energi før movet gjøres
             // Vi burde ha en limit på hvor mange ganger man kan flytte en unit også
-            ArrayList<Vector2> path = selectedCell.getUnit().getMovementPath(this.board, selectedCell.getPos(), cell.getPos());
-            this.boardController.addMove(new MovementMove(selectedCell, cell, this.board, path));
+            ArrayList<Vector2> path = selectedCell.getUnit().getMovementPath(this.board, selectedCell.getPos(), cell.getPos());//TODO: Fix movement path
+            this.boardController.addMove(new MovementMove(selectedCell, cell, path));
             this.board.switchModeOnCell(selectedCell.getPos(), CellStatus.DEFAULT);
             selectedCell = cell;
             popped();

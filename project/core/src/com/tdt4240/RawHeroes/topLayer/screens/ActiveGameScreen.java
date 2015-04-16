@@ -43,8 +43,6 @@ public class ActiveGameScreen extends ScreenState {
     private final IBoard board;
     private final boolean iAmPlayer1;
     private final CameraController cameraController;
-    private final Sprite testSprite3;
-    public static Texture ordinaryCell = new Texture(Gdx.files.internal("cell.png"));
     private SpriteBatch hudBatch;
 
     private Skin skin;
@@ -64,6 +62,29 @@ public class ActiveGameScreen extends ScreenState {
         iAmPlayer1 = true;
         cameraController = new CameraController();
 
+        setupUiElements();
+
+        boardMover = new BoardMover(board);
+        gameView = new GameView(board, iAmPlayer1, cameraController);
+        boardController = new BoardController(board, boardMover, game.getMoveCount());
+
+        boardMover.addMoveListener(gameView);
+        board.addBoardListener(gameView);
+
+        boardMover.executeMoves(game.getLastMoves());
+        hudBatch = new SpriteBatch(5);
+        resize(GameConstants.RESOLUTION_WIDTH, GameConstants.RESOLUTION_HEIGHT);
+    }
+    private void initializeTouchListener() {
+        Gdx.input.setInputProcessor(MyInputProcessor.getInstance());
+        MyInputProcessor.getInstance().AddTouchDownListener(new TouchListenerActiveGameScreen(boardController, cameraController, this));
+
+
+
+    }
+
+    //TODO: Put denne metoden i GameView/Action panel eller noe sånt
+    private void setupUiElements() {
         skin = new Skin(Gdx.files.internal("uiskin.json"), new TextureAtlas(Gdx.files.internal("uiskin.atlas")));
 
 
@@ -87,24 +108,6 @@ public class ActiveGameScreen extends ScreenState {
         actionButton.setPosition(GameConstants.RESOLUTION_WIDTH - actionButton.getWidth(), abortButton.getHeight());
         abortButton.setPosition(GameConstants.RESOLUTION_WIDTH-abortButton.getWidth(), 0);
         energyLabel.setPosition(GameConstants.RESOLUTION_WIDTH-energyLabel.getWidth(), abortButton.getHeight() + actionButton.getHeight() + sendButton.getHeight());
-
-        boardMover = new BoardMover(board);
-        gameView = new GameView(board, iAmPlayer1,cameraController,boardMover);
-        board.addBoardListener(gameView);
-        boardMover.executeMoves(game.getLastMoves());
-        boardController = new BoardController(board, boardMover, game.getMoveCount());
-        Gdx.input.setInputProcessor(MyInputProcessor.getInstance());
-        MyInputProcessor.getInstance().AddTouchDownListener(new TouchListenerActiveGameScreen(boardController, cameraController, this));
-       // MyInputProcessor.getInstance().setCamera(cameraController);
-       // MyInputProcessor.getInstance().setScreen(this);
-
-        testSprite3 = new Sprite(ordinaryCell);
-        testSprite3.setSize(100, 100);
-        testSprite3.setPosition(ButtonXPos, 100);
-        hudBatch = new SpriteBatch(5);
-        resize(GameConstants.RESOLUTION_WIDTH, GameConstants.RESOLUTION_HEIGHT);
-
-
     }
 
     @Override
@@ -114,6 +117,7 @@ public class ActiveGameScreen extends ScreenState {
 
     @Override
     public void render() {
+        initializeWhenViewReady();
         Gdx.gl.glClearColor(0.36f, 0.32f, 0.27f, 1.0f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         spriteBatch.begin();
@@ -128,6 +132,11 @@ public class ActiveGameScreen extends ScreenState {
         actionButton.draw(hudBatch, 1);
         energyLabel.draw(hudBatch, 1);
         hudBatch.end();
+    }
+
+    private boolean initialized = false;
+    private void initializeWhenViewReady() {
+        if(!initialized && gameView.noAnimationWaiting()) initializeTouchListener();
     }
 
     @Override

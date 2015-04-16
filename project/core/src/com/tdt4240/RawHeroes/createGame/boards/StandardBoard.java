@@ -39,6 +39,9 @@ public class StandardBoard implements IBoard {
         listeners = new ArrayList<IBoardListener>();
     }
 
+    public StandardBoard(ICell[][] cells) {
+        this.cells = cells.clone();
+    }
 
     @Override
     public void addBoardListener(IBoardListener listener) {
@@ -78,4 +81,11 @@ public class StandardBoard implements IBoard {
     public int getHeight() {
         return height;
     }
+
+    @Override
+    public IBoard deepCopy() {
+        return new StandardBoard(cells);
+    }
+
+
 }

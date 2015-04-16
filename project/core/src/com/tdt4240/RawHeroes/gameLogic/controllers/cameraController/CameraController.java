@@ -104,6 +104,11 @@ public class CameraController implements ICamera {
         camera.translate(x, y);
     }
 
+    @Override
+    public void makeSureVisible(Vector2 startPos, Vector2 endPos) {
+        //TODO: Implement logic to make sure positions is visible...
+    }
+
     public void resize(int width, int height) {
         viewport.update(width,height);
         camera.position.set(camera.viewportWidth/2,camera.viewportHeight/2,0);

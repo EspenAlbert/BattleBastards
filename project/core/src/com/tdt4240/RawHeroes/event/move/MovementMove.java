@@ -16,17 +16,13 @@ public class MovementMove extends Move {
     private Vector2 target;
     private int length;
 
-    public MovementMove(ICell selectedCell, ICell target, IBoard board, ArrayList<Vector2> path) {//selectedCell is the startCell
-        super(selectedCell);
+    public MovementMove(ICell selectedCell, ICell target, ArrayList<Vector2> path) {//selectedCell is the startCell
+        super(selectedCell, target);
         this.target=target.getPos();
         this.path = path;
         length=path.size();
-        IUnit mover = selectedCell.getUnit();
-        selectedCell.setUnit(null);
-        target.setUnit(mover);
     }
 
-    //TODO lage en calculate path metode. Den må regnes ut uansett
 
     public ArrayList<Vector2> getPath(){
         return path;
@@ -39,5 +35,17 @@ public class MovementMove extends Move {
 
     public Vector2 getTarget(){
         return target;
+    }
+
+    @Override
+    public void execute(IBoard board) {
+        IUnit mover = getStartCell().getUnit();
+        getStartCell().setUnit(null);
+        getTargetCell().setUnit(mover);
+    }
+
+    @Override
+    public void undo(IBoard board) {
+
     }
 }

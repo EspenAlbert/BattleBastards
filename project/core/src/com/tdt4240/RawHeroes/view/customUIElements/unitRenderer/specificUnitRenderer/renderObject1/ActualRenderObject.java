@@ -24,7 +24,7 @@ public class ActualRenderObject implements IRenderObject{
 
     @Override
     public void changeRenderMode(RenderMode renderMode) {
-
+        System.out.println("Switched render mode to:"  + renderMode);
     }
 
     @Override
