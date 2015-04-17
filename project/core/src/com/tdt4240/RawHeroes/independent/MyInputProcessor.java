@@ -2,6 +2,7 @@ package com.tdt4240.RawHeroes.independent;
 
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Vector2;
 import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.CameraController;
 import com.tdt4240.RawHeroes.gameLogic.models.ICamera;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 /**
  * Created by espen on 19.01.2015.
  */
-public class MyInputProcessor implements InputProcessor {
+public class MyInputProcessor implements InputProcessor, GestureDetector.GestureListener {
     private static MyInputProcessor instance;
     private CameraController camera;
     private ActiveGameScreen screen;
@@ -116,5 +117,50 @@ public class MyInputProcessor implements InputProcessor {
 
     public void setScreen(ActiveGameScreen screen) {
         this.screen = screen;
+    }
+
+    @Override
+    public boolean touchDown(float x, float y, int pointer, int button) {
+        return false;
+    }
+
+    @Override
+    public boolean tap(float x, float y, int count, int button) {
+
+        System.out.println("Tapped" + " X:" + x + " , Y:" + y + " Count" + count);
+        return false;
+    }
+
+    @Override
+    public boolean longPress(float x, float y) {
+        System.out.println("Long pressX" + x + ",Y:" + y);
+        return false;
+    }
+
+    @Override
+    public boolean fling(float velocityX, float velocityY, int button) {
+        System.out.println("fling....");
+        return false;
+    }
+
+    @Override
+    public boolean pan(float x, float y, float deltaX, float deltaY) {
+        System.out.println("pan");
+        return false;
+    }
+
+    @Override
+    public boolean panStop(float x, float y, int pointer, int button) {
+        return false;
+    }
+
+    @Override
+    public boolean zoom(float initialDistance, float distance) {
+        return false;
+    }
+
+    @Override
+    public boolean pinch(Vector2 initialPointer1, Vector2 initialPointer2, Vector2 pointer1, Vector2 pointer2) {
+        return false;
     }
 }
