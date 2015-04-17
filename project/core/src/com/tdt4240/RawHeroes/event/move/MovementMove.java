@@ -8,6 +8,7 @@ import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
 import com.tdt4240.RawHeroes.independent.Position;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by espen1 on 27.02.2015.
@@ -47,6 +48,10 @@ public class MovementMove extends Move {
 
     @Override
     public void undo(IBoard board) {
-
+        Collections.reverse(path);
+        ICell temp = getTargetCell();
+        this.setTargetCell(getStartCell());
+        this.setStartCell(temp);
+        this.target = getTargetCell().getPos();
     }
 }

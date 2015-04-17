@@ -53,9 +53,13 @@ public class BoardMover implements IBoardMover {
 
     @Override
     public void undo() {
+        System.out.println("undo");
         if(moves.size() > 0) {
             moves.get(moves.size()-1).undo(board);
+            System.out.println(moves.size());
+            doMove(moves.get(moves.size()-1));
         }
+        System.out.println(moves.size());
         moves.remove(moves.size() -1);
     }
 
