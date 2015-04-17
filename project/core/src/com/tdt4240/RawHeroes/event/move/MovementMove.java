@@ -53,5 +53,7 @@ public class MovementMove extends Move {
         this.setTargetCell(getStartCell());
         this.setStartCell(temp);
         this.target = getTargetCell().getPos();
+        this.reverseCost();
+
     }
 }

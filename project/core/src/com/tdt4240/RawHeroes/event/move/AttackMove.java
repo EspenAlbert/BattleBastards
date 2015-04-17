@@ -38,7 +38,7 @@ public class AttackMove extends Move {
 
     @Override
     public void undo(IBoard board) {
-
+        this.reverseCost();
     }
 
     private void getDamages(IBoard board) {

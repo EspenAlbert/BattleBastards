@@ -7,6 +7,8 @@ import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.independent.Position;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 
 
@@ -73,8 +75,8 @@ public class WalkingUnitMovementController implements IUnitMovementController {
                     ICell cell=board.getCell(w);
                     if((!discovered.containsKey(w))&& (cell.getStatus() != CellStatus.NOTMOVEABLE) && (cell.getStatus() != CellStatus.SELECTED)) {//not discovered and not notmoveable.
                         if (w.getX()==targetPos.getX()&&w.getY()==targetPos.getY()) {
-                            path.add(w);//finds the path
                             path.add(v);
+                            path.add(w);//finds the path
                             while (true) {
                                 if (discovered.get(v) == null) {
                                     return path;

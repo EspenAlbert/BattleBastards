@@ -36,6 +36,10 @@ public abstract class Move implements Serializable{
         this.targetCell = cell;
     }
 
+    protected void reverseCost(){
+        this.cost = -cost;
+    }
+
     public abstract void  execute(IBoard board);
 
     public abstract void undo(IBoard board);
