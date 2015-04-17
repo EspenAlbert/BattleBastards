@@ -9,9 +9,9 @@ import java.io.Serializable;
  * Created by espen1 on 27.02.2015.
  */
 public abstract class Move implements Serializable{
-    private final ICell startCell;
+    private ICell startCell;
     private int cost;
-    private final ICell targetCell;
+    private ICell targetCell;
 
     public Move(ICell start, ICell end) {
         this.startCell = start;
@@ -27,6 +27,17 @@ public abstract class Move implements Serializable{
     }
     public ICell getTargetCell() {
         return targetCell;
+    }
+
+    public void setStartCell(ICell cell){
+        this.startCell = cell;
+    }
+    public void setTargetCell(ICell cell){
+        this.targetCell = cell;
+    }
+
+    public void setCost(int cost){
+        this.cost = cost;
     }
 
     public abstract void  execute(IBoard board);

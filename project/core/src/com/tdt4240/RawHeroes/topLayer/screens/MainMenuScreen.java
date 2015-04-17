@@ -2,6 +2,8 @@ package com.tdt4240.RawHeroes.topLayer.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
@@ -29,6 +31,9 @@ public class MainMenuScreen extends ScreenState {
     private final TextField textFieldGetGame;
     private final TextButton buttonGetGame;
     private ArrayList<ClientGameState> games;
+
+    private Texture title;
+    private Sprite sprite;
 
     private Table table, scrollTable;
     private ScrollPane scrollPane;
@@ -80,7 +85,11 @@ public class MainMenuScreen extends ScreenState {
             }
         });
 
+        title = new Texture(Gdx.files.internal("title.png"));
+        sprite = new Sprite(title);
 
+        sprite.setSize(300, 100);
+        sprite.setPosition(0, GameConstants.RESOLUTION_HEIGHT - sprite.getHeight()*2);
 
         scrollTable = new Table(skin);
         table = new Table(skin);
@@ -200,6 +209,9 @@ public class MainMenuScreen extends ScreenState {
         spriteBatch.begin();
         stage.act();
         stage.draw();
+        spriteBatch.end();
+        spriteBatch.begin();
+        sprite.draw(spriteBatch);
         spriteBatch.end();
 
     }

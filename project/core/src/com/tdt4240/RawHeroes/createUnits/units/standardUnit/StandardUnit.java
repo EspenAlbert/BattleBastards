@@ -1,6 +1,5 @@
 package com.tdt4240.RawHeroes.createUnits.units.standardUnit;
 
-import com.badlogic.gdx.math.Vector2;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitCombatController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitMovementController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.SimpleUnitCombatController;
@@ -8,6 +7,7 @@ import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.WalkingUnitMov
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
 import com.tdt4240.RawHeroes.gameLogic.unit.UnitName;
+import com.tdt4240.RawHeroes.independent.Position;
 
 import java.util.ArrayList;
 
@@ -22,12 +22,14 @@ public class StandardUnit implements IUnit {
     private IUnitMovementController unitMoveController;
 
     private int remainingMoves;
+    private int weight;
 
     public StandardUnit(boolean player1Unit) {
         this.hasAttacked = false;
         this.player1Unit = player1Unit;
 
         this.remainingMoves = 3;
+        this.weight = 5;
 
         this.unitCombatController = new SimpleUnitCombatController(this, 5, 1);
         this.unitMoveController = new WalkingUnitMovementController();
@@ -40,28 +42,33 @@ public class StandardUnit implements IUnit {
     }
 
     @Override
-    public ArrayList<Vector2> getInflictionZone(Vector2 myPos, Vector2 target) {
+    public ArrayList<Position> getInflictionZone(Position myPos, Position target) {
         return unitCombatController.getInflictionZone(myPos, target);
     }
 
     @Override
-    public ArrayList<Vector2> getMovementZone(IBoard board, Vector2 myPos, int movesLeft) {
+    public ArrayList<Position> getMovementZone(IBoard board, Position myPos, int movesLeft) {
         return this.unitMoveController.getMovementZone(board, myPos, movesLeft, this.remainingMoves);
     }
 
     @Override
-    public ArrayList<Vector2> getMovementPath(IBoard board, Vector2 myPos, Vector2 targetPos){
+    public ArrayList<Position> getMovementPath(IBoard board, Position myPos, Position targetPos){
         return this.unitMoveController.getMovementPath(board, myPos, targetPos);
     }
 
     @Override
-    public int inflictDamage(Vector2 myPos, Vector2 targetPos) {
+    public int inflictDamage(Position myPos, Position targetPos) {
         return unitCombatController.inflictDamage(myPos, targetPos);
     }
 
     @Override
     public int attacked(int damage) {
         return unitCombatController.attacked(damage); //Final dmg received (after armor etc. reductions)
+    }
+
+    @Override
+    public int getWeight() {
+        return this.weight;
     }
 
     @Override
@@ -90,8 +97,8 @@ public class StandardUnit implements IUnit {
     }
 
     @Override
-    public ArrayList<Vector2> getAttackablePositions(Vector2 pos, int movesLeft) {
-        return this.unitCombatController.getAttackablePositions(pos, movesLeft);
+    public ArrayList<Position> getAttackablePositions(Position pos, int movesLeft, IBoard board) {
+        return this.unitCombatController.getAttackablePositions(pos, movesLeft, board);
     }
 
     @Override

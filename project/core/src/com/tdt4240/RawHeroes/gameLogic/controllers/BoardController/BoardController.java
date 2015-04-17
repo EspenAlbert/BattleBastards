@@ -3,6 +3,7 @@ package com.tdt4240.RawHeroes.gameLogic.controllers.boardController;
 import com.badlogic.gdx.math.Vector2;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.event.move.Move;
+import com.tdt4240.RawHeroes.independent.Position;
 
 import java.util.ArrayList;
 import java.util.Stack;
@@ -28,8 +29,8 @@ public class BoardController implements IBoardController {
         this.remaining_energy = remaining_energy;
         boardStates = new Stack<BoardControllerState>();
         listeners = new ArrayList<BoardControllerStateListener>();
-        this.boardStates.push(new BoardControllerNoCellSelectedState(this, this.board));
-        //TODO sette riktig state. Kanskje Replay hvis moveslist ikke er tom eller noe
+        boardStates.push(new BoardControllerReplayState(this, this.board));
+        fireStateChanged(boardStates.peek().getEvent());
     }
 
     public void setState(BoardControllerState state) {
@@ -37,9 +38,11 @@ public class BoardController implements IBoardController {
         boardStates.push(state);
         fireStateChanged(state.getEvent());
     }
+    private void refreshState(){
+        fireStateChanged(boardStates.peek().getEvent());
+    }
 
-    @Override
-    public void fireStateChanged(BoardControllerStateEvent event) {
+    private void fireStateChanged(BoardControllerStateEvent event) {
         for (BoardControllerStateListener listener : listeners){
             listener.stateChanged(event);
         }
@@ -51,11 +54,13 @@ public class BoardController implements IBoardController {
     }
 
     public void undoMove(){
-        this.boardMover.undo();
+        Move move = this.boardMover.undo();
+        //TODO FIX
+        if(move != null) remaining_energy += move.getCost();
     }
 
     @Override
-    public void cellTouched(Vector2 coordinates) {
+    public void cellTouched(Position coordinates) {
         boardStates.peek().cellSelected(board.getCell(coordinates));
     }
 
@@ -65,7 +70,7 @@ public class BoardController implements IBoardController {
     }
 
     @Override
-    public void cellTouchedLong(Vector2 coordinates){
+    public void cellTouchedLong(Position coordinates){
         if (board.getCell(coordinates).getUnit() != null){
             //TODO åpne et nytt vindu med informasjon om denne uniten
         }
@@ -77,5 +82,6 @@ public class BoardController implements IBoardController {
 
     public void addBoardControllerStateListener(BoardControllerStateListener listener){
         this.listeners.add(listener);
+        this.refreshState();
     }
 }

@@ -4,16 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
 import com.tdt4240.RawHeroes.event.events.BoardEvent;
 import com.tdt4240.RawHeroes.event.events.CellChangeEvent;
 import com.tdt4240.RawHeroes.event.listener.IBoardListener;
 import com.tdt4240.RawHeroes.gameLogic.cell.CellStatus;
 import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
-import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.ICellConverter;
-import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.Player1CellConverter;
-import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.Player2CellConverter;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
+import com.tdt4240.RawHeroes.independent.Position;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.IRenderNoPos;
 
 import java.util.ArrayList;
@@ -26,7 +23,6 @@ public class BoardRenderer implements IBoardListener, IRenderNoPos {
     private final int boardWidth;
     private final int boardHeight;
     private final IBoard board;
-    private final ICellConverter cellConverter;
     private ArrayList<ArrayList<Sprite>> overlaySprites;
     private ArrayList<ArrayList<Sprite>> grassSprites;
     //public static Texture attackableCell = new Texture(Gdx.files.internal("badlogic.jpg"));
@@ -43,9 +39,8 @@ public class BoardRenderer implements IBoardListener, IRenderNoPos {
     public BoardRenderer(IBoard board, boolean iAmPlayer1) {
         this.board = board;
         board.addBoardListener(this);
-        this.cellConverter = iAmPlayer1 ? new Player1CellConverter() : new Player2CellConverter();
 
-        ICell[][] cells = cellConverter.convertCells(board.getCells());
+        ICell[][] cells = board.getCells();
 
 
 
@@ -107,11 +102,10 @@ public class BoardRenderer implements IBoardListener, IRenderNoPos {
     public void boardChanged(BoardEvent event) {
         if(event instanceof CellChangeEvent) {
             CellChangeEvent cellChangeEvent = (CellChangeEvent) event;
-            Vector2 pos = cellChangeEvent.getPosition();
-            int x = (int) pos.x;
-            int y = (int) pos.y;
+            Position pos = cellChangeEvent.getPosition();
+            int x = (int) pos.getX();
+            int y = (int) pos.getY();
             cellStatuses[x][y] = board.getCell(pos).getStatus();
-            System.out.println(cellChangeEvent.getPosition().x + "," + cellChangeEvent.getPosition().y + " cell was changed to:" + board.getCell(cellChangeEvent.getPosition()).getStatus());
             overlaySprites.get(x).set(y, createOverlaySprite(x, y));
         }
     }

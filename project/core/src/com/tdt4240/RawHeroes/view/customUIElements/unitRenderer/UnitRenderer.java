@@ -1,20 +1,16 @@
 package com.tdt4240.RawHeroes.view.customUIElements.unitRenderer;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
 import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
 import com.tdt4240.RawHeroes.gameLogic.models.ICamera;
-import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.ICellConverter;
-import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.Player1CellConverter;
-import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.Player2CellConverter;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.event.move.AttackMove;
 import com.tdt4240.RawHeroes.event.listener.IMoveListener;
 import com.tdt4240.RawHeroes.event.move.Move;
 import com.tdt4240.RawHeroes.event.move.MovementMove;
+import com.tdt4240.RawHeroes.independent.Position;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.IRenderBulding;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.IRenderObject;
-import com.tdt4240.RawHeroes.event.listener.ICameraListener;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.RenderBuilding;
 
 import java.util.ArrayList;
@@ -30,26 +26,23 @@ public class UnitRenderer implements IMoveListener {
     private ICamera camera;
 
     private IRenderBulding renderBulding = RenderBuilding.getInstance();
-    private HashMap<Vector2, IRenderObject> unitPositionsAndRenderObjects;
+    private HashMap<Position, IRenderObject> unitPositionsAndRenderObjects;
     private Queue<Move> currentAnimations = new LinkedList<Move>();//TODO: Continue
     private boolean animationIsActive = false;
 
     public UnitRenderer(IBoard board, ICamera camera, boolean iAmPlayer1) {
         this.camera = camera;
-
-        ICellConverter cellConverter = iAmPlayer1 ? new Player1CellConverter() : new Player2CellConverter();
-
-        ICell[][] cells = cellConverter.convertCells(board.getCells());
-        ArrayList<Vector2> unitPositions = new ArrayList<Vector2>();
+        ICell[][] cells = board.getCells();
+        ArrayList<Position> unitPositions = new ArrayList<Position>();
         for (int x = 0; x < cells.length; x++) {
             for (int y = 0; y < cells[0].length; y++) {
                 if (cells[x][y].getUnit() != null) {
-                    unitPositions.add(new Vector2(x, y));
+                    unitPositions.add(new Position(x, y));
                 }
             }
         }
-        unitPositionsAndRenderObjects = new HashMap<Vector2, IRenderObject>();
-        for (Vector2 pos : unitPositions) {
+        unitPositionsAndRenderObjects = new HashMap<Position, IRenderObject>();
+        for (Position pos : unitPositions) {
             unitPositionsAndRenderObjects.put(pos, renderBulding.getRenderObject(board.getCell(pos).getUnit()));
         }
         moveExecutor = new UnitMoveExecutor(this);
@@ -63,8 +56,8 @@ public class UnitRenderer implements IMoveListener {
 
     private void executeMove(Move move) {
         animationIsActive = true;
-        Vector2 startPos = move.getStartCell().getPos();
-        Vector2 endPos = move.getTargetCell().getPos();
+        Position startPos = move.getStartCell().getPos();
+        Position endPos = move.getTargetCell().getPos();
         camera.makeSureVisible(startPos, endPos);
 
         if (move instanceof AttackMove) {
@@ -105,8 +98,8 @@ public class UnitRenderer implements IMoveListener {
     public void render(SpriteBatch batch) {
         if(animationIsActive) moveExecutor.update(batch);
 
-        for(Vector2 key : unitPositionsAndRenderObjects.keySet()) {
-            unitPositionsAndRenderObjects.get(key).render(batch, key);
+        for(Position key : unitPositionsAndRenderObjects.keySet()) {
+            unitPositionsAndRenderObjects.get(key).render(batch, key.getVec2Pos());
         }
 
 
@@ -116,10 +109,10 @@ public class UnitRenderer implements IMoveListener {
     }
 
     public boolean noAnimationWaiting() {
-        return currentAnimations.size() > 0 && !animationIsActive;
+        return currentAnimations.size() < 1 && !animationIsActive;
     }
 
-    public void movementMoveComplete(IRenderObject currentActor, Vector2 endPos) {
+    public void movementMoveComplete(IRenderObject currentActor, Position endPos) {
         unitPositionsAndRenderObjects.put(endPos, currentActor);
         animationIsActive = false;
     }

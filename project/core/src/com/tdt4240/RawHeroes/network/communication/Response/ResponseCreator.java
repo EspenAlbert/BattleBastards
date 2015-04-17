@@ -1,5 +1,6 @@
 package com.tdt4240.RawHeroes.network.communication.Response;
 
+import com.tdt4240.RawHeroes.createGame.boards.StandardBoard;
 import com.tdt4240.RawHeroes.topLayer.commonObjects.Game;
 
 /**
@@ -56,5 +57,8 @@ public class ResponseCreator {
 
     public static ResponseMessage getGameSuccess(Game game) {
         return new ResponseMessage(ResponseType.SUCCESS, game);
+    }
+    public static ResponseMessage testBoardResponse(StandardBoard board) {
+        return new ResponseMessage(ResponseType.SUCCESS, board);
     }
 }
