@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.CameraController;
 import com.tdt4240.RawHeroes.gameLogic.models.ICamera;
+import com.tdt4240.RawHeroes.independent.inputListeners.ITouchDragged;
 import com.tdt4240.RawHeroes.independent.inputListeners.TouchDown;
 import com.tdt4240.RawHeroes.topLayer.screens.ActiveGameScreen;
 
@@ -28,10 +29,14 @@ public class MyInputProcessor implements InputProcessor {
         return instance;
     }
 
+    private ArrayList<ITouchDragged> touchDraggedListeners = new ArrayList<ITouchDragged>();
     private ArrayList<TouchDown> touchDownsListeners = new ArrayList<TouchDown>();
 
     public void AddTouchDownListener(TouchDown listener) {
         touchDownsListeners.add(listener);
+    }
+    public void AddTouchDraggedListener(ITouchDragged listener) {
+        touchDraggedListeners.add(listener);
     }
 
     public void setCamera(CameraController camera) {
@@ -39,6 +44,7 @@ public class MyInputProcessor implements InputProcessor {
     }
     public void removeListeners() {
         touchDownsListeners.clear();
+        touchDraggedListeners.clear();
     }
 
     @Override
@@ -87,7 +93,11 @@ public class MyInputProcessor implements InputProcessor {
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
-        return false;
+
+        for(ITouchDragged listener : touchDraggedListeners) {
+            listener.touchDragged(screenX, screenY, pointer);
+        }
+            return false;
     }
 
     @Override

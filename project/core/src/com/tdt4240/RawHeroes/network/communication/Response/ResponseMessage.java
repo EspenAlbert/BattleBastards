@@ -7,11 +7,15 @@ import java.io.Serializable;
  */
 
 
-public class ResponseMessage implements Serializable{
+public class ResponseMessage implements Serializable {
 
     private final ResponseType type;
     private final Object content;
 
+    public ResponseMessage() {
+        type = null;
+        content = null;
+    }
     public ResponseMessage(ResponseType type, Object content) {
         this.type = type;
         this.content = content;
@@ -24,4 +28,6 @@ public class ResponseMessage implements Serializable{
     public Object getContent() {
         return content;
     }
+
+
 }
