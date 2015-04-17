@@ -19,6 +19,7 @@ public interface IUnit extends Serializable{
     ArrayList<Position> getMovementPath(IBoard board, Position myPos, Position targetPos);
     int inflictDamage(Position myPos, Position enemies);
     int attacked(int damage);
+    int getWeight();
     void setAttackLogic(IUnitCombatController controller);
     void setMovementLogic(IUnitMovementController controller);
     void setHasAttacked();

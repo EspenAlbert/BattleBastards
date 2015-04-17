@@ -38,10 +38,6 @@ public class BoardController implements IBoardController {
         boardStates.push(state);
         fireStateChanged(state.getEvent());
     }
-    public void initializeFirstState(){
-        boardStates.push(new BoardControllerReplayState(this, this.board));
-        fireStateChanged(boardStates.peek().getEvent());
-    }
     private void refreshState(){
         fireStateChanged(boardStates.peek().getEvent());
     }
@@ -58,7 +54,9 @@ public class BoardController implements IBoardController {
     }
 
     public void undoMove(){
-        this.boardMover.undo();
+        Move move = this.boardMover.undo();
+        //TODO FIX
+        if(move != null) remaining_energy += move.getCost();
     }
 
     @Override

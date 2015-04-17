@@ -26,7 +26,7 @@ public abstract class Game implements Serializable{
         this.winCondition = winCondition;
         gameState = GameState.CHALLENGE;
         nextTurnIsPlayer1 = false;
-        moveCount = 5;
+        moveCount = 100;
     }
 
     public String getPlayer1Nickname() {

@@ -27,7 +27,7 @@ public class Cell implements ICell {
 
     @Override
     public IUnit getUnit() {
-        return unit;
+        return unit != null ? unit:null;
     }
 
     @Override

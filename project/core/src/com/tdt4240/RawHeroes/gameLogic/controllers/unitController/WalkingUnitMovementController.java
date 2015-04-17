@@ -29,7 +29,7 @@ public class WalkingUnitMovementController implements IUnitMovementController {
 
     @Override
     public ArrayList<Position> getMovementZone(IBoard board, Position myPos, int movesLeft, int unitMaxMoves) {
-        int maxDepth=Math.min(movesLeft, unitMaxMoves); //max moves for unit
+        int maxDepth=Math.min(movesLeft/board.getCell(myPos).getUnit().getWeight(), unitMaxMoves); //max moves for unit
         System.out.println("Max depth should be 3, is " + maxDepth);
 
         //breadth first search
