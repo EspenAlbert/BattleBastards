@@ -64,6 +64,7 @@ public class ActiveGameScreen extends ScreenState{
         gameView = new GameView(board, iAmPlayer1, cameraController);
         boardController = new BoardController(board, boardMover, game.getMoveCount());
         hud = new HudRenderer(boardController);
+        //boardController.initializeFirstState();
 
         boardMover.addMoveListener(gameView);
         board.addBoardListener(gameView);
