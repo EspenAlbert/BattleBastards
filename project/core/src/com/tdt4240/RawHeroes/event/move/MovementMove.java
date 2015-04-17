@@ -5,6 +5,7 @@ import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.WalkingUnitMovementController;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
+import com.tdt4240.RawHeroes.independent.Position;
 
 import java.util.ArrayList;
 
@@ -12,11 +13,11 @@ import java.util.ArrayList;
  * Created by espen1 on 27.02.2015.
  */
 public class MovementMove extends Move {
-    private ArrayList<Vector2> path;
-    private Vector2 target;
+    private ArrayList<Position> path;
+    private Position target;
     private int length;
 
-    public MovementMove(ICell selectedCell, ICell target, ArrayList<Vector2> path) {//selectedCell is the startCell
+    public MovementMove(ICell selectedCell, ICell target, ArrayList<Position> path) {//selectedCell is the startCell
         super(selectedCell, target);
         this.target=target.getPos();
         this.path = path;
@@ -24,7 +25,7 @@ public class MovementMove extends Move {
     }
 
 
-    public ArrayList<Vector2> getPath(){
+    public ArrayList<Position> getPath(){
         return path;
     }
 
@@ -33,7 +34,7 @@ public class MovementMove extends Move {
     }
 
 
-    public Vector2 getTarget(){
+    public Position getTarget(){
         return target;
     }
 

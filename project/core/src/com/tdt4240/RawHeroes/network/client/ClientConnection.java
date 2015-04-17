@@ -39,7 +39,6 @@ public class ClientConnection implements IClientConnection {
     public static ClientConnection getInstance() {
         if (ourInstance == null) {
             ourInstance = new ClientConnection(GameConstants.SERVER_IP, GameConstants.SERVER_PORT);
-
         }
         return ourInstance;
     }
