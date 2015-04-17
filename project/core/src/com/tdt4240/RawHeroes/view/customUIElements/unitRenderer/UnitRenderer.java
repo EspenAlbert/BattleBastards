@@ -1,12 +1,8 @@
 package com.tdt4240.RawHeroes.view.customUIElements.unitRenderer;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
 import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
 import com.tdt4240.RawHeroes.gameLogic.models.ICamera;
-import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.ICellConverter;
-import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.Player1CellConverter;
-import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.Player2CellConverter;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.event.move.AttackMove;
 import com.tdt4240.RawHeroes.event.listener.IMoveListener;
@@ -15,7 +11,6 @@ import com.tdt4240.RawHeroes.event.move.MovementMove;
 import com.tdt4240.RawHeroes.independent.Position;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.IRenderBulding;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.IRenderObject;
-import com.tdt4240.RawHeroes.event.listener.ICameraListener;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.RenderBuilding;
 
 import java.util.ArrayList;
@@ -37,10 +32,7 @@ public class UnitRenderer implements IMoveListener {
 
     public UnitRenderer(IBoard board, ICamera camera, boolean iAmPlayer1) {
         this.camera = camera;
-
-        ICellConverter cellConverter = iAmPlayer1 ? new Player1CellConverter() : new Player2CellConverter();
-
-        ICell[][] cells = cellConverter.convertCells(board.getCells());
+        ICell[][] cells = board.getCells();
         ArrayList<Position> unitPositions = new ArrayList<Position>();
         for (int x = 0; x < cells.length; x++) {
             for (int y = 0; y < cells[0].length; y++) {

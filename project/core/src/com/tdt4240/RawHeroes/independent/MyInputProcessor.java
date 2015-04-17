@@ -66,12 +66,12 @@ public class MyInputProcessor implements InputProcessor {
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         //screenY = Math.abs((screenY - GameConstants.RESOLUTION_HEIGHT) % 800);
+        System.out.println("touch @ " + screenX + "," + screenY);
 
         for(TouchDown listener: touchDownsListeners) {
             listener.touchDown(screenX, screenY, pointer, button);
         }
         /*
-        System.out.println("touch @ " + screenX + "," + screenY);
         Vector2 cellCoordinate = camera.convertPixelCoordinateToCell(new Vector2(screenX, screenY));
         System.out.println("converted to cell: " + cellCoordinate.x + "," + cellCoordinate.y);
 

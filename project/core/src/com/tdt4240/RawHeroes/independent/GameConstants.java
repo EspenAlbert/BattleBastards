@@ -25,5 +25,5 @@ public class GameConstants {
     public static final float EXTRA_SPACE_BUTTONS = 1;
     public static final int SERVER_PORT =3310;
 
-    public static String SERVER_IP = "localhost";
+    public static String SERVER_IP = "129.241.134.184";
 }

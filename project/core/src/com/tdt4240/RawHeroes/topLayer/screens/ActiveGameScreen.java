@@ -58,7 +58,10 @@ public class ActiveGameScreen extends ScreenState{
         board = game.getBoard();
         System.out.println("in active game screen!!!!!");
         //iAmPlayer1 = ClientConnection.getInstance().getUsername().equals(game.getPlayer1Nickname());
-        iAmPlayer1 = true;
+        iAmPlayer1 = false;
+        if(!iAmPlayer1) {
+            board.convertCellsToOtherPlayer();
+        }
         cameraController = new CameraController();
 
 
