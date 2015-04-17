@@ -117,7 +117,7 @@ public class UnitRenderer implements IMoveListener {
     }
 
     public boolean noAnimationWaiting() {
-        return currentAnimations.size() > 0 && !animationIsActive;
+        return currentAnimations.size() < 1 && !animationIsActive;
     }
 
     public void movementMoveComplete(IRenderObject currentActor, Position endPos) {

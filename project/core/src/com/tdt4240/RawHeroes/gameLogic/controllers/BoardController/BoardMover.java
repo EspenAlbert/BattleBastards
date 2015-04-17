@@ -63,6 +63,7 @@ public class BoardMover implements IBoardMover {
 
     @Override
     public void executeMoves(ArrayList<Move> lastMoves) {
+        if(lastMoves == null) return;
         for(Move move : lastMoves) {
             doMove(move);
         }
