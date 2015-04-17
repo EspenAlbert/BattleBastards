@@ -7,7 +7,7 @@ import com.badlogic.gdx.Gdx;
  */
 public class GameConstants {
 
-    private static final boolean useAndroid = false;
+    private static final boolean useAndroid = true;
     public static final int RESOLUTION_WIDTH = useAndroid ? Gdx.graphics.getWidth() : 960;
     public static final int RESOLUTION_HEIGHT = useAndroid ? Gdx.graphics.getHeight() : 540;
     public static final int BUTTON_WIDTH = Math.round(GameConstants.RESOLUTION_WIDTH / 5);
@@ -25,5 +25,5 @@ public class GameConstants {
     public static final float EXTRA_SPACE_BUTTONS = 1;
     public static final int SERVER_PORT =3310;
 
-    public static String SERVER_IP = "localhost";
+    public static String SERVER_IP = "129.241.134.184";
 }

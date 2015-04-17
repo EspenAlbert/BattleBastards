@@ -19,4 +19,5 @@ public interface ICell extends Serializable{
     void setUnit(IUnit unit);
 
     void setStatus(CellStatus status);
+    void setPos(Position value);
 }

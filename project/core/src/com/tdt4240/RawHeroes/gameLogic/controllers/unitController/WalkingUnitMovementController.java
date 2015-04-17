@@ -30,8 +30,6 @@ public class WalkingUnitMovementController implements IUnitMovementController {
     @Override
     public ArrayList<Position> getMovementZone(IBoard board, Position myPos, int movesLeft, int unitMaxMoves) {
         int maxDepth=Math.min(movesLeft/board.getCell(myPos).getUnit().getWeight(), unitMaxMoves); //max moves for unit
-        System.out.println("Max depth should be 3, is " + maxDepth);
-
         //breadth first search
         ArrayList<Pair<Position, Integer>> queue=new ArrayList<Pair<Position, Integer>>();
         ArrayList<Position> discovered = new ArrayList<Position>();//
@@ -43,7 +41,6 @@ public class WalkingUnitMovementController implements IUnitMovementController {
             for (int i=0; i<directions.size();i++){
                 Position w=new Position(v);
                 w.add(directions.get(i));//v+directions.get(i)
-                System.out.println("before if: "+w);
                 if (w.getX()>=0&&w.getY()>=0&&w.getX()<(board.getWidth())&&w.getY()<board.getHeight()){
                     ICell cell=board.getCell(w);
                     if((!discovered.contains(w))&& (cell.getStatus()!= CellStatus.NOTMOVEABLE) && (cell.getUnit() == null)) {//not discovered and not notmoveable.
