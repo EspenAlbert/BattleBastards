@@ -1,6 +1,11 @@
 package com.tdt4240.RawHeroes.network.client;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Net;
+import com.badlogic.gdx.net.Socket;
+import com.badlogic.gdx.net.SocketHints;
 import com.tdt4240.RawHeroes.event.move.Move;
+import com.tdt4240.RawHeroes.independent.GameConstants;
 import com.tdt4240.RawHeroes.network.communication.Response.ResponseMessage;
 import com.tdt4240.RawHeroes.network.communication.Response.ResponseType;
 import com.tdt4240.RawHeroes.network.communication.request.RequestCreator;
@@ -11,7 +16,6 @@ import org.json.simple.JSONObject;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.Socket;
 import java.util.ArrayList;
 
 /**
@@ -34,7 +38,7 @@ public class ClientConnection implements IClientConnection {
 
     public static ClientConnection getInstance() {
         if (ourInstance == null) {
-            ourInstance = new ClientConnection("localhost", 3310);
+            ourInstance = new ClientConnection(GameConstants.SERVER_IP, GameConstants.SERVER_PORT);
 
         }
         return ourInstance;
@@ -49,6 +53,7 @@ public class ClientConnection implements IClientConnection {
         this.serverAddress = address;
         this.serverPort = port;
         clientSocket = null;
+
         //ResponseMessage responseMessage= createUser("Espen4", "1234");
         ResponseMessage responseMessage = sendRequestAndWaitForResponse(RequestCreator.getLoginRequest("Espen4", "1234"));
 
@@ -75,7 +80,9 @@ public class ClientConnection implements IClientConnection {
 
     public ResponseMessage sendRequestAndWaitForResponse(JSONObject json) {
         try {
-            clientSocket = new Socket(serverAddress, serverPort);
+            SocketHints socketHints = new SocketHints();
+            socketHints.connectTimeout = 4000;
+            clientSocket = Gdx.net.newClientSocket(Net.Protocol.TCP, serverAddress, serverPort, socketHints);
             toServer = new ObjectOutputStream(clientSocket.getOutputStream());
             in = new ObjectInputStream(clientSocket.getInputStream());
             System.out.println("about to send" + json);

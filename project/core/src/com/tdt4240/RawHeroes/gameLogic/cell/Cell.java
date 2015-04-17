@@ -11,6 +11,9 @@ public class Cell implements ICell {
     private IUnit unit;
     private CellStatus cellStatus;
 
+    public Cell() {
+        pos = null;
+    }
     public Cell(int x, int y, CellStatus cellStatus) {
         this.cellStatus = cellStatus;
         this.pos = new Vector2(x, y);
