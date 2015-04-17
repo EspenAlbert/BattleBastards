@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.tdt4240.RawHeroes.event.listener.IMoveListener;
+import com.tdt4240.RawHeroes.event.move.Move;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardControllerStateEvent;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardControllerStateListener;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.IBoardController;
@@ -16,7 +18,7 @@ import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRend
  * Created by Endre on 16.04.2015.
  */
 
-public class HudRenderer implements IRenderNoPos, BoardControllerStateListener {
+public class HudRenderer implements IRenderNoPos, BoardControllerStateListener, IMoveListener{
 
     private Skin skin;
 
@@ -26,11 +28,14 @@ public class HudRenderer implements IRenderNoPos, BoardControllerStateListener {
     private IBoardController boardController;
 
     private Label energyLabel;
+    private boolean energyChanged;
 
     public HudRenderer(IBoardController boardController){
-        boardController.addBoardControllerStateListener(this);
         this.boardController = boardController;
         setupUiElements();
+        energyChanged = false;
+        this.boardController.addBoardControllerStateListener(this);
+
     }
     @Override
     public void stateChanged(BoardControllerStateEvent event) {
@@ -43,7 +48,10 @@ public class HudRenderer implements IRenderNoPos, BoardControllerStateListener {
         sendButton.draw(batch, 1);
         abortButton.draw(batch, 1);
         actionButton.draw(batch, 1);
-        energyLabel.setText(Integer.toString(boardController.getRemaining_energy()) + "/" + GameConstants.MAX_ENERGY);
+        if(energyChanged){
+            energyLabel.setText(this.boardController.getRemaining_energy() + "/100");
+            energyChanged = false;
+        }
         energyLabel.draw(batch, 1);
         batch.end();
     }
@@ -61,7 +69,8 @@ public class HudRenderer implements IRenderNoPos, BoardControllerStateListener {
         actionButton.setSize(buttonWidth, buttonHeight);
         abortButton= new TextButton("Quit", skin);
         abortButton.setSize(buttonWidth, buttonHeight);
-        energyLabel = new Label(Integer.toString(boardController.getRemaining_energy()),skin);
+
+        energyLabel = new Label(this.boardController.getRemaining_energy() + "/100",skin);
         energyLabel.setSize(buttonWidth, buttonHeight);
         energyLabel.setAlignment(0);
         energyLabel.setColor(1, 1, 1, 1);
@@ -71,5 +80,10 @@ public class HudRenderer implements IRenderNoPos, BoardControllerStateListener {
         actionButton.setPosition(GameConstants.RESOLUTION_WIDTH - actionButton.getWidth(), abortButton.getHeight());
         abortButton.setPosition(GameConstants.RESOLUTION_WIDTH-abortButton.getWidth(), 0);
         energyLabel.setPosition(GameConstants.RESOLUTION_WIDTH-energyLabel.getWidth(), abortButton.getHeight() + actionButton.getHeight() + sendButton.getHeight());
+    }
+
+    @Override
+    public void moveExecuted(Move move) {
+        energyChanged=true;
     }
 }

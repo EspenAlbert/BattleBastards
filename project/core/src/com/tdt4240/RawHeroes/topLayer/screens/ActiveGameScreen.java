@@ -3,6 +3,15 @@ package com.tdt4240.RawHeroes.topLayer.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.input.GestureDetector;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.tdt4240.RawHeroes.gameLogic.cell.CellStatus;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardMover;
@@ -42,7 +51,10 @@ public class ActiveGameScreen extends ScreenState{
         board = game.getBoard();
         System.out.println("in active game screen!!!!!");
         //iAmPlayer1 = ClientConnection.getInstance().getUsername().equals(game.getPlayer1Nickname());
-        iAmPlayer1 = true;
+        iAmPlayer1 = false;
+        if(!iAmPlayer1) {
+            board.convertCellsToOtherPlayer();
+        }
         cameraController = new CameraController();
 
 
@@ -52,6 +64,7 @@ public class ActiveGameScreen extends ScreenState{
         hud = new HudRenderer(boardController);
 
         boardMover.addMoveListener(gameView);
+        boardMover.addMoveListener(hud);
         board.addBoardListener(gameView);
 
         boardMover.executeMoves(game.getLastMoves());
@@ -59,7 +72,8 @@ public class ActiveGameScreen extends ScreenState{
         resize(GameConstants.RESOLUTION_WIDTH, GameConstants.RESOLUTION_HEIGHT);
     }
     private void initializeTouchListener() {
-        Gdx.input.setInputProcessor(MyInputProcessor.getInstance());
+        GestureDetector gd = new GestureDetector(MyInputProcessor.getInstance());
+        Gdx.input.setInputProcessor(gd);
         MyInputProcessor.getInstance().AddTouchDownListener(new TouchListenerActiveGameScreen(boardController, cameraController, this));
         MyInputProcessor.getInstance().AddTouchDraggedListener(new MoveBoardTouchDraggedListener(cameraController));
         initialized = true;

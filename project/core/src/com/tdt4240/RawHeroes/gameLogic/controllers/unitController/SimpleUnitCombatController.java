@@ -24,6 +24,8 @@ public class SimpleUnitCombatController implements IUnitCombatController {
     @Override
     public ArrayList<Position> getAttackablePositions(Position pos, int movesLeft, IBoard board) {
         ArrayList<Position> temp = new ArrayList<Position>();
+        System.out.println("energy: " + movesLeft);
+        if(movesLeft <= 0) return temp;
         if(pos.getX() < board.getWidth()-1){
             temp.add(new Position(pos.getX()+1, pos.getY()));
             System.out.println("Added to the right");
@@ -45,7 +47,9 @@ public class SimpleUnitCombatController implements IUnitCombatController {
 
     @Override
     public ArrayList<Position> getInflictionZone(Position myPos, Position target) {
-        return null;
+        ArrayList<Position> victimsPos = new ArrayList<Position>();
+        victimsPos.add(target);
+        return victimsPos;
     }
 
     @Override

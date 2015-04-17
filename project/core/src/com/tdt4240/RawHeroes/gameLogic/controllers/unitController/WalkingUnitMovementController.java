@@ -7,6 +7,8 @@ import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.independent.Position;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 
 
@@ -27,9 +29,7 @@ public class WalkingUnitMovementController implements IUnitMovementController {
 
     @Override
     public ArrayList<Position> getMovementZone(IBoard board, Position myPos, int movesLeft, int unitMaxMoves) {
-        int maxDepth=Math.min(movesLeft, unitMaxMoves); //max moves for unit
-        System.out.println("Max depth should be 3, is " + maxDepth);
-
+        int maxDepth=Math.min(movesLeft/board.getCell(myPos).getUnit().getWeight(), unitMaxMoves); //max moves for unit
         //breadth first search
         ArrayList<Pair<Position, Integer>> queue=new ArrayList<Pair<Position, Integer>>();
         ArrayList<Position> discovered = new ArrayList<Position>();//
@@ -41,7 +41,6 @@ public class WalkingUnitMovementController implements IUnitMovementController {
             for (int i=0; i<directions.size();i++){
                 Position w=new Position(v);
                 w.add(directions.get(i));//v+directions.get(i)
-                System.out.println("before if: "+w);
                 if (w.getX()>=0&&w.getY()>=0&&w.getX()<(board.getWidth())&&w.getY()<board.getHeight()){
                     ICell cell=board.getCell(w);
                     if((!discovered.contains(w))&& (cell.getStatus()!= CellStatus.NOTMOVEABLE) && (cell.getUnit() == null)) {//not discovered and not notmoveable.
@@ -73,8 +72,8 @@ public class WalkingUnitMovementController implements IUnitMovementController {
                     ICell cell=board.getCell(w);
                     if((!discovered.containsKey(w))&& (cell.getStatus() != CellStatus.NOTMOVEABLE) && (cell.getStatus() != CellStatus.SELECTED)) {//not discovered and not notmoveable.
                         if (w.getX()==targetPos.getX()&&w.getY()==targetPos.getY()) {
-                            path.add(w);//finds the path
                             path.add(v);
+                            path.add(w);//finds the path
                             while (true) {
                                 if (discovered.get(v) == null) {
                                     return path;

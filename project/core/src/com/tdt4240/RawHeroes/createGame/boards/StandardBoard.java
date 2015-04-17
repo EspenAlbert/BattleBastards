@@ -8,6 +8,7 @@ import com.tdt4240.RawHeroes.event.listener.IBoardListener;
 import com.tdt4240.RawHeroes.gameLogic.cell.Cell;
 import com.tdt4240.RawHeroes.gameLogic.cell.CellStatus;
 import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
+import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.CellConverter;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.gameLogic.unit.UnitName;
 import com.tdt4240.RawHeroes.independent.Position;
@@ -86,6 +87,11 @@ public class StandardBoard implements IBoard {
     @Override
     public IBoard deepCopy() {
         return new StandardBoard(cells);
+    }
+
+    @Override
+    public void convertCellsToOtherPlayer() {
+        this.cells = CellConverter.convertCells(cells);
     }
 
 

@@ -31,8 +31,10 @@ public class CameraController implements ICamera {
 
         camera = new OrthographicCamera();
         viewport = new FitViewport(GameConstants.GAME_WIDTH + GameConstants.EXTRA_SPACE_BUTTONS, GameConstants.GAME_HEIGHT, camera);
+
         viewport.apply();
         camera.position.set(GameConstants.GAME_WIDTH / 2, GameConstants.GAME_HEIGHT / 2, 0);
+
         listeners = new ArrayList<ICameraListener>();
     }
 

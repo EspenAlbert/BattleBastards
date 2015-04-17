@@ -23,4 +23,5 @@ public interface IBoard extends Serializable{
 
     IBoard deepCopy();
 
+    void convertCellsToOtherPlayer();
 }

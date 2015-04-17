@@ -7,16 +7,16 @@ import com.badlogic.gdx.Gdx;
  */
 public class GameConstants {
 
-    private static final boolean useAndroid = false;
+    private static final boolean useAndroid = true;
     public static final int RESOLUTION_WIDTH = useAndroid ? Gdx.graphics.getWidth() : 960;
     public static final int RESOLUTION_HEIGHT = useAndroid ? Gdx.graphics.getHeight() : 540;
     public static final int BUTTON_WIDTH = Math.round(GameConstants.RESOLUTION_WIDTH / 5);
     public static final int BUTTON_HEIGHT = Math.round(GameConstants.RESOLUTION_HEIGHT / 9);
     public static final int TEXTFIELD_WIDTH = Math.round(GameConstants.RESOLUTION_WIDTH / 4);
-    public static final int TEXTFIELD_HEIGHT = Math.round(GameConstants.RESOLUTION_HEIGHT / 15);
+    public static final int TEXTFIELD_HEIGHT = Math.round(GameConstants.RESOLUTION_HEIGHT / 8);
     public static final int LABEL_WIDTH = Math.round(GameConstants.RESOLUTION_HEIGHT / 9);
-    public static final int LABEL_HEIGHT = Math.round(GameConstants.RESOLUTION_HEIGHT / 15);
-    public static final int CELL_WIDTH = Math.round(GameConstants.RESOLUTION_WIDTH / 8);
+    public static final int LABEL_HEIGHT = Math.round(GameConstants.RESOLUTION_HEIGHT / 8);
+    public static final int CELL_WIDTH = Math.round(GameConstants.RESOLUTION_WIDTH / 6);
     public static final int CELL_HEIGHT = CELL_WIDTH;
     public static final int SPACE_BETWEEN = 0;
     public static final int MAX_ENERGY = 100;
@@ -26,5 +26,5 @@ public class GameConstants {
     public static final float EXTRA_SPACE_BUTTONS = 1;
     public static final int SERVER_PORT =3310;
 
-    public static String SERVER_IP = "localhost";
+    public static String SERVER_IP = "129.241.134.184";
 }
