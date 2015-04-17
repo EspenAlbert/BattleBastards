@@ -1,18 +1,10 @@
 package com.tdt4240.RawHeroes.topLayer.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Net;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.tdt4240.RawHeroes.gameLogic.cell.CellStatus;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardController;
-import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardControllerStateEvent;
-import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardControllerStateListener;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardMover;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.IBoardController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.IBoardMover;
@@ -25,7 +17,6 @@ import com.tdt4240.RawHeroes.independent.Position;
 import com.tdt4240.RawHeroes.topLayer.commonObjects.Game;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 
-import com.tdt4240.RawHeroes.network.client.ClientConnection;
 import com.tdt4240.RawHeroes.view.customUIElements.hudRenderer.HudRenderer;
 import com.tdt4240.RawHeroes.view.topLayer.GameView;
 
