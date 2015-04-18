@@ -102,7 +102,7 @@ public class LoginScreen extends ScreenState {
     public void loginButtonClicked() {
         String username = textFieldUsername.getText();
         try {
-            String pwd = new Encryption(textFieldPassword.getText()).toString();
+            String pwd = Encryption.encrypt(textFieldPassword.getText());
         }catch (NoSuchAlgorithmException exception){
             String pwd = textFieldPassword.getText();
         }
