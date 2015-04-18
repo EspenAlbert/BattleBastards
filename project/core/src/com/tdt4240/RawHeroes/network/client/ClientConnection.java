@@ -113,10 +113,7 @@ public class ClientConnection implements IClientConnection {
 
     @Override
     public ResponseMessage doMoves(int id, ArrayList<Move> moves) {
-        ArrayList<Move> dummyMoves = new ArrayList<Move>();
-        dummyMoves.add(null);
-        dummyMoves.add(null);
-        return sendRequestAndWaitForResponse(RequestCreator.getDoMoveRequest(username, password, id,dummyMoves));
+        return sendRequestAndWaitForResponse(RequestCreator.getDoMoveRequest(username, password, id,moves));
     }
 
     @Override

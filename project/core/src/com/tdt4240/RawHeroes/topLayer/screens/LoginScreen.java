@@ -14,6 +14,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.tdt4240.RawHeroes.independent.GameConstants;
 import com.tdt4240.RawHeroes.network.client.ClientConnection;
+import com.tdt4240.RawHeroes.network.communication.Response.ResponseMessage;
+import com.tdt4240.RawHeroes.network.communication.Response.ResponseType;
 
 /**
  * Created by espen1 on 27.02.2015.
@@ -102,12 +104,11 @@ public class LoginScreen extends ScreenState {
 
         //TODO: Test network connection
         ClientConnection connectionAndroid = ClientConnection.getInstance();
-        gsm.setState(ScreenStateManager.MAINMENU);
         if (loginAttempts > 4){
             //TODO Fiks en riktig respons når du går over loginAttemptgrensen
             dispose();
         } else {
-            /*ResponseMessage response;
+            ResponseMessage response;
             if(checkBoxNewuser.isChecked()) response = clientConnection.createUser(username, pwd);
             else response = clientConnection.login(username, pwd);
             ResponseType type = response.getType();
@@ -123,7 +124,7 @@ public class LoginScreen extends ScreenState {
                 System.out.println("Failed to login, errormessage: " + errorMessage);
                 System.out.println("You have " + Integer.toString(5-loginAttempts) + " login attempts left");
                 loginAttempts ++;
-            }*/
+            }
         }
     }
 

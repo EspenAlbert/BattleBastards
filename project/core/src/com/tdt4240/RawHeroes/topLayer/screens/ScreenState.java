@@ -2,6 +2,7 @@ package com.tdt4240.RawHeroes.topLayer.screens;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.tdt4240.RawHeroes.network.client.ClientConnection;
 import com.tdt4240.RawHeroes.network.client.IClientConnection;
 import com.tdt4240.RawHeroes.topLayer.launcher.BattleBastards;
 
@@ -11,11 +12,9 @@ import com.tdt4240.RawHeroes.topLayer.launcher.BattleBastards;
 public abstract class ScreenState {
     protected ScreenStateManager gsm;
     protected BattleBastards launcher;
-    //protected IClientConnection clientConnection = ClientConnection.getInstance();
-    protected IClientConnection clientConnection = null;
+    protected IClientConnection clientConnection = ClientConnection.getInstance();
 
     protected SpriteBatch spriteBatch;
-    protected OrthographicCamera cam;
 
     protected ScreenState(ScreenStateManager gsm) {
         this.gsm = gsm;
