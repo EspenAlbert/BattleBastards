@@ -10,9 +10,9 @@ public class GameConstants {
     private static final boolean useAndroid = true;
     public static final int RESOLUTION_WIDTH = useAndroid ? Gdx.graphics.getWidth() : 960;
     public static final int RESOLUTION_HEIGHT = useAndroid ? Gdx.graphics.getHeight() : 540;
-    public static final int BUTTON_WIDTH = Math.round(GameConstants.RESOLUTION_WIDTH / 5);
-    public static final int BUTTON_HEIGHT = Math.round(GameConstants.RESOLUTION_HEIGHT / 9);
-    public static final int TEXTFIELD_WIDTH = Math.round(GameConstants.RESOLUTION_WIDTH / 4);
+    public static final int BUTTON_WIDTH = Math.round(GameConstants.RESOLUTION_WIDTH  / 5);
+    public static final int BUTTON_HEIGHT = Math.round(GameConstants.RESOLUTION_HEIGHT  / 9);
+    public static final int TEXTFIELD_WIDTH = Math.round(GameConstants.RESOLUTION_WIDTH  / 4);
     public static final int TEXTFIELD_HEIGHT = Math.round(GameConstants.RESOLUTION_HEIGHT / 8);
     public static final int LABEL_WIDTH = Math.round(GameConstants.RESOLUTION_HEIGHT / 9);
     public static final int LABEL_HEIGHT = Math.round(GameConstants.RESOLUTION_HEIGHT / 8);

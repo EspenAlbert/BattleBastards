@@ -48,8 +48,8 @@ public class MainMenuScreen extends ScreenState {
         stage = new Stage();
 
         games = new ArrayList<ClientGameState>();
-        int[] myGames = ClientConnection.getInstance().getMyGames();
-        for (int i = 0; i < myGames.length ; i++) {
+        //int[] myGames = ClientConnection.getInstance().getMyGames();
+        /*for (int i = 0; i < myGames.length ; i++) {
             ResponseMessage responseMessage = ClientConnection.getInstance().getGame(myGames[i]);
             if(responseMessage.getType() == ResponseType.FAILURE){
                 System.out.println("SOMETHING WRONG HAPPENED!");
@@ -59,7 +59,8 @@ public class MainMenuScreen extends ScreenState {
                 System.out.println("managed to get game: " + game.getId() + " with players: " + game.getPlayer1Nickname() + " player 2:" + game.getPlayer2Nickname());
                 activeGames.add(game);
             }
-        }
+        }*/
+        int[] myGames = {1,2,3,4};
         //MainMenuView view = new MainMenuView(myGames);
 
         int xPos = GameConstants.RESOLUTION_WIDTH/20;
@@ -120,12 +121,12 @@ public class MainMenuScreen extends ScreenState {
             }
         }
 
-        /*for (int i = 0; i <myGames.length ; i++) {
+        for (int i = 0; i <myGames.length ; i++) {
             addGameToTable(Integer.toString(myGames[i]), "waiting for other player");
-        }*/
+        }
 
         scrollPane = new ScrollPane(scrollTable);
-        scrollPane.setBounds(GameConstants.RESOLUTION_WIDTH - 600, 0, 600, GameConstants.RESOLUTION_HEIGHT);
+        scrollPane.setBounds(GameConstants.RESOLUTION_WIDTH/2, 0, GameConstants.RESOLUTION_WIDTH/2, GameConstants.RESOLUTION_HEIGHT);
         Gdx.input.setInputProcessor(stage);
 
         stage.addActor(buttonCreateGame);

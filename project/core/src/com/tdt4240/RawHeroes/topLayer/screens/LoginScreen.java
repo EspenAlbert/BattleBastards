@@ -34,12 +34,14 @@ public class LoginScreen extends ScreenState {
 
 
 
+
     protected LoginScreen(ScreenStateManager gsm) {
         super(gsm);
         img = new Texture("badlogic.jpg");
         skin = new Skin(Gdx.files.internal("uiskin.json"), new TextureAtlas(Gdx.files.internal("uiskin.atlas")));
         stage = new Stage();
         title = new Label("Game Title",skin);
+
 
         int xPos = GameConstants.RESOLUTION_WIDTH/2 - GameConstants.BUTTON_WIDTH/2;
         int scaleY = GameConstants.RESOLUTION_HEIGHT/6;
@@ -53,7 +55,7 @@ public class LoginScreen extends ScreenState {
         buttonLogin = new TextButton("Login", skin);
         buttonLogin.setSize(GameConstants.BUTTON_WIDTH, GameConstants.BUTTON_HEIGHT);
         buttonLogin.setPosition(xPos, yPosButton);
-        buttonLogin.getStyle().font.setScale((float)GameConstants.BUTTON_WIDTH*4/(float)GameConstants.RESOLUTION_WIDTH,(float)GameConstants.BUTTON_WIDTH*4/(float)GameConstants.RESOLUTION_WIDTH);
+        //buttonLogin.getStyle().font.setScale((float)GameConstants.BUTTON_WIDTH*4/(float)GameConstants.RESOLUTION_WIDTH,(float)GameConstants.BUTTON_WIDTH*4/(float)GameConstants.RESOLUTION_WIDTH);
         buttonLogin.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -67,6 +69,7 @@ public class LoginScreen extends ScreenState {
         textFieldPassword = new TextField("password", skin);
         textFieldPassword.setPosition(xPos, yPosPassword);
         textFieldPassword.setSize(GameConstants.TEXTFIELD_WIDTH, GameConstants.TEXTFIELD_HEIGHT);
+        System.out.println(buttonLogin.getWidth());
         textFieldPassword.setPasswordCharacter('x');
         textFieldPassword.setPasswordMode(true);
 
