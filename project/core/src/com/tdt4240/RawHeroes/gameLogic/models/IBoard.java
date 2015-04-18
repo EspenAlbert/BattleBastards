@@ -5,6 +5,7 @@ import com.tdt4240.RawHeroes.event.listener.IBoardListener;
 import com.tdt4240.RawHeroes.gameLogic.cell.CellStatus;
 import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
 import com.tdt4240.RawHeroes.event.events.BoardEvent;
+import com.tdt4240.RawHeroes.independent.Position;
 
 import java.io.Serializable;
 
@@ -14,11 +15,13 @@ import java.io.Serializable;
 public interface IBoard extends Serializable{
     void addBoardListener(IBoardListener listener);
     void fireBoardChanged(BoardEvent event);
-    ICell getCell(Vector2 pos);
+    ICell getCell(Position pos);
     ICell[][] getCells();
-    void switchModeOnCell(Vector2 pos, CellStatus status);
+    void switchModeOnCell(Position pos, CellStatus status);
     int getWidth();
     int getHeight();
 
+    IBoard deepCopy();
 
+    void convertCellsToOtherPlayer();
 }

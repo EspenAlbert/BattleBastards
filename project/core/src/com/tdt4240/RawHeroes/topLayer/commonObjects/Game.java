@@ -14,7 +14,7 @@ public abstract class Game implements Serializable{
     private int id;
     private String player1Nickname, player2Nickname;
     IBoard board;
-    ArrayList<Move> lastMoves;
+    private ArrayList<Move> lastMoves;
     private boolean nextTurnIsPlayer1;
     private int moveCount;
     private GameState gameState;
@@ -26,7 +26,7 @@ public abstract class Game implements Serializable{
         this.winCondition = winCondition;
         gameState = GameState.CHALLENGE;
         nextTurnIsPlayer1 = false;
-        moveCount = 5;
+        moveCount = 100;
     }
 
     public String getPlayer1Nickname() {
@@ -39,6 +39,9 @@ public abstract class Game implements Serializable{
 
     public ArrayList<Move> getLastMoves() {
         return lastMoves;
+    }
+    public void setLastMoves(ArrayList<Move> moves) {
+        lastMoves = moves;
     }
 
     public int getMoveCount() {

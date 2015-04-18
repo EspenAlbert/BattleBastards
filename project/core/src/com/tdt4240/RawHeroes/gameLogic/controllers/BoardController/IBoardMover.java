@@ -12,7 +12,8 @@ public interface IBoardMover {
 
     void executeMoves(ArrayList<Move> lastMoves);
     void add(Move move);
-    void undo();
+    Move undo();
     void addMoveListener(IMoveListener listener);
+    ArrayList<Move> confirmMoves();
 
 }

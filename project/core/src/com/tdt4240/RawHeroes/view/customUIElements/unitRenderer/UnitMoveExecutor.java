@@ -1,8 +1,9 @@
 package com.tdt4240.RawHeroes.view.customUIElements.unitRenderer;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.tdt4240.RawHeroes.event.move.AttackMove;
-import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
+import com.tdt4240.RawHeroes.event.move.MovementMove;
+import com.tdt4240.RawHeroes.independent.Position;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.IRenderObject;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.RenderMode;
 
@@ -13,41 +14,91 @@ import java.util.ArrayList;
  */
 public class UnitMoveExecutor {
 
+    private final UnitRenderer unitRenderer;
     private boolean currentAnimationIsAttack;
-    private IRenderObject renderAttacker;
-    private IRenderObject renderMover;
     private Vector2 direction;
-    private int speed;
+    private float speed;
+    private Vector2 currentPos;
     private int movementSteps;
+    private ArrayList<Position> path;
+    private IRenderObject currentActor;
+    private int currentIndex;
+    private ArrayList<IRenderObject> victims;
 
-    public boolean readyForNextAnimation() {
-        if(currentAnimationIsAttack) {
-            return renderAttacker.getRenderMode() == RenderMode.ATTACKING;
-        } else {
-            if(movementSteps < 1) return true;
-         //   renderMover.changePos(direction.scl(speed));
-            movementSteps --;
-
-            if(movementSteps < 1) renderMover.changeRenderMode(RenderMode.STATIC);
-        }
-        return false;
+    public UnitMoveExecutor(UnitRenderer unitRenderer) {
+        this.unitRenderer = unitRenderer;
+        speed = 0.05f;
     }
 
-    public void attackMoveExecuted(AttackMove move) {
+
+    public void movementMove(IRenderObject mover, MovementMove move) {
+        path = move.getPath();
+        currentIndex = 0;
+        currentActor = mover;
+        currentPos = move.getStartCell().getPos().getVec2Pos();
+        currentActor.changeRenderMode(RenderMode.MOVING);
+        currentAnimationIsAttack = false;
+
+    }
+
+    public void attackMove(IRenderObject attacker, ArrayList<IRenderObject> victims) {
         currentAnimationIsAttack = true;
-        Vector2 attackerPos = move.getStartCell().getPos();
-   //     renderAttacker = unitPositionsAndRenderObjects.get(attackerPos);
-        renderAttacker.changeRenderMode(RenderMode.ATTACKING);
-        //TODO: Fix this.... getVictims...
-        /*
-        ArrayList<ICell> victims = move.getVictims();
-        for (ICell cell : victims) {
-            if (cell.getUnit().getHealth() > 0) {
-      //          unitPositionsAndRenderObjects.get(cell.getPos()).changeRenderMode(RenderMode.HURT);
-            } else {
-       //         unitPositionsAndRenderObjects.get(cell.getPos()).changeRenderMode(RenderMode.KILLED);
+        currentActor = attacker;
+        currentActor.changeRenderMode(RenderMode.ATTACKING);
+        this.victims = victims;
+        for(IRenderObject victim: victims) {
+            victim.changeRenderMode(RenderMode.HURT);
+        }
+    }
+
+    public void update(SpriteBatch batch) {
+        if(currentAnimationIsAttack) {
+            if(attackIsComplete()) finishAttackMove();
+        }
+        else {
+            move();
+            if(movementIsComplete()) {
+                finishMovementMove();
+            }
+            currentActor.render(batch, currentPos);
+        }
+    }
+
+    private boolean attackIsComplete() {
+        if(currentActor.getRenderMode() == RenderMode.ATTACKING) return false;
+        for(IRenderObject victim: victims) {
+            if(victim.getRenderMode() == RenderMode.HURT) {
+                return false;
             }
         }
-        */
+        return true;
+    }
+
+    private void finishMovementMove() {
+        currentActor.changeRenderMode(RenderMode.STATIC);
+        unitRenderer.movementMoveComplete(currentActor, path.get(currentIndex-1));
+    }
+
+    private void finishAttackMove() {
+        unitRenderer.attackMoveFinished();
+
+    }
+
+    private void move() {
+        direction = path.get(currentIndex).cpy().getVec2Pos().sub(currentPos);
+        Vector2 deltaMovement = direction.setLength(1).scl(speed);
+        currentPos.add(deltaMovement);
+        if(positionsIsAlmostTheSame(path.get(currentIndex).getVec2Pos(), currentPos)) currentIndex++;//This check needs to be improved in case that  the coordinate isn't exactly the same
+    }
+
+    private boolean positionsIsAlmostTheSame(Vector2 a, Vector2 b) {
+        float margin = 0.05f;
+        float difference = Math.abs((a.x-b.x) + (a.y - b.y));
+
+        return difference < margin;
+    }
+
+    private boolean movementIsComplete() {
+        return currentIndex == path.size();
     }
 }

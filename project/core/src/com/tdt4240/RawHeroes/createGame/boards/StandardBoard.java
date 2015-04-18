@@ -8,8 +8,10 @@ import com.tdt4240.RawHeroes.event.listener.IBoardListener;
 import com.tdt4240.RawHeroes.gameLogic.cell.Cell;
 import com.tdt4240.RawHeroes.gameLogic.cell.CellStatus;
 import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
+import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.CellConverter;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.gameLogic.unit.UnitName;
+import com.tdt4240.RawHeroes.independent.Position;
 
 import java.util.ArrayList;
 
@@ -39,6 +41,9 @@ public class StandardBoard implements IBoard {
         listeners = new ArrayList<IBoardListener>();
     }
 
+    public StandardBoard(ICell[][] cells) {
+        this.cells = cells.clone();
+    }
 
     @Override
     public void addBoardListener(IBoardListener listener) {
@@ -53,8 +58,8 @@ public class StandardBoard implements IBoard {
     }
 
     @Override
-    public ICell getCell(Vector2 pos) {
-        return cells[((int) pos.x)][((int) pos.y)];
+    public ICell getCell(Position pos) {
+        return cells[((int) pos.getX())][((int) pos.getY())];
     }
 
     @Override
@@ -63,8 +68,8 @@ public class StandardBoard implements IBoard {
     }
 
     @Override
-    public void switchModeOnCell(Vector2 pos, CellStatus status) {
-        cells[((int) pos.x)][((int) pos.y)].setStatus(status);
+    public void switchModeOnCell(Position pos, CellStatus status) {
+        cells[((int) pos.getX())][((int) pos.getY())].setStatus(status);
         fireBoardChanged(new CellChangeEvent(pos));
 
     }
@@ -78,4 +83,16 @@ public class StandardBoard implements IBoard {
     public int getHeight() {
         return height;
     }
+
+    @Override
+    public IBoard deepCopy() {
+        return new StandardBoard(cells);
+    }
+
+    @Override
+    public void convertCellsToOtherPlayer() {
+        this.cells = CellConverter.convertCells(cells);
+    }
+
+
 }
