@@ -1,6 +1,5 @@
 package com.tdt4240.RawHeroes.topLayer.screens;
 
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.tdt4240.RawHeroes.network.client.ClientConnection;
 import com.tdt4240.RawHeroes.network.client.IClientConnection;
@@ -9,7 +8,8 @@ import com.tdt4240.RawHeroes.topLayer.launcher.BattleBastards;
 /**
  * Created by espen1 on 27.02.2015.
  */
-public abstract class ScreenState {
+public abstract class
+        ScreenState {
     protected ScreenStateManager gsm;
     protected BattleBastards launcher;
     protected IClientConnection clientConnection = ClientConnection.getInstance();

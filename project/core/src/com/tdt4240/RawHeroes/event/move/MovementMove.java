@@ -22,6 +22,7 @@ public class MovementMove extends Move {
         this.path = path;
         length=path.size();
         this.setCost((length-1) * this.getStartCell().getUnit().getWeight());
+
     }
 
 

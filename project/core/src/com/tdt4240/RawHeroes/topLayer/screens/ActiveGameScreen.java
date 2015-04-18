@@ -3,6 +3,7 @@ package com.tdt4240.RawHeroes.topLayer.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 import com.badlogic.gdx.input.GestureDetector;
 import com.tdt4240.RawHeroes.event.move.Move;
 import com.tdt4240.RawHeroes.gameLogic.cell.CellStatus;
@@ -21,7 +22,8 @@ import com.tdt4240.RawHeroes.independent.Position;
 import com.tdt4240.RawHeroes.network.communication.Response.ResponseMessage;
 import com.tdt4240.RawHeroes.topLayer.commonObjects.Game;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
-import com.tdt4240.RawHeroes.view.customUIElements.hudRenderer.HudRenderer;
+
+import com.tdt4240.RawHeroes.view.customUIElements.hudRenderer.hudRenderer;
 import com.tdt4240.RawHeroes.view.topLayer.GameView;
 
 import java.util.ArrayList;
@@ -34,7 +36,7 @@ public class ActiveGameScreen extends ScreenState{
 
 
     private final GameView gameView;
-    private final HudRenderer hud;
+    private final hudRenderer hud;
     private final IBoardMover boardMover;
     private final IBoardController boardController;
     private final IBoard board;
@@ -60,7 +62,7 @@ public class ActiveGameScreen extends ScreenState{
         boardMover = new BoardMover(board);
         gameView = new GameView(board, iAmPlayer1, cameraController);
         boardController = new BoardController(board, boardMover, game.getMoveCount());
-        hud = new HudRenderer(boardController);
+        hud = new hudRenderer(boardController);
 
         boardMover.addMoveListener(gameView);
         boardMover.addMoveListener(hud);

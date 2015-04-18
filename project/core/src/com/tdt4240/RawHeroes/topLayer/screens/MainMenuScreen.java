@@ -5,12 +5,14 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.tdt4240.RawHeroes.createGame.factory.GameBuilding;
 import com.tdt4240.RawHeroes.independent.GameConstants;
+import com.tdt4240.RawHeroes.independent.MyInputProcessor;
 import com.tdt4240.RawHeroes.mainMenuGamesHandler.clientGameState.ClientGameState;
 import com.tdt4240.RawHeroes.network.communication.Response.ResponseMessage;
 import com.tdt4240.RawHeroes.network.communication.Response.ResponseType;
@@ -37,17 +39,29 @@ public class MainMenuScreen extends ScreenState {
 
     private Table table, scrollTable;
     private ScrollPane scrollPane;
+    private ArrayList<Game> activeGames = new ArrayList<Game>();
 
     public MainMenuScreen(ScreenStateManager gsm) {
         super(gsm);
         System.out.println("Created main menu screen");
-
-        games = new ArrayList<ClientGameState>();
-        //int[] myGames = ClientConnection.getInstance().getMyGames();
-        int[] myGames = {1, 2 , 3, 4, 5, 6};
-        //MainMenuView view = new MainMenuView(myGames);
         skin = new Skin(Gdx.files.internal("uiskin.json"), new TextureAtlas(Gdx.files.internal("uiskin.atlas")));
         stage = new Stage();
+
+        games = new ArrayList<ClientGameState>();
+        int[] myGames = ClientConnection.getInstance().getMyGames();
+        for (int i = 0; i < myGames.length ; i++) {
+            ResponseMessage responseMessage = ClientConnection.getInstance().getGame(myGames[i]);
+            if(responseMessage.getType() == ResponseType.FAILURE){
+                System.out.println("SOMETHING WRONG HAPPENED!");
+            }
+            else if(responseMessage.getType() == ResponseType.SUCCESS){
+                Game game = (Game) responseMessage.getContent();
+                System.out.println("managed to get game: " + game.getId() + " with players: " + game.getPlayer1Nickname() + " player 2:" + game.getPlayer2Nickname());
+                activeGames.add(game);
+            }
+        }
+        //int[] myGames = {1,2,3,4,5,6,7,8,8,9};
+        //MainMenuView view = new MainMenuView(myGames);
 
         int xPos = GameConstants.RESOLUTION_WIDTH/20;
         int scaleY = GameConstants.RESOLUTION_HEIGHT/5;
@@ -78,6 +92,8 @@ public class MainMenuScreen extends ScreenState {
                 createGameButtonClicked();
             }
         });
+
+
         buttonGetGame.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -86,27 +102,33 @@ public class MainMenuScreen extends ScreenState {
         });
 
         title = new Texture(Gdx.files.internal("title.png"));
-        sprite = new Sprite(title);
+        //sprite = new Sprite(title);
 
-        sprite.setSize(300, 100);
-        sprite.setPosition(0, GameConstants.RESOLUTION_HEIGHT - sprite.getHeight()*2);
+        //sprite.setSize(300, 100);
+        //sprite.setPosition(0, GameConstants.RESOLUTION_HEIGHT - sprite.getHeight()*2);
 
         scrollTable = new Table(skin);
-        table = new Table(skin);
 
 
         //putting stuff together
-        scrollTable.add("SELECT GAME");
-        for (int i = 0; i < myGames.length; i++){
-            addGameToTable(Integer.toString(myGames[i]) , "gameStatus");
+        scrollTable.add("ACTIVE GAMES");
+        for (int i = 0; i < activeGames.size(); i++){
+            if(activeGames.get(i).getNextTurnIsPlayer1()){
+                addGameToTable(activeGames.get(i).getPlayer2Nickname() , "Your turn");
+            }
+            else{
+                addGameToTable(activeGames.get(i).getPlayer2Nickname(), "Opponents turn");
+            }
         }
 
+        /*for (int i = 0; i <myGames.length ; i++) {
+            addGameToTable(Integer.toString(myGames[i]), "waiting for other player");
+        }*/
+
         scrollPane = new ScrollPane(scrollTable);
-        scrollPane.setBounds(GameConstants.RESOLUTION_WIDTH - 600, 0, 600, GameConstants.RESOLUTION_HEIGHT);
-
-
-
+        scrollPane.setBounds(GameConstants.RESOLUTION_WIDTH/2, 0, GameConstants.RESOLUTION_WIDTH/2, GameConstants.RESOLUTION_HEIGHT);
         Gdx.input.setInputProcessor(stage);
+
         stage.addActor(buttonCreateGame);
         stage.addActor(labelInstruction);
         stage.addActor(textFieldGetGame);
@@ -114,13 +136,11 @@ public class MainMenuScreen extends ScreenState {
         stage.addActor(scrollPane);
 
 
-
     }
 
     private void getGameButtonClicked() {
         int gameid = Integer.parseInt(textFieldGetGame.getText());
-        gsm.setState(gsm.GAMESCREEN);
-        /*
+
         ResponseMessage responseMessage = ClientConnection.getInstance().getGame(gameid);
         if(responseMessage.getType() == ResponseType.FAILURE) {
             labelInstruction.setText((CharSequence) responseMessage.getContent());
@@ -129,7 +149,7 @@ public class MainMenuScreen extends ScreenState {
             System.out.println("managed to get launcher: " + launcher.getId() + " with players: " + launcher.getPlayer1Nickname() + " player 2:" + launcher.getPlayer2Nickname());
             gsm.setState(new ActiveGameScreen(gsm, launcher));
         }
-*/
+
     }
 
     private void createGameButtonClicked() {
@@ -175,8 +195,8 @@ public class MainMenuScreen extends ScreenState {
             labelInstruction.setText("Successfully challenged " + opponent);
             Integer gameId = (Integer) response.getContent();
             System.out.println("New game has id: " + gameId);
+            addGameToTable(opponent, "waiting for player to accept");
         }
-        addGameToTable(opponent, "waiting for other player");
         System.out.println("create game button dialog clicked" + " challenged player: " + opponent);
     }
 
@@ -210,10 +230,6 @@ public class MainMenuScreen extends ScreenState {
         stage.act();
         stage.draw();
         spriteBatch.end();
-        spriteBatch.begin();
-        sprite.draw(spriteBatch);
-        spriteBatch.end();
-
     }
 
     @Override
