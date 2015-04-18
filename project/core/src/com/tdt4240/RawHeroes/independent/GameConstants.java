@@ -7,7 +7,7 @@ import com.badlogic.gdx.Gdx;
  */
 public class GameConstants {
 
-    private static final boolean useAndroid = true;
+    private static final boolean useAndroid = false;
     public static final int RESOLUTION_WIDTH = useAndroid ? Gdx.graphics.getWidth() : 960;
     public static final int RESOLUTION_HEIGHT = useAndroid ? Gdx.graphics.getHeight() : 540;
     public static final int BUTTON_WIDTH = Math.round(GameConstants.RESOLUTION_WIDTH  / 5);

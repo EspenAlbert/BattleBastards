@@ -18,7 +18,7 @@ import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRend
  * Created by Endre on 16.04.2015.
  */
 
-public class HudRenderer implements IRenderNoPos, BoardControllerStateListener, IMoveListener{
+public class hudRenderer implements IRenderNoPos, BoardControllerStateListener, IMoveListener{
 
     private Skin skin;
 
@@ -30,7 +30,7 @@ public class HudRenderer implements IRenderNoPos, BoardControllerStateListener, 
     private Label energyLabel;
     private boolean energyChanged;
 
-    public HudRenderer(IBoardController boardController){
+    public hudRenderer(IBoardController boardController){
         this.boardController = boardController;
         setupUiElements();
         energyChanged = false;
