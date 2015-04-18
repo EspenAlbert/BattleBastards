@@ -1,5 +1,6 @@
 package com.tdt4240.RawHeroes.gameLogic.inputListeners;
 
+import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.IBoardController;
 import com.tdt4240.RawHeroes.gameLogic.models.ICamera;
@@ -28,7 +29,7 @@ public class TouchListenerActiveGameScreen implements TouchDown {
     }
 
     @Override
-    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+    public boolean touchDown(float screenX, float screenY, int pointer, int button) {
         if(firstTouch) {
             boardMinXCoordinate = cameraController.getScreenPixelCoordinate(0, 0).x;
             boardMaxXCoordinate = cameraController.getScreenPixelCoordinate(GameConstants.GAME_WIDTH, 0).x;
@@ -57,7 +58,7 @@ public class TouchListenerActiveGameScreen implements TouchDown {
         return false;
     }
 
-    private void hudTouch(int screenY) {
+    private void hudTouch(float screenY) {
         int buttonHeight = GameConstants.RESOLUTION_HEIGHT /4;
         //TODO: If screenY  is within action button y
         if (screenY > 0 && screenY < 1*buttonHeight){

@@ -26,6 +26,11 @@ public class AttackMove extends Move {
         this.targetPos = target.getPos();
     }
 
+
+    @Override
+    public int getCost(){
+        return this.getStartCell().getUnit().getWeight();
+    }
     @Override
     public void execute(IBoard board) {
         if (damages != null) {

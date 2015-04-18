@@ -2,41 +2,24 @@ package com.tdt4240.RawHeroes.topLayer.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.badlogic.gdx.input.GestureDetector;
 import com.tdt4240.RawHeroes.gameLogic.cell.CellStatus;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardController;
-import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardControllerStateEvent;
-import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardControllerStateListener;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardMover;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.IBoardController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.IBoardMover;
 import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.CameraController;
+import com.tdt4240.RawHeroes.gameLogic.inputListeners.MoveBoardTouchDraggedListener;
 import com.tdt4240.RawHeroes.gameLogic.inputListeners.TouchListenerActiveGameScreen;
-import com.tdt4240.RawHeroes.gameLogic.models.ICamera;
-import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
+import com.tdt4240.RawHeroes.gameLogic.inputListeners.TranslateCamera;
 import com.tdt4240.RawHeroes.independent.GameConstants;
 import com.tdt4240.RawHeroes.independent.MyInputProcessor;
 import com.tdt4240.RawHeroes.independent.Position;
 import com.tdt4240.RawHeroes.topLayer.commonObjects.Game;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
-import com.tdt4240.RawHeroes.network.client.ClientConnection;
 import com.tdt4240.RawHeroes.view.customUIElements.hudRenderer.HudRenderer;
 import com.tdt4240.RawHeroes.view.topLayer.GameView;
-
-import java.util.ArrayList;
 
 /**
  * Created by espen1 on 27.02.2015.
@@ -60,7 +43,10 @@ public class ActiveGameScreen extends ScreenState{
         board = game.getBoard();
         System.out.println("in active game screen!!!!!");
         //iAmPlayer1 = ClientConnection.getInstance().getUsername().equals(game.getPlayer1Nickname());
-        iAmPlayer1 = true;
+        iAmPlayer1 = false;
+        if(!iAmPlayer1) {
+            board.convertCellsToOtherPlayer();
+        }
         cameraController = new CameraController();
 
         boardMover = new BoardMover(board);
@@ -69,6 +55,7 @@ public class ActiveGameScreen extends ScreenState{
         hud = new HudRenderer(boardController);
 
         boardMover.addMoveListener(gameView);
+        boardMover.addMoveListener(hud);
         board.addBoardListener(gameView);
 
         boardMover.executeMoves(game.getLastMoves());
@@ -76,8 +63,12 @@ public class ActiveGameScreen extends ScreenState{
         resize(GameConstants.RESOLUTION_WIDTH, GameConstants.RESOLUTION_HEIGHT);
     }
     private void initializeTouchListener() {
-        Gdx.input.setInputProcessor(MyInputProcessor.getInstance());
+        GestureDetector gd = new GestureDetector(MyInputProcessor.getInstance());
+        Gdx.input.setInputProcessor(gd);
         MyInputProcessor.getInstance().AddTouchDownListener(new TouchListenerActiveGameScreen(boardController, cameraController, this));
+        MyInputProcessor.getInstance().AddTouchDraggedListener(new MoveBoardTouchDraggedListener(cameraController));
+        MyInputProcessor.getInstance().AddFlingListener(new TranslateCamera(cameraController));
+        initialized = true;
     }
 
     @Override

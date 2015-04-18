@@ -6,6 +6,4 @@ eclipse.project {
     name = appName + "-core"
 }
 dependencies {
-    compile files('build/libs/json-simple-1.1.jar')
-    compile files('build/libs/mysql-connector-java-5.1.30-bin.jar')
 }

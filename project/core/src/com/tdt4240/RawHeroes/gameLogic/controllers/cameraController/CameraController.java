@@ -31,8 +31,10 @@ public class CameraController implements ICamera {
 
         camera = new OrthographicCamera();
         viewport = new FitViewport(GameConstants.GAME_WIDTH + GameConstants.EXTRA_SPACE_BUTTONS, GameConstants.GAME_HEIGHT, camera);
+
         viewport.apply();
         camera.position.set(GameConstants.GAME_WIDTH / 2, GameConstants.GAME_HEIGHT / 2, 0);
+
         listeners = new ArrayList<ICameraListener>();
     }
 
@@ -107,6 +109,11 @@ public class CameraController implements ICamera {
 
     @Override
     public void makeSureVisible(Position startPos, Position endPos) {
+        Position p = convertPixelCoordinateToCell(new Vector2(0,GameConstants.RESOLUTION_HEIGHT));
+        int difference = p.getY() - startPos.getY();
+        if(Math.abs(difference) > 3) {
+            camera.translate(0, -difference);
+        }
         //TODO: Implement logic to make sure positions is visible...
     }
 

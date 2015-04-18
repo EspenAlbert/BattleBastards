@@ -1,6 +1,5 @@
 package com.tdt4240.RawHeroes.createUnits.units.standardUnit;
 
-import com.badlogic.gdx.math.Vector2;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitCombatController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitMovementController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.SimpleUnitCombatController;
@@ -24,12 +23,14 @@ public class StandardUnit implements IUnit {
     private IUnitMovementController unitMoveController;
 
     private int remainingMoves;
+    private int weight;
 
     public StandardUnit(boolean player1Unit) {
         this.hasAttacked = false;
         this.player1Unit = player1Unit;
 
         this.remainingMoves = 3;
+        this.weight = 5;
 
         this.unitCombatController = new SimpleUnitCombatController(this, 5, 10, 1);
         this.unitMoveController = new WalkingUnitMovementController();
@@ -64,6 +65,11 @@ public class StandardUnit implements IUnit {
     @Override
     public int attacked(int damage) {
         return unitCombatController.attacked(damage); //Final dmg received (after armor etc. reductions)
+    }
+
+    @Override
+    public int getWeight() {
+        return this.weight;
     }
 
     @Override

@@ -52,17 +52,20 @@ public class BoardMover implements IBoardMover {
     }
 
     @Override
-    public void undo() {
+    public Move undo() {
         if(moves.size() > 0) {
             moves.get(moves.size()-1).undo(board);
+            doMove(moves.get(moves.size()-1));
+            return moves.remove(moves.size() -1);
         }
-        moves.remove(moves.size() -1);
+        return null;
     }
 
 
 
     @Override
     public void executeMoves(ArrayList<Move> lastMoves) {
+        if(lastMoves == null) return;
         for(Move move : lastMoves) {
             doMove(move);
         }

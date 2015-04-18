@@ -40,9 +40,8 @@ public class BoardController implements IBoardController {
         this.remaining_energy = remaining_energy;
         boardStates = new Stack<BoardControllerState>();
         listeners = new ArrayList<BoardControllerStateListener>();
-        this.boardStates.push(new BoardControllerNoCellSelectedState(this, this.board));
+        boardStates.push(new BoardControllerReplayState(this, this.board));
         fireStateChanged(boardStates.peek().getEvent());
-        //TODO sette riktig state. Kanskje Replay hvis moveslist ikke er tom eller noe
     }
 
     public void setState(BoardControllerState state) {
@@ -50,9 +49,11 @@ public class BoardController implements IBoardController {
         boardStates.push(state);
         fireStateChanged(state.getEvent());
     }
+    private void refreshState(){
+        fireStateChanged(boardStates.peek().getEvent());
+    }
 
-    @Override
-    public void fireStateChanged(BoardControllerStateEvent event) {
+    private void fireStateChanged(BoardControllerStateEvent event) {
         for (BoardControllerStateListener listener : listeners){
             listener.stateChanged(event);
         }
@@ -64,7 +65,9 @@ public class BoardController implements IBoardController {
     }
 
     public void undoMove(){
-        this.boardMover.undo();
+        Move move = this.boardMover.undo();
+        //TODO FIX
+        if(move != null) remaining_energy += move.getCost();
     }
 
     @Override
@@ -90,5 +93,6 @@ public class BoardController implements IBoardController {
 
     public void addBoardControllerStateListener(BoardControllerStateListener listener){
         this.listeners.add(listener);
+        this.refreshState();
     }
 }

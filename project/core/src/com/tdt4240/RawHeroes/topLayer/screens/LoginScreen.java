@@ -14,8 +14,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.tdt4240.RawHeroes.independent.GameConstants;
 import com.tdt4240.RawHeroes.network.client.ClientConnection;
-import com.tdt4240.RawHeroes.network.communication.Response.ResponseMessage;
-import com.tdt4240.RawHeroes.network.communication.Response.ResponseType;
 
 /**
  * Created by espen1 on 27.02.2015.
@@ -101,6 +99,9 @@ public class LoginScreen extends ScreenState {
     public void loginButtonClicked() {
         String username = textFieldUsername.getText();
         String pwd = textFieldPassword.getText();
+
+        //TODO: Test network connection
+        ClientConnection connectionAndroid = ClientConnection.getInstance();
         gsm.setState(ScreenStateManager.MAINMENU);
         if (loginAttempts > 4){
             //TODO Fiks en riktig respons når du går over loginAttemptgrensen
