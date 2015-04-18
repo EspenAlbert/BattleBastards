@@ -21,10 +21,11 @@ public class GameConstants {
     public static final int SPACE_BETWEEN = 0;
     public static final int MAX_ENERGY = 100;
 
-    public static final float GAME_WIDTH = 7;
+    public static final float GAME_WIDTH = 7; //Says how many cells visible at the same time
     public static final float GAME_HEIGHT = 5;
     public static final float EXTRA_SPACE_BUTTONS = 1;
     public static final int SERVER_PORT =3310;
+    public static final float CAMERA_SPEED = 0.03f;
 
     public static String SERVER_IP = "129.241.134.184";
 }

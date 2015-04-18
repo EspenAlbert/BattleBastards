@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.CameraController;
 import com.tdt4240.RawHeroes.gameLogic.models.ICamera;
 import com.tdt4240.RawHeroes.independent.inputListeners.IFlingListener;
+import com.tdt4240.RawHeroes.independent.inputListeners.ILongPress;
 import com.tdt4240.RawHeroes.independent.inputListeners.ITouchDragged;
 import com.tdt4240.RawHeroes.independent.inputListeners.TouchDown;
 import com.tdt4240.RawHeroes.topLayer.screens.ActiveGameScreen;
@@ -32,12 +33,16 @@ public class MyInputProcessor implements GestureDetector.GestureListener, InputP
     private ArrayList<ITouchDragged> touchDraggedListeners = new ArrayList<ITouchDragged>();
     private ArrayList<TouchDown> touchDownsListeners = new ArrayList<TouchDown>();
     private ArrayList<IFlingListener> flingListeners = new ArrayList<IFlingListener>();
+    private ArrayList<ILongPress> longListeners = new ArrayList<ILongPress>();
 
     public void AddTouchDownListener(TouchDown listener) {
         touchDownsListeners.add(listener);
     }
     public void AddFlingListener(IFlingListener listener) {
         flingListeners.add(listener);
+    }
+    public void AddLongListener(ILongPress listener) {
+        longListeners.add(listener);
     }
     public void AddTouchDraggedListener(ITouchDragged listener) {
         touchDraggedListeners.add(listener);
@@ -66,6 +71,9 @@ public class MyInputProcessor implements GestureDetector.GestureListener, InputP
 
     @Override
     public boolean longPress(float x, float y) {
+        for(ILongPress listener: longListeners) {
+            listener.longPress(x, y);
+        }
         return false;
     }
 

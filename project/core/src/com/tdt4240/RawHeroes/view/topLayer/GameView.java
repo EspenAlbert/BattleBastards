@@ -9,10 +9,16 @@ import com.tdt4240.RawHeroes.event.listener.ICameraListener;
 import com.tdt4240.RawHeroes.event.listener.IMoveListener;
 import com.tdt4240.RawHeroes.event.move.Move;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.IBoardMover;
+import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.CameraController;
+import com.tdt4240.RawHeroes.gameLogic.inputListeners.ActivateUnitDetails;
+import com.tdt4240.RawHeroes.gameLogic.inputListeners.TouchDownRemoveUnitDetails;
 import com.tdt4240.RawHeroes.gameLogic.models.ICamera;
 import com.tdt4240.RawHeroes.event.events.BoardEvent;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
+import com.tdt4240.RawHeroes.independent.MyInputProcessor;
+import com.tdt4240.RawHeroes.independent.Position;
 import com.tdt4240.RawHeroes.view.customUIElements.boardRenderer.BoardRenderer;
+import com.tdt4240.RawHeroes.view.customUIElements.unitDetailRenderer.UnitDetailRenderer;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.UnitRenderer;
 
 import java.util.ArrayList;
@@ -24,12 +30,15 @@ public class GameView implements IView, IBoardListener, ICameraListener, IMoveLi
 
     private final UnitRenderer unitRenderer;
     private final BoardRenderer boardRenderer;
-
+    private final IBoard board;
+    private final UnitDetailRenderer unitDetails;
 
 
     public GameView(IBoard board, boolean iAmPlayer1, ICamera camera) {
+        this.board = board;
         boardRenderer = new BoardRenderer(board, iAmPlayer1);
         unitRenderer = new UnitRenderer(board, camera, iAmPlayer1);
+        unitDetails = new UnitDetailRenderer(board);
     }
 
     public void BoardChanged(BoardEvent event) {
@@ -42,6 +51,7 @@ public class GameView implements IView, IBoardListener, ICameraListener, IMoveLi
     public void render(SpriteBatch batch) {
         boardRenderer.render(batch);
         unitRenderer.render(batch);
+        unitDetails.render(batch);
     }
 
     @Override
@@ -61,5 +71,10 @@ public class GameView implements IView, IBoardListener, ICameraListener, IMoveLi
 
     public boolean noAnimationWaiting() {
         return unitRenderer.noAnimationWaiting();
+    }
+
+    public void initializeTouchListeners(CameraController camera){
+        MyInputProcessor.getInstance().AddLongListener(new ActivateUnitDetails(unitDetails, camera));
+        MyInputProcessor.getInstance().AddTouchDownListener(new TouchDownRemoveUnitDetails(unitDetails));
     }
 }

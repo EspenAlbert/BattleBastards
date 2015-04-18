@@ -32,7 +32,7 @@ public class LoginScreen extends ScreenState {
     private TextField textFieldUsername;
     private TextField textFieldPassword;
     private Label title;
-
+    private int loginAttempts;
 
 
 
@@ -42,6 +42,7 @@ public class LoginScreen extends ScreenState {
         skin = new Skin(Gdx.files.internal("uiskin.json"), new TextureAtlas(Gdx.files.internal("uiskin.atlas")));
         stage = new Stage();
         title = new Label("Game Title",skin);
+        loginAttempts = 0;
 
 
         int xPos = GameConstants.RESOLUTION_WIDTH/2 - GameConstants.BUTTON_WIDTH/2;
@@ -109,6 +110,7 @@ public class LoginScreen extends ScreenState {
 
         //TODO: Test network connection
         ClientConnection connectionAndroid = ClientConnection.getInstance();
+<<<<<<< HEAD
         ClientConnection clientConnection = ClientConnection.getInstance();
         ResponseMessage response;
         if(checkBoxNewuser.isChecked()) response = clientConnection.createUser(username, pwd);
@@ -125,6 +127,31 @@ public class LoginScreen extends ScreenState {
             labelInstruction.setText(errorMessage);
             System.out.println("Failed to login, errormessage: " + errorMessage);
         }
+=======
+        gsm.setState(ScreenStateManager.MAINMENU);
+        if (loginAttempts > 4){
+            //TODO Fiks en riktig respons når du går over loginAttemptgrensen
+            dispose();
+        } else {
+            /*ResponseMessage response;
+            if(checkBoxNewuser.isChecked()) response = clientConnection.createUser(username, pwd);
+            else response = clientConnection.login(username, pwd);
+            ResponseType type = response.getType();
+            if(type.equals(ResponseType.SUCCESS)) {
+                ClientConnection.getInstance().setUsername(username);
+                ClientConnection.getInstance().setPassword(pwd);
+                System.out.println("Success, login successfull");
+                gsm.setState(ScreenStateManager.MAINMENU);
+            }
+            else {
+                String errorMessage = (String) response.getContent();
+                labelInstruction.setText(errorMessage);
+                System.out.println("Failed to login, errormessage: " + errorMessage);
+                System.out.println("You have " + Integer.toString(5-loginAttempts) + " login attempts left");
+                loginAttempts ++;
+            }*/
+        }
+>>>>>>> development
     }
 
     @Override
