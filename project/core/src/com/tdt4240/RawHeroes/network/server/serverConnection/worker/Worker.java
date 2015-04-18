@@ -151,11 +151,11 @@ public class Worker extends Thread {
         boolean challengedPlayerIsReal = !playerHandler.usernameIsAvailable(challengedPlayer);
         if(!challengedPlayerIsReal) return ResponseCreator.getChallengePlayerDoesNotExist();
         //CreateGame
-        //Check that there is not an existing game
+        //Check that there is not an existing launcher
         GameHandler gameHandler = GameHandler.getInstance();
         int id = gameHandler.findGame(hostUsername, challengedPlayer);
         if(id > -1) return ResponseCreator.getGameAlreadyExist(challengedPlayer);
-        //Create a new game
+        //Create a new launcher
         Games gameType = (Games) request.getParameters().get(1);
         int gameId = gameHandler.createGame(hostUsername, challengedPlayer, gameType);
         if(gameId > 0) return ResponseCreator.getCreateGameSuccess(gameId);
