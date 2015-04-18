@@ -6,18 +6,22 @@ import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
 import com.tdt4240.RawHeroes.independent.Position;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by espen1 on 12.04.2015.
  */
 public class SimpleUnitCombatController implements IUnitCombatController {
 
+    private Random rand;
     private IUnit unit;
-    private int attackDmg, armor;
+    private int attackDmgMin, attackDmgMax, armor;
 
-    public SimpleUnitCombatController(IUnit u, int attackDmg, int armor){
+    public SimpleUnitCombatController(IUnit u, int minDmg, int maxDmg, int armor){
+        this.rand = new Random();
         this.unit = u;
-        this.attackDmg = attackDmg;
+        this.attackDmgMin = minDmg;
+        this.attackDmgMax = maxDmg;
         this.armor = armor;
     }
 
@@ -54,11 +58,23 @@ public class SimpleUnitCombatController implements IUnitCombatController {
 
     @Override
     public int inflictDamage(Position myPos, Position attackPos) {
-        return attackDmg;
+        return rand.nextInt((this.attackDmgMax - this.attackDmgMin) + 1 + attackDmgMin);
     }
 
     @Override
     public int attacked(int damage) {
         return damage - armor;
+    }
+
+    public int getAttackDmgMin(){
+        return attackDmgMin;
+    }
+
+    public int getAttackDmgMax(){
+        return attackDmgMax;
+    }
+
+    public int getArmor(){
+        return armor;
     }
 }

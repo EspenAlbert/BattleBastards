@@ -16,6 +16,7 @@ import java.util.ArrayList;
  */
 public class StandardUnit implements IUnit {
 
+
     private boolean player1Unit;
     private boolean hasAttacked;
     private IUnitCombatController unitCombatController;
@@ -31,7 +32,7 @@ public class StandardUnit implements IUnit {
         this.remainingMoves = 3;
         this.weight = 5;
 
-        this.unitCombatController = new SimpleUnitCombatController(this, 5, 1);
+        this.unitCombatController = new SimpleUnitCombatController(this, 5, 10, 1);
         this.unitMoveController = new WalkingUnitMovementController();
         System.out.println("Created a standard unit");
     }
