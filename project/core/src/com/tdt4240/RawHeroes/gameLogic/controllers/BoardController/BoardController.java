@@ -72,6 +72,7 @@ public class BoardController implements IBoardController {
 
     @Override
     public void cellTouched(Position coordinates) {
+        if(coordinates.getY() > board.getHeight()-1 || coordinates.getX() > board.getWidth()-1) return;
         boardStates.peek().cellSelected(board.getCell(coordinates));
     }
 

@@ -19,6 +19,7 @@ import java.util.ArrayList;
  */
 public class CameraController implements ICamera {
 
+    private CameraTranslator ct;
     private FitViewport viewport;
     private int x, y;
     private ArrayList<ICameraListener> listeners;
@@ -34,7 +35,6 @@ public class CameraController implements ICamera {
 
         viewport.apply();
         camera.position.set(GameConstants.GAME_WIDTH / 2, GameConstants.GAME_HEIGHT / 2, 0);
-
         listeners = new ArrayList<ICameraListener>();
     }
 
@@ -104,15 +104,32 @@ public class CameraController implements ICamera {
     }
 
     public void translate(int x, int y) {
-        camera.translate(x, y);
+
+        if(ct == null) {
+            ct = new CameraTranslator(this, y);
+            ct.start();
+        } else {
+            ct.newFinishPos(y);
+        }
+
+       // camera.translate(x, y);
     }
 
+    private final float cameraMaxY = 3;
     @Override
     public void makeSureVisible(Position startPos, Position endPos) {
-        Position p = convertPixelCoordinateToCell(new Vector2(0,GameConstants.RESOLUTION_HEIGHT));
-        int difference = p.getY() - startPos.getY();
-        if(Math.abs(difference) > 3) {
-            camera.translate(0, -difference);
+        Position p = convertPixelCoordinateToCell(new Vector2(0,GameConstants.RESOLUTION_HEIGHT-10));
+        int difference = endPos.getY() - p.getY();
+        if(Math.abs(difference) != 2) {
+            int transfer = difference -2;
+            while((p.getY() + transfer) > cameraMaxY) {
+                transfer--;
+            }
+            while((p.getY() + transfer < 0)) {
+                transfer++;
+            }
+            System.out.println("About to transfer camera: " + transfer);
+            translate(0, transfer);
         }
         //TODO: Implement logic to make sure positions is visible...
     }
@@ -124,5 +141,12 @@ public class CameraController implements ICamera {
 
     public Vector2 getScreenPixelCoordinate(float x, float y) {
         return viewport.project(new Vector2(x, y));
+    }
+
+    public void translateReal(float dy) {
+        camera.translate(0, dy);
+    }
+    public void finishedMovingCamera() {
+        ct = null;
     }
 }
