@@ -103,7 +103,7 @@ public class ClientConnection implements IClientConnection {
 
     @Override
     public int[] getMyGames() {
-        return new int[0];
+        return new int[]{1};
     }
 
     @Override
