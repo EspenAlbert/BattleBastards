@@ -102,8 +102,8 @@ public class ClientConnection implements IClientConnection {
     }
 
     @Override
-    public int[] getMyGames() {
-        return new int[0];
+    public ResponseMessage getGameIds() {
+        return sendRequestAndWaitForResponse(RequestCreator.getGameIds(username, password));
     }
 
     @Override
@@ -113,10 +113,7 @@ public class ClientConnection implements IClientConnection {
 
     @Override
     public ResponseMessage doMoves(int id, ArrayList<Move> moves) {
-        ArrayList<Move> dummyMoves = new ArrayList<Move>();
-        dummyMoves.add(null);
-        dummyMoves.add(null);
-        return sendRequestAndWaitForResponse(RequestCreator.getDoMoveRequest(username, password, id,dummyMoves));
+        return sendRequestAndWaitForResponse(RequestCreator.getDoMoveRequest(username, password, id,moves));
     }
 
     @Override

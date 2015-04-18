@@ -2,6 +2,7 @@ package com.tdt4240.RawHeroes.event.move;
 
 import com.badlogic.gdx.math.Vector2;
 import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
+import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.CellConverter;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
 import com.tdt4240.RawHeroes.independent.Position;
@@ -44,6 +45,15 @@ public class AttackMove extends Move {
     @Override
     public void undo(IBoard board) {
 
+    }
+
+    @Override
+    public void convertPositions(int boardWidth, int boardHeight) {
+        HashMap<Position, Integer> newDamages = new HashMap<Position, Integer>();
+        for(Position pos : damages.keySet()) {
+            newDamages.put(CellConverter.switchPosition(pos, boardWidth, boardHeight), damages.get(pos));
+        }
+        damages = newDamages;
     }
 
     private void getDamages(IBoard board) {

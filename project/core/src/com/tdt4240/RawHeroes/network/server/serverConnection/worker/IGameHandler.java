@@ -24,4 +24,6 @@ public interface IGameHandler {
     boolean isActiveGame(int gameId) throws SQLException;
 
     void doMoves(int gameId, String username, ArrayList<Move> moves) throws NotYourGameException, GameNotFoundException, NotYourTurnException, Exception;
+
+    ArrayList<Integer> getGameIds(String username) throws SQLException;
 }

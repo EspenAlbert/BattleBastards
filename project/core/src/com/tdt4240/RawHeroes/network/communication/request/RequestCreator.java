@@ -47,4 +47,12 @@ public class RequestCreator {
         json.put("request", message);
         return json;
     }
+
+    public static JSONObject getGameIds(String username, String password) {
+        JSONObject json = new JSONObject();
+        RequestMessage message = new RequestMessage(RequestTypes.GET_GAMEIDS, new Player(username, password));
+        message.addParameter(username);
+        json.put("request", message);
+        return json;
+    }
 }

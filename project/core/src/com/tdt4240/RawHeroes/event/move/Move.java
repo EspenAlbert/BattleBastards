@@ -43,4 +43,6 @@ public abstract class Move implements Serializable{
     public abstract void  execute(IBoard board);
 
     public abstract void undo(IBoard board);
+
+    public abstract void convertPositions(int boardWidth, int boardHeight);
 }

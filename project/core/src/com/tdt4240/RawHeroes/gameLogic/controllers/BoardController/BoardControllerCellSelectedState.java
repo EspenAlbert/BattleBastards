@@ -39,7 +39,7 @@ public class BoardControllerCellSelectedState extends BoardControllerState {
 
     @Override
     public void cellSelected(ICell cell) {
-        if (cell.getUnit() != null){ //Velge ny unit
+        if (cell.getUnit() != null && cell.getUnit().isPlayer1Unit() == boardController.iAmPlayer1() ){ //Velge ny unit
             this.board.switchModeOnCell(selectedCell.getPos(), CellStatus.DEFAULT);
             selectedCell = cell;
             popped();

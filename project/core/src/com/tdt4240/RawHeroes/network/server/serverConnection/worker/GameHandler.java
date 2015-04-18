@@ -2,6 +2,7 @@ package com.tdt4240.RawHeroes.network.server.serverConnection.worker;
 
 import com.tdt4240.RawHeroes.createGame.factory.GameBuilding;
 import com.tdt4240.RawHeroes.event.move.Move;
+import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardMover;
 import com.tdt4240.RawHeroes.network.server.database.DatabaseConnector;
 import com.tdt4240.RawHeroes.network.server.serverConnection.player.Player;
 import com.tdt4240.RawHeroes.network.server.serverConnection.worker.exceptions.GameNotFoundException;
@@ -74,7 +75,18 @@ public class GameHandler implements IGameHandler{
         if(iAmPlayer1 != game.getNextTurnIsPlayer1()) throw new NotYourTurnException();
         //TODO: Logic for executing moves
         game.setNextTurnIsPlayer1(!game.getNextTurnIsPlayer1());
+        BoardMover mover = new BoardMover(game.getBoard());
+        mover.executeMoves(game.getLastMoves());
+        game.getBoard().convertCellsToOtherPlayer();
+        game.setLastMoves(moves);
         //TODO: Check win condition
+
         databaseConnector.updateGame(game);
+    }
+
+    @Override
+    public ArrayList<Integer> getGameIds(String username) throws SQLException {
+        ArrayList<Integer> gameIds = databaseConnector.getAllKeys(username);
+        return gameIds;
     }
 }
