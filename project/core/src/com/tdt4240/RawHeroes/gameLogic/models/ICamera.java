@@ -11,4 +11,6 @@ public interface ICamera {
     Vector2 convertPixelCoordinateToCell(Vector2 pixelCoordinate);
     void move(Directions direction);
     void addCameraListener(ICameraListener listener);
+    Vector2 getScreenPixelCoordinate(float x, float y);
+    void translate(int x, int y);
 }

@@ -38,6 +38,8 @@ public class UnitMoveExecutor {
         Vector2 attackerPos = move.getStartCell().getPos();
    //     renderAttacker = unitPositionsAndRenderObjects.get(attackerPos);
         renderAttacker.changeRenderMode(RenderMode.ATTACKING);
+        //TODO: Fix this.... getVictims...
+        /*
         ArrayList<ICell> victims = move.getVictims();
         for (ICell cell : victims) {
             if (cell.getUnit().getHealth() > 0) {
@@ -46,5 +48,6 @@ public class UnitMoveExecutor {
        //         unitPositionsAndRenderObjects.get(cell.getPos()).changeRenderMode(RenderMode.KILLED);
             }
         }
+        */
     }
 }

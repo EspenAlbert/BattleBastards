@@ -1,7 +1,9 @@
 package com.tdt4240.RawHeroes.topLayer.screens;
 
+import com.tdt4240.RawHeroes.createGame.factory.GameBuilding;
 import com.tdt4240.RawHeroes.network.client.ClientConnection;
 import com.tdt4240.RawHeroes.topLayer.commonObjects.Game;
+import com.tdt4240.RawHeroes.topLayer.commonObjects.Games;
 import com.tdt4240.RawHeroes.topLayer.launcher.BattleBastards;
 import com.tdt4240.RawHeroes.independent.MyInputProcessor;
 
@@ -17,13 +19,12 @@ public class ScreenStateManager {
 
 
     public static final int MAINMENU = 912837;
-    public static final int TASK2 = 912838;
-    public static final int TASK3 = 912839;
-    public static final int TASK4 = 912840;
-    public static final int END_GAME_SCREEN = 912841;
+    public static final int GAMESCREEN = 2;
 
     public ScreenStateManager(BattleBastards game) {
         this.game = game;
+        Game activeGame = GameBuilding.getInstance().createGame(Games.KILL_ALL_ENEMY_UNITS, "player1", "player2");
+
         screenStates = new Stack<ScreenState>();
         pushState(new LoginScreen(this));
     }
@@ -42,6 +43,7 @@ public class ScreenStateManager {
 
     private ScreenState getState(int state) {
         if(state == MAINMENU) return new MainMenuScreen(this);
+        else if(state == GAMESCREEN) return new ActiveGameScreen(this, GameBuilding.getInstance().createGame(Games.KILL_ALL_ENEMY_UNITS, "player1", "player2"));
         /*
         else if(state == TASK2) return new Task2State(this);
         else if(state == TASK3) return new Task3State(this);
@@ -72,6 +74,10 @@ public class ScreenStateManager {
         ScreenState g = screenStates.pop();
         g.dispose();
         MyInputProcessor.getInstance().removeListeners();
+    }
+
+    public void resize(int width, int height) {
+        screenStates.peek().resize(width, height);
     }
 }
 

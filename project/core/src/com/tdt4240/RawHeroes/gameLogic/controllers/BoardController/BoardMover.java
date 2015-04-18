@@ -18,6 +18,7 @@ public class BoardMover implements IBoardMover {
     public BoardMover(IBoard board) {
         this.board = board;
         moves = new ArrayList<Move>();
+        listeners = new ArrayList<IMoveListener>();
 
     }
     @Override

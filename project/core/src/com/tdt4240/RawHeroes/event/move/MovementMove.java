@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.WalkingUnitMovementController;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
+import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
 
 import java.util.ArrayList;
 
@@ -19,7 +20,10 @@ public class MovementMove extends Move {
         super(selectedCell);
         this.target=target.getPos();
         this.path = path;
-        cost=path.size();
+        cost=path.size()-1;
+        IUnit mover = selectedCell.getUnit();
+        selectedCell.setUnit(null);
+        target.setUnit(mover);
     }
 
     public ArrayList<Vector2> getPath(){

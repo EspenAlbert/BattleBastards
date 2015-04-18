@@ -1,6 +1,11 @@
 package com.tdt4240.RawHeroes.gameLogic.controllers.cameraController;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.tdt4240.RawHeroes.event.listener.ICameraListener;
 import com.tdt4240.RawHeroes.gameLogic.models.ICamera;
 import com.tdt4240.RawHeroes.independent.Directions;
@@ -13,21 +18,46 @@ import java.util.ArrayList;
  */
 public class CameraController implements ICamera {
 
+    private FitViewport viewport;
     private int x, y;
     private ArrayList<ICameraListener> listeners;
+    private OrthographicCamera camera;
+
 
     public CameraController() {
-        x = 0;
-        y = 0;
+
+        float aspectRatio = (float) GameConstants.RESOLUTION_HEIGHT / GameConstants.RESOLUTION_WIDTH;
+
+        camera = new OrthographicCamera();
+        viewport = new FitViewport(GameConstants.GAME_WIDTH + GameConstants.EXTRA_SPACE_BUTTONS, GameConstants.GAME_HEIGHT, camera);
+        viewport.apply();
+        camera.position.set(GameConstants.GAME_WIDTH / 2, GameConstants.GAME_HEIGHT / 2, 0);
         listeners = new ArrayList<ICameraListener>();
     }
 
     @Override
     public Vector2 convertPixelCoordinateToCell(Vector2 pixelCoordinate) {
-        int xCell = Math.round(pixelCoordinate.x / (GameConstants.BUTTON_WIDTH + GameConstants.SPACE_BETWEEN)) + x;
-        int yCell = Math.round(pixelCoordinate.y / (GameConstants.BUTTON_HEIGHT + GameConstants.SPACE_BETWEEN)) + y;
+        Vector3 realCoordinate = viewport.unproject(new Vector3(pixelCoordinate.x, pixelCoordinate.y, 0));
+        System.out.println("The real coordinate: " + realCoordinate.x + "," + realCoordinate.y);
+
+        int xCell = (int) realCoordinate.x;
+        int yCell = (int) realCoordinate.y;
         return new Vector2(xCell, yCell);
     }
+
+    public void zoomTest(int amount) {
+
+        camera.zoom += amount * 0.02;
+
+        camera.zoom = MathUtils.clamp(camera.zoom, 0.1f, 100 / camera.viewportWidth);
+
+        float effectiveViewportWidth = camera.viewportWidth * camera.zoom;
+        float effectiveViewportHeight = camera.viewportHeight * camera.zoom;
+
+        camera.position.x = MathUtils.clamp(camera.position.x, effectiveViewportWidth / 2f, 100 - effectiveViewportWidth / 2f);
+        camera.position.y = MathUtils.clamp(camera.position.y, effectiveViewportHeight / 2f, 100 - effectiveViewportHeight / 2f);
+    }
+
 
     @Override
     public void move(Directions direction) {
@@ -60,5 +90,26 @@ public class CameraController implements ICamera {
         for(ICameraListener listener: listeners) {
             listener.cameraShifted(dx, dy);
         }
+    }
+
+    public Matrix4 getProjectionMatrix() {
+        return camera.combined;
+    }
+
+    public void update() {
+        camera.update();
+    }
+
+    public void translate(int x, int y) {
+        camera.translate(x, y);
+    }
+
+    public void resize(int width, int height) {
+        viewport.update(width,height);
+        camera.position.set(camera.viewportWidth/2,camera.viewportHeight/2,0);
+    }
+
+    public Vector2 getScreenPixelCoordinate(float x, float y) {
+        return viewport.project(new Vector2(x, y));
     }
 }

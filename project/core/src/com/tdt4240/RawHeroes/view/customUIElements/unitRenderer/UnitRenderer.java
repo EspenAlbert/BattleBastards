@@ -58,7 +58,30 @@ public class UnitRenderer implements IMoveListener, ICameraListener {
 
     @Override
     public void moveExecuted(Move move) {
-       currentAnimations.add(move);
+       if(move instanceof MovementMove) {
+           MovementMove movement = (MovementMove) move;
+           Vector2 mover = movement.getStartCell().getPos();
+           Vector2 endCell = movement.getTarget();
+
+           //IRenderObject renderer = getRenderer(mover);
+           IRenderObject renderer = unitPositionsAndRenderObjects.get(mover);
+           System.out.println("This should not be null! : " + renderer);
+           unitPositionsAndRenderObjects.remove(mover);
+           unitPositionsAndRenderObjects.put(endCell, renderer);
+          // Vector2 moves = move.getStartCell()
+       }
+
+       //currentAnimations.add(move);
+    }
+
+    private IRenderObject getRenderer(Vector2 mover) {
+        for(Vector2 key: unitPositionsAndRenderObjects.keySet()) {
+            if(key.x == mover.x && key.y == mover.y) {
+                return unitPositionsAndRenderObjects.get(key);
+            }
+        }
+        System.out.println("Could find the unit!");
+        return null;
     }
 
     private void movementMove(MovementMove move) {
@@ -69,9 +92,14 @@ public class UnitRenderer implements IMoveListener, ICameraListener {
     }
 
     public void render(SpriteBatch batch) {
+        for(Vector2 key : unitPositionsAndRenderObjects.keySet()) {
+            unitPositionsAndRenderObjects.get(key).render(batch, key);
+        }
+        /*
         if(!animationActive && !currentAnimations.isEmpty()) {
             executeMove(currentAnimations.poll());
         }
+        */
     }
 
     private void executeMove(Move move) {
@@ -83,13 +111,6 @@ public class UnitRenderer implements IMoveListener, ICameraListener {
             movementMove((MovementMove) move);
         }
     }
-
-    public void render(SpriteBatch batch, Vector2 pos) {
-        for(Vector2 key : unitPositionsAndRenderObjects.keySet()) {
-            unitPositionsAndRenderObjects.get(key).render(batch, key);
-        }
-    }
-
     @Override
     public void cameraShifted(int dx, int dy) {
 
