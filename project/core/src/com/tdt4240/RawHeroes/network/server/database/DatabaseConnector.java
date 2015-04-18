@@ -79,19 +79,24 @@ public class DatabaseConnector implements IDatabaseConnector {
         if (!result.next()) return -1;
         return result.getInt("gameId");
     }
-    public int[] getAllKeys(String username) throws SQLException {
+    public ArrayList<Integer> getAllKeys(String username) throws SQLException {
         PreparedStatement ps = null;
         String sql = null;
         sql = "select gameID from games where(player1 = ? ) or (player2 = ?);";
-
-        ps = myConnection.prepareStatement(sql);
+        ArrayList<Integer> gameIds = new ArrayList<Integer>();
+        ps = myConnection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         ps.setString(1, username);
         ps.setString(2, username);
-        ResultSet result = ps.executeQuery();
-        if(!result.next()){
-
+        //ps.executeQuery();
+        ResultSet generatedKeys =  ps.executeQuery();
+        while (generatedKeys.next()) {
+            int primaryKey = generatedKeys.getInt(1);
+            gameIds.add(primaryKey);
+            //game.setId(primaryKey);
+            //updateJavaObject("games", "gameId", primaryKey, game);
         }
-        return new int[] {0};
+        return gameIds;
+        //return response;
     }
 
     @Override

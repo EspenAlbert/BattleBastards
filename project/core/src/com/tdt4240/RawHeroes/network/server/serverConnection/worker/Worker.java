@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -105,12 +106,25 @@ public class Worker extends Thread {
                 case GET_GAME:
                     response.put("response", getGame(request));
                     break;
+                case GET_GAMEIDS:
+                    response.put("response", getGameIds(request));
+                    break;
             }
         }catch(Exception exception) {
             exception.printStackTrace();
             response.put("response", new ResponseMessage(ResponseType.FAILURE, "There was an exception on the server side"));
         }
         sendJSON(response);
+    }
+
+    private ResponseMessage getGameIds(RequestMessage request) throws Exception {
+        GameHandler gameHandler = GameHandler.getInstance();
+        String username = (String) request.getParameters().get(0);
+        ArrayList<Integer> gameIds = gameHandler.getGameIds(username);
+        return ResponseCreator.getGameIds(gameIds);
+
+
+
     }
 
     private ResponseMessage getGame(RequestMessage request) throws Exception {

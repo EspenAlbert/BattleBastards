@@ -77,4 +77,10 @@ public class GameHandler implements IGameHandler{
         //TODO: Check win condition
         databaseConnector.updateGame(game);
     }
+
+    @Override
+    public ArrayList<Integer> getGameIds(String username) throws SQLException {
+        ArrayList<Integer> gameIds = databaseConnector.getAllKeys(username);
+        return gameIds;
+    }
 }

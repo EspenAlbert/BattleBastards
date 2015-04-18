@@ -102,8 +102,8 @@ public class ClientConnection implements IClientConnection {
     }
 
     @Override
-    public int[] getMyGames() {
-        return new int[]{1};
+    public ResponseMessage getGameIds() {
+        return sendRequestAndWaitForResponse(RequestCreator.getGameIds(username, password));
     }
 
     @Override
