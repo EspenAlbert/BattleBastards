@@ -16,6 +16,7 @@ import com.tdt4240.RawHeroes.independent.GameConstants;
 import com.tdt4240.RawHeroes.network.client.ClientConnection;
 import com.tdt4240.RawHeroes.network.communication.Response.ResponseMessage;
 import com.tdt4240.RawHeroes.network.communication.Response.ResponseType;
+import com.tdt4240.RawHeroes.topLayer.commonObjects.Games;
 
 /**
  * Created by espen1 on 27.02.2015.

@@ -140,6 +140,7 @@ public class DatabaseConnector implements IDatabaseConnector {
         ps.setString(2, game.getPlayer2Nickname());
         ps.setObject(3, game);
         int response = ps.executeUpdate();
+        System.out.println("here?");
         ResultSet generatedKeys = ps.getGeneratedKeys();
         if (generatedKeys.next()) {
             int primaryKey = generatedKeys.getInt(1);

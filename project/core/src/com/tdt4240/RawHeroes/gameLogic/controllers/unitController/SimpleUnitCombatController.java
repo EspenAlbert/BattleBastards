@@ -5,12 +5,13 @@ import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
 import com.tdt4240.RawHeroes.independent.Position;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by espen1 on 12.04.2015.
  */
-public class SimpleUnitCombatController implements IUnitCombatController {
+public class SimpleUnitCombatController implements IUnitCombatController, Serializable {
 
     private IUnit unit;
     private int attackDmg, armor;
