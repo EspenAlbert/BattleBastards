@@ -68,6 +68,7 @@ public class ActiveGameScreen extends ScreenState{
         MyInputProcessor.getInstance().AddTouchDownListener(new TouchListenerActiveGameScreen(boardController, cameraController, this));
         MyInputProcessor.getInstance().AddTouchDraggedListener(new MoveBoardTouchDraggedListener(cameraController));
         MyInputProcessor.getInstance().AddFlingListener(new TranslateCamera(cameraController));
+        gameView.initializeTouchListeners(cameraController);
         initialized = true;
     }
 
