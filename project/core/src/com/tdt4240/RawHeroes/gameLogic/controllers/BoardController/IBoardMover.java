@@ -16,4 +16,5 @@ public interface IBoardMover {
     void addMoveListener(IMoveListener listener);
     ArrayList<Move> confirmMoves();
 
+    void executeMovesFromBeginning();
 }

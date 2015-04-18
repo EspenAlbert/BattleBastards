@@ -145,9 +145,9 @@ public class MainMenuScreen extends ScreenState {
         if(responseMessage.getType() == ResponseType.FAILURE) {
             labelInstruction.setText((CharSequence) responseMessage.getContent());
         } else {
-            Game game = (Game) responseMessage.getContent();
-            System.out.println("managed to get game: " + game.getId() + " with players: " + game.getPlayer1Nickname() + " player 2:" + game.getPlayer2Nickname());
-            gsm.setState(new ActiveGameScreen(gsm, game));
+            Game launcher = (Game) responseMessage.getContent();
+            System.out.println("managed to get launcher: " + launcher.getId() + " with players: " + launcher.getPlayer1Nickname() + " player 2:" + launcher.getPlayer2Nickname());
+            gsm.setState(new ActiveGameScreen(gsm, launcher));
         }
 
     }

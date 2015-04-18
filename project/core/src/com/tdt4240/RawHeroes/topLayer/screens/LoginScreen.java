@@ -16,7 +16,6 @@ import com.tdt4240.RawHeroes.independent.GameConstants;
 import com.tdt4240.RawHeroes.network.client.ClientConnection;
 import com.tdt4240.RawHeroes.network.communication.Response.ResponseMessage;
 import com.tdt4240.RawHeroes.network.communication.Response.ResponseType;
-import com.tdt4240.RawHeroes.topLayer.commonObjects.Games;
 
 /**
  * Created by espen1 on 27.02.2015.
@@ -109,34 +108,15 @@ public class LoginScreen extends ScreenState {
         String pwd = textFieldPassword.getText();
 
         //TODO: Test network connection
-        ClientConnection connectionAndroid = ClientConnection.getInstance();
-<<<<<<< HEAD
         ClientConnection clientConnection = ClientConnection.getInstance();
         ResponseMessage response;
         if(checkBoxNewuser.isChecked()) response = clientConnection.createUser(username, pwd);
         else response = clientConnection.login(username, pwd);
         ResponseType type = response.getType();
-        if(type.equals(ResponseType.SUCCESS)) {
-            ClientConnection.getInstance().setUsername(username);
-            ClientConnection.getInstance().setPassword(pwd);
-            System.out.println("Success, login successfull");
-            gsm.setState(ScreenStateManager.MAINMENU);
-        }
-        else {
-            String errorMessage = (String) response.getContent();
-            labelInstruction.setText(errorMessage);
-            System.out.println("Failed to login, errormessage: " + errorMessage);
-        }
-=======
-        gsm.setState(ScreenStateManager.MAINMENU);
         if (loginAttempts > 4){
             //TODO Fiks en riktig respons når du går over loginAttemptgrensen
             dispose();
         } else {
-            /*ResponseMessage response;
-            if(checkBoxNewuser.isChecked()) response = clientConnection.createUser(username, pwd);
-            else response = clientConnection.login(username, pwd);
-            ResponseType type = response.getType();
             if(type.equals(ResponseType.SUCCESS)) {
                 ClientConnection.getInstance().setUsername(username);
                 ClientConnection.getInstance().setPassword(pwd);
@@ -149,9 +129,8 @@ public class LoginScreen extends ScreenState {
                 System.out.println("Failed to login, errormessage: " + errorMessage);
                 System.out.println("You have " + Integer.toString(5-loginAttempts) + " login attempts left");
                 loginAttempts ++;
-            }*/
+            }
         }
->>>>>>> development
     }
 
     @Override

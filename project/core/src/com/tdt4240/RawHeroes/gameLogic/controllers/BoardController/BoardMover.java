@@ -39,6 +39,13 @@ public class BoardMover implements IBoardMover {
     }
 
     @Override
+    public void executeMovesFromBeginning() {
+        for(Move move: moves) {
+            move.execute(initialBoard);
+        }
+    }
+
+    @Override
     public void add(Move move) {
         moves.add(move);
         doMove(move);

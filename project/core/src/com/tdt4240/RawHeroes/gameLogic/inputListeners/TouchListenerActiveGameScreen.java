@@ -71,6 +71,7 @@ public class TouchListenerActiveGameScreen implements TouchDown {
         }
         else if (screenY > 2*buttonHeight && screenY < 3*buttonHeight){
             System.out.println("Send");
+            gameScreen.confirmTurn();
             //TODO send
         }
         /*if(screenY > (GameConstants.RESOLUTION_HEIGHT / 2)) {
