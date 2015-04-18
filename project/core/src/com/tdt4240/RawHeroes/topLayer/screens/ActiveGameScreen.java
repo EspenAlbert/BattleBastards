@@ -54,6 +54,7 @@ public class ActiveGameScreen extends ScreenState{
         board = game.getBoard();
         System.out.println("in active game screen!!!!!");
         iAmPlayer1 = ClientConnection.getInstance().getUsername().equals(game.getPlayer1Nickname());
+
         board.convertCellsToOtherPlayer();
 
         cameraController = new CameraController();
@@ -67,7 +68,7 @@ public class ActiveGameScreen extends ScreenState{
         boardMover.addMoveListener(hud);
         board.addBoardListener(gameView);
 
-        boardMover.executeMoves(game.getLastMoves());
+        boardMover.executeMovesFromOtherPlayer(game.getLastMoves());
         hudBatch = new SpriteBatch(5);
         resize(GameConstants.RESOLUTION_WIDTH, GameConstants.RESOLUTION_HEIGHT);
     }
