@@ -77,6 +77,14 @@ public class BoardMover implements IBoardMover {
             doMove(move);
         }
     }
+    @Override
+    public void executeMovesFromOtherPlayer(ArrayList<Move> lastMoves) {
+        if(lastMoves == null) return;
+        for(Move move : lastMoves) {
+            move.convertPositions(board.getWidth(), board.getHeight());
+            doMove(move);
+        }
+    }
 
 
 }

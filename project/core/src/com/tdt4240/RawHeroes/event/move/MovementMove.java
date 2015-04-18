@@ -1,6 +1,7 @@
 package com.tdt4240.RawHeroes.event.move;
 
 import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
+import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.CellConverter;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
 import com.tdt4240.RawHeroes.independent.Position;
@@ -49,6 +50,16 @@ public class MovementMove extends Move {
         this.setTargetCell(getStartCell());
         this.setStartCell(temp);
         this.target = getTargetCell().getPos();
-
     }
+
+    @Override
+    public void convertPositions(int boardWidth, int boardHeight) {
+        int pathLength = path.size();
+        ArrayList<Position> newPath = new ArrayList<Position>(pathLength);
+        for(int i = pathLength-1; i> -1; i--) {
+            newPath.add(CellConverter.switchPosition(path.get(i),boardWidth, boardHeight));
+        }
+        path = newPath;
+    }
+
 }

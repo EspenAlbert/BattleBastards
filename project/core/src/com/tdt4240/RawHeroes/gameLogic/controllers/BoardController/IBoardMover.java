@@ -15,6 +15,7 @@ public interface IBoardMover {
     Move undo();
     void addMoveListener(IMoveListener listener);
     ArrayList<Move> confirmMoves();
+    void executeMovesFromOtherPlayer(ArrayList<Move> lastMoves);
 
     void executeMovesFromBeginning();
 }

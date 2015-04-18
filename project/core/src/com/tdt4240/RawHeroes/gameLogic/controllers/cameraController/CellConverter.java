@@ -21,4 +21,13 @@ public class CellConverter{
         }
         return returnCells;
     }
+
+    public static Position switchPosition(Position pos, int xLength, int yLength) {
+        int x = pos.getX();
+        int y = pos.getY();
+        int xCoordinate = xLength - (1+x);
+        int yCoordinate = yLength - (1+y);
+        return new Position(xCoordinate, yCoordinate);
+
+    }
 }
