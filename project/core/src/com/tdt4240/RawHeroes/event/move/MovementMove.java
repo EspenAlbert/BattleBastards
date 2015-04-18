@@ -16,7 +16,6 @@ public class MovementMove extends Move {
     private Position target;
     private int length;
 
-
     public MovementMove(ICell selectedCell, ICell target, ArrayList<Position> path) {//selectedCell is the startCell
         super(selectedCell, target);
         this.target=target.getPos();
@@ -30,6 +29,9 @@ public class MovementMove extends Move {
         return path;
     }
 
+    public int getLength(){
+        return length;
+    }
 
     public Position getTarget(){
         return target;
