@@ -1,6 +1,7 @@
 package com.tdt4240.RawHeroes.gameLogic.controllers.boardController;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.tdt4240.RawHeroes.event.move.Move;
 
 /**

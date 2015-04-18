@@ -16,6 +16,7 @@ import java.util.ArrayList;
  */
 public class StandardUnit implements IUnit {
 
+
     private boolean player1Unit;
     private boolean hasAttacked;
     private IUnitCombatController unitCombatController;

@@ -47,4 +47,16 @@ public class SimpleUnitCombatController implements IUnitCombatController {
     public int attacked(int damage) {
         return damage - armor;
     }
+
+    public int getAttackDmgMin(){
+        return attackDmgMin;
+    }
+
+    public int getAttackDmgMax(){
+        return attackDmgMax;
+    }
+
+    public int getArmor(){
+        return armor;
+    }
 }

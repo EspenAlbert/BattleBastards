@@ -8,9 +8,12 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.tdt4240.RawHeroes.gameLogic.cell.CellStatus;
@@ -21,6 +24,7 @@ import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.IBoardMover;
 import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.CameraController;
 import com.tdt4240.RawHeroes.gameLogic.inputListeners.TouchListenerActiveGameScreen;
 import com.tdt4240.RawHeroes.gameLogic.models.ICamera;
+import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
 import com.tdt4240.RawHeroes.independent.GameConstants;
 import com.tdt4240.RawHeroes.independent.MyInputProcessor;
 import com.tdt4240.RawHeroes.topLayer.commonObjects.Game;
@@ -36,6 +40,7 @@ import java.util.ArrayList;
 public class ActiveGameScreen extends ScreenState {
     public static final float ButtonXPos =  ((float) 7 / 8) * GameConstants.RESOLUTION_WIDTH;
 
+    private final Stage stage;
 
     private final GameView gameView;
     private final IBoardMover boardMover;
@@ -64,6 +69,7 @@ public class ActiveGameScreen extends ScreenState {
         iAmPlayer1 = true;
         cameraController = new CameraController();
 
+        stage = new Stage();
         skin = new Skin(Gdx.files.internal("uiskin.json"), new TextureAtlas(Gdx.files.internal("uiskin.atlas")));
 
 
@@ -116,12 +122,15 @@ public class ActiveGameScreen extends ScreenState {
     public void render() {
         Gdx.gl.glClearColor(0.36f, 0.32f, 0.27f, 1.0f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
         spriteBatch.begin();
         cameraController.update();
         spriteBatch.setProjectionMatrix(cameraController.getProjectionMatrix());
         gameView.render(spriteBatch);
         spriteBatch.end();
         hudBatch.begin();
+        stage.act();
+        stage.draw();
 
         sendButton.draw(hudBatch, 1);
         abortButton.draw(hudBatch, 1);
@@ -143,4 +152,5 @@ public class ActiveGameScreen extends ScreenState {
     public void cellClicked(Vector2 cellCoordinate) {
         board.switchModeOnCell(cellCoordinate, CellStatus.SELECTED);
     }
+
 }

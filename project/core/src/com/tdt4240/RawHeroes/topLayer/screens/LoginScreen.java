@@ -103,6 +103,7 @@ public class LoginScreen extends ScreenState {
         String pwd = textFieldPassword.getText();
         gsm.setState(ScreenStateManager.MAINMENU);
         if (loginAttempts > 4){
+            //TODO Fiks en riktig respons når du går over loginAttemptgrensen
             dispose();
         } else {
             /*ResponseMessage response;

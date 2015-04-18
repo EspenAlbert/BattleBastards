@@ -1,8 +1,21 @@
 package com.tdt4240.RawHeroes.gameLogic.controllers.boardController;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.event.move.Move;
+import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
+import com.tdt4240.RawHeroes.independent.GameConstants;
 
 import java.util.Stack;
 
@@ -14,11 +27,13 @@ public class BoardController implements IBoardController {
     private final IBoard board;
     private final IBoardMover boardMover;
     private Stack<BoardControllerState> boardStates;
+    private Dialog createUnitDetailsScreenDialog;
 
     private int remaining_energy;
 
 
     public BoardController(IBoard board, IBoardMover boardMover, int remaining_energy) {
+        createUnitDetailsScreenDialog = null;
         this.board = board;
         this.boardMover = boardMover;
         this.remaining_energy = remaining_energy;
@@ -55,6 +70,7 @@ public class BoardController implements IBoardController {
     public void cellTouchedLong(Vector2 coordinates){
         if (board.getCell(coordinates).getUnit() != null){
             //TODO åpne et nytt vindu med informasjon om denne uniten
+            //createUnitDetailsScreen(board.getCell(coordinates).getUnit());
         }
     }
 
