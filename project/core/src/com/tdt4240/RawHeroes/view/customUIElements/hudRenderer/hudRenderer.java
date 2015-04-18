@@ -60,7 +60,7 @@ public class hudRenderer implements IRenderNoPos, BoardControllerStateListener, 
         skin = new Skin(Gdx.files.internal("uiskin.json"), new TextureAtlas(Gdx.files.internal("uiskin.atlas")));
 
 
-        int buttonWidth = GameConstants.RESOLUTION_WIDTH - 7*GameConstants.CELL_WIDTH;
+        int buttonWidth = GameConstants.RESOLUTION_WIDTH / 8;
         int buttonHeight = GameConstants.RESOLUTION_HEIGHT /4;
 
         sendButton = new TextButton("Done", skin);
