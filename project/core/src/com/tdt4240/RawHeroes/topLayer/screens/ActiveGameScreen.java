@@ -19,6 +19,7 @@ import com.tdt4240.RawHeroes.gameLogic.inputListeners.TranslateCamera;
 import com.tdt4240.RawHeroes.independent.GameConstants;
 import com.tdt4240.RawHeroes.independent.MyInputProcessor;
 import com.tdt4240.RawHeroes.independent.Position;
+import com.tdt4240.RawHeroes.network.client.ClientConnection;
 import com.tdt4240.RawHeroes.network.communication.Response.ResponseMessage;
 import com.tdt4240.RawHeroes.topLayer.commonObjects.Game;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
@@ -52,16 +53,14 @@ public class ActiveGameScreen extends ScreenState{
         this.game = game;
         board = game.getBoard();
         System.out.println("in active game screen!!!!!");
-        //iAmPlayer1 = ClientConnection.getInstance().getUsername().equals(launcher.getPlayer1Nickname());
-        iAmPlayer1 = false;
-        if(!iAmPlayer1) {
-            board.convertCellsToOtherPlayer();
-        }
+        iAmPlayer1 = ClientConnection.getInstance().getUsername().equals(game.getPlayer1Nickname());
+        board.convertCellsToOtherPlayer();
+
         cameraController = new CameraController();
 
         boardMover = new BoardMover(board);
         gameView = new GameView(board, iAmPlayer1, cameraController);
-        boardController = new BoardController(board, boardMover, game.getMoveCount());
+        boardController = new BoardController(board, boardMover, game.getMoveCount(), iAmPlayer1);
         hud = new hudRenderer(boardController);
 
         boardMover.addMoveListener(gameView);

@@ -76,7 +76,8 @@ public class GameHandler implements IGameHandler{
         //TODO: Logic for executing moves
         game.setNextTurnIsPlayer1(!game.getNextTurnIsPlayer1());
         BoardMover mover = new BoardMover(game.getBoard());
-        mover.executeMoves(game.getLastMoves());
+        mover.executeMoves(moves);
+        game.setLastMoves(moves);
         //TODO: Check win condition
 
         databaseConnector.updateGame(game);
