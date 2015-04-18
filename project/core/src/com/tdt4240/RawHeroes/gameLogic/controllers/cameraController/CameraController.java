@@ -10,6 +10,7 @@ import com.tdt4240.RawHeroes.event.listener.ICameraListener;
 import com.tdt4240.RawHeroes.gameLogic.models.ICamera;
 import com.tdt4240.RawHeroes.independent.Directions;
 import com.tdt4240.RawHeroes.independent.GameConstants;
+import com.tdt4240.RawHeroes.independent.Position;
 
 import java.util.ArrayList;
 
@@ -36,13 +37,13 @@ public class CameraController implements ICamera {
     }
 
     @Override
-    public Vector2 convertPixelCoordinateToCell(Vector2 pixelCoordinate) {
+    public Position convertPixelCoordinateToCell(Vector2 pixelCoordinate) {
         Vector3 realCoordinate = viewport.unproject(new Vector3(pixelCoordinate.x, pixelCoordinate.y, 0));
         System.out.println("The real coordinate: " + realCoordinate.x + "," + realCoordinate.y);
 
         int xCell = (int) realCoordinate.x;
         int yCell = (int) realCoordinate.y;
-        return new Vector2(xCell, yCell);
+        return new Position(xCell, yCell);
     }
 
     public void zoomTest(int amount) {
@@ -102,6 +103,11 @@ public class CameraController implements ICamera {
 
     public void translate(int x, int y) {
         camera.translate(x, y);
+    }
+
+    @Override
+    public void makeSureVisible(Position startPos, Position endPos) {
+        //TODO: Implement logic to make sure positions is visible...
     }
 
     public void resize(int width, int height) {

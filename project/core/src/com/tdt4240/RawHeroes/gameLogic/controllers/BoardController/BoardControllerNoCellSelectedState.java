@@ -26,6 +26,12 @@ public class BoardControllerNoCellSelectedState extends BoardControllerState {
     }
 
     @Override
+    public BoardControllerStateEvent getEvent() {
+        //TODO finne en bedre måte å gjøre energy parameteren på
+        return new BoardControllerStateEvent(0, "Undo");
+    }
+
+    @Override
     public void popped() {
 
     }

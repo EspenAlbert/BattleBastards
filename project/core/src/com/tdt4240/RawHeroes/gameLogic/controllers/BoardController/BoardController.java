@@ -14,9 +14,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.event.move.Move;
-import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
-import com.tdt4240.RawHeroes.independent.GameConstants;
+import com.tdt4240.RawHeroes.independent.Position;
 
+import java.util.ArrayList;
 import java.util.Stack;
 
 /**
@@ -27,24 +27,35 @@ public class BoardController implements IBoardController {
     private final IBoard board;
     private final IBoardMover boardMover;
     private Stack<BoardControllerState> boardStates;
-    private Dialog createUnitDetailsScreenDialog;
+
+    private ArrayList<BoardControllerStateListener> listeners;
 
     private int remaining_energy;
+    private String actionButtonText = "Action";
 
 
     public BoardController(IBoard board, IBoardMover boardMover, int remaining_energy) {
-        createUnitDetailsScreenDialog = null;
         this.board = board;
         this.boardMover = boardMover;
         this.remaining_energy = remaining_energy;
         boardStates = new Stack<BoardControllerState>();
+        listeners = new ArrayList<BoardControllerStateListener>();
         this.boardStates.push(new BoardControllerNoCellSelectedState(this, this.board));
+        fireStateChanged(boardStates.peek().getEvent());
         //TODO sette riktig state. Kanskje Replay hvis moveslist ikke er tom eller noe
     }
 
     public void setState(BoardControllerState state) {
         boardStates.pop().popped();
         boardStates.push(state);
+        fireStateChanged(state.getEvent());
+    }
+
+    @Override
+    public void fireStateChanged(BoardControllerStateEvent event) {
+        for (BoardControllerStateListener listener : listeners){
+            listener.stateChanged(event);
+        }
     }
 
     public void addMove(Move move) {
@@ -57,7 +68,7 @@ public class BoardController implements IBoardController {
     }
 
     @Override
-    public void cellTouched(Vector2 coordinates) {
+    public void cellTouched(Position coordinates) {
         boardStates.peek().cellSelected(board.getCell(coordinates));
     }
 
@@ -67,14 +78,17 @@ public class BoardController implements IBoardController {
     }
 
     @Override
-    public void cellTouchedLong(Vector2 coordinates){
+    public void cellTouchedLong(Position coordinates){
         if (board.getCell(coordinates).getUnit() != null){
             //TODO åpne et nytt vindu med informasjon om denne uniten
-            //createUnitDetailsScreen(board.getCell(coordinates).getUnit());
         }
     }
 
     public int getRemaining_energy(){
         return this.remaining_energy;
+    }
+
+    public void addBoardControllerStateListener(BoardControllerStateListener listener){
+        this.listeners.add(listener);
     }
 }

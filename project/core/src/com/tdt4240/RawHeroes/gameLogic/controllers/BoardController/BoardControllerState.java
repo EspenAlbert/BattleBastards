@@ -12,6 +12,7 @@ public abstract class BoardControllerState {
 
     public abstract void actionButtonPressed();
     public abstract void cellSelected(ICell cell);
+    public abstract BoardControllerStateEvent getEvent();
 
     public BoardControllerState(IBoardController boardController, IBoard board) {
         this.boardController = boardController;
