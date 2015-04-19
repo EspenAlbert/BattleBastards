@@ -19,6 +19,11 @@ import java.util.ArrayList;
 public class StandardUnit implements IUnit {
 
 
+    private final int MAX_HEALTH = 20;
+
+    private final int MIN_DMG = 5;
+    private final int MAX_DMG = 10;
+
     private int health;
     private boolean player1Unit;
     private boolean hasAttacked;
@@ -29,14 +34,14 @@ public class StandardUnit implements IUnit {
     private int weight;
 
     public StandardUnit(boolean player1Unit) {
-        health = 20;
+        health = MAX_HEALTH;
         this.hasAttacked = false;
         this.player1Unit = player1Unit;
 
         this.remainingMoves = 3;
         this.weight = 5;
 
-        this.unitCombatController = new SimpleUnitCombatController(this, 5, 10, 1);
+        this.unitCombatController = new SimpleUnitCombatController(this, MIN_DMG, MAX_DMG, 1);
         this.unitMoveController = new WalkingUnitMovementController();
         System.out.println("Created a standard unit");
     }
