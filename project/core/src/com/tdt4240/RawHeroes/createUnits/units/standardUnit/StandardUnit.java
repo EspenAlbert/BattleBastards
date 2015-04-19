@@ -1,9 +1,13 @@
 package com.tdt4240.RawHeroes.createUnits.units.standardUnit;
 
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.IBoardController;
+import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitAnimationController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitCombatController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitMovementController;
+import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.SimpleUnitAnimationController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.SimpleUnitCombatController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.WalkingUnitMovementController;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
@@ -29,6 +33,7 @@ public class StandardUnit implements IUnit {
     private boolean hasAttacked;
     private IUnitCombatController unitCombatController;
     private IUnitMovementController unitMoveController;
+    private IUnitAnimationController unitAnimationController;
 
     private int remainingMoves;
     private int weight;
@@ -43,6 +48,7 @@ public class StandardUnit implements IUnit {
 
         this.unitCombatController = new SimpleUnitCombatController(this, MIN_DMG, MAX_DMG, 1);
         this.unitMoveController = new WalkingUnitMovementController();
+        this.unitAnimationController = new SimpleUnitAnimationController();
         System.out.println("Created a standard unit");
     }
     private StandardUnit(boolean player1Unit, int health, boolean hasAttacked, IUnitCombatController unitCombatController, IUnitMovementController unitMoveController, int remainingMoves, int weight) {
@@ -130,5 +136,10 @@ public class StandardUnit implements IUnit {
     @Override
     public IUnit getCopy() {
         return new StandardUnit(player1Unit, health, hasAttacked, unitCombatController, unitMoveController,remainingMoves, weight);
+    }
+
+    @Override
+    public TextureRegion getActiveFrame(Texture texture){
+       return this.unitAnimationController.getActiveFrame(texture);
     }
 }
