@@ -16,6 +16,7 @@ public class ScreenStateManager {
 
     private BattleBastards game;
     private Stack<ScreenState> screenStates;
+    private boolean popMe;
 
 
     public static final int MAINMENU = 912837;
@@ -39,6 +40,12 @@ public class ScreenStateManager {
     }
     public void render() {
         screenStates.peek().render();
+        if (popMe){
+            ScreenState g = screenStates.pop();
+            g.dispose();
+            MyInputProcessor.getInstance().removeListeners();
+            popMe = false;
+        }
 
     }
 
@@ -56,7 +63,6 @@ public class ScreenStateManager {
 
     public void setState(int state) {
         System.out.println(screenStates.peek());
-        System.out.println("hello");
         popState();
         pushState(state);
     }
@@ -65,7 +71,7 @@ public class ScreenStateManager {
         pushState(newState);
     }
 
-    private void pushState(ScreenState newState) {
+    public void pushState(ScreenState newState) {
         screenStates.push(newState);
     }
 
@@ -73,11 +79,13 @@ public class ScreenStateManager {
     public void pushState(int state) {
         screenStates.push(getState(state));
     }
+
     public void popState() {
         ScreenState g = screenStates.pop();
         g.dispose();
         MyInputProcessor.getInstance().removeListeners();
     }
+    public void popOnly(){popMe = true;}
 
     public void resize(int width, int height) {
         screenStates.peek().resize(width, height);

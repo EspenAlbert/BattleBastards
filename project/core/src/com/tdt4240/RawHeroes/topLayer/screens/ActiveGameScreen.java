@@ -131,7 +131,7 @@ public class ActiveGameScreen extends ScreenState{
     }
 
     public void backToMainMenu(){
-        this.gsm.popState();
+        this.gsm.popOnly();
     }
 
     public void confirmTurn() {
