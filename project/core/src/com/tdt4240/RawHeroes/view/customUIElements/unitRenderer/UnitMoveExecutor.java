@@ -6,6 +6,7 @@ import com.tdt4240.RawHeroes.event.move.MovementMove;
 import com.tdt4240.RawHeroes.independent.Position;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.IRenderObject;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.RenderMode;
+import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.renderObject1.ActualRenderObject;
 
 import java.util.ArrayList;
 
@@ -99,6 +100,9 @@ public class UnitMoveExecutor {
     }
 
     private boolean movementIsComplete() {
+        if(currentIndex==path.size()&&currentActor instanceof ActualRenderObject) {
+            ((ActualRenderObject) currentActor).setWalkingFalse();
+        }
         return currentIndex == path.size();
     }
 }
