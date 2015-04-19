@@ -149,4 +149,8 @@ public class CameraController implements ICamera {
     public void finishedMovingCamera() {
         ct = null;
     }
+
+    public void dispose() {
+        if(ct != null) ct.stop();
+    }
 }

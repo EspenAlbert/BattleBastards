@@ -119,6 +119,7 @@ public class ActiveGameScreen extends ScreenState{
 
     @Override
     public void dispose() {
+        cameraController.dispose();
     }
 
     @Override
