@@ -38,6 +38,8 @@ public class MovementMove extends Move {
 
     @Override
     public void execute(IBoard board) {
+        setStartCell(board.getCell(getStartCell().getPos())); //Change so that it is this boards cell
+        setTargetCell(board.getCell(getTargetCell().getPos()));
         IUnit mover = getStartCell().getUnit();
         getStartCell().setUnit(null);
         getTargetCell().setUnit(mover);
@@ -55,12 +57,12 @@ public class MovementMove extends Move {
     @Override
     public void convertPositions(int boardWidth, int boardHeight) {
         int pathLength = path.size();
-        getStartCell().setPos(CellConverter.switchPosition(getStartCell().getPos(), boardWidth, boardHeight));
-        getTargetCell().setPos(CellConverter.switchPosition(getTargetCell().getPos(), boardWidth, boardHeight));
         ArrayList<Position> newPath = new ArrayList<Position>(pathLength);
         for(Position pos : path) {
             newPath.add(CellConverter.switchPosition(pos,boardWidth, boardHeight));
         }
+        getStartCell().setPos(newPath.get(0));
+        getTargetCell().setPos(newPath.get(newPath.size() -1));
         path = newPath;
     }
 
