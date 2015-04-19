@@ -118,9 +118,9 @@ public class MainMenuScreen extends ScreenState {
             }
             else{
                 if (activeGames.get(i).getNextTurnIsPlayer1()) {
-                    addGameToTable(activeGames.get(i).getPlayer1Nickname(), "Your turn", activeGames.get(i).getId());
-                } else {
                     addGameToTable(activeGames.get(i).getPlayer1Nickname(), "Opponents turn", activeGames.get(i).getId());
+                } else {
+                    addGameToTable(activeGames.get(i).getPlayer1Nickname(), "Your turn", activeGames.get(i).getId());
                 }
             }
         }
@@ -195,7 +195,7 @@ public class MainMenuScreen extends ScreenState {
             labelInstruction.setText("Successfully challenged " + opponent);
             Integer gameId = (Integer) response.getContent();
             System.out.println("New game has id: " + gameId);
-            //addGameToTable(opponent, "waiting for player to accept", );
+            addGameToTable(opponent, "waiting for player to accept", gameId);
         }
         System.out.println("create game button dialog clicked" + " challenged player: " + opponent);
     }
