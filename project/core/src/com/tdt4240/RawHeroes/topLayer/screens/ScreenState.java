@@ -12,7 +12,7 @@ public abstract class
         ScreenState {
     protected ScreenStateManager gsm;
     protected BattleBastards launcher;
-    protected IClientConnection clientConnection = null;
+    protected IClientConnection clientConnection = ClientConnection.getInstance();
 
     protected SpriteBatch spriteBatch;
 
@@ -21,6 +21,7 @@ public abstract class
         launcher = gsm.getGame();
         spriteBatch = launcher.getSpriteBatch();
     }
+
 
     public abstract void update(float dt);
 
