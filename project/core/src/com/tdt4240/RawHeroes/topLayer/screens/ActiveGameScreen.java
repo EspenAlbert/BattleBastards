@@ -54,19 +54,22 @@ public class ActiveGameScreen extends ScreenState{
         board = game.getBoard();
         System.out.println("in active game screen!!!!!");
         iAmPlayer1 = ClientConnection.getInstance().getUsername().equals(game.getPlayer1Nickname());
-        board.convertCellsToOtherPlayer();
+        if(!iAmPlayer1) {
+            board.convertCellsToOtherPlayer();
+        }
+        boardMover = new BoardMover(board);
 
         cameraController = new CameraController();
-
-        boardMover = new BoardMover(board);
         gameView = new GameView(board, iAmPlayer1, cameraController);
         boardController = new BoardController(board, boardMover, game.getMoveCount(), iAmPlayer1);
+
         hud = new hudRenderer(boardController);
 
         boardMover.addMoveListener(gameView);
         boardMover.addMoveListener(hud);
         board.addBoardListener(gameView);
 
+        if(!iAmPlayer1) boardMover.executeMovesFromOtherPlayer(game.getLastMoves());
         boardMover.executeMoves(game.getLastMoves());
         hudBatch = new SpriteBatch(5);
         resize(GameConstants.RESOLUTION_WIDTH, GameConstants.RESOLUTION_HEIGHT);
@@ -137,7 +140,6 @@ public class ActiveGameScreen extends ScreenState{
         System.out.println(responseMessage.getType() + ", " + responseMessage.getContent());
         boardController.setState(new BoardControllerReplayState(boardController, board));
         endGameState = true;
-        boardMover.executeMovesFromBeginning();
 
     }
 }

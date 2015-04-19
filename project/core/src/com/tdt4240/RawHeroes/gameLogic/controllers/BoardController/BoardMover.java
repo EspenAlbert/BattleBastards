@@ -32,14 +32,11 @@ public class BoardMover implements IBoardMover {
 
     @Override
     public ArrayList<Move> confirmMoves() {
-        for(Move move: moves) {
-            if(move instanceof AttackMove) move.execute(board);//Every attackMove should actually inflict damage now, and store the values.
-        }
+        executeMovesFromBeginning();
         return moves;
     }
 
-    @Override
-    public void executeMovesFromBeginning() {
+    private void executeMovesFromBeginning() {
         for(Move move: moves) {
             move.execute(initialBoard);
         }

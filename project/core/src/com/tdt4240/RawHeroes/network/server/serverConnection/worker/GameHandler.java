@@ -73,10 +73,15 @@ public class GameHandler implements IGameHandler{
         Game game = getGame(username, gameId);
         boolean iAmPlayer1 = username.equals(game.getPlayer1Nickname());
         if(iAmPlayer1 != game.getNextTurnIsPlayer1()) throw new NotYourTurnException();
-        //TODO: Logic for executing moves
-        game.setNextTurnIsPlayer1(!game.getNextTurnIsPlayer1());
+        //Move was ok...
+        if(!iAmPlayer1) {//Means that player 2 has done moves
+            for(Move move : moves) {
+                move.convertPositions(game.getBoard().getWidth(), game.getBoard().getHeight());
+            }
+        }
+        game.setNextTurnIsPlayer1(!game.getNextTurnIsPlayer1());//Set the turn to other player
         BoardMover mover = new BoardMover(game.getBoard());
-        mover.executeMoves(moves);
+        mover.executeMoves(moves);//TODO: CHeck that
         game.setLastMoves(moves);
         //TODO: Check win condition
 
