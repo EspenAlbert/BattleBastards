@@ -84,7 +84,12 @@ public class GameHandler implements IGameHandler{
         mover.executeMoves(game.getLastMoves());//TODO: Check that board updates for the game
         game.setLastMoves(moves);
         //TODO: Check win condition
-
+        boolean won = iAmPlayer1 ? game.player1IsWinner() : game.player2IsWinner();
+        if(won) {
+            Player player = (Player) databaseConnector.getJavaObject(DatabaseConnector.TABLE_PLAYERS, DatabaseConnector.PLAYERS_PRIMARY_KEY, username, -1);
+            player.increaseScore();
+            databaseConnector.updateJavaObject(DatabaseConnector.TABLE_PLAYERS, DatabaseConnector.PLAYERS_PRIMARY_KEY, username, player);
+        }
         databaseConnector.updateGame(game);
     }
 

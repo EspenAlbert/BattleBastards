@@ -47,7 +47,6 @@ public class ScreenStateManager {
             popMe = false;
             screenStates.peek().setInputProcessor();
         }
-
     }
 
     private ScreenState getState(int state) {

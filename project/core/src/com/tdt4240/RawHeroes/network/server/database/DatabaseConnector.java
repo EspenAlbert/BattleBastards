@@ -53,6 +53,7 @@ public class DatabaseConnector implements IDatabaseConnector {
         updateJavaObject(TABLE_GAMES, GAMES_PRIMARY_KEY, game.getId(), game);
     }
 
+
     private boolean rowExist(String table, String primaryKey, String primaryKeyValue, int primaryKeyValueInt) throws SQLException {
         PreparedStatement ps = null;
         String sql = null;
@@ -184,6 +185,18 @@ public class DatabaseConnector implements IDatabaseConnector {
             throw new Exception("Failed to perform sql: " + ps.toString() + " no rows were affected...");
     }
 
+    @Override
+    public void updateJavaObject(String table, String primaryKey, String primaryKeyValue, Object javaObject) throws Exception {
+        PreparedStatement ps = null;
+        String sql = null;
+        sql = "update " + table + " set javaObject = ? where " + primaryKey + " = ?";
+        ps = myConnection.prepareStatement(sql);
+        ps.setObject(1, javaObject);
+        ps.setString(2, primaryKeyValue);
+        int result = ps.executeUpdate();
+        if (result < 1)
+            throw new Exception("Failed to perform sql: " + ps.toString() + " no rows were affected...");
+    }
     private String convertColumnNamesToString(String primaryKeyCol, ArrayList<String> colNames) {
         String cols = primaryKeyCol + ",";
         for (String col : colNames) {
