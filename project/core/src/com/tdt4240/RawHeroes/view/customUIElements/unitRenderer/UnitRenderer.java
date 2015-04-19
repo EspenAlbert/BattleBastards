@@ -28,7 +28,7 @@ public class UnitRenderer implements IMoveListener {
 
     private IRenderBulding renderBulding = RenderBuilding.getInstance();
     private HashMap<Position, IRenderObject> unitPositionsAndRenderObjects;
-    private Queue<Move> currentAnimations = new LinkedList<Move>();//TODO: Continue
+    private Queue<Move> currentAnimations = new LinkedList<Move>();
     private boolean animationIsActive = false;
 
     public UnitRenderer(IBoard board, ICamera camera, boolean iAmPlayer1) {

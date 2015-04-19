@@ -186,6 +186,10 @@ public class MainMenuScreen extends ScreenState {
         Gdx.input.setInputProcessor(stage);
     }
 
+    public void setMsg(String msg){
+        labelInstruction.setText(msg);
+    }
+
     private void createGameButtonDialogClicked(String opponent) {
         ResponseMessage response = ClientConnection.getInstance().createNewGame(opponent, Games.KILL_ALL_ENEMY_UNITS);
         if(response.getType() == ResponseType.FAILURE) {
@@ -194,7 +198,7 @@ public class MainMenuScreen extends ScreenState {
             labelInstruction.setText("Successfully challenged " + opponent);
             Integer gameId = (Integer) response.getContent();
             System.out.println("New game has id: " + gameId);
-            addGameToTable(opponent, "waiting for player to accept", gameId);
+            addGameToTable(opponent, "Opponents turn", gameId);
         }
         System.out.println("create game button dialog clicked" + " challenged player: " + opponent);
     }

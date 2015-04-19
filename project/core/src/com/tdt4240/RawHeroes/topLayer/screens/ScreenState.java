@@ -36,4 +36,7 @@ public abstract class
     public void setInputProcessor() {
 
     }
+    public void setMsg(){
+
+    }
 }

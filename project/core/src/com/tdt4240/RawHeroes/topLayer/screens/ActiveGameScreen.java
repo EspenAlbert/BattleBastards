@@ -47,7 +47,6 @@ public class ActiveGameScreen extends ScreenState{
     private SpriteBatch hudBatch;
     private boolean endGameState = false;
 
-
     public ActiveGameScreen(ScreenStateManager gsm, Game game){
         super(gsm);
         this.game = game;
@@ -136,6 +135,8 @@ public class ActiveGameScreen extends ScreenState{
         ResponseMessage responseMessage = clientConnection.doMoves(game.getId(), moves);
         System.out.println(responseMessage.getType() + ", " + responseMessage.getContent());
         boardController.setState(new BoardControllerReplayState(boardController, board));
+        MainMenuScreen main = (MainMenuScreen) gsm.peek(0);
+        main.setMsg((String)responseMessage.getContent());
         endGameState = true;
 
     }

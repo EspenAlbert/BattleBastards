@@ -17,6 +17,10 @@ import com.tdt4240.RawHeroes.independent.GameConstants;
 import com.tdt4240.RawHeroes.network.client.ClientConnection;
 import com.tdt4240.RawHeroes.network.communication.Response.ResponseMessage;
 import com.tdt4240.RawHeroes.network.communication.Response.ResponseType;
+import com.tdt4240.RawHeroes.view.uiElements.LabelFactory;
+import com.tdt4240.RawHeroes.view.uiElements.MainMenuButtonsFactory;
+import com.tdt4240.RawHeroes.view.uiElements.TextFieldFactory;
+
 import java.security.NoSuchAlgorithmException;
 
 /**
@@ -26,8 +30,9 @@ public class LoginScreen extends ScreenState {
     private final Texture img;
     private final CheckBox checkBoxNewuser;
     private final Label labelInstruction;
+    private final Label failedLogInLabel;
     private Stage stage;
-   // private TextureAtlas atlas;
+    private boolean failedToLogIn;
     private Skin skin;
     private TextButton buttonPlay, buttonLogin;
     private TextField textFieldUsername;
@@ -46,6 +51,7 @@ public class LoginScreen extends ScreenState {
         loginAttempts = 0;
 
 
+
         int xPos = GameConstants.RESOLUTION_WIDTH/2 - GameConstants.BUTTON_WIDTH/2;
         int scaleY = GameConstants.RESOLUTION_HEIGHT/6;
         int yPosTitle = GameConstants.RESOLUTION_HEIGHT - scaleY;
@@ -55,9 +61,7 @@ public class LoginScreen extends ScreenState {
         int yPosButton = yPosPassword - scaleY;
 
 
-        buttonLogin = new TextButton("Login", skin);
-        buttonLogin.setSize(GameConstants.BUTTON_WIDTH, GameConstants.BUTTON_HEIGHT);
-        buttonLogin.setPosition(xPos, yPosButton);
+        buttonLogin = MainMenuButtonsFactory.createButton("Login", xPos, yPosButton);
         //buttonLogin.getStyle().font.setScale((float)GameConstants.BUTTON_WIDTH*4/(float)GameConstants.RESOLUTION_WIDTH,(float)GameConstants.BUTTON_WIDTH*4/(float)GameConstants.RESOLUTION_WIDTH);
         buttonLogin.addListener(new ClickListener() {
             @Override
@@ -65,21 +69,13 @@ public class LoginScreen extends ScreenState {
                 loginButtonClicked();
             }
         });
-        textFieldUsername = new TextField("username", skin);
-        textFieldUsername.setPosition(xPos, yPosUserName);
-        textFieldUsername.setSize(GameConstants.TEXTFIELD_WIDTH, GameConstants.TEXTFIELD_HEIGHT);
-
-        textFieldPassword = new TextField("password", skin);
-        textFieldPassword.setPosition(xPos, yPosPassword);
-        textFieldPassword.setSize(GameConstants.TEXTFIELD_WIDTH, GameConstants.TEXTFIELD_HEIGHT);
-        System.out.println(buttonLogin.getWidth());
+        textFieldUsername = TextFieldFactory.createTextField("username", xPos, yPosUserName, false);
+        textFieldPassword = TextFieldFactory.createTextField("password", xPos, yPosPassword, false);
         textFieldPassword.setPasswordCharacter('x');
         textFieldPassword.setPasswordMode(true);
 
 
-        labelInstruction = new Label("Please specify username and password", skin);
-        labelInstruction.setPosition(xPos,yPosLabelInstruction);
-        labelInstruction.setSize(GameConstants.LABEL_WIDTH,GameConstants.LABEL_HEIGHT);
+        labelInstruction = LabelFactory.createLabel("Please specify username and password", xPos, yPosLabelInstruction);
         int xPosCheckBox = xPos - (int)buttonLogin.getWidth()/2;
         title.setPosition(xPos, yPosTitle);
         title.setSize(GameConstants.LABEL_WIDTH,GameConstants.LABEL_HEIGHT);
@@ -101,6 +97,7 @@ public class LoginScreen extends ScreenState {
         //Create textfield for login and password
         // Create login button with listener
 
+        failedLogInLabel = LabelFactory.createLabel("FETTNOOB", GameConstants.RESOLUTION_WIDTH/2, GameConstants.RESOLUTION_HEIGHT/2);
 
     }
 
@@ -120,8 +117,7 @@ public class LoginScreen extends ScreenState {
         else response = clientConnection.login(username, pwd);
         ResponseType type = response.getType();
         if (loginAttempts > 4){
-            //TODO Fiks en riktig respons når du går over loginAttemptgrensen
-            dispose();
+            failedToLogIn = true;
         } else {
             if(type.equals(ResponseType.SUCCESS)) {
                 ClientConnection.getInstance().setUsername(username);
@@ -150,8 +146,12 @@ public class LoginScreen extends ScreenState {
 		Gdx.gl.glClearColor(0.36f, 0.32f, 0.27f, 1.0f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         spriteBatch.begin();
-        stage.act();
-        stage.draw();
+        if(failedToLogIn){
+            failedLogInLabel.draw(spriteBatch, 100);
+        }else {
+            stage.act();
+            stage.draw();
+        }
         spriteBatch.draw(img, 0, 0);
         spriteBatch.end();
 

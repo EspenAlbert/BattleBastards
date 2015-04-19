@@ -46,8 +46,12 @@ public class ScreenStateManager {
             MyInputProcessor.getInstance().removeListeners();
             popMe = false;
             screenStates.peek().setInputProcessor();
+            screenStates.peek().setMsg();
         }
 
+    }
+    public ScreenState peek(int i){
+        return screenStates.get(i);
     }
 
     private ScreenState getState(int state) {
@@ -86,7 +90,10 @@ public class ScreenStateManager {
         g.dispose();
         MyInputProcessor.getInstance().removeListeners();
     }
-    public void popOnly(){popMe = true;}
+    public void popOnly(){
+        popMe = true;
+
+    }
 
     public void resize(int width, int height) {
         screenStates.peek().resize(width, height);
