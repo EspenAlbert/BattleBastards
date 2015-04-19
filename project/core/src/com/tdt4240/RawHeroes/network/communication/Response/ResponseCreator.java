@@ -24,6 +24,9 @@ public class ResponseCreator {
     public static ResponseMessage getFailedToCreateUser() {
         return new ResponseMessage(ResponseType.FAILURE, "Failed to create user");
     }
+    public static ResponseMessage getDeletedGame(){
+        return new ResponseMessage(ResponseType.SUCCESS, "Deleted game from database");
+    }
 
     public static ResponseMessage getChallengePlayerDoesNotExist() {
         return new ResponseMessage(ResponseType.FAILURE, "Challenged player doesn't exist!");

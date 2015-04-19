@@ -80,6 +80,23 @@ public class DatabaseConnector implements IDatabaseConnector {
         if (!result.next()) return -1;
         return result.getInt("gameId");
     }
+    public int deleteGame(int gameId) throws SQLException{
+        PreparedStatement ps = null;
+        String sql = null;
+        sql = "delete from games where (gameId = ?);";
+        ps = myConnection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        ps.setString(1, Integer.toString(gameId));
+
+        int response = ps.executeUpdate();
+        ResultSet generatedKeys = ps.getGeneratedKeys();
+        if (generatedKeys.next()) {
+
+            System.out.println(gameId);
+        }
+        System.out.println("RESPONSE: " + response);
+        return response;
+    }
+
     public ArrayList<Integer> getAllKeys(String username) throws SQLException {
         PreparedStatement ps = null;
         String sql = null;

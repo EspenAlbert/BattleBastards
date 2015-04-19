@@ -39,6 +39,9 @@ public class GameHandler implements IGameHandler{
         Game game = GameBuilding.getInstance().createGame(gameType, player1, player2);
         return databaseConnector.insertGame(game);
     }
+    public int deleteGame(int gameId) throws GameNotFoundException, NotYourGameException, SQLException{
+        return databaseConnector.deleteGame(gameId);
+    }
 
     @Override
     public int findGame(String player1, String player2) throws SQLException {

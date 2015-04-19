@@ -85,7 +85,7 @@ public class ActiveGameScreen extends ScreenState{
             else{
                 main.setMsg("You lost the game against" + game.getPlayer1Nickname());
             }
-            //esponseMessage response = ClientConnection.getInstance().createNewGame(opponent, Games.KILL_ALL_ENEMY_UNITS);
+            ResponseMessage response = ClientConnection.getInstance().deleteGame(game.getId());
             gsm.popOnly();
         }
         GestureDetector gd = new GestureDetector(MyInputProcessor.getInstance());
