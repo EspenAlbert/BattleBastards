@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.Texture;
 public class TextureChanger {
 
     public static Texture changeColor(Texture texture, Color playerColor){
+        texture.getTextureData().prepare();
         Pixmap pixelMap = texture.getTextureData().consumePixmap();
         Color removeColor = new Color(1, 0, 1, 1);
         pixelMap.setColor(playerColor);
@@ -18,12 +19,12 @@ public class TextureChanger {
             for(int x = 0; x <pixelMap.getWidth(); x++){
                 Color pixelColor = new Color();
                 Color.rgba8888ToColor(pixelColor, pixelMap.getPixel(x, y));
-                if (pixelColor == removeColor){
-                    pixelMap.drawPixel(x, y, playerColor.toIntBits());
+                if (pixelColor.equals(removeColor)){
+                    pixelMap.fillRectangle(x, y, 1, 1);
                 }
             }
         }
-        texture = new Texture(pixelMap);
-        return texture;
+        Texture changedTexture = new Texture(pixelMap);
+        return changedTexture;
     }
 }
