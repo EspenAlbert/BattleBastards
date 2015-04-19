@@ -49,7 +49,6 @@ public class ActiveGameScreen extends ScreenState{
         }
         cameraController = new CameraController();
 
-
         boardMover = new BoardMover(board);
         gameView = new GameView(board, iAmPlayer1, cameraController);
         boardController = new BoardController(board, boardMover, game.getMoveCount());
@@ -69,6 +68,7 @@ public class ActiveGameScreen extends ScreenState{
         MyInputProcessor.getInstance().AddTouchDownListener(new TouchListenerActiveGameScreen(boardController, cameraController, this));
         MyInputProcessor.getInstance().AddTouchDraggedListener(new MoveBoardTouchDraggedListener(cameraController));
         MyInputProcessor.getInstance().AddFlingListener(new TranslateCamera(cameraController));
+        gameView.initializeTouchListeners(cameraController);
         initialized = true;
     }
 
@@ -82,6 +82,7 @@ public class ActiveGameScreen extends ScreenState{
         initializeWhenViewReady();
         Gdx.gl.glClearColor(0.36f, 0.32f, 0.27f, 1.0f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
         spriteBatch.begin();
         cameraController.update();
         spriteBatch.setProjectionMatrix(cameraController.getProjectionMatrix());
@@ -98,6 +99,7 @@ public class ActiveGameScreen extends ScreenState{
     @Override
     public void dispose() {
     }
+
     @Override
     public void resize(int width, int height) {
         cameraController.resize(width, height);
