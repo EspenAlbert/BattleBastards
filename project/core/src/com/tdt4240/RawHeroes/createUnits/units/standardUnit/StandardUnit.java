@@ -119,7 +119,6 @@ public class StandardUnit implements IUnit {
 
     @Override
     public int getHealth() {
-        //TODO
         return health;
     }
 

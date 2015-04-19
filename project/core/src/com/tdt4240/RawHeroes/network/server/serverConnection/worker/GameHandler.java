@@ -84,9 +84,8 @@ public class GameHandler implements IGameHandler{
         }
         game.setNextTurnIsPlayer1(!game.getNextTurnIsPlayer1());//Set the turn to other player
         BoardMover mover = new BoardMover(game.getBoard());
-        mover.executeMoves(game.getLastMoves());//TODO: Check that board updates for the game
+        mover.executeMoves(game.getLastMoves());
         game.setLastMoves(moves);
-        //TODO: Check win condition
         boolean won = iAmPlayer1 ? game.player1IsWinner() : game.player2IsWinner();
         if(won) {
             Player player = (Player) databaseConnector.getJavaObject(DatabaseConnector.TABLE_PLAYERS, DatabaseConnector.PLAYERS_PRIMARY_KEY, username, -1);

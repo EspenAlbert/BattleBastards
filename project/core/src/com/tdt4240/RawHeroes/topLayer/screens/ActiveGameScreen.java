@@ -78,7 +78,6 @@ public class ActiveGameScreen extends ScreenState{
         //Check if you have lost:
         boolean loser = iAmPlayer1 ? game.player2IsWinner() : game.player1IsWinner();
         if(loser) {
-            //TODO: Send a message to main menu about you loosing, forward to server
             MainMenuScreen main = (MainMenuScreen) gsm.peek(0);
             if(iAmPlayer1){
                 main.setMsg("You lost the game against" + game.getPlayer2Nickname());}
