@@ -34,7 +34,7 @@ import java.util.ArrayList;
  */
 public class MainMenuScreen extends ScreenState {
     private final Stage stage;
-    private final TextButton buttonCreateGame;
+    private final TextButton buttonCreateGame, buttonUpdateTable;
     private final Label labelInstruction;
     private final TextField textFieldGetGame;
     private final TextButton buttonGetGame;
@@ -53,20 +53,7 @@ public class MainMenuScreen extends ScreenState {
         stage = new Stage();
 
         games = new ArrayList<ClientGameState>();
-        ArrayList<Integer> myGames = (ArrayList<Integer>) ClientConnection.getInstance().getGameIds().getContent();
-        for (Integer gameId : myGames) {
-            ResponseMessage responseMessage = ClientConnection.getInstance().getGame(gameId);
-            if(responseMessage.getType() == ResponseType.FAILURE){
-                System.out.println("SOMETHING WRONG HAPPENED!");
-            }
-            else if(responseMessage.getType() == ResponseType.SUCCESS){
-                Game game = (Game) responseMessage.getContent();
-                System.out.println("managed to get game: " + game.getId() + " with players: " + game.getPlayer1Nickname() + " player 2:" + game.getPlayer2Nickname());
-                activeGames.add(game);
-            }
-        }
-        //int[] myGames = {1,2,3,4,5,6,7,8,8,9};
-        //MainMenuView view = new MainMenuView(myGames);
+
 
         int xPos = GameConstants.RESOLUTION_WIDTH/20;
         int scaleY = GameConstants.RESOLUTION_HEIGHT/5;
@@ -77,10 +64,13 @@ public class MainMenuScreen extends ScreenState {
 
         buttonCreateGame = MainMenuButtonsFactory.createButton("CreateGame", xPos, yPosButtonCreateGame);
         buttonGetGame = MainMenuButtonsFactory.createButton("getGameById" , xPos, yPosButtonGetGame);
+        buttonUpdateTable = MainMenuButtonsFactory.createTableButton("Update games", GameConstants.RESOLUTION_WIDTH/2, GameConstants.RESOLUTION_HEIGHT - 100);
         labelInstruction = LabelFactory.createLabel("This is the main menu", xPos, yPosLabelInstruction);
         textFieldGetGame = TextFieldFactory.createTextField("9", xPos, yPosTextFieldGetGame, true);
+        scrollTable = ScrollTableFactory.createScrollTable();
 
 
+        getAllGames();
 
         buttonCreateGame.addListener(new ClickListener() {
             @Override
@@ -97,19 +87,43 @@ public class MainMenuScreen extends ScreenState {
             }
         });
 
+        buttonUpdateTable.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                getAllGames();
+            }
+        });
+
         title = new Texture(Gdx.files.internal("title.png"));
-        //sprite = new Sprite(title);
 
-        //sprite.setSize(300, 100);
-        //sprite.setPosition(0, GameConstants.RESOLUTION_HEIGHT - sprite.getHeight()*2);
+        scrollPane = ScrollPaneFactory.createScrollPane(scrollTable);
 
-        scrollTable = ScrollTableFactory.createScrollTable();
-
-
-        //putting stuff together
+        Gdx.input.setInputProcessor(stage);
+        stage.addActor(buttonCreateGame);
+        stage.addActor(labelInstruction);
+        stage.addActor(textFieldGetGame);
+        stage.addActor(buttonGetGame);
+        stage.addActor(scrollPane);
+        stage.addActor(buttonUpdateTable);
+    }
+    public void getAllGames(){
+        scrollTable.clear();
+        activeGames.clear();
+        ArrayList<Integer> myGames = (ArrayList<Integer>) ClientConnection.getInstance().getGameIds().getContent();
+        for (Integer gameId : myGames) {
+            ResponseMessage responseMessage = ClientConnection.getInstance().getGame(gameId);
+            if(responseMessage.getType() == ResponseType.FAILURE){
+                System.out.println("SOMETHING WRONG HAPPENED!");
+            }
+            else if(responseMessage.getType() == ResponseType.SUCCESS){
+                Game game = (Game) responseMessage.getContent();
+                System.out.println("managed to get game: " + game.getId() + " with players: " + game.getPlayer1Nickname() + " player 2:" + game.getPlayer2Nickname());
+                activeGames.add(game);
+            }
+        }
         scrollTable.add("ACTIVE GAMES");
         for (int i = 0; i < activeGames.size(); i++){
-            if(activeGames.get(i).getPlayer1Nickname() == clientConnection.getUsername()) {
+            if(activeGames.get(i).getPlayer1Nickname().equals(clientConnection.getUsername())) {
                 if (activeGames.get(i).getNextTurnIsPlayer1()) {
                     addGameToTable(activeGames.get(i).getPlayer2Nickname(), "Your turn", activeGames.get(i).getId());
                 } else {
@@ -124,21 +138,6 @@ public class MainMenuScreen extends ScreenState {
                 }
             }
         }
-
-        /*for (int i = 0; i <myGames.length ; i++) {
-            addGameToTable(Integer.toString(myGames[i]), "waiting for other player");
-        }*/
-
-        scrollPane = ScrollPaneFactory.createScrollPane(scrollTable);
-
-        Gdx.input.setInputProcessor(stage);
-        stage.addActor(buttonCreateGame);
-        stage.addActor(labelInstruction);
-        stage.addActor(textFieldGetGame);
-        stage.addActor(buttonGetGame);
-        stage.addActor(scrollPane);
-
-
     }
 
     private void getGameButtonClicked() {
