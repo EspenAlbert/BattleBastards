@@ -10,9 +10,12 @@ public class Player implements Serializable{
     private String password;
     private PlayerTypes playerType;
     private Child child;
+    private int score;
+
     public Player(String username, String password) {
         this.username = username;
         this.password = password;
+        score = 0;
     }
 
     public String getPassword() {
@@ -41,5 +44,9 @@ public class Player implements Serializable{
 
     public void setChild(Child child) {
         this.child = child;
+    }
+
+    public void increaseScore() {
+        score += 100;
     }
 }

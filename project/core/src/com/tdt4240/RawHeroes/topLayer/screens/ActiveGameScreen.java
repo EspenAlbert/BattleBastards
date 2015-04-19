@@ -74,6 +74,12 @@ public class ActiveGameScreen extends ScreenState{
         resize(GameConstants.RESOLUTION_WIDTH, GameConstants.RESOLUTION_HEIGHT);
     }
     private void initializeTouchListener() {
+        //Check if you have lost:
+        boolean loser = iAmPlayer1 ? game.player2IsWinner() : game.player1IsWinner();
+        if(loser) {
+            //TODO: Send a message to main menu about you loosing, forward to server
+            gsm.popOnly();
+        }
         GestureDetector gd = new GestureDetector(MyInputProcessor.getInstance());
         Gdx.input.setInputProcessor(gd);
         MyInputProcessor.getInstance().AddTouchDownListener(new TouchListenerActiveGameScreen(boardController, cameraController, this));
@@ -96,6 +102,7 @@ public class ActiveGameScreen extends ScreenState{
             System.out.println("About to finish game");
             if(winner) {
                 //TODO: PostgameScreen
+
             } else {
                 gsm.popOnly();
             }
@@ -118,6 +125,7 @@ public class ActiveGameScreen extends ScreenState{
 
     @Override
     public void dispose() {
+        cameraController.dispose();
     }
 
     @Override

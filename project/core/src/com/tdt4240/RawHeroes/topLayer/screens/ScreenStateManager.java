@@ -48,7 +48,6 @@ public class ScreenStateManager {
             screenStates.peek().setInputProcessor();
             screenStates.peek().setMsg();
         }
-
     }
     public ScreenState peek(int i){
         return screenStates.get(i);
