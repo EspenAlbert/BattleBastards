@@ -9,6 +9,7 @@ import java.io.Serializable;
  * Created by Endre on 16.04.2015.
  */
 public class Position implements Serializable, Comparable<Position>{
+    private final static long serialVersionUID = 7155890697978244635l;
     private int x;
     private int y;
     public Position(int x, int y){
@@ -76,8 +77,8 @@ public class Position implements Serializable, Comparable<Position>{
 
     @Override
     public int compareTo(Position p) {
-        if(this.getY() > p.getY()) return 1;
-        if(this.getY() < p.getY()) return -1;
+        if(this.getY() > p.getY()) return -1;
+        if(this.getY() < p.getY()) return 1;
         return 0;
     }
 }
