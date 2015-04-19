@@ -79,20 +79,20 @@ public class BoardMover implements IBoardMover {
     ///Methods that are called when a new ActiveGameScreen is initialized:
     @Override
     public void executeMoves(ArrayList<Move> lastMoves) {
+        initialBoard = board.deepCopy();
         if(lastMoves == null) return;
         for(Move move : lastMoves) {
             doMove(move);
         }
-        initialBoard = board.deepCopy();
     }
     @Override
     public void executeMovesFromOtherPlayer(ArrayList<Move> lastMoves) {
+        initialBoard = board.deepCopy();
         if(lastMoves == null) return;
         for(Move move : lastMoves) {
             move.convertPositions(board.getWidth(), board.getHeight());
             doMove(move);
         }
-        initialBoard = board.deepCopy();
     }
 
 
