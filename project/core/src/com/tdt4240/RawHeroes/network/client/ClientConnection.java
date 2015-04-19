@@ -62,6 +62,7 @@ public class ClientConnection implements IClientConnection {
         try {
             SocketHints socketHints = new SocketHints();
             socketHints.connectTimeout = 4000;
+            socketHints.socketTimeout = 10000;
             clientSocket = Gdx.net.newClientSocket(Net.Protocol.TCP, serverAddress, serverPort, socketHints);
             toServer = new ObjectOutputStream(clientSocket.getOutputStream());
             in = new ObjectInputStream(clientSocket.getInputStream());

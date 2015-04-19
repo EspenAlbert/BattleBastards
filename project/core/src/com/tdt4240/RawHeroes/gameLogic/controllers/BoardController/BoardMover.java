@@ -2,6 +2,7 @@ package com.tdt4240.RawHeroes.gameLogic.controllers.boardController;
 
 import com.tdt4240.RawHeroes.event.move.AttackMove;
 import com.tdt4240.RawHeroes.event.move.MovementMove;
+import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.event.listener.IMoveListener;
 import com.tdt4240.RawHeroes.event.move.Move;
@@ -15,14 +16,13 @@ public class BoardMover implements IBoardMover {
 
     private ArrayList<Move> moves;
     private final IBoard board;
-    private final IBoard initialBoard;
+    private ICell[][] initialBoard;
     private ArrayList<IMoveListener> listeners;
 
     public BoardMover(IBoard board) {
         this.board = board;
         moves = new ArrayList<Move>();
         listeners = new ArrayList<IMoveListener>();
-        initialBoard = board.deepCopy();
 
     }
     @Override
@@ -37,8 +37,13 @@ public class BoardMover implements IBoardMover {
     }
 
     private void executeMovesFromBeginning() {
+        board.changeCells(initialBoard);
         for(Move move: moves) {
-            move.execute(initialBoard);
+            move.execute(board);
+            if(move instanceof AttackMove) {
+                move.execute(board);
+            }
+            alertListeners(move);
         }
     }
 
@@ -50,6 +55,10 @@ public class BoardMover implements IBoardMover {
 
     private void doMove(Move move) {
         move.execute(board);
+        alertListeners(move);
+    }
+
+    private void alertListeners(Move move) {
         for(IMoveListener listener: listeners) {
             listener.moveExecuted(move);
         }
@@ -67,12 +76,14 @@ public class BoardMover implements IBoardMover {
 
 
 
+    ///Methods that are called when a new ActiveGameScreen is initialized:
     @Override
     public void executeMoves(ArrayList<Move> lastMoves) {
         if(lastMoves == null) return;
         for(Move move : lastMoves) {
             doMove(move);
         }
+        initialBoard = board.deepCopy();
     }
     @Override
     public void executeMovesFromOtherPlayer(ArrayList<Move> lastMoves) {
@@ -81,6 +92,7 @@ public class BoardMover implements IBoardMover {
             move.convertPositions(board.getWidth(), board.getHeight());
             doMove(move);
         }
+        initialBoard = board.deepCopy();
     }
 
 

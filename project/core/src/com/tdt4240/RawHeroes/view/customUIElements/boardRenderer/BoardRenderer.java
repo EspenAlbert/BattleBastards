@@ -52,6 +52,11 @@ public class BoardRenderer implements IBoardListener, IRenderNoPos {
         grassSprites = new ArrayList<ArrayList<Sprite>>();
         overlaySprites = new ArrayList<ArrayList<Sprite>>();
 
+        setupSprites(cells);
+
+    }
+
+    private void setupSprites(ICell[][] cells) {
         for (int x = 0; x < boardWidth; x++) {
             for (int y = 0; y < boardHeight; y++) {
                 cellStatuses[x][y] = cells[x][y].getStatus();
@@ -70,7 +75,6 @@ public class BoardRenderer implements IBoardListener, IRenderNoPos {
             grassSprites.add(columnSprites);
             overlaySprites.add(columnSpritesOverlay);
         }
-
     }
 
     private Sprite createOverlaySprite(int x, int y) {
@@ -107,6 +111,8 @@ public class BoardRenderer implements IBoardListener, IRenderNoPos {
             int y = (int) pos.getY();
             cellStatuses[x][y] = board.getCell(pos).getStatus();
             overlaySprites.get(x).set(y, createOverlaySprite(x, y));
+        } else {//Event is reset event
+            setupSprites(board.getCells());
         }
     }
 

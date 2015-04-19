@@ -94,11 +94,11 @@ public class ActiveGameScreen extends ScreenState{
         initializeWhenViewReady();
         if(endGameState && gameView.noAnimationWaiting()) {
             boolean winner = iAmPlayer1 ? game.player1IsWinner() : game.player2IsWinner();
+            System.out.println("About to finish game");
             if(winner) {
                 //TODO: PostgameScreen
             } else {
-                //TODO: popCurrentState
-                return;
+                gsm.popOnly();
             }
         }
         Gdx.gl.glClearColor(0.36f, 0.32f, 0.27f, 1.0f);
@@ -126,9 +126,6 @@ public class ActiveGameScreen extends ScreenState{
         cameraController.resize(width, height);
     }
 
-    public void cellClicked(Position cellCoordinate) {
-        board.switchModeOnCell(cellCoordinate, CellStatus.SELECTED);
-    }
 
     public void backToMainMenu(){
         this.gsm.popOnly();

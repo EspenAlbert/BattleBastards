@@ -22,7 +22,8 @@ import java.util.Queue;
  * Created by espen1 on 27.02.2015.
  */
 public class UnitRenderer implements IMoveListener {
-    private final UnitMoveExecutor moveExecutor;
+    private UnitMoveExecutor moveExecutor;
+    private IBoard board;
     private ICamera camera;
 
     private IRenderBulding renderBulding = RenderBuilding.getInstance();
@@ -31,16 +32,15 @@ public class UnitRenderer implements IMoveListener {
     private boolean animationIsActive = false;
 
     public UnitRenderer(IBoard board, ICamera camera, boolean iAmPlayer1) {
+        this.board = board;
         this.camera = camera;
-        ICell[][] cells = board.getCells();
-        ArrayList<Position> unitPositions = new ArrayList<Position>();
-        for (int x = 0; x < cells.length; x++) {
-            for (int y = 0; y < cells[0].length; y++) {
-                if (cells[x][y].getUnit() != null) {
-                    unitPositions.add(new Position(x, y));
-                }
-            }
-        }
+        setupUnitRenderer();
+    }
+
+    public void setupUnitRenderer() {
+        currentAnimations.clear();
+        animationIsActive = false;
+        ArrayList<Position> unitPositions = board.getUnitPositions();
         unitPositionsAndRenderObjects = new HashMap<Position, IRenderObject>();
         for (Position pos : unitPositions) {
             unitPositionsAndRenderObjects.put(pos, renderBulding.getRenderObject(board.getCell(pos).getUnit()));
@@ -70,25 +70,16 @@ public class UnitRenderer implements IMoveListener {
             unitPositionsAndRenderObjects.remove(startPos);
             moveExecutor.movementMove(mover, (MovementMove) move);
         }
-        /*
-        if(move instanceof MovementMove) {
-            MovementMove movement = (MovementMove) move;
-            Vector2 mover = movement.getStartCell().getPos();
-            Vector2 endCell = movement.getTarget();
-            IRenderObject renderer = unitPositionsAndRenderObjects.get(mover);
-            System.out.println("This should not be null! : " + renderer);
-            unitPositionsAndRenderObjects.remove(mover);
-            unitPositionsAndRenderObjects.put(endCell, renderer);
-        }
-        */
     }
 
     private ArrayList<IRenderObject> getVictims(AttackMove move) {
-        ArrayList<ICell> victims = move.getVictims();
+        Iterable<Position> victims = move.getVictims();
         ArrayList<IRenderObject> victimsRenderObjects = new ArrayList<IRenderObject>();
         if(victims != null) {
-            for(ICell cell : victims){
-                victimsRenderObjects.add(unitPositionsAndRenderObjects.get(cell.getPos()));
+            for(Position pos : victims){
+                if(unitPositionsAndRenderObjects.containsKey(pos)) {
+                    victimsRenderObjects.add(unitPositionsAndRenderObjects.get(pos));
+                }
             }
         }
         return victimsRenderObjects;

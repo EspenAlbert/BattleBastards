@@ -50,7 +50,7 @@ public class WalkingUnitMovementController implements IUnitMovementController, S
                     }
                 }
             }
-            depth=queue.get(0).getValue();
+            if(!queue.isEmpty()) depth=queue.get(0).getValue();
         }
         return discovered;
     }

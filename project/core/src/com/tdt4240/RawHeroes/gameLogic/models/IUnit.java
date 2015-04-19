@@ -22,10 +22,13 @@ public interface IUnit extends Serializable{
     int getWeight();
     void setAttackLogic(IUnitCombatController controller);
     void setMovementLogic(IUnitMovementController controller);
-    void setHasAttacked();
+    void setHasAttacked(boolean value);
     boolean isPlayer1Unit();
 
     ArrayList<Position> getAttackablePositions(Position pos, int movesLeft, IBoard board);
 
     int getHealth();
+
+    boolean hasAttacked();
+    IUnit getCopy();
 }
