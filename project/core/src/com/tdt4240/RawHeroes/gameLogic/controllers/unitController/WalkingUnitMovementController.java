@@ -71,7 +71,7 @@ public class WalkingUnitMovementController implements IUnitMovementController, S
                 w.add(directions.get(i));//v+directions.get(i)
                 if (w.getX()>=0&&w.getY()>=0&&w.getX()<(board.getWidth())&&w.getY()<board.getHeight()){
                     ICell cell=board.getCell(w);
-                    if((!discovered.containsKey(w))&& (cell.getStatus() != CellStatus.NOTMOVEABLE) && (cell.getStatus() != CellStatus.SELECTED)) {//not discovered and not notmoveable.
+                    if((!discovered.containsKey(w))&& (cell.getStatus() != CellStatus.NOTMOVEABLE) && (cell.getStatus() != CellStatus.SELECTED) && (cell.getUnit() == null)) {//not discovered and not notmoveable.
                         if (w.getX()==targetPos.getX()&&w.getY()==targetPos.getY()) {
                             path.add(v);
                             path.add(w);//finds the path
