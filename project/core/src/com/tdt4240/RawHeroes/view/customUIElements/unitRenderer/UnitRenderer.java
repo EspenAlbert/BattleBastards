@@ -14,9 +14,13 @@ import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRend
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.RenderBuilding;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
+import java.util.Set;
 
 /**
  * Created by espen1 on 27.02.2015.
@@ -88,8 +92,9 @@ public class UnitRenderer implements IMoveListener {
 
     public void render(SpriteBatch batch) {
         if(animationIsActive) moveExecutor.update(batch);
-
-        for(Position key : unitPositionsAndRenderObjects.keySet()) {
+        ArrayList<Position> keys = new ArrayList<Position>(unitPositionsAndRenderObjects.keySet());
+        Collections.sort(keys);
+        for(Position key : keys) {
             unitPositionsAndRenderObjects.get(key).render(batch, key.getVec2Pos());
         }
 
