@@ -72,7 +72,7 @@ public class Worker extends Thread {
         try {
             request = (RequestMessage) obj.get("request");
         } catch (ClassCastException exception) {
-            //TODO: Return an invalid request message
+            response.put("response", new ResponseMessage(ResponseType.FAILURE, "You requested an invalid request"));
         }
         RequestTypes requestType = request.getType();
         try {

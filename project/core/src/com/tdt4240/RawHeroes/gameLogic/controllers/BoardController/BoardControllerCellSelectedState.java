@@ -33,7 +33,6 @@ public class BoardControllerCellSelectedState extends BoardControllerState {
 
     @Override
     public void actionButtonPressed() { //Attack button
-        //TODO forandre knappen, må finne ut av hvordan
         this.boardController.setState(new BoardControllerCellAndAttackSelectedState(this.boardController, this.board, this.selectedCell));
     }
 
@@ -47,9 +46,8 @@ public class BoardControllerCellSelectedState extends BoardControllerState {
             this.board.switchModeOnCell(selectedCell.getPos(), CellStatus.SELECTED);
         }
         else if(cell.getStatus()== CellStatus.IN_MOVING_RANGE){ //Bevege valgt unit til ny celle
-            //TODO sjekke om man har nok energi før movet gjøres
             // Vi burde ha en limit på hvor mange ganger man kan flytte en unit også
-            ArrayList<Position> path = selectedCell.getUnit().getMovementPath(this.board, selectedCell.getPos(), cell.getPos());//TODO: Fix movement path
+            ArrayList<Position> path = selectedCell.getUnit().getMovementPath(this.board, selectedCell.getPos(), cell.getPos());
             this.boardController.addMove(new MovementMove(selectedCell, cell, path));
             this.board.switchModeOnCell(selectedCell.getPos(), CellStatus.DEFAULT);
             selectedCell = cell;

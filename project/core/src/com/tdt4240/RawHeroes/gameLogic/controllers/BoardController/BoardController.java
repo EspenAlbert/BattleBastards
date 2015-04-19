@@ -68,7 +68,6 @@ public class BoardController implements IBoardController {
 
     public void undoMove(){
         Move move = this.boardMover.undo();
-        //TODO FIX
         if(move != null) remaining_energy += move.getCost();
     }
 

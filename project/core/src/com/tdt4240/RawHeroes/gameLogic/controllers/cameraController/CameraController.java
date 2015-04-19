@@ -131,7 +131,6 @@ public class CameraController implements ICamera {
             System.out.println("About to transfer camera: " + transfer);
             translate(0, transfer);
         }
-        //TODO: Implement logic to make sure positions is visible...
     }
 
     public void resize(int width, int height) {

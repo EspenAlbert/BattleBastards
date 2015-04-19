@@ -38,15 +38,11 @@ public class TouchListenerActiveGameScreen implements TouchDown {
         if(screenX > boardMaxXCoordinate) {
             screenY = Math.abs((screenY - GameConstants.RESOLUTION_HEIGHT) % GameConstants.RESOLUTION_HEIGHT);
             //Converts the coordinate so that the y-coordinate is 0 when the bottom of the screen is touched...
-
             hudTouch(screenY);
-            //TODO
-            System.out.println("Action panel touch" + " y coordinate: " + screenY);
             return false;
         }
         else if(screenX < boardMinXCoordinate) {
-            System.out.println("Touch outside of board");
-            return false;//TODO: A invalid area was touched...
+            return false;
         }
         else {
             Position touchedCell = cameraController.convertPixelCoordinateToCell(new Vector2(screenX, screenY));
@@ -60,19 +56,14 @@ public class TouchListenerActiveGameScreen implements TouchDown {
 
     private void hudTouch(float screenY) {
         int buttonHeight = GameConstants.RESOLUTION_HEIGHT /4;
-        //TODO: If screenY  is within action button y
         if (screenY > 0 && screenY < 1*buttonHeight){
-            System.out.println("Quit");
             this.gameScreen.backToMainMenu();
         }
         else if (screenY > 1*buttonHeight && screenY < 2*buttonHeight){
-            System.out.println("Action");
             this.boardController.actionButtonTouched();
         }
         else if (screenY > 2*buttonHeight && screenY < 3*buttonHeight){
-            System.out.println("Send");
             gameScreen.confirmTurn();
-            //TODO send
         }
         /*if(screenY > (GameConstants.RESOLUTION_HEIGHT / 2)) {
             cameraController.translate(0, 1);

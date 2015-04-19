@@ -18,7 +18,6 @@ import java.util.HashMap;
  */
 public class WalkingUnitMovementController implements IUnitMovementController, Serializable {
     private ArrayList<Position> directions;
-    //TODO check if w is outside the board
 
     public WalkingUnitMovementController(){
         directions=new ArrayList<Position>();
