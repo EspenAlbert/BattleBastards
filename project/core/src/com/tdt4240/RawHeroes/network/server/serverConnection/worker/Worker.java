@@ -125,7 +125,7 @@ public class Worker extends Thread {
         Integer gameId = (Integer) request.getParameters().get(0);
         try {
             
-            return ResponseCreator.getGameSuccess(game);
+            return ResponseCreator.getGameSuccess(gameHandler.getGame(request.getPlayer().getUsername(), gameId));
         } catch (GameNotFoundException e) {
             return ResponseCreator.getInvalidGameException(gameId);
         } catch (NotYourGameException e) {
