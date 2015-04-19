@@ -15,10 +15,13 @@ import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRend
  */
 public class ActualRenderObject implements IRenderObject{
 
-    public static Texture texture = TextureChanger.changeColor(new Texture(Gdx.files.internal("units/soldiercolor.png")), Color.RED);
+    public static Texture texture;
+    //public static Texture texture = new Texture(Gdx.files.internal("units/soldiercolor.png"));
     private Sprite sprite;
 
-    public ActualRenderObject() {
+    public ActualRenderObject(boolean isPlayer1) {
+        if (isPlayer1)texture = TextureChanger.changeColor(new Texture(Gdx.files.internal("units/soldiercolor.png")), Color.RED);
+        else texture = TextureChanger.changeColor(new Texture(Gdx.files.internal("units/soldiercolor.png")), Color.BLUE);
         sprite = new Sprite(texture);
         sprite.setSize(1,2);
         System.out.println("A render object has been created");
