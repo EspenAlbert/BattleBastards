@@ -70,7 +70,7 @@ public class ActiveGameScreen extends ScreenState{
         board.addBoardListener(gameView);
 
         if(!iAmPlayer1) boardMover.executeMovesFromOtherPlayer(game.getLastMoves());
-        boardMover.executeMoves(game.getLastMoves());
+        else boardMover.executeMoves(game.getLastMoves());
         hudBatch = new SpriteBatch(5);
         resize(GameConstants.RESOLUTION_WIDTH, GameConstants.RESOLUTION_HEIGHT);
     }
