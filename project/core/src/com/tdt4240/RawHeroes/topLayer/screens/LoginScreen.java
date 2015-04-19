@@ -33,7 +33,6 @@ public class LoginScreen extends ScreenState {
     private final Label failedLogInLabel;
     private Stage stage;
     private boolean failedToLogIn;
-    private Skin skin;
     private TextButton buttonPlay, buttonLogin;
     private TextField textFieldUsername;
     private TextField textFieldPassword;
@@ -45,7 +44,7 @@ public class LoginScreen extends ScreenState {
     protected LoginScreen(ScreenStateManager gsm) {
         super(gsm);
         img = new Texture("badlogic.jpg");
-        skin = new Skin(Gdx.files.internal("uiskin.json"), new TextureAtlas(Gdx.files.internal("uiskin.atlas")));
+        //skin = new Skin(Gdx.files.internal("uiskin.json"), new TextureAtlas(Gdx.files.internal("uiskin.atlas")));
         stage = new Stage();
         title = new Label("Game Title",skin);
         loginAttempts = 0;

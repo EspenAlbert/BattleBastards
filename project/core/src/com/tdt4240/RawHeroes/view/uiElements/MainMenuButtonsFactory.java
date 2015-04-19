@@ -19,9 +19,13 @@ public class MainMenuButtonsFactory{
         return createButton(text, xPos, yPos, GameConstants.BUTTON_WIDTH, GameConstants.BUTTON_HEIGHT);
     }
 
-    public static TextButton createTableButton(String text, int xPos, int yPos) {
-
-        return createButton(text, xPos, yPos, GameConstants.BUTTON_WIDTH * 2, GameConstants.BUTTON_HEIGHT);
+    public static TextButton createTableButton(String text, int xPos, int yPos, boolean surr) {
+        if(surr) {
+            return createButton(text, xPos, yPos, GameConstants.BUTTON_WIDTH / 2, GameConstants.BUTTON_HEIGHT);
+        }
+        else{
+                return createButton(text, xPos, yPos, GameConstants.BUTTON_WIDTH * 2, GameConstants.BUTTON_HEIGHT);
+            }
     }
 
     public static TextButton createButton(String text, int xPos, int yPos, int xSize, int ySize) {

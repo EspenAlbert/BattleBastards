@@ -4,16 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.tdt4240.RawHeroes.createGame.factory.GameBuilding;
 import com.tdt4240.RawHeroes.gameLogic.inputListeners.GameClickedListener;
+import com.tdt4240.RawHeroes.gameLogic.inputListeners.SurrenderGameClickListener;
 import com.tdt4240.RawHeroes.independent.GameConstants;
-import com.tdt4240.RawHeroes.independent.MyInputProcessor;
 import com.tdt4240.RawHeroes.mainMenuGamesHandler.clientGameState.ClientGameState;
 import com.tdt4240.RawHeroes.network.communication.Response.ResponseMessage;
 import com.tdt4240.RawHeroes.network.communication.Response.ResponseType;
@@ -36,8 +33,7 @@ public class MainMenuScreen extends ScreenState {
     private final Stage stage;
     private final TextButton buttonCreateGame, buttonUpdateTable;
     private final Label labelInstruction;
-    private final TextField textFieldGetGame;
-    private final TextButton buttonGetGame;
+    private final TextButton buttonSettingScreen;
     private ArrayList<ClientGameState> games;
 
     private Texture title;
@@ -63,10 +59,9 @@ public class MainMenuScreen extends ScreenState {
         int yPosButtonGetGame = yPosTextFieldGetGame - scaleY;
 
         buttonCreateGame = MainMenuButtonsFactory.createButton("CreateGame", xPos, yPosButtonCreateGame);
-        buttonGetGame = MainMenuButtonsFactory.createButton("getGameById" , xPos, yPosButtonGetGame);
-        buttonUpdateTable = MainMenuButtonsFactory.createTableButton("Update games", GameConstants.RESOLUTION_WIDTH/2, GameConstants.RESOLUTION_HEIGHT - 100);
+        buttonSettingScreen = MainMenuButtonsFactory.createButton("Settings" , xPos, yPosButtonGetGame);
+        buttonUpdateTable = MainMenuButtonsFactory.createTableButton("Update games", GameConstants.RESOLUTION_WIDTH / 2, GameConstants.RESOLUTION_HEIGHT - 100, false);
         labelInstruction = LabelFactory.createLabel("This is the main menu", xPos, yPosLabelInstruction);
-        textFieldGetGame = TextFieldFactory.createTextField("9", xPos, yPosTextFieldGetGame, true);
         scrollTable = ScrollTableFactory.createScrollTable();
 
 
@@ -80,10 +75,10 @@ public class MainMenuScreen extends ScreenState {
         });
 
 
-        buttonGetGame.addListener(new ClickListener() {
+        buttonSettingScreen.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                getGameButtonClicked();
+                getSettingsButtonClicked();
             }
         });
 
@@ -101,11 +96,15 @@ public class MainMenuScreen extends ScreenState {
         Gdx.input.setInputProcessor(stage);
         stage.addActor(buttonCreateGame);
         stage.addActor(labelInstruction);
-        stage.addActor(textFieldGetGame);
-        stage.addActor(buttonGetGame);
+        stage.addActor(buttonSettingScreen);
         stage.addActor(scrollPane);
         stage.addActor(buttonUpdateTable);
     }
+
+    private void getSettingsButtonClicked() {
+        gsm.pushState(new SettingScreen(gsm));
+    }
+
     public void getAllGames(){
         scrollTable.clear();
         activeGames.clear();
@@ -140,19 +139,6 @@ public class MainMenuScreen extends ScreenState {
         }
     }
 
-    private void getGameButtonClicked() {
-        int gameid = Integer.parseInt(textFieldGetGame.getText());
-
-        ResponseMessage responseMessage = ClientConnection.getInstance().getGame(gameid);
-        if(responseMessage.getType() == ResponseType.FAILURE) {
-            labelInstruction.setText((CharSequence) responseMessage.getContent());
-        } else {
-            Game launcher = (Game) responseMessage.getContent();
-            System.out.println("managed to get launcher: " + launcher.getId() + " with players: " + launcher.getPlayer1Nickname() + " player 2:" + launcher.getPlayer2Nickname());
-            gsm.pushState(new ActiveGameScreen(gsm, launcher));
-        }
-
-    }
     private void createGameButtonClicked() {
         System.out.println("clicked create game...");
         final Dialog createGameDialog = DialogFactory.createDialogFactory("Create game");
@@ -204,11 +190,13 @@ public class MainMenuScreen extends ScreenState {
     }
 
     public void addGameToTable(String opponent, String status, int gameId){
-        TextButton button = MainMenuButtonsFactory.createTableButton("Opponent: " + opponent + "           " + status, GameConstants.RESOLUTION_WIDTH / 2, GameConstants.RESOLUTION_HEIGHT);
+        TextButton button = MainMenuButtonsFactory.createTableButton("Opponent: " + opponent + "           " + status, GameConstants.RESOLUTION_WIDTH/2 - GameConstants.RESOLUTION_WIDTH/10, GameConstants.RESOLUTION_HEIGHT, false);
+        TextButton surrButton = MainMenuButtonsFactory.createTableButton("Surrender?", GameConstants.RESOLUTION_WIDTH / 2, GameConstants.RESOLUTION_HEIGHT, true);
         button.addListener( new GameClickedListener(this, gameId));
-        scrollTable.row().height(button.getHeight() + GameConstants.RESOLUTION_HEIGHT/10);
-        scrollTable.defaults().width(button.getWidth());
+        surrButton.addListener(new SurrenderGameClickListener(this, gameId));
+        scrollTable.row().height(button.getHeight() + GameConstants.RESOLUTION_HEIGHT / 10);
         scrollTable.add(button);
+        scrollTable.add(surrButton);
     }
 
     public void gameSelected(int gameId) {
@@ -219,6 +207,14 @@ public class MainMenuScreen extends ScreenState {
             gsm.pushState(new ActiveGameScreen(gsm, game));
         }
     }
+    public void deleteGame(int gameId){
+        ResponseMessage response = ClientConnection.getInstance().deleteGame(gameId);
+        ResponseType type = response.getType();
+        if(type.equals(ResponseType.SUCCESS)){
+            labelInstruction.setText("You have surrendred the game! " + gameId);
+        }
+    }
+
 
     @Override
     public void update(float dt) {

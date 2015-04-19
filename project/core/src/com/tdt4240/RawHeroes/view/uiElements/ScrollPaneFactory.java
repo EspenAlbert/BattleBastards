@@ -14,7 +14,7 @@ public class ScrollPaneFactory {
 
     public static ScrollPane createScrollPane(Table scrollTable){
         ScrollPane scrollPane = new ScrollPane(scrollTable);
-        scrollPane.setBounds(GameConstants.RESOLUTION_WIDTH / 2, 0, GameConstants.RESOLUTION_WIDTH / 2, GameConstants.RESOLUTION_HEIGHT - GameConstants.RESOLUTION_HEIGHT/7);
+        scrollPane.setBounds(GameConstants.RESOLUTION_WIDTH/2 - GameConstants.RESOLUTION_WIDTH/10, 0, GameConstants.RESOLUTION_WIDTH / 2 + GameConstants.RESOLUTION_WIDTH/12, GameConstants.RESOLUTION_HEIGHT - GameConstants.RESOLUTION_HEIGHT/7);
 
         return scrollPane;
     }
