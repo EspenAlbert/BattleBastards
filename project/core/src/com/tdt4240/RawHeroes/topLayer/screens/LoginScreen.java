@@ -17,6 +17,8 @@ import com.tdt4240.RawHeroes.network.client.ClientConnection;
 import com.tdt4240.RawHeroes.network.communication.Response.ResponseMessage;
 import com.tdt4240.RawHeroes.network.communication.Response.ResponseType;
 
+import java.rmi.ServerException;
+
 /**
  * Created by espen1 on 27.02.2015.
  */
@@ -107,7 +109,6 @@ public class LoginScreen extends ScreenState {
         String username = textFieldUsername.getText();
         String pwd = textFieldPassword.getText();
 
-        //TODO: Test network connection
         ClientConnection clientConnection = ClientConnection.getInstance();
         ResponseMessage response;
         if(checkBoxNewuser.isChecked()) response = clientConnection.createUser(username, pwd);
