@@ -24,6 +24,7 @@ import com.tdt4240.RawHeroes.network.communication.Response.ResponseMessage;
 import com.tdt4240.RawHeroes.topLayer.commonObjects.Game;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 
+import com.tdt4240.RawHeroes.topLayer.commonObjects.Games;
 import com.tdt4240.RawHeroes.view.customUIElements.hudRenderer.hudRenderer;
 import com.tdt4240.RawHeroes.view.topLayer.GameView;
 
@@ -78,6 +79,13 @@ public class ActiveGameScreen extends ScreenState{
         boolean loser = iAmPlayer1 ? game.player2IsWinner() : game.player1IsWinner();
         if(loser) {
             //TODO: Send a message to main menu about you loosing, forward to server
+            MainMenuScreen main = (MainMenuScreen) gsm.peek(0);
+            if(iAmPlayer1){
+                main.setMsg("You lost the game against" + game.getPlayer2Nickname());}
+            else{
+                main.setMsg("You lost the game against" + game.getPlayer1Nickname());
+            }
+            //esponseMessage response = ClientConnection.getInstance().createNewGame(opponent, Games.KILL_ALL_ENEMY_UNITS);
             gsm.popOnly();
         }
         GestureDetector gd = new GestureDetector(MyInputProcessor.getInstance());
@@ -144,7 +152,7 @@ public class ActiveGameScreen extends ScreenState{
         System.out.println(responseMessage.getType() + ", " + responseMessage.getContent());
         boardController.setState(new BoardControllerReplayState(boardController, board));
         MainMenuScreen main = (MainMenuScreen) gsm.peek(0);
-        main.setMsg((String)responseMessage.getContent());
+        main.setMsg((String) responseMessage.getContent());
         endGameState = true;
 
     }

@@ -94,6 +94,9 @@ public class ClientConnection implements IClientConnection {
     public ResponseMessage createNewGame(String opponent, Games gameType) {
         return sendRequestAndWaitForResponse(RequestCreator.getCreateGameRequest(username, password, opponent, gameType));
     }
+    public ResponseMessage deleteGame(int gameId) {
+        return sendRequestAndWaitForResponse(RequestCreator.getDeleteGame(username, password, gameId));
+    }
 
     @Override
     public ResponseMessage doMoves(int id, ArrayList<Move> moves) {

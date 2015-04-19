@@ -109,12 +109,28 @@ public class Worker extends Thread {
                 case GET_GAMEIDS:
                     response.put("response", getGameIds(request));
                     break;
+                case DELETE_GAME:
+                    response.put("response", deleteGame(request));
+                    break;
             }
         }catch(Exception exception) {
             exception.printStackTrace();
             response.put("response", new ResponseMessage(ResponseType.FAILURE, "There was an exception on the server side"));
         }
         sendJSON(response);
+    }
+
+    private ResponseMessage deleteGame(RequestMessage request)throws Exception{
+        GameHandler gameHandler = GameHandler.getInstance();
+        Integer gameId = (Integer) request.getParameters().get(0);
+        try {
+            
+            return ResponseCreator.getGameSuccess(game);
+        } catch (GameNotFoundException e) {
+            return ResponseCreator.getInvalidGameException(gameId);
+        } catch (NotYourGameException e) {
+            return ResponseCreator.getNotYourGameException(gameId);
+        }
     }
 
     private ResponseMessage getGameIds(RequestMessage request) throws Exception {

@@ -55,4 +55,11 @@ public class RequestCreator {
         json.put("request", message);
         return json;
     }
+    public static JSONObject getDeleteGame(String username, String password, int gameId){
+        JSONObject json = new JSONObject();
+        RequestMessage message = new RequestMessage(RequestTypes.DELETE_GAME, new Player(username, password));
+        message.addParameter(gameId);
+        json.put("request", message);
+        return json;
+    }
 }
