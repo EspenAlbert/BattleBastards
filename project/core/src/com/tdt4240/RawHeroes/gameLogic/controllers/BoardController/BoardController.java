@@ -31,13 +31,15 @@ public class BoardController implements IBoardController {
     private ArrayList<BoardControllerStateListener> listeners;
 
     private int remaining_energy;
+    private boolean iAmPlayer1;
     private String actionButtonText = "Action";
 
 
-    public BoardController(IBoard board, IBoardMover boardMover, int remaining_energy) {
+    public BoardController(IBoard board, IBoardMover boardMover, int remaining_energy, boolean iAmPlayer1) {
         this.board = board;
         this.boardMover = boardMover;
         this.remaining_energy = remaining_energy;
+        this.iAmPlayer1 = iAmPlayer1;
         boardStates = new Stack<BoardControllerState>();
         listeners = new ArrayList<BoardControllerStateListener>();
         boardStates.push(new BoardControllerReplayState(this, this.board));
@@ -95,5 +97,9 @@ public class BoardController implements IBoardController {
     public void addBoardControllerStateListener(BoardControllerStateListener listener){
         this.listeners.add(listener);
         this.refreshState();
+    }
+
+    public boolean iAmPlayer1() {
+        return iAmPlayer1;
     }
 }

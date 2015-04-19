@@ -7,6 +7,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -78,6 +79,25 @@ public class DatabaseConnector implements IDatabaseConnector {
         if (!result.next()) return -1;
         return result.getInt("gameId");
     }
+    public ArrayList<Integer> getAllKeys(String username) throws SQLException {
+        PreparedStatement ps = null;
+        String sql = null;
+        sql = "select gameID from games where(player1 = ? ) or (player2 = ?);";
+        ArrayList<Integer> gameIds = new ArrayList<Integer>();
+        ps = myConnection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        ps.setString(1, username);
+        ps.setString(2, username);
+        //ps.executeQuery();
+        ResultSet generatedKeys =  ps.executeQuery();
+        while (generatedKeys.next()) {
+            int primaryKey = generatedKeys.getInt(1);
+            gameIds.add(primaryKey);
+            //game.setId(primaryKey);
+            //updateJavaObject("games", "gameId", primaryKey, game);
+        }
+        return gameIds;
+        //return response;
+    }
 
     @Override
     public void insertRow(String table, HashMap<String, Object> javaObjectColumns, String primaryKeyCol, String primaryKeyValue) throws SQLException, IOException {
@@ -139,6 +159,7 @@ public class DatabaseConnector implements IDatabaseConnector {
         ps.setString(2, game.getPlayer2Nickname());
         ps.setObject(3, game);
         int response = ps.executeUpdate();
+        System.out.println("here?");
         ResultSet generatedKeys = ps.getGeneratedKeys();
         if (generatedKeys.next()) {
             int primaryKey = generatedKeys.getInt(1);

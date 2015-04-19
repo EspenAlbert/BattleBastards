@@ -6,6 +6,7 @@ import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.independent.Position;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -15,7 +16,7 @@ import java.util.HashMap;
 /**
  * Created by espen1 on 12.04.2015.
  */
-public class WalkingUnitMovementController implements IUnitMovementController {
+public class WalkingUnitMovementController implements IUnitMovementController, Serializable {
     private ArrayList<Position> directions;
     //TODO check if w is outside the board
 

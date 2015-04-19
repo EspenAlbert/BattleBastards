@@ -39,6 +39,13 @@ public class BoardMover implements IBoardMover {
     }
 
     @Override
+    public void executeMovesFromBeginning() {
+        for(Move move: moves) {
+            move.execute(initialBoard);
+        }
+    }
+
+    @Override
     public void add(Move move) {
         moves.add(move);
         doMove(move);
@@ -67,6 +74,14 @@ public class BoardMover implements IBoardMover {
     public void executeMoves(ArrayList<Move> lastMoves) {
         if(lastMoves == null) return;
         for(Move move : lastMoves) {
+            doMove(move);
+        }
+    }
+    @Override
+    public void executeMovesFromOtherPlayer(ArrayList<Move> lastMoves) {
+        if(lastMoves == null) return;
+        for(Move move : lastMoves) {
+            move.convertPositions(board.getWidth(), board.getHeight());
             doMove(move);
         }
     }

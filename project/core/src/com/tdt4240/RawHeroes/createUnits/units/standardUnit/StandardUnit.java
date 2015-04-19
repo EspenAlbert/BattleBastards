@@ -1,5 +1,7 @@
 package com.tdt4240.RawHeroes.createUnits.units.standardUnit;
 
+
+import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.IBoardController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitCombatController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitMovementController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.SimpleUnitCombatController;
@@ -21,6 +23,7 @@ public class StandardUnit implements IUnit {
     private boolean hasAttacked;
     private IUnitCombatController unitCombatController;
     private IUnitMovementController unitMoveController;
+    private IBoardController boardController;
 
     private int remainingMoves;
     private int weight;

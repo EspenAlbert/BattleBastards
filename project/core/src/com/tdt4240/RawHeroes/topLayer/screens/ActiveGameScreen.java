@@ -3,9 +3,12 @@ package com.tdt4240.RawHeroes.topLayer.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 import com.badlogic.gdx.input.GestureDetector;
+import com.tdt4240.RawHeroes.event.move.Move;
 import com.tdt4240.RawHeroes.gameLogic.cell.CellStatus;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardController;
+import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardControllerReplayState;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardMover;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.IBoardController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.IBoardMover;
@@ -16,10 +19,15 @@ import com.tdt4240.RawHeroes.gameLogic.inputListeners.TranslateCamera;
 import com.tdt4240.RawHeroes.independent.GameConstants;
 import com.tdt4240.RawHeroes.independent.MyInputProcessor;
 import com.tdt4240.RawHeroes.independent.Position;
+import com.tdt4240.RawHeroes.network.client.ClientConnection;
+import com.tdt4240.RawHeroes.network.communication.Response.ResponseMessage;
 import com.tdt4240.RawHeroes.topLayer.commonObjects.Game;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
-import com.tdt4240.RawHeroes.view.customUIElements.hudRenderer.HudRenderer;
+
+import com.tdt4240.RawHeroes.view.customUIElements.hudRenderer.hudRenderer;
 import com.tdt4240.RawHeroes.view.topLayer.GameView;
+
+import java.util.ArrayList;
 
 /**
  * Created by espen1 on 27.02.2015.
@@ -29,36 +37,38 @@ public class ActiveGameScreen extends ScreenState{
 
 
     private final GameView gameView;
-    private final HudRenderer hud;
+    private final hudRenderer hud;
     private final IBoardMover boardMover;
     private final IBoardController boardController;
     private final IBoard board;
     private final boolean iAmPlayer1;
     private final CameraController cameraController;
+    private final Game game;
     private SpriteBatch hudBatch;
+    private boolean endGameState = false;
 
 
     public ActiveGameScreen(ScreenStateManager gsm, Game game){
         super(gsm);
+        this.game = game;
         board = game.getBoard();
         System.out.println("in active game screen!!!!!");
-        //iAmPlayer1 = ClientConnection.getInstance().getUsername().equals(game.getPlayer1Nickname());
-        iAmPlayer1 = false;
-        if(!iAmPlayer1) {
-            board.convertCellsToOtherPlayer();
-        }
+        iAmPlayer1 = ClientConnection.getInstance().getUsername().equals(game.getPlayer1Nickname());
+
+        board.convertCellsToOtherPlayer();
+
         cameraController = new CameraController();
 
         boardMover = new BoardMover(board);
         gameView = new GameView(board, iAmPlayer1, cameraController);
-        boardController = new BoardController(board, boardMover, game.getMoveCount());
-        hud = new HudRenderer(boardController);
+        boardController = new BoardController(board, boardMover, game.getMoveCount(), iAmPlayer1);
+        hud = new hudRenderer(boardController);
 
         boardMover.addMoveListener(gameView);
         boardMover.addMoveListener(hud);
         board.addBoardListener(gameView);
 
-        boardMover.executeMoves(game.getLastMoves());
+        boardMover.executeMovesFromOtherPlayer(game.getLastMoves());
         hudBatch = new SpriteBatch(5);
         resize(GameConstants.RESOLUTION_WIDTH, GameConstants.RESOLUTION_HEIGHT);
     }
@@ -80,6 +90,15 @@ public class ActiveGameScreen extends ScreenState{
     @Override
     public void render() {
         initializeWhenViewReady();
+        if(endGameState && gameView.noAnimationWaiting()) {
+            boolean winner = iAmPlayer1 ? game.player1IsWinner() : game.player2IsWinner();
+            if(winner) {
+                //TODO: PostgameScreen
+            } else {
+                //TODO: popCurrentState
+                return;
+            }
+        }
         Gdx.gl.glClearColor(0.36f, 0.32f, 0.27f, 1.0f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -113,4 +132,13 @@ public class ActiveGameScreen extends ScreenState{
         this.gsm.popState();
     }
 
+    public void confirmTurn() {
+        ArrayList<Move> moves = boardMover.confirmMoves();
+        ResponseMessage responseMessage = clientConnection.doMoves(game.getId(), moves);
+        System.out.println(responseMessage.getType() + ", " + responseMessage.getContent());
+        boardController.setState(new BoardControllerReplayState(boardController, board));
+        endGameState = true;
+        boardMover.executeMovesFromBeginning();
+
+    }
 }
