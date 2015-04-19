@@ -12,11 +12,13 @@ import com.tdt4240.RawHeroes.independent.GameConstants;
 public class TextFieldFactory {
     private static Skin skin = new Skin(Gdx.files.internal("uiskin.json"), new TextureAtlas(Gdx.files.internal("uiskin.atlas")));
 
-    public static TextField createTextField(String text, int xPos, int yPos) {
+    public static TextField createTextField(String text, int xPos, int yPos, boolean digitOnly) {
         TextField textField = new TextField(text, skin);
         textField.setSize(GameConstants.TEXTFIELD_WIDTH, GameConstants.TEXTFIELD_HEIGHT);
         textField.setPosition(xPos, yPos);
-        textField.setTextFieldFilter(new TextField.TextFieldFilter.DigitsOnlyFilter());
+        if(digitOnly) {
+            textField.setTextFieldFilter(new TextField.TextFieldFilter.DigitsOnlyFilter());
+        }
 
         return textField;
     }

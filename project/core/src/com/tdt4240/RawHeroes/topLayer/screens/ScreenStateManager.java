@@ -45,6 +45,7 @@ public class ScreenStateManager {
             g.dispose();
             MyInputProcessor.getInstance().removeListeners();
             popMe = false;
+            screenStates.peek().setInputProcessor();
         }
 
     }

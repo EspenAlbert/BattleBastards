@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.tdt4240.RawHeroes.createGame.factory.GameBuilding;
+import com.tdt4240.RawHeroes.gameLogic.inputListeners.GameClickedListener;
 import com.tdt4240.RawHeroes.independent.GameConstants;
 import com.tdt4240.RawHeroes.independent.MyInputProcessor;
 import com.tdt4240.RawHeroes.mainMenuGamesHandler.clientGameState.ClientGameState;
@@ -77,7 +78,7 @@ public class MainMenuScreen extends ScreenState {
         buttonCreateGame = MainMenuButtonsFactory.createButton("CreateGame", xPos, yPosButtonCreateGame);
         buttonGetGame = MainMenuButtonsFactory.createButton("getGameById" , xPos, yPosButtonGetGame);
         labelInstruction = LabelFactory.createLabel("This is the main menu", xPos, yPosLabelInstruction);
-        textFieldGetGame = TextFieldFactory.createTextField("9", xPos, yPosTextFieldGetGame);
+        textFieldGetGame = TextFieldFactory.createTextField("9", xPos, yPosTextFieldGetGame, true);
 
 
 
@@ -108,11 +109,19 @@ public class MainMenuScreen extends ScreenState {
         //putting stuff together
         scrollTable.add("ACTIVE GAMES");
         for (int i = 0; i < activeGames.size(); i++){
-            if(activeGames.get(i).getNextTurnIsPlayer1()){
-                addGameToTable(activeGames.get(i).getPlayer2Nickname() , "Your turn");
+            if(activeGames.get(i).getPlayer1Nickname() == clientConnection.getUsername()) {
+                if (activeGames.get(i).getNextTurnIsPlayer1()) {
+                    addGameToTable(activeGames.get(i).getPlayer2Nickname(), "Your turn", activeGames.get(i).getId());
+                } else {
+                    addGameToTable(activeGames.get(i).getPlayer2Nickname(), "Opponents turn", activeGames.get(i).getId());
+                }
             }
             else{
-                addGameToTable(activeGames.get(i).getPlayer2Nickname(), "Opponents turn");
+                if (activeGames.get(i).getNextTurnIsPlayer1()) {
+                    addGameToTable(activeGames.get(i).getPlayer1Nickname(), "Your turn", activeGames.get(i).getId());
+                } else {
+                    addGameToTable(activeGames.get(i).getPlayer1Nickname(), "Opponents turn", activeGames.get(i).getId());
+                }
             }
         }
 
@@ -149,9 +158,9 @@ public class MainMenuScreen extends ScreenState {
         System.out.println("clicked create game...");
         final Dialog createGameDialog = DialogFactory.createDialogFactory("Create game");
 
-        final TextField textFieldUsername = TextFieldFactory.createTextField("challenger", (int)createGameDialog.getWidth()/2 , (int)createGameDialog.getHeight()/2);
+        final TextField textFieldUsername = TextFieldFactory.createTextField("challenger", (int)createGameDialog.getWidth()/2 -GameConstants.RESOLUTION_WIDTH/10, (int)createGameDialog.getHeight()/2, false);
         createGameDialog.addActor(textFieldUsername);
-        TextButton buttonCreateGameDialog = MainMenuButtonsFactory.createButton("Create game",(int)createGameDialog.getWidth()- 100, 150);
+        TextButton buttonCreateGameDialog = MainMenuButtonsFactory.createButton("Create game",GameConstants.RESOLUTION_WIDTH*2/3 -GameConstants.RESOLUTION_WIDTH/10, GameConstants.RESOLUTION_HEIGHT/10);
         buttonCreateGameDialog.addListener(new ClickListener() {
 
             @Override
@@ -161,7 +170,7 @@ public class MainMenuScreen extends ScreenState {
             }
         });
 
-        TextButton buttonBackToMainMenu = MainMenuButtonsFactory.createButton("Back", 100, 150);
+        TextButton buttonBackToMainMenu = MainMenuButtonsFactory.createButton("Back", GameConstants.RESOLUTION_WIDTH/4 -GameConstants.RESOLUTION_WIDTH/10, GameConstants.RESOLUTION_HEIGHT/10);
         buttonBackToMainMenu.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -173,6 +182,10 @@ public class MainMenuScreen extends ScreenState {
         createGameDialog.addActor(buttonBackToMainMenu);
         stage.addActor(createGameDialog);
     }
+    @Override
+    public void setInputProcessor(){
+        Gdx.input.setInputProcessor(stage);
+    }
 
     private void createGameButtonDialogClicked(String opponent) {
         ResponseMessage response = ClientConnection.getInstance().createNewGame(opponent, Games.KILL_ALL_ENEMY_UNITS);
@@ -182,13 +195,14 @@ public class MainMenuScreen extends ScreenState {
             labelInstruction.setText("Successfully challenged " + opponent);
             Integer gameId = (Integer) response.getContent();
             System.out.println("New game has id: " + gameId);
-            addGameToTable(opponent, "waiting for player to accept");
+            //addGameToTable(opponent, "waiting for player to accept", );
         }
         System.out.println("create game button dialog clicked" + " challenged player: " + opponent);
     }
 
-    public void addGameToTable(String opponent, String status){
-        TextButton button = MainMenuButtonsFactory.createTableButton(opponent + "           " + status, GameConstants.RESOLUTION_WIDTH / 2, GameConstants.RESOLUTION_HEIGHT);
+    public void addGameToTable(String opponent, String status, int gameId){
+        TextButton button = MainMenuButtonsFactory.createTableButton("Opponent: " + opponent + "           " + status, GameConstants.RESOLUTION_WIDTH / 2, GameConstants.RESOLUTION_HEIGHT);
+        button.addListener( new GameClickedListener(this, gameId));
         scrollTable.row().height(button.getHeight() + GameConstants.RESOLUTION_HEIGHT/10);
         scrollTable.defaults().width(button.getWidth());
         scrollTable.add(button);
@@ -199,7 +213,7 @@ public class MainMenuScreen extends ScreenState {
         ResponseType type = response.getType();
         if(type.equals(ResponseType.SUCCESS)) {
             Game game = (Game) response.getContent();
-            gsm.setState(new ActiveGameScreen(gsm, game));
+            gsm.pushState(new ActiveGameScreen(gsm, game));
         }
     }
 

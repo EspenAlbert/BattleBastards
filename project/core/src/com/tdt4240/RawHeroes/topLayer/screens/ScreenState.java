@@ -32,4 +32,8 @@ public abstract class
     public void resize(int width, int height) {
 
     }
+
+    public void setInputProcessor() {
+
+    }
 }
