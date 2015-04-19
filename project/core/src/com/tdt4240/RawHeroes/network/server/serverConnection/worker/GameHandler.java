@@ -81,7 +81,7 @@ public class GameHandler implements IGameHandler{
         }
         game.setNextTurnIsPlayer1(!game.getNextTurnIsPlayer1());//Set the turn to other player
         BoardMover mover = new BoardMover(game.getBoard());
-        mover.executeMoves(moves);//TODO: CHeck that
+        mover.executeMoves(game.getLastMoves());//TODO: Check that board updates for the game
         game.setLastMoves(moves);
         //TODO: Check win condition
 
