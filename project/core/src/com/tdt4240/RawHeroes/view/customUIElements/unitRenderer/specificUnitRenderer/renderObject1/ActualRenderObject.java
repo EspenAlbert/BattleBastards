@@ -53,7 +53,7 @@ public class ActualRenderObject implements IRenderObject{
         } else if (renderMode == RenderMode.STATIC && walking) {
             sprite = new Sprite(texture);
             sprite.setSize(1, 2);
-            timer = 7;
+            timer = 10;
         } else if (renderMode == RenderMode.STATIC) {
             sprite = new Sprite(texture);
             sprite.setSize(1, 2);
@@ -61,10 +61,10 @@ public class ActualRenderObject implements IRenderObject{
         } else if (renderMode == RenderMode.MOVING) {
             sprite = new Sprite(walk);
             sprite.setSize(1, 2);
-            timer = 7;
+            timer = 10;
             walking = true;
         }
-        System.out.println("Switched render mode to:"  + renderMode);
+        //System.out.println("Switched render mode to:"  + renderMode);
     }
 
     public void setWalkingFalse(){
