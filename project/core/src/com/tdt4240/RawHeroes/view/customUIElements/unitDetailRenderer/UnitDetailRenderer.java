@@ -68,6 +68,8 @@ public class UnitDetailRenderer implements IRenderNoPos {
         labelUnit.setSize(GameConstants.TEXTFIELD_WIDTH, GameConstants.TEXTFIELD_HEIGHT);
         labelUnit.setPosition(createUnitDetailsScreenDialog.getWidth()/8, createUnitDetailsScreenDialog.getHeight()*6/8);
 
+        
+
         //Labels
         int col2 = (int) createUnitDetailsScreenDialog.getWidth()*1/2;
         Label labelHealth = new Label("Health:", skin);
