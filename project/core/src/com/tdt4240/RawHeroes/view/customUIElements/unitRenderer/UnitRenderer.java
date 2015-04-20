@@ -1,9 +1,7 @@
 package com.tdt4240.RawHeroes.view.customUIElements.unitRenderer;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
-import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
-import com.tdt4240.RawHeroes.gameLogic.models.ICamera;
+import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.ICameraController;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.event.move.AttackMove;
 import com.tdt4240.RawHeroes.event.listener.IMoveListener;
@@ -15,13 +13,10 @@ import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRend
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.RenderBuilding;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
-import java.util.Set;
 
 /**
  * Created by espen1 on 27.02.2015.
@@ -29,14 +24,14 @@ import java.util.Set;
 public class UnitRenderer implements IMoveListener {
     private UnitMoveExecutor moveExecutor;
     private IBoard board;
-    private ICamera camera;
+    private ICameraController camera;
 
     private IRenderBulding renderBulding = RenderBuilding.getInstance();
     private HashMap<Position, IRenderObject> unitPositionsAndRenderObjects;
     private Queue<Move> currentAnimations = new LinkedList<Move>();
     private boolean animationIsActive = false;
 
-    public UnitRenderer(IBoard board, ICamera camera, boolean iAmPlayer1) {
+    public UnitRenderer(IBoard board, ICameraController camera, boolean iAmPlayer1) {
         this.board = board;
         this.camera = camera;
         setupUnitRenderer();

@@ -1,16 +1,14 @@
 package com.tdt4240.RawHeroes.independent;
 
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Vector2;
-import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.CameraController;
-import com.tdt4240.RawHeroes.gameLogic.models.ICamera;
 import com.tdt4240.RawHeroes.independent.inputListeners.IFlingListener;
 import com.tdt4240.RawHeroes.independent.inputListeners.ILongPress;
+import com.tdt4240.RawHeroes.independent.inputListeners.IPanListener;
+import com.tdt4240.RawHeroes.independent.inputListeners.IPanStopListener;
 import com.tdt4240.RawHeroes.independent.inputListeners.ITouchDragged;
 import com.tdt4240.RawHeroes.independent.inputListeners.TouchDown;
-import com.tdt4240.RawHeroes.topLayer.screens.ActiveGameScreen;
 
 import java.util.ArrayList;
 
@@ -20,8 +18,12 @@ import java.util.ArrayList;
  */
 public class MyInputProcessor implements GestureDetector.GestureListener, InputProcessor {
     private static MyInputProcessor instance;
+    private boolean active;
 
-    private MyInputProcessor() {}
+
+    private MyInputProcessor() {
+        active = true;
+    }
 
     public static MyInputProcessor getInstance() {
         if(instance == null) {
@@ -30,6 +32,8 @@ public class MyInputProcessor implements GestureDetector.GestureListener, InputP
         return instance;
     }
 
+    private ArrayList<IPanStopListener> panStopListeners = new ArrayList<IPanStopListener>();
+    private ArrayList<IPanListener> panListeners = new ArrayList<IPanListener>();
     private ArrayList<ITouchDragged> touchDraggedListeners = new ArrayList<ITouchDragged>();
     private ArrayList<TouchDown> touchDownsListeners = new ArrayList<TouchDown>();
     private ArrayList<IFlingListener> flingListeners = new ArrayList<IFlingListener>();
@@ -38,14 +42,14 @@ public class MyInputProcessor implements GestureDetector.GestureListener, InputP
     public void AddTouchDownListener(TouchDown listener) {
         touchDownsListeners.add(listener);
     }
-    public void AddFlingListener(IFlingListener listener) {
-        flingListeners.add(listener);
-    }
     public void AddLongListener(ILongPress listener) {
         longListeners.add(listener);
     }
-    public void AddTouchDraggedListener(ITouchDragged listener) {
-        touchDraggedListeners.add(listener);
+    public void AddPanListener(IPanListener listener) {
+        panListeners.add(listener);
+    }
+    public void AddPanStopListener(IPanStopListener listener) {
+        panStopListeners.add(listener);
     }
 
 
@@ -57,12 +61,13 @@ public class MyInputProcessor implements GestureDetector.GestureListener, InputP
 
     @Override
     public boolean touchDown(float x, float y, int pointer, int button) {
+        if(!active) active = true;
         return false;
     }
 
     @Override
     public boolean tap(float x, float y, int count, int button) {
-
+        if(!active) return false;
         for(TouchDown listener: touchDownsListeners) {
             listener.touchDown(x, y, count, button);
         }
@@ -71,6 +76,7 @@ public class MyInputProcessor implements GestureDetector.GestureListener, InputP
 
     @Override
     public boolean longPress(float x, float y) {
+        if(!active) return false;
         for(ILongPress listener: longListeners) {
             listener.longPress(x, y);
         }
@@ -79,19 +85,25 @@ public class MyInputProcessor implements GestureDetector.GestureListener, InputP
 
     @Override
     public boolean fling(float velocityX, float velocityY, int button) {
-        for(IFlingListener listener: flingListeners) {
-            listener.fling(velocityX, velocityY, button);
-        }
         return false;
     }
 
     @Override
     public boolean pan(float x, float y, float deltaX, float deltaY) {
+        if(!active) return false;
+        for(IPanListener listener: panListeners) {
+            listener.pan(x, y, deltaX, deltaY);
+        }
+
         return false;
     }
 
     @Override
     public boolean panStop(float x, float y, int pointer, int button) {
+        for(IPanStopListener listener: panStopListeners) {
+            listener.panStop(x, y, pointer, button);
+        }
+
         return false;
     }
 
@@ -143,5 +155,9 @@ public class MyInputProcessor implements GestureDetector.GestureListener, InputP
     @Override
     public boolean scrolled(int amount) {
         return false;
+    }
+
+    public void deactivateListeners() {
+        active = false;
     }
 }
