@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -105,12 +106,34 @@ public class Worker extends Thread {
                 case GET_GAME:
                     response.put("response", getGame(request));
                     break;
+                case GET_GAMEIDS:
+                    response.put("response", getGameIds(request));
+                    break;
+                case DELETE_GAME:
+                    response.put("response", deleteGame(request));
+                    break;
             }
         }catch(Exception exception) {
             exception.printStackTrace();
             response.put("response", new ResponseMessage(ResponseType.FAILURE, "There was an exception on the server side"));
         }
         sendJSON(response);
+    }
+
+    private ResponseMessage deleteGame(RequestMessage request)throws Exception{
+        GameHandler gameHandler = GameHandler.getInstance();
+        Integer gameId = (Integer) request.getParameters().get(0);
+        return null;
+    }
+
+    private ResponseMessage getGameIds(RequestMessage request) throws Exception {
+        GameHandler gameHandler = GameHandler.getInstance();
+        String username = (String) request.getParameters().get(0);
+        ArrayList<Integer> gameIds = gameHandler.getGameIds(username);
+        return ResponseCreator.getGameIds(gameIds);
+
+
+
     }
 
     private ResponseMessage getGame(RequestMessage request) throws Exception {
@@ -151,11 +174,11 @@ public class Worker extends Thread {
         boolean challengedPlayerIsReal = !playerHandler.usernameIsAvailable(challengedPlayer);
         if(!challengedPlayerIsReal) return ResponseCreator.getChallengePlayerDoesNotExist();
         //CreateGame
-        //Check that there is not an existing game
+        //Check that there is not an existing launcher
         GameHandler gameHandler = GameHandler.getInstance();
         int id = gameHandler.findGame(hostUsername, challengedPlayer);
         if(id > -1) return ResponseCreator.getGameAlreadyExist(challengedPlayer);
-        //Create a new game
+        //Create a new launcher
         Games gameType = (Games) request.getParameters().get(1);
         int gameId = gameHandler.createGame(hostUsername, challengedPlayer, gameType);
         if(gameId > 0) return ResponseCreator.getCreateGameSuccess(gameId);

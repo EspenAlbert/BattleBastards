@@ -31,13 +31,18 @@ public class BoardController implements IBoardController {
     private ArrayList<BoardControllerStateListener> listeners;
 
     private int remaining_energy;
+    private boolean iAmPlayer1;
     private String actionButtonText = "Action";
 
 
-    public BoardController(IBoard board, IBoardMover boardMover, int remaining_energy) {
+    public BoardController(IBoard board, IBoardMover boardMover, int remaining_energy, boolean iAmPlayer1) {
         this.board = board;
+        if(!iAmPlayer1) {
+            board.convertCellsToOtherPlayer();
+        }
         this.boardMover = boardMover;
         this.remaining_energy = remaining_energy;
+        this.iAmPlayer1 = iAmPlayer1;
         boardStates = new Stack<BoardControllerState>();
         listeners = new ArrayList<BoardControllerStateListener>();
         boardStates.push(new BoardControllerReplayState(this, this.board));
@@ -95,5 +100,16 @@ public class BoardController implements IBoardController {
     public void addBoardControllerStateListener(BoardControllerStateListener listener){
         this.listeners.add(listener);
         this.refreshState();
+    }
+
+    public boolean iAmPlayer1() {
+        return iAmPlayer1;
+    }
+
+    public static void resetUnitAttacks(IBoard board) {
+        ArrayList<Position> unitPositions = board.getUnitPositions();
+        for(Position unitPosition : unitPositions) {
+            board.getCell(unitPosition).getUnit().setHasAttacked(false);
+        }
     }
 }

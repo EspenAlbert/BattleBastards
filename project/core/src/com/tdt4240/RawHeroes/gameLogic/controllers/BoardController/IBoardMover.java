@@ -10,10 +10,10 @@ import java.util.ArrayList;
  */
 public interface IBoardMover {
 
-    void executeMoves(ArrayList<Move> lastMoves);
     void add(Move move);
     Move undo();
     void addMoveListener(IMoveListener listener);
     ArrayList<Move> confirmMoves();
-
+    ///Methods that are called when a new ActiveGameScreen is initialized:
+    void executeMovesFromOtherPlayer(ArrayList<Move> lastMoves, boolean iAmPlayer1);
 }

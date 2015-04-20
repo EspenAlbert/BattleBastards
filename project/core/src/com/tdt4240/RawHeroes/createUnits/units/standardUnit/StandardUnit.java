@@ -1,5 +1,7 @@
 package com.tdt4240.RawHeroes.createUnits.units.standardUnit;
 
+
+import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.IBoardController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitCombatController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitMovementController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.SimpleUnitCombatController;
@@ -17,6 +19,12 @@ import java.util.ArrayList;
 public class StandardUnit implements IUnit {
 
 
+    private final int MAX_HEALTH = 20;
+
+    private final int MIN_DMG = 5;
+    private final int MAX_DMG = 10;
+
+    private int health;
     private boolean player1Unit;
     private boolean hasAttacked;
     private IUnitCombatController unitCombatController;
@@ -26,15 +34,25 @@ public class StandardUnit implements IUnit {
     private int weight;
 
     public StandardUnit(boolean player1Unit) {
+        health = MAX_HEALTH;
         this.hasAttacked = false;
         this.player1Unit = player1Unit;
 
         this.remainingMoves = 3;
         this.weight = 5;
 
-        this.unitCombatController = new SimpleUnitCombatController(this, 5, 10, 1);
+        this.unitCombatController = new SimpleUnitCombatController(this, MIN_DMG, MAX_DMG, 1);
         this.unitMoveController = new WalkingUnitMovementController();
         System.out.println("Created a standard unit");
+    }
+    private StandardUnit(boolean player1Unit, int health, boolean hasAttacked, IUnitCombatController unitCombatController, IUnitMovementController unitMoveController, int remainingMoves, int weight) {
+        this.player1Unit = player1Unit;
+        this.health = health;
+        this.hasAttacked = hasAttacked;
+        this.unitCombatController = unitCombatController;
+        this.unitMoveController = unitMoveController;
+        this.remainingMoves = remainingMoves;
+        this.weight = weight;
     }
 
     @Override
@@ -64,7 +82,9 @@ public class StandardUnit implements IUnit {
 
     @Override
     public int attacked(int damage) {
-        return unitCombatController.attacked(damage); //Final dmg received (after armor etc. reductions)
+        int dmgReceived = unitCombatController.attacked(damage); //Final dmg received (after armor etc. reductions)
+        health -= dmgReceived;
+        return dmgReceived;
     }
 
     @Override
@@ -83,13 +103,8 @@ public class StandardUnit implements IUnit {
     }
 
     @Override
-    public void setHasAttacked() {
-        if (hasAttacked){
-            this.hasAttacked = false;
-        }
-        else {
-            this.hasAttacked = true;
-        }
+    public void setHasAttacked(boolean value) {
+        hasAttacked = value;
     }
 
     @Override
@@ -105,6 +120,16 @@ public class StandardUnit implements IUnit {
     @Override
     public int getHealth() {
         //TODO
-        return 0;
+        return health;
+    }
+
+    @Override
+    public boolean hasAttacked() {
+        return hasAttacked;
+    }
+
+    @Override
+    public IUnit getCopy() {
+        return new StandardUnit(player1Unit, health, hasAttacked, unitCombatController, unitMoveController,remainingMoves, weight);
     }
 }
