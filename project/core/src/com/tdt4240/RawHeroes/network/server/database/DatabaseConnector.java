@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 
 /**
@@ -117,6 +118,24 @@ public class DatabaseConnector implements IDatabaseConnector {
         //return response;
     }
 
+    public void changePassword(HashMap<String, Object> javaObjectColumns, String primaryKeyValue) throws SQLException, IOException{
+        PreparedStatement ps = null;
+        String sql = null;
+
+        ArrayList<String> colNames = getArrayListFromHashMap(javaObjectColumns);
+        //int columns = javaObjectColumns.size() + 1; //Primary key + columns
+        //String cols = convertColumnNamesToString(primaryKeyCol, colNames);
+        sql = "Update players Set javaObject = ? where username = ?";
+        ps = myConnection.prepareStatement(sql);
+        int colNr = 1; //Primary key is always 1
+        for (String column : javaObjectColumns.keySet()) {
+            System.out.println("COLUM: " + column);
+            ps.setObject(colNr, javaObjectColumns.get(column));
+        }
+        ps.setString(2, primaryKeyValue);
+        ps.executeUpdate();
+    }
+
     @Override
     public void insertRow(String table, HashMap<String, Object> javaObjectColumns, String primaryKeyCol, String primaryKeyValue) throws SQLException, IOException {
         PreparedStatement ps = null;
@@ -126,6 +145,12 @@ public class DatabaseConnector implements IDatabaseConnector {
         int columns = javaObjectColumns.size() + 1; //Primary key + columns
         String questionMarks = createQuestionMarks(columns);
         String cols = convertColumnNamesToString(primaryKeyCol, colNames);
+        System.out.println("COLS: " + cols);
+        System.out.println();
+        System.out.println("QuestionMarks " + questionMarks);
+        System.out.println();
+        System.out.println("COLUMNS: " + columns);
+        System.out.println("JAVAOBJECTCOLUMNS" + javaObjectColumns);
         sql = "insert into " + table + "(" + cols + ") values(" + questionMarks + ")";
 
         ps = myConnection.prepareStatement(sql);

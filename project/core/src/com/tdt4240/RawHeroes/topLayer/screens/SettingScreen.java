@@ -14,6 +14,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.tdt4240.RawHeroes.independent.Encryption;
 import com.tdt4240.RawHeroes.independent.GameConstants;
 import com.tdt4240.RawHeroes.network.client.ClientConnection;
+import com.tdt4240.RawHeroes.network.communication.Response.ResponseMessage;
+import com.tdt4240.RawHeroes.network.communication.Response.ResponseType;
 import com.tdt4240.RawHeroes.view.uiElements.DialogFactory;
 import com.tdt4240.RawHeroes.view.uiElements.LabelFactory;
 import com.tdt4240.RawHeroes.view.uiElements.MainMenuButtonsFactory;
@@ -66,10 +68,9 @@ public class SettingScreen extends ScreenState {
                 }catch (NoSuchAlgorithmException exception){
                     pwd = oldPasswordTextField.getText();
                 }
-                if(pwd.equals(ClientConnection.getInstance().getPassword())) { //TODO: Get back the real password(not encrypted)
+                if(pwd.equals(ClientConnection.getInstance().getPassword())) {
                     if(confirmPasswordTextField.getText().equals(newPasswordTextField.getText())) {
                         changePasswordDialogButtonClicked(newPasswordTextField.getText());
-                        createGameDialog.hide();
                     }
                     else{
                         title.setText("The new password did not match the confirmed one");
@@ -108,7 +109,20 @@ public class SettingScreen extends ScreenState {
         stage.addActor(createGameDialog);
     }
     public void changePasswordDialogButtonClicked(String password){
-        ClientConnection.getInstance().setPassword(password);
+        String pwd;
+        try {
+            pwd = Encryption.encrypt(password);
+            ResponseMessage response = ClientConnection.getInstance().changePassowrd(pwd);
+            if(response.getType() == ResponseType.SUCCESS){
+                title.setText((String)response.getContent());
+                ClientConnection.getInstance().setPassword(pwd);
+            }
+            else{
+                title.setText((String)response.getContent());
+            }
+        }catch (NoSuchAlgorithmException exception){
+            pwd = password;
+        }
     }
 
 

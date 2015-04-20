@@ -46,6 +46,11 @@ public class PlayerHandler implements IPlayerHandler{
         return player.getPassword().equals(storedPlayer.getPassword());
     }
     public boolean changePassword(Player player) throws Exception{
-        Player storedPlayer = (Player) databaseConnector.getJavaObject("players", "username", player.setPassword();)
+        Player storedPlayer = (Player) databaseConnector.getJavaObject("players", "username", player.getUsername(), -1);
+        storedPlayer.setPassword(player.getPassword());
+        HashMap<String, Object> columns = new HashMap<String, Object>();
+        columns.put("javaObject", storedPlayer);
+        databaseConnector.changePassword(columns, storedPlayer.getUsername());
+        return true;
     }
 }

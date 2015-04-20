@@ -85,7 +85,7 @@ public class ClientConnection implements IClientConnection {
         return sendRequestAndWaitForResponse(RequestCreator.getCreateUserRequest(username, password));
     }
 
-    public ResponseMessage changePassowrd(String username, String password, String newPassword){
+    public ResponseMessage changePassowrd(String newPassword){
         return sendRequestAndWaitForResponse(RequestCreator.getChangePassword(username, password, newPassword));
     }
 

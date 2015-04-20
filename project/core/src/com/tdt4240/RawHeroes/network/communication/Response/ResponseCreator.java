@@ -12,6 +12,12 @@ public class ResponseCreator {
     public static ResponseMessage getLoginSuccess() {
         return new ResponseMessage(ResponseType.SUCCESS, "Logged in successfully!");
     }
+    public static ResponseMessage getChangedPasswordSucess(){
+        return new ResponseMessage(ResponseType.SUCCESS, "You have sucessfully changed your password");
+    }
+    public static ResponseMessage getChangedPasswordFailed(){
+        return new ResponseMessage(ResponseType.FAILURE, "Something wrong happened!");
+    }
     public static ResponseMessage getCreateUserSuccess() {
         return new ResponseMessage(ResponseType.SUCCESS, "Username successfully created!");
     }

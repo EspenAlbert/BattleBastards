@@ -211,13 +211,10 @@ public class Worker extends Thread {
     private ResponseMessage changePassword(RequestMessage request)throws Exception {
         PlayerHandler playerHandler = PlayerHandler.getInstance();
         Player user = request.getPlayer();
-        try {
-            boolean loginSuccess = playerHandler.checkPlayer(user);
-            if(loginSuccess) return ResponseCreator.getLoginSuccess();
-            else return ResponseCreator.getWrongUsernamePassword();
-        } catch (Exception exception) {
-            return ResponseCreator.getWrongUsernamePassword();
-        }
+        user.setPassword((String)request.getParameters().get(0));
+        boolean changedSuccessfully =  playerHandler.changePassword(user);
+        if(changedSuccessfully) return ResponseCreator.getChangedPasswordSucess();
+        return ResponseCreator.getChangedPasswordFailed();
 
     }
 
