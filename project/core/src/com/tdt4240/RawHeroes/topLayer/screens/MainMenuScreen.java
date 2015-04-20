@@ -70,7 +70,7 @@ public class MainMenuScreen extends ScreenState {
         buttonCreateGame.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                createGameButtonClicked();
+                getCreateGameButtonClicked();
             }
         });
 
@@ -104,6 +104,7 @@ public class MainMenuScreen extends ScreenState {
     private void getSettingsButtonClicked() {
         gsm.pushState(new SettingScreen(gsm));
     }
+    private void getCreateGameButtonClicked(){ gsm.pushState(new CreateGameScreen(gsm));}
 
     public void getAllGames(){
         scrollTable.clear();
@@ -139,34 +140,6 @@ public class MainMenuScreen extends ScreenState {
         }
     }
 
-    private void createGameButtonClicked() {
-        System.out.println("clicked create game...");
-        final Dialog createGameDialog = DialogFactory.createDialogFactory("Create game");
-
-        final TextField textFieldUsername = TextFieldFactory.createTextField("challenger", (int)createGameDialog.getWidth()/2 -GameConstants.RESOLUTION_WIDTH/10, (int)createGameDialog.getHeight()/2, false);
-        createGameDialog.addActor(textFieldUsername);
-        TextButton buttonCreateGameDialog = MainMenuButtonsFactory.createButton("Create game",GameConstants.RESOLUTION_WIDTH*2/3 -GameConstants.RESOLUTION_WIDTH/10, GameConstants.RESOLUTION_HEIGHT/10);
-        buttonCreateGameDialog.addListener(new ClickListener() {
-
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                createGameButtonDialogClicked(textFieldUsername.getText());
-                createGameDialog.hide();
-            }
-        });
-
-        TextButton buttonBackToMainMenu = MainMenuButtonsFactory.createButton("Back", GameConstants.RESOLUTION_WIDTH/4 -GameConstants.RESOLUTION_WIDTH/10, GameConstants.RESOLUTION_HEIGHT/10);
-        buttonBackToMainMenu.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                createGameDialog.remove();
-            }
-        });
-
-        createGameDialog.addActor(buttonCreateGameDialog);
-        createGameDialog.addActor(buttonBackToMainMenu);
-        stage.addActor(createGameDialog);
-    }
     @Override
     public void setInputProcessor(){
         Gdx.input.setInputProcessor(stage);
@@ -174,19 +147,6 @@ public class MainMenuScreen extends ScreenState {
 
     public void setMsg(String msg){
         labelInstruction.setText(msg);
-    }
-
-    private void createGameButtonDialogClicked(String opponent) {
-        ResponseMessage response = ClientConnection.getInstance().createNewGame(opponent, Games.KILL_ALL_ENEMY_UNITS);
-        if(response.getType() == ResponseType.FAILURE) {
-            labelInstruction.setText((String) response.getContent());
-        } else {
-            labelInstruction.setText("Successfully challenged " + opponent);
-            Integer gameId = (Integer) response.getContent();
-            System.out.println("New game has id: " + gameId);
-            addGameToTable(opponent, "Opponents turn", gameId);
-        }
-        System.out.println("create game button dialog clicked" + " challenged player: " + opponent);
     }
 
     public void addGameToTable(String opponent, String status, int gameId){

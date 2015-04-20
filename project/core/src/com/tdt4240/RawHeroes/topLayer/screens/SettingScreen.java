@@ -29,7 +29,7 @@ import java.security.NoSuchAlgorithmException;
 public class SettingScreen extends ScreenState {
     private Stage stage;
     private Label title;
-    private final TextButton changePasswordButton;
+    private final TextButton changePasswordButton, backToMainMenu;
 
 
 
@@ -37,7 +37,8 @@ public class SettingScreen extends ScreenState {
         super(gsm);
 
         stage = new Stage();
-        changePasswordButton = MainMenuButtonsFactory.createButton("Change password", GameConstants.RESOLUTION_WIDTH/2, GameConstants.RESOLUTION_HEIGHT/2);
+        changePasswordButton = MainMenuButtonsFactory.createButton("Change password", GameConstants.RESOLUTION_WIDTH/2 - GameConstants.BUTTON_WIDTH/2, GameConstants.RESOLUTION_HEIGHT/2);
+        backToMainMenu = MainMenuButtonsFactory.createButton("Main menu", GameConstants.RESOLUTION_WIDTH/2 - GameConstants.BUTTON_WIDTH/2, GameConstants.SCALE_HEIGHT);
 
         changePasswordButton.addListener(new ClickListener() {
             @Override
@@ -45,9 +46,19 @@ public class SettingScreen extends ScreenState {
                 changePasswordButtonClicked();
             }
         });
+        backToMainMenu.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                backToMainMenu();
+            }
+        });
         Gdx.input.setInputProcessor(stage);
         stage.addActor(changePasswordButton);
-        //stage.addActor(title);
+        stage.addActor(backToMainMenu);
+    }
+
+    public void backToMainMenu(){
+        gsm.popOnly();
     }
     public void changePasswordButtonClicked(){
         System.out.println("clicked create game...");

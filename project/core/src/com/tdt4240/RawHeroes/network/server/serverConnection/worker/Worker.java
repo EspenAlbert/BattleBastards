@@ -115,6 +115,8 @@ public class Worker extends Thread {
                 case CHANGE_PASSWORD:
                     response.put("response", changePassword(request));
                     break;
+                case ADD_TO_FRIENDLIST:
+                    response.put("response", addToFriendList(request));
             }
         }catch(Exception exception) {
             exception.printStackTrace();
@@ -122,6 +124,7 @@ public class Worker extends Thread {
         }
         sendJSON(response);
     }
+
 
 
     private ResponseMessage deleteGame(RequestMessage request)throws Exception{
@@ -216,6 +219,18 @@ public class Worker extends Thread {
         if(changedSuccessfully) return ResponseCreator.getChangedPasswordSucess();
         return ResponseCreator.getChangedPasswordFailed();
 
+    }
+    private ResponseMessage addToFriendList(RequestMessage request) throws Exception {
+        PlayerHandler playerHandler = PlayerHandler.getInstance();
+        Player user = request.getPlayer();
+        Player playerFriend = PlayerHandler.getInstance().getPlayer((String)request.getParameters().get(0));
+
+        boolean available = playerHandler.usernameIsAvailable(playerFriend.getUsername());
+        if(available) return ResponseCreator.getUsernameNotAvailable();
+
+        boolean addedSuccessfully = playerHandler.addFriend(user, playerFriend);
+        if(addedSuccessfully) return ResponseCreator.getChangedPasswordSucess();
+        return ResponseCreator.getChangedPasswordFailed();
     }
 
     private ResponseMessage createUser(RequestMessage request) throws Exception {

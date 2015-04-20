@@ -31,6 +31,9 @@ public class PlayerHandler implements IPlayerHandler{
     public boolean usernameIsAvailable(String username) throws SQLException {
         return databaseConnector.usernameAvailable(username);
     }
+    public Player getPlayer(String username) throws Exception {
+        return (Player)databaseConnector.getJavaObject("players", "username", username, -1);
+    }
 
     @Override
     public boolean createPlayer(Player player) throws IOException, SQLException {
@@ -50,7 +53,19 @@ public class PlayerHandler implements IPlayerHandler{
         storedPlayer.setPassword(player.getPassword());
         HashMap<String, Object> columns = new HashMap<String, Object>();
         columns.put("javaObject", storedPlayer);
-        databaseConnector.changePassword(columns, storedPlayer.getUsername());
+        databaseConnector.updatePlayer(columns, storedPlayer.getUsername());
         return true;
+    }
+
+    public boolean addFriend(Player player, Player playerFriend) throws Exception {
+        Player storedPlayer = (Player) databaseConnector.getJavaObject("players", "username", player.getUsername(), -1);
+        Player storedFriendPlayer = (Player) databaseConnector.getJavaObject("players", "username", playerFriend.getUsername(), -1);
+        storedPlayer.getFriendList().add(storedFriendPlayer);
+        storedFriendPlayer.getFriendList().add(storedPlayer);
+        HashMap<String, Object> columns = new HashMap<String, Object>();
+        columns.put("javaObject", storedPlayer);
+        databaseConnector.updatePlayer(columns, storedPlayer.getUsername());
+        return true;
+
     }
 }

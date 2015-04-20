@@ -118,7 +118,7 @@ public class DatabaseConnector implements IDatabaseConnector {
         //return response;
     }
 
-    public void changePassword(HashMap<String, Object> javaObjectColumns, String primaryKeyValue) throws SQLException, IOException{
+    public void updatePlayer(HashMap<String, Object> javaObjectColumns, String primaryKeyValue) throws SQLException, IOException{
         PreparedStatement ps = null;
         String sql = null;
 

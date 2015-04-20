@@ -70,4 +70,12 @@ public class RequestCreator {
         json.put("request", message);
         return json;
     }
+
+    public static JSONObject getAddedToFriendListRequest(String username, String password, String username1) {
+        JSONObject json = new JSONObject();
+        RequestMessage message = new RequestMessage(RequestTypes.ADD_TO_FRIENDLIST, new Player(username, password));
+        message.addParameter(username1);
+        json.put("request", message);
+        return json;
+    }
 }

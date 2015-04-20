@@ -3,6 +3,8 @@ package com.tdt4240.RawHeroes.network.communication.Response;
 import com.tdt4240.RawHeroes.createGame.boards.StandardBoard;
 import com.tdt4240.RawHeroes.topLayer.commonObjects.Game;
 
+import org.json.simple.JSONObject;
+
 import java.util.ArrayList;
 
 /**

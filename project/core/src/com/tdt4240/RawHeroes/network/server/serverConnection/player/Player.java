@@ -1,6 +1,7 @@
 package com.tdt4240.RawHeroes.network.server.serverConnection.player;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by espen1 on 03.03.2015.
@@ -11,6 +12,12 @@ public class Player implements Serializable{
     private PlayerTypes playerType;
     private Child child;
     private int score;
+
+    public ArrayList<Player> getFriendList() {
+        return friendList;
+    }
+
+    private ArrayList<Player> friendList = new ArrayList<Player>();
 
     public Player(String username, String password) {
         this.username = username;
@@ -31,6 +38,8 @@ public class Player implements Serializable{
     public void setUsername(String username) {
         this.username = username;
     }
+
+
 
     public PlayerTypes getPlayerType() {
         return playerType;

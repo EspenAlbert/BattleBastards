@@ -7,6 +7,7 @@ import com.badlogic.gdx.net.SocketHints;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.tdt4240.RawHeroes.event.move.Move;
 import com.tdt4240.RawHeroes.independent.GameConstants;
+import com.tdt4240.RawHeroes.network.communication.Response.ResponseCreator;
 import com.tdt4240.RawHeroes.network.communication.Response.ResponseMessage;
 import com.tdt4240.RawHeroes.network.communication.Response.ResponseType;
 import com.tdt4240.RawHeroes.network.communication.request.RequestCreator;
@@ -132,4 +133,7 @@ public class ClientConnection implements IClientConnection {
 
     public String getPassword(){return password;}
 
+    public ResponseMessage addToFriendList(String username) {
+        return sendRequestAndWaitForResponse(RequestCreator.getAddedToFriendListRequest(username, password, username));
+    }
 }

@@ -18,6 +18,7 @@ public class GameConstants {
     public static final int LABEL_HEIGHT = Math.round(GameConstants.RESOLUTION_HEIGHT / 8);
     public static final int CELL_WIDTH = Math.round(GameConstants.RESOLUTION_WIDTH / 6);
     public static final int CELL_HEIGHT = CELL_WIDTH;
+    public static final int SCALE_HEIGHT = GameConstants.RESOLUTION_HEIGHT/5;
     public static final int SPACE_BETWEEN = 0;
     public static final int MAX_ENERGY = 100;
 
