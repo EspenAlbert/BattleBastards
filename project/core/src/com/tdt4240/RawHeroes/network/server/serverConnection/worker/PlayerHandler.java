@@ -59,9 +59,7 @@ public class PlayerHandler implements IPlayerHandler{
 
     public boolean addFriend(Player player, Player playerFriend) throws Exception {
         Player storedPlayer = (Player) databaseConnector.getJavaObject("players", "username", player.getUsername(), -1);
-        Player storedFriendPlayer = (Player) databaseConnector.getJavaObject("players", "username", playerFriend.getUsername(), -1);
-        storedPlayer.getFriendList().add(storedFriendPlayer);
-        storedFriendPlayer.getFriendList().add(storedPlayer);
+        storedPlayer.getFriendList().add(playerFriend);
         HashMap<String, Object> columns = new HashMap<String, Object>();
         columns.put("javaObject", storedPlayer);
         databaseConnector.updatePlayer(columns, storedPlayer.getUsername());
