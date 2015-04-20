@@ -35,7 +35,7 @@ public class ActualRenderObject implements IRenderObject{
         else sheet.setTexture (TextureChanger.changeColor(sheet.getTexture(), Color.BLUE));
         TextureRegion region = sheet.getActiveFrame(0, 0);
         sprite = new Sprite(region);
-        sprite.setSize(1,2);
+        sprite.setSize(1.5f,2);
         System.out.println("A render object has been created");
     }
 
@@ -59,7 +59,7 @@ public class ActualRenderObject implements IRenderObject{
     @Override
     public void animationChanged(AnimationEvent event) {
         this.sprite = new Sprite(sheet.getActiveFrame(event.getActiveFrame(), event.getActiveAnimation()));
-        sprite.setSize(1,2);
+        sprite.setSize(1.5f,2);
     }
 
 }
