@@ -158,7 +158,7 @@ public class StandardUnit implements IUnit {
         switch (renderMode){
 
             case STATIC:
-                this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_RIGHT);
+                if (this.unitAnimationController.getActiveAnimation() == AnimationConstants.MOVE_RIGHT)this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_RIGHT);
                 break;
             case MOVING:
                 this.unitAnimationController.setActiveAnimation(AnimationConstants.MOVE_RIGHT);
