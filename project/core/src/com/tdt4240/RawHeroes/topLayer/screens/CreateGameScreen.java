@@ -14,11 +14,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.tdt4240.RawHeroes.gameLogic.inputListeners.ChallangeGameClickedListener;
+import com.tdt4240.RawHeroes.gameLogic.inputListeners.GameClickedListener;
+import com.tdt4240.RawHeroes.gameLogic.inputListeners.SurrenderGameClickListener;
 import com.tdt4240.RawHeroes.independent.GameConstants;
 import com.tdt4240.RawHeroes.mainMenuGamesHandler.clientGameState.ClientGameState;
 import com.tdt4240.RawHeroes.network.client.ClientConnection;
 import com.tdt4240.RawHeroes.network.communication.Response.ResponseMessage;
 import com.tdt4240.RawHeroes.network.communication.Response.ResponseType;
+import com.tdt4240.RawHeroes.network.server.serverConnection.player.Player;
 import com.tdt4240.RawHeroes.topLayer.commonObjects.Game;
 import com.tdt4240.RawHeroes.topLayer.commonObjects.Games;
 import com.tdt4240.RawHeroes.view.uiElements.LabelFactory;
@@ -54,7 +58,6 @@ public class CreateGameScreen extends ScreenState {
         int scaleY = GameConstants.RESOLUTION_HEIGHT/5;
         int yPosLabelInstruction = GameConstants.RESOLUTION_HEIGHT*4/5;
         int yPosButtonCreateGame =  yPosLabelInstruction - scaleY;
-        int yPosTextFieldGetGame = yPosButtonCreateGame - scaleY;
 
         buttonAddFriend = MainMenuButtonsFactory.createTableButton("Add Friend", GameConstants.RESOLUTION_WIDTH / 2, GameConstants.RESOLUTION_HEIGHT - 100, false);
         scrollTable = ScrollTableFactory.createScrollTable();
@@ -69,7 +72,12 @@ public class CreateGameScreen extends ScreenState {
         buttonAddFriend.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                addFriend(textFieldUsername.getText());
+                if(clientConnection.getUsername().equals(textFieldUsername.getText())){
+                    labelInstruction.setText("You cannot add yourself to friendlist");
+                }
+                else {
+                    addFriend(textFieldUsername.getText());
+                }
             }
         });
         buttonCreateGame.addListener(new ClickListener() {
@@ -98,9 +106,10 @@ public class CreateGameScreen extends ScreenState {
         stage.addActor(labelInstruction);
         stage.addActor(scrollPane);
         stage.addActor(buttonAddFriend);
+        updateTable();
     }
 
-    private void createGameButtonClicked(String opponent) {
+    public void createGameButtonClicked(String opponent) {
         ResponseMessage response = ClientConnection.getInstance().createNewGame(opponent, Games.KILL_ALL_ENEMY_UNITS);
         if(response.getType() == ResponseType.FAILURE) {
             labelInstruction.setText((String) response.getContent());
@@ -115,18 +124,44 @@ public class CreateGameScreen extends ScreenState {
         backToMainMenu();
     }
 
-    private void backToMainMenu() {
+    public void backToMainMenu() {
         gsm.popOnly();
     }
 
 
-    private void addFriend(String username) {
+    public void addFriend(String username) {
         ResponseMessage response = ClientConnection.getInstance().addToFriendList(username);
         if (response.getType() == ResponseType.FAILURE) {
             labelInstruction.setText((String) response.getContent());
         } else {
             labelInstruction.setText("Successfully added!");
-            scrollTable.add(username);
+            updateTable();
+        }
+    }
+
+    public void updateTable() {
+        scrollTable.clear();
+        ResponseMessage response =  ClientConnection.getInstance().getFriendList();
+        if(response.getType() == ResponseType.SUCCESS){
+            ArrayList<Player> friends = (ArrayList) response.getContent();
+            for (Player p : friends){
+                ResponseMessage responseGame =  ClientConnection.getInstance().isPlaying(p.getUsername());
+                if(responseGame.getType() == ResponseType.SUCCESS){
+                    TextButton challangeButton = MainMenuButtonsFactory.createTableButton("Challange?", GameConstants.RESOLUTION_WIDTH/2 - GameConstants.RESOLUTION_WIDTH/10, GameConstants.RESOLUTION_HEIGHT, false);
+                    challangeButton.addListener( new ChallangeGameClickedListener(this, p.getUsername()));
+                    scrollTable.row().height(challangeButton.getHeight() + GameConstants.RESOLUTION_HEIGHT / 10);
+                    scrollTable.row().width(100);
+                    scrollTable.add(p.getUsername());
+                    scrollTable.add(challangeButton);
+                }
+                else{
+                    scrollTable.add(p.getUsername());
+                    scrollTable.row().height(GameConstants.BUTTON_WIDTH + GameConstants.RESOLUTION_HEIGHT / 10);
+                }
+            }
+        }
+        else{
+            labelInstruction.setText((String)response.getContent());
         }
     }
 

@@ -1,6 +1,7 @@
 package com.tdt4240.RawHeroes.network.communication.Response;
 
 import com.tdt4240.RawHeroes.createGame.boards.StandardBoard;
+import com.tdt4240.RawHeroes.network.server.serverConnection.player.Player;
 import com.tdt4240.RawHeroes.topLayer.commonObjects.Game;
 
 import org.json.simple.JSONObject;
@@ -77,5 +78,18 @@ public class ResponseCreator {
 
     public static ResponseMessage getGameIds(ArrayList<Integer> gameIds) {
         return new ResponseMessage(ResponseType.SUCCESS, gameIds);
+    }
+    public static ResponseMessage getFriendListSuccess(ArrayList<Player> friends){
+        return new ResponseMessage(ResponseType.SUCCESS, friends);
+    }
+    public static ResponseMessage getFriendListFailure(){
+        return new ResponseMessage(ResponseType.FAILURE, "You have no friends yet");
+    }
+
+    public static ResponseMessage getAddedSucess() {
+        return new ResponseMessage(ResponseType.SUCCESS, "Added friend to list");
+    }
+    public static ResponseMessage getAddedFailure(){
+        return new ResponseMessage(ResponseType.FAILURE, "Friend already in friendlist");
     }
 }

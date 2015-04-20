@@ -133,7 +133,15 @@ public class ClientConnection implements IClientConnection {
 
     public String getPassword(){return password;}
 
-    public ResponseMessage addToFriendList(String username) {
-        return sendRequestAndWaitForResponse(RequestCreator.getAddedToFriendListRequest(username, password, username));
+    public ResponseMessage addToFriendList(String username1) {
+        return sendRequestAndWaitForResponse(RequestCreator.getAddedToFriendListRequest(username, password, username1));
+    }
+
+    public ResponseMessage getFriendList() {
+        return sendRequestAndWaitForResponse(RequestCreator.getGetFriendList(username, password));
+    }
+
+    public ResponseMessage isPlaying(String opponent) {
+        return sendRequestAndWaitForResponse(RequestCreator.getIsPlaying(username, password, opponent));
     }
 }

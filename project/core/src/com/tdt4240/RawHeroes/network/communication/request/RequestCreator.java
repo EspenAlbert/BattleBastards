@@ -78,4 +78,20 @@ public class RequestCreator {
         json.put("request", message);
         return json;
     }
+
+    public static JSONObject getGetFriendList(String username, String password) {
+        JSONObject json = new JSONObject();
+        RequestMessage message = new RequestMessage(RequestTypes.GET_FRIENDLIST, new Player(username, password));
+        message.addParameter(username);
+        json.put("request", message);
+        return json;
+    }
+
+    public static JSONObject getIsPlaying(String username, String password, String opponent) {
+        JSONObject json = new JSONObject();
+        RequestMessage message = new RequestMessage(RequestTypes.IS_PLAYING, new Player(username, password));
+        message.addParameter(opponent);
+        json.put("request", message);
+        return json;
+    }
 }

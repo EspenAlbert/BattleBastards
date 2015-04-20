@@ -12,17 +12,31 @@ public class Player implements Serializable{
     private PlayerTypes playerType;
     private Child child;
     private int score;
+    private ArrayList<Player> friendList = new ArrayList<Player>();
 
     public ArrayList<Player> getFriendList() {
         return friendList;
     }
 
-    private ArrayList<Player> friendList = new ArrayList<Player>();
 
     public Player(String username, String password) {
         this.username = username;
         this.password = password;
         score = 0;
+    }
+
+    public boolean addToFriendList(Player player){
+        int i = 0;
+        for(Player p : friendList){
+            if(p.getUsername().equals(player.getUsername())){
+                i++;
+            }
+        }
+        if(i == 0){
+            friendList.add(player);
+            return true;
+        }
+        return false;
     }
 
     public String getPassword() {

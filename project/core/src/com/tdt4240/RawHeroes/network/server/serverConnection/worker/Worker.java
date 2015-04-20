@@ -117,6 +117,12 @@ public class Worker extends Thread {
                     break;
                 case ADD_TO_FRIENDLIST:
                     response.put("response", addToFriendList(request));
+                    break;
+                case GET_FRIENDLIST:
+                    response.put("response", getFriendList(request));
+                    break;
+                case IS_PLAYING:
+                    response.put("response", isPlaying(request));
             }
         }catch(Exception exception) {
             exception.printStackTrace();
@@ -125,6 +131,14 @@ public class Worker extends Thread {
         sendJSON(response);
     }
 
+    private ResponseMessage isPlaying(RequestMessage request) throws Exception {
+        String hostUsername = request.getPlayer().getUsername();
+        String challengedPlayer = (String) request.getParameters().get(0);
+        GameHandler gameHandler = GameHandler.getInstance();
+        int id = gameHandler.findGame(hostUsername, challengedPlayer);
+        if(id > -1) return ResponseCreator.getGameAlreadyExist(challengedPlayer);
+        else return new ResponseMessage(ResponseType.SUCCESS, "There are no game between you");
+    }
 
 
     private ResponseMessage deleteGame(RequestMessage request)throws Exception{
@@ -148,6 +162,18 @@ public class Worker extends Thread {
 
 
 
+    }
+
+    private ResponseMessage getFriendList(RequestMessage request) throws Exception{
+        PlayerHandler playerHandler = PlayerHandler.getInstance();
+        String username = (String) request.getParameters().get(0);
+        ArrayList<Player> friends = (ArrayList) playerHandler.getFriendList(username);
+        if(friends.size() > 0) {
+            return ResponseCreator.getFriendListSuccess(friends);
+        }
+        else {
+            return ResponseCreator.getFriendListFailure();
+        }
     }
 
     private ResponseMessage getGame(RequestMessage request) throws Exception {
@@ -182,7 +208,6 @@ public class Worker extends Thread {
     private ResponseMessage createGame(RequestMessage request) throws Exception {
         String hostUsername = request.getPlayer().getUsername();
         //Check challenged player
-
         String challengedPlayer = (String) request.getParameters().get(0);
         PlayerHandler playerHandler = PlayerHandler.getInstance();
         boolean challengedPlayerIsReal = !playerHandler.usernameIsAvailable(challengedPlayer);
@@ -223,14 +248,10 @@ public class Worker extends Thread {
     private ResponseMessage addToFriendList(RequestMessage request) throws Exception {
         PlayerHandler playerHandler = PlayerHandler.getInstance();
         Player user = request.getPlayer();
-        Player playerFriend = PlayerHandler.getInstance().getPlayer((String)request.getParameters().get(0));
-
-        boolean available = playerHandler.usernameIsAvailable(playerFriend.getUsername());
-        if(available) return ResponseCreator.getUsernameNotAvailable();
-
+        Player playerFriend = PlayerHandler.getInstance().getPlayer((String) request.getParameters().get(0));
         boolean addedSuccessfully = playerHandler.addFriend(user, playerFriend);
-        if(addedSuccessfully) return ResponseCreator.getChangedPasswordSucess();
-        return ResponseCreator.getChangedPasswordFailed();
+        if(addedSuccessfully) return ResponseCreator.getAddedSucess();
+        else return ResponseCreator.getAddedFailure();
     }
 
     private ResponseMessage createUser(RequestMessage request) throws Exception {
