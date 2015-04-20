@@ -1,12 +1,18 @@
 package com.tdt4240.RawHeroes.createUnits.units.standardUnit;
 
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.tdt4240.RawHeroes.event.listener.IAnimationListener;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.IBoardController;
+import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitAnimationController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitCombatController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitMovementController;
+import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.SimpleUnitAnimationController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.SimpleUnitCombatController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.WalkingUnitMovementController;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
+import com.tdt4240.RawHeroes.gameLogic.models.ISpritesheet;
 import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
 import com.tdt4240.RawHeroes.gameLogic.unit.UnitName;
 import com.tdt4240.RawHeroes.independent.Position;
@@ -28,6 +34,7 @@ public class StandardUnit implements IUnit {
     private boolean hasAttacked;
     private IUnitCombatController unitCombatController;
     private IUnitMovementController unitMoveController;
+    private IUnitAnimationController unitAnimationController;
 
     private int remainingMoves;
     private int weight;
@@ -42,9 +49,10 @@ public class StandardUnit implements IUnit {
 
         this.unitCombatController = new SimpleUnitCombatController(this, MIN_DMG, MAX_DMG, 1, MAX_HEALTH);
         this.unitMoveController = new WalkingUnitMovementController();
+        this.unitAnimationController = new SimpleUnitAnimationController();
         System.out.println("Created a standard unit");
     }
-    private StandardUnit(boolean player1Unit, int health, boolean hasAttacked, IUnitCombatController unitCombatController, IUnitMovementController unitMoveController, int remainingMoves, int weight) {
+    private StandardUnit(boolean player1Unit, int health, boolean hasAttacked, IUnitCombatController unitCombatController, IUnitMovementController unitMoveController, int remainingMoves, int weight, IUnitAnimationController unitAnimationController) {
         this.player1Unit = player1Unit;
         this.health = health;
         this.hasAttacked = hasAttacked;
@@ -52,6 +60,7 @@ public class StandardUnit implements IUnit {
         this.unitMoveController = unitMoveController;
         this.remainingMoves = remainingMoves;
         this.weight = weight;
+        this.unitAnimationController = unitAnimationController;
     }
 
     @Override
@@ -144,6 +153,20 @@ public class StandardUnit implements IUnit {
 
     @Override
     public IUnit getCopy() {
-        return new StandardUnit(player1Unit, health, hasAttacked, unitCombatController, unitMoveController,remainingMoves, weight);
+        return new StandardUnit(player1Unit, health, hasAttacked, unitCombatController, unitMoveController,remainingMoves, weight, unitAnimationController);
+    }
+
+    @Override
+    public TextureRegion getActiveFrame(Texture texture){
+       return this.unitAnimationController.getActiveFrame(texture);
+    }
+
+    @Override
+    public void nextFrame(){
+        this.unitAnimationController.nextFrame();
+    }
+    @Override
+    public void addAnimationListener(IAnimationListener animationListener){
+        this.unitAnimationController.addAnimationListener(animationListener);
     }
 }

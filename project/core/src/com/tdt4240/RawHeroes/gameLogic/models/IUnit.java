@@ -1,6 +1,9 @@
 package com.tdt4240.RawHeroes.gameLogic.models;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.tdt4240.RawHeroes.event.listener.IAnimationListener;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitCombatController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitMovementController;
 import com.tdt4240.RawHeroes.gameLogic.unit.UnitName;
@@ -24,6 +27,8 @@ public interface IUnit extends Serializable{
     void setMovementLogic(IUnitMovementController controller);
     void setHasAttacked(boolean value);
     boolean isPlayer1Unit();
+    void nextFrame();
+    void addAnimationListener(IAnimationListener animationListener);
 
     ArrayList<Position> getAttackablePositions(Position pos, int movesLeft, IBoard board);
 
@@ -34,4 +39,6 @@ public interface IUnit extends Serializable{
 
     boolean hasAttacked();
     IUnit getCopy();
+
+    TextureRegion getActiveFrame(Texture texture);
 }
