@@ -17,6 +17,7 @@ import com.tdt4240.RawHeroes.independent.GameConstants;
 import com.tdt4240.RawHeroes.network.client.ClientConnection;
 import com.tdt4240.RawHeroes.network.communication.Response.ResponseMessage;
 import com.tdt4240.RawHeroes.network.communication.Response.ResponseType;
+import com.tdt4240.RawHeroes.view.uiElements.CheckBoxFactory;
 import com.tdt4240.RawHeroes.view.uiElements.LabelFactory;
 import com.tdt4240.RawHeroes.view.uiElements.MainMenuButtonsFactory;
 import com.tdt4240.RawHeroes.view.uiElements.TextFieldFactory;
@@ -46,7 +47,6 @@ public class LoginScreen extends ScreenState {
         img = new Texture("badlogic.jpg");
         //skin = new Skin(Gdx.files.internal("uiskin.json"), new TextureAtlas(Gdx.files.internal("uiskin.atlas")));
         stage = new Stage();
-        title = new Label("Game Title",skin);
         loginAttempts = 0;
 
 
@@ -76,12 +76,10 @@ public class LoginScreen extends ScreenState {
 
         labelInstruction = LabelFactory.createLabel("Please specify username and password", xPos, yPosLabelInstruction);
         int xPosCheckBox = xPos - (int)buttonLogin.getWidth()/2;
-        title.setPosition(xPos, yPosTitle);
-        title.setSize(GameConstants.LABEL_WIDTH,GameConstants.LABEL_HEIGHT);
+        title = LabelFactory.createLabel("Game Title", xPos, yPosTitle);
 
-        checkBoxNewuser = new CheckBox("New user", skin);
-        checkBoxNewuser.getCells().get(0).size(GameConstants.BUTTON_HEIGHT, GameConstants.BUTTON_HEIGHT);
-        checkBoxNewuser.setPosition(xPosCheckBox - checkBoxNewuser.getWidth(), yPosButton);
+        checkBoxNewuser = CheckBoxFactory.createCheckBox("New user", xPosCheckBox, yPosButton);
+
 
 
         stage.addActor(labelInstruction);
@@ -93,8 +91,6 @@ public class LoginScreen extends ScreenState {
         Gdx.input.setInputProcessor(stage);
 
         System.out.println("In loginScreen");
-        //Create textfield for login and password
-        // Create login button with listener
 
         failedLogInLabel = LabelFactory.createLabel("FETTNOOB", GameConstants.RESOLUTION_WIDTH/2, GameConstants.RESOLUTION_HEIGHT/2);
 

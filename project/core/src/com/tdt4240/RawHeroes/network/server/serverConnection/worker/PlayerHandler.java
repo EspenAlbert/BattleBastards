@@ -44,6 +44,8 @@ public class PlayerHandler implements IPlayerHandler{
     public boolean checkPlayer(Player player) throws Exception {
         Player storedPlayer = (Player) databaseConnector.getJavaObject("players", "username", player.getUsername(), -1);
         return player.getPassword().equals(storedPlayer.getPassword());
-
+    }
+    public boolean changePassword(Player player) throws Exception{
+        Player storedPlayer = (Player) databaseConnector.getJavaObject("players", "username", player.setPassword();)
     }
 }

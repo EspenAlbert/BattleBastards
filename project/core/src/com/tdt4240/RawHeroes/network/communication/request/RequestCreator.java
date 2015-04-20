@@ -62,4 +62,12 @@ public class RequestCreator {
         json.put("request", message);
         return json;
     }
+
+    public static JSONObject getChangePassword(String username, String password, String newPassword) {
+        JSONObject json = new JSONObject();
+        RequestMessage message = new RequestMessage(RequestTypes.CHANGE_PASSWORD, new Player(username, password));
+        message.addParameter(newPassword);
+        json.put("request", message);
+        return json;
+    }
 }

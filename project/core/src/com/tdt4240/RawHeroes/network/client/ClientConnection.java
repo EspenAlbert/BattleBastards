@@ -85,6 +85,10 @@ public class ClientConnection implements IClientConnection {
         return sendRequestAndWaitForResponse(RequestCreator.getCreateUserRequest(username, password));
     }
 
+    public ResponseMessage changePassowrd(String username, String password, String newPassword){
+        return sendRequestAndWaitForResponse(RequestCreator.getChangePassword(username, password, newPassword));
+    }
+
     @Override
     public ResponseMessage getGameIds() {
         return sendRequestAndWaitForResponse(RequestCreator.getGameIds(username, password));
@@ -125,4 +129,7 @@ public class ClientConnection implements IClientConnection {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getPassword(){return password;}
+
 }

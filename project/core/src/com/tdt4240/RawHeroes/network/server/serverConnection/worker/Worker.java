@@ -112,6 +112,9 @@ public class Worker extends Thread {
                 case DELETE_GAME:
                     response.put("response", deleteGame(request));
                     break;
+                case CHANGE_PASSWORD:
+                    response.put("response", changePassword(request));
+                    break;
             }
         }catch(Exception exception) {
             exception.printStackTrace();
@@ -120,9 +123,9 @@ public class Worker extends Thread {
         sendJSON(response);
     }
 
+
     private ResponseMessage deleteGame(RequestMessage request)throws Exception{
         GameHandler gameHandler = GameHandler.getInstance();
-        System.out.println("I WAS HERE");
         Integer gameId = (Integer) request.getParameters().get(0);
         try {
             gameHandler.deleteGame(gameId);
@@ -194,6 +197,18 @@ public class Worker extends Thread {
     }
 
     private ResponseMessage login(RequestMessage request) throws Exception {
+        PlayerHandler playerHandler = PlayerHandler.getInstance();
+        Player user = request.getPlayer();
+        try {
+            boolean loginSuccess = playerHandler.checkPlayer(user);
+            if(loginSuccess) return ResponseCreator.getLoginSuccess();
+            else return ResponseCreator.getWrongUsernamePassword();
+        } catch (Exception exception) {
+            return ResponseCreator.getWrongUsernamePassword();
+        }
+
+    }
+    private ResponseMessage changePassword(RequestMessage request)throws Exception {
         PlayerHandler playerHandler = PlayerHandler.getInstance();
         Player user = request.getPlayer();
         try {
