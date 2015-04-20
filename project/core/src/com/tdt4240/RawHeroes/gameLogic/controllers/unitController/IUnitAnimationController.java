@@ -8,4 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
  */
 public interface IUnitAnimationController {
     TextureRegion getActiveFrame(Texture texture);
+    void setActiveAnimation(int activeAnimation);
+    void setActiveFrame(int activeFrame);
+    void nextFrame();
 }
