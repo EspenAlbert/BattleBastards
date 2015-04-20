@@ -6,6 +6,7 @@ import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.independent.Position;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -15,9 +16,8 @@ import java.util.HashMap;
 /**
  * Created by espen1 on 12.04.2015.
  */
-public class WalkingUnitMovementController implements IUnitMovementController {
+public class WalkingUnitMovementController implements IUnitMovementController, Serializable {
     private ArrayList<Position> directions;
-    //TODO check if w is outside the board
 
     public WalkingUnitMovementController(){
         directions=new ArrayList<Position>();
@@ -49,7 +49,7 @@ public class WalkingUnitMovementController implements IUnitMovementController {
                     }
                 }
             }
-            depth=queue.get(0).getValue();
+            if(!queue.isEmpty()) depth=queue.get(0).getValue();
         }
         return discovered;
     }
@@ -70,7 +70,7 @@ public class WalkingUnitMovementController implements IUnitMovementController {
                 w.add(directions.get(i));//v+directions.get(i)
                 if (w.getX()>=0&&w.getY()>=0&&w.getX()<(board.getWidth())&&w.getY()<board.getHeight()){
                     ICell cell=board.getCell(w);
-                    if((!discovered.containsKey(w))&& (cell.getStatus() != CellStatus.NOTMOVEABLE) && (cell.getStatus() != CellStatus.SELECTED)) {//not discovered and not notmoveable.
+                    if((!discovered.containsKey(w))&& (cell.getStatus() != CellStatus.NOTMOVEABLE) && (cell.getStatus() != CellStatus.SELECTED) && (cell.getUnit() == null)) {//not discovered and not notmoveable.
                         if (w.getX()==targetPos.getX()&&w.getY()==targetPos.getY()) {
                             path.add(v);
                             path.add(w);//finds the path

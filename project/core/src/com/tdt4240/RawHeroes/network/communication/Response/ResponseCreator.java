@@ -3,6 +3,8 @@ package com.tdt4240.RawHeroes.network.communication.Response;
 import com.tdt4240.RawHeroes.createGame.boards.StandardBoard;
 import com.tdt4240.RawHeroes.topLayer.commonObjects.Game;
 
+import java.util.ArrayList;
+
 /**
  * Created by espen1 on 06.03.2015.
  */
@@ -21,6 +23,9 @@ public class ResponseCreator {
     }
     public static ResponseMessage getFailedToCreateUser() {
         return new ResponseMessage(ResponseType.FAILURE, "Failed to create user");
+    }
+    public static ResponseMessage getDeletedGame(){
+        return new ResponseMessage(ResponseType.SUCCESS, "Deleted game from database");
     }
 
     public static ResponseMessage getChallengePlayerDoesNotExist() {
@@ -60,5 +65,9 @@ public class ResponseCreator {
     }
     public static ResponseMessage testBoardResponse(StandardBoard board) {
         return new ResponseMessage(ResponseType.SUCCESS, board);
+    }
+
+    public static ResponseMessage getGameIds(ArrayList<Integer> gameIds) {
+        return new ResponseMessage(ResponseType.SUCCESS, gameIds);
     }
 }

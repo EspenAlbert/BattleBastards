@@ -28,7 +28,6 @@ public class BoardControllerCellAndAttackSelectedState extends BoardControllerSt
 
     @Override
     public void actionButtonPressed() {
-        //TODO forandre knappen, må finne ut av hvordan
         this.boardController.setState(new BoardControllerCellSelectedState(this.boardController, this.board, this.selectedCell));
     }
 
@@ -41,7 +40,6 @@ public class BoardControllerCellAndAttackSelectedState extends BoardControllerSt
             this.board.switchModeOnCell(selectedCell.getPos(), CellStatus.DEFAULT);
             this.boardController.setState(new BoardControllerNoCellSelectedState(this.boardController, this.board));
         }
-        //TODO også ha tilbakegåing til NoCellSelectedState hvis man trykker på en default
 
     }
 

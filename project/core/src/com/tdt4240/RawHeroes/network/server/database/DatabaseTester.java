@@ -4,6 +4,8 @@ import com.tdt4240.RawHeroes.network.server.serverConnection.player.Child;
 import com.tdt4240.RawHeroes.network.server.serverConnection.player.Player;
 import com.tdt4240.RawHeroes.network.server.serverConnection.player.PlayerTypes;
 
+import java.sql.SQLException;
+
 /**
  * Created by espen1 on 04.03.2015.
  */
@@ -11,7 +13,13 @@ public class DatabaseTester {
     public static void main(String[] args) {
         System.out.println("In driver....");
         try {
-            SaveObject objectSaver = new SaveObject();
+            DatabaseConnector.getInstance().getAllKeys("tykjen");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+         /*   SaveObject objectSaver = new SaveObject();
             Player player = new Player("Espen", "boss");
             player.setPlayerType(PlayerTypes.MASTER);
             player.setChild(new Child("Lovely Anna"));
@@ -40,6 +48,6 @@ public class DatabaseTester {
 
         } catch (Exception exc) {
             exc.printStackTrace();
-        }
+        }*/
     }
 }

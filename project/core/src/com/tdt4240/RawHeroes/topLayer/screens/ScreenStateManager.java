@@ -16,6 +16,7 @@ public class ScreenStateManager {
 
     private BattleBastards game;
     private Stack<ScreenState> screenStates;
+    private boolean popMe;
 
 
     public static final int MAINMENU = 912837;
@@ -24,8 +25,9 @@ public class ScreenStateManager {
     public ScreenStateManager(BattleBastards game) {
         this.game = game;
         screenStates = new Stack<ScreenState>();
+        pushState(new LoginScreen(this));
+        //pushState(new ActiveGameScreen(this, GameBuilding.getInstance().createGame(Games.KILL_ALL_ENEMY_UNITS, "player1", "player2")));
         //pushState(new LoginScreen(this));
-        pushState(new ActiveGameScreen(this, GameBuilding.getInstance().createGame(Games.KILL_ALL_ENEMY_UNITS, "player1", "player2")));
         //pushState(new LoginScreen(this));
     }
     public BattleBastards getGame() {
@@ -38,7 +40,17 @@ public class ScreenStateManager {
     }
     public void render() {
         screenStates.peek().render();
-
+        if (popMe){
+            ScreenState g = screenStates.pop();
+            g.dispose();
+            MyInputProcessor.getInstance().removeListeners();
+            popMe = false;
+            screenStates.peek().setInputProcessor();
+            screenStates.peek().setMsg();
+        }
+    }
+    public ScreenState peek(int i){
+        return screenStates.get(i);
     }
 
     private ScreenState getState(int state) {
@@ -55,7 +67,6 @@ public class ScreenStateManager {
 
     public void setState(int state) {
         System.out.println(screenStates.peek());
-        System.out.println("hello");
         popState();
         pushState(state);
     }
@@ -64,7 +75,7 @@ public class ScreenStateManager {
         pushState(newState);
     }
 
-    private void pushState(ScreenState newState) {
+    public void pushState(ScreenState newState) {
         screenStates.push(newState);
     }
 
@@ -72,10 +83,15 @@ public class ScreenStateManager {
     public void pushState(int state) {
         screenStates.push(getState(state));
     }
+
     public void popState() {
         ScreenState g = screenStates.pop();
         g.dispose();
         MyInputProcessor.getInstance().removeListeners();
+    }
+    public void popOnly(){
+        popMe = true;
+
     }
 
     public void resize(int width, int height) {

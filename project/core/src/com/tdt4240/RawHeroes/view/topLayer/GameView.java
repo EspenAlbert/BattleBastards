@@ -3,6 +3,7 @@ package com.tdt4240.RawHeroes.view.topLayer;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.tdt4240.RawHeroes.event.events.BoardResetEvent;
 import com.tdt4240.RawHeroes.event.listener.IBoardListener;
 import com.tdt4240.RawHeroes.event.events.CellChangeEvent;
 import com.tdt4240.RawHeroes.event.listener.ICameraListener;
@@ -56,7 +57,9 @@ public class GameView implements IView, IBoardListener, ICameraListener, IMoveLi
 
     @Override
     public void boardChanged(BoardEvent event) {
-
+        if(event instanceof BoardResetEvent) {
+            unitRenderer.setupUnitRenderer();
+        }
     }
 
     @Override

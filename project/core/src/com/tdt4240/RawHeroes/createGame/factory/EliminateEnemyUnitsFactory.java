@@ -52,7 +52,6 @@ public class EliminateEnemyUnitsFactory {
 
         int difference = (int) (xDirection ? end.getX() - start.getX() : end.getY() - start.getY());
         int length  = Math.abs(difference);
-        // ArrayList<Vector2> path = board.getCell(moverPos).getUnit().getMovementPath(board, moverPos, endPos); //TODO: NOT WORKING AT THE MOMENT
         ArrayList<Position> path = new ArrayList<Position>();
         path.add(start.cpy());
         for(int i = 0; i< length ; i++) {

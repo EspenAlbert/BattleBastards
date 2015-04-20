@@ -98,6 +98,10 @@ public class UnitMoveExecutor {
         return difference < margin;
     }
 
+    public Vector2 getCurrentPos(){
+        return this.currentPos;
+    }
+
     private boolean movementIsComplete() {
         return currentIndex == path.size();
     }

@@ -8,10 +8,14 @@ import com.tdt4240.RawHeroes.independent.Position;
  */
 public abstract class BoardEvent {
 
-    private final Position position;
+    private Position position;
 
     public BoardEvent(Position position) {
         this.position = position;
+    }
+
+    public BoardEvent() {
+
     }
 
     public Position getPosition() {

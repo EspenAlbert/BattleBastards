@@ -52,6 +52,11 @@ public class BoardRenderer implements IBoardListener, IRenderNoPos {
         grassSprites = new ArrayList<ArrayList<Sprite>>();
         overlaySprites = new ArrayList<ArrayList<Sprite>>();
 
+        setupSprites(cells);
+
+    }
+
+    private void setupSprites(ICell[][] cells) {
         for (int x = 0; x < boardWidth; x++) {
             for (int y = 0; y < boardHeight; y++) {
                 cellStatuses[x][y] = cells[x][y].getStatus();
@@ -70,7 +75,6 @@ public class BoardRenderer implements IBoardListener, IRenderNoPos {
             grassSprites.add(columnSprites);
             overlaySprites.add(columnSpritesOverlay);
         }
-
     }
 
     private Sprite createOverlaySprite(int x, int y) {
@@ -107,6 +111,8 @@ public class BoardRenderer implements IBoardListener, IRenderNoPos {
             int y = (int) pos.getY();
             cellStatuses[x][y] = board.getCell(pos).getStatus();
             overlaySprites.get(x).set(y, createOverlaySprite(x, y));
+        } else {//Event is reset event
+            setupSprites(board.getCells());
         }
     }
 
@@ -123,33 +129,5 @@ public class BoardRenderer implements IBoardListener, IRenderNoPos {
                 sprite.draw(batch);
             }
         }
-
-        //batch.draw(ordinaryCell, 0, 0, buttonWidth, buttonHeight, 0, 0, ordinaryCell.getWidth(), ordinaryCell.getHeight(), false, false);
-/*
-        Gdx.gl.glClearColor(0.5f, 0.75f, 1, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        batch.begin();
-        //TODO: Resolve this conflict...
-        for (int x = 0; x < this.boardWidth; x++){
-            for (int y = 0; y < this.boardHeight; y++){
-                batch.draw(ordinaryCell,                    //Texture
-                           x*GameConstants.BUTTON_WIDTH,    //xpos for texture
-                           y*GameConstants.BUTTON_HEIGHT,   //ypos for texture
-                           GameConstants.BUTTON_WIDTH,      //Bredden til texture
-                           GameConstants.BUTTON_HEIGHT);    //Høyden til texture
-
-                batch.draw(defaultCell,                        //Texture
-                           x*GameConstants.BUTTON_WIDTH,    //xpos for texture
-                           y*GameConstants.BUTTON_HEIGHT,   //ypos for texture
-                           GameConstants.BUTTON_WIDTH,      //Bredden til texture
-                           GameConstants.BUTTON_HEIGHT);    //Høyden til texture
-            }
-        }
-        batch.end();
-*/
-        //batch.draw(ordinaryCell, 50, 50, ordinaryCell.getWidth() / 2, ordinaryCell.getHeight() / 2, ordinaryCell.getWidth(), ordinaryCell.getHeight(), 1,1, 0, 0, 0, ordinaryCell.getWidth(), ordinaryCell.getHeight(), false, false);
-        //sb.draw(texture,x, y, texture.getWidth() / 2, texture.getHeight() / 2, texture.getWidth(), texture.getHeight(), 1, 1, body.getAngle() * MathUtils.radiansToDegrees, 0, 0, texture.getWidth(), texture.getHeight(), false, flipY);
-
     }
 }
