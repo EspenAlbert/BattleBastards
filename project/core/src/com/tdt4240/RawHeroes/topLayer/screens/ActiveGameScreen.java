@@ -6,25 +6,23 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import com.badlogic.gdx.input.GestureDetector;
 import com.tdt4240.RawHeroes.event.move.Move;
-import com.tdt4240.RawHeroes.gameLogic.cell.CellStatus;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardControllerReplayState;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardMover;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.IBoardController;
-import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.IBoardMover;
 import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.CameraController;
-import com.tdt4240.RawHeroes.gameLogic.inputListeners.MoveBoardTouchDraggedListener;
+import com.tdt4240.RawHeroes.gameLogic.inputListeners.QuitGameTouchDown;
 import com.tdt4240.RawHeroes.gameLogic.inputListeners.TouchListenerActiveGameScreen;
 import com.tdt4240.RawHeroes.gameLogic.inputListeners.TranslateCamera;
+import com.tdt4240.RawHeroes.gameLogic.models.ICamera;
+import com.tdt4240.RawHeroes.gameLogic.models.StandardCamera;
 import com.tdt4240.RawHeroes.independent.GameConstants;
 import com.tdt4240.RawHeroes.independent.MyInputProcessor;
-import com.tdt4240.RawHeroes.independent.Position;
 import com.tdt4240.RawHeroes.network.client.ClientConnection;
 import com.tdt4240.RawHeroes.network.communication.Response.ResponseMessage;
 import com.tdt4240.RawHeroes.topLayer.commonObjects.Game;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 
-import com.tdt4240.RawHeroes.topLayer.commonObjects.Games;
 import com.tdt4240.RawHeroes.view.customUIElements.hudRenderer.hudRenderer;
 import com.tdt4240.RawHeroes.view.topLayer.GameView;
 
@@ -45,6 +43,7 @@ public class ActiveGameScreen extends ScreenState{
     private final boolean iAmPlayer1;
     private final CameraController cameraController;
     private final Game game;
+    private final StandardCamera camera;
     private SpriteBatch hudBatch;
     private boolean endGameState = false;
 
@@ -63,7 +62,8 @@ public class ActiveGameScreen extends ScreenState{
         boardMover = new BoardMover(board);
         boardController = new BoardController(board, boardMover, game.getMoveCount(), iAmPlayer1);//MUST ALWAYS BE EXECUTED BEFORE creating gameView!!
 
-        cameraController = new CameraController();
+        camera = new StandardCamera();
+        cameraController = new CameraController(camera);
         gameView = new GameView(board, iAmPlayer1, cameraController);
 
         hud = new hudRenderer(boardController);
@@ -93,8 +93,9 @@ public class ActiveGameScreen extends ScreenState{
         GestureDetector gd = new GestureDetector(MyInputProcessor.getInstance());
         Gdx.input.setInputProcessor(gd);
         MyInputProcessor.getInstance().AddTouchDownListener(new TouchListenerActiveGameScreen(boardController, cameraController, this));
-        MyInputProcessor.getInstance().AddTouchDraggedListener(new MoveBoardTouchDraggedListener(cameraController));
-        MyInputProcessor.getInstance().AddFlingListener(new TranslateCamera(cameraController));
+        TranslateCamera cameraTanslator = new TranslateCamera(cameraController);
+        MyInputProcessor.getInstance().AddPanListener(cameraTanslator);
+        MyInputProcessor.getInstance().AddPanStopListener(cameraTanslator);
         gameView.initializeTouchListeners(cameraController);
         initialized = true;
     }
@@ -110,7 +111,8 @@ public class ActiveGameScreen extends ScreenState{
         if(endGameState && gameView.noAnimationWaiting()) {
             boolean winner = iAmPlayer1 ? game.player1IsWinner() : game.player2IsWinner();
             System.out.println("About to finish game");
-            gsm.popOnly();
+            gameView.finishRoutine();
+            MyInputProcessor.getInstance().AddTouchDownListener(new QuitGameTouchDown(gsm));
             if(winner) {
                 //TODO: PostgameScreen
 
@@ -121,8 +123,8 @@ public class ActiveGameScreen extends ScreenState{
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         spriteBatch.begin();
-        cameraController.update();
-        spriteBatch.setProjectionMatrix(cameraController.getProjectionMatrix());
+        camera.update();
+        spriteBatch.setProjectionMatrix(camera.getProjectionMatrix());
         gameView.render(spriteBatch);
         spriteBatch.end();
         hud.render(hudBatch);
