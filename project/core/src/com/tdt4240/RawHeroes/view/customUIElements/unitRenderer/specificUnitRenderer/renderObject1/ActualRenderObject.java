@@ -1,10 +1,15 @@
 package com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.renderObject1;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitAnimationController;
+import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.SimpleUnitAnimationController;
+import com.tdt4240.RawHeroes.independent.TextureChanger;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.IRenderObject;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.RenderMode;
 
@@ -12,6 +17,7 @@ import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRend
  * Created by espen1 on 27.02.2015.
  */
 public class ActualRenderObject implements IRenderObject{
+
 
     public static Texture texture = new Texture(Gdx.files.internal("units/soldierpluss.png")),
     attack=new Texture(Gdx.files.internal("units/soldierplussAttack.png")),
@@ -23,7 +29,7 @@ public class ActualRenderObject implements IRenderObject{
     private boolean walking=false;
     private int timer;
 
-    public ActualRenderObject() {
+    public ActualRenderObject(boolean isPlayer1) {
         sprite = new Sprite(texture);
         sprite.setSize(1,2);
         System.out.println("A render object has been created");
@@ -84,5 +90,20 @@ public class ActualRenderObject implements IRenderObject{
                 changeRenderMode(RenderMode.STATIC);
             }
         }
+    }
+
+    @Override
+    public void animationChanged() {
+
+    }
+
+    @Override
+    public void nextFrame() {
+
+    }
+
+    @Override
+    public void frameChanged() {
+
     }
 }

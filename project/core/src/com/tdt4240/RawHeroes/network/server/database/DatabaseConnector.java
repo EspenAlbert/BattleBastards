@@ -7,6 +7,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -52,6 +53,7 @@ public class DatabaseConnector implements IDatabaseConnector {
         updateJavaObject(TABLE_GAMES, GAMES_PRIMARY_KEY, game.getId(), game);
     }
 
+
     private boolean rowExist(String table, String primaryKey, String primaryKeyValue, int primaryKeyValueInt) throws SQLException {
         PreparedStatement ps = null;
         String sql = null;
@@ -77,6 +79,42 @@ public class DatabaseConnector implements IDatabaseConnector {
         ResultSet result = ps.executeQuery();
         if (!result.next()) return -1;
         return result.getInt("gameId");
+    }
+    public int deleteGame(int gameId) throws SQLException{
+        PreparedStatement ps = null;
+        String sql = null;
+        sql = "delete from games where (gameId = ?);";
+        ps = myConnection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        ps.setString(1, Integer.toString(gameId));
+
+        int response = ps.executeUpdate();
+        ResultSet generatedKeys = ps.getGeneratedKeys();
+        if (generatedKeys.next()) {
+
+            System.out.println(gameId);
+        }
+        System.out.println("RESPONSE: " + response);
+        return response;
+    }
+
+    public ArrayList<Integer> getAllKeys(String username) throws SQLException {
+        PreparedStatement ps = null;
+        String sql = null;
+        sql = "select gameID from games where(player1 = ? ) or (player2 = ?);";
+        ArrayList<Integer> gameIds = new ArrayList<Integer>();
+        ps = myConnection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        ps.setString(1, username);
+        ps.setString(2, username);
+        //ps.executeQuery();
+        ResultSet generatedKeys =  ps.executeQuery();
+        while (generatedKeys.next()) {
+            int primaryKey = generatedKeys.getInt(1);
+            gameIds.add(primaryKey);
+            //game.setId(primaryKey);
+            //updateJavaObject("games", "gameId", primaryKey, game);
+        }
+        return gameIds;
+        //return response;
     }
 
     @Override
@@ -139,6 +177,7 @@ public class DatabaseConnector implements IDatabaseConnector {
         ps.setString(2, game.getPlayer2Nickname());
         ps.setObject(3, game);
         int response = ps.executeUpdate();
+        System.out.println("here?");
         ResultSet generatedKeys = ps.getGeneratedKeys();
         if (generatedKeys.next()) {
             int primaryKey = generatedKeys.getInt(1);
@@ -163,6 +202,18 @@ public class DatabaseConnector implements IDatabaseConnector {
             throw new Exception("Failed to perform sql: " + ps.toString() + " no rows were affected...");
     }
 
+    @Override
+    public void updateJavaObject(String table, String primaryKey, String primaryKeyValue, Object javaObject) throws Exception {
+        PreparedStatement ps = null;
+        String sql = null;
+        sql = "update " + table + " set javaObject = ? where " + primaryKey + " = ?";
+        ps = myConnection.prepareStatement(sql);
+        ps.setObject(1, javaObject);
+        ps.setString(2, primaryKeyValue);
+        int result = ps.executeUpdate();
+        if (result < 1)
+            throw new Exception("Failed to perform sql: " + ps.toString() + " no rows were affected...");
+    }
     private String convertColumnNamesToString(String primaryKeyCol, ArrayList<String> colNames) {
         String cols = primaryKeyCol + ",";
         for (String col : colNames) {

@@ -17,4 +17,5 @@ public interface IBoardController {
     void setState(BoardControllerState state);
     public void addBoardControllerStateListener(BoardControllerStateListener listener);
     int getRemaining_energy();
+    boolean iAmPlayer1();
 }

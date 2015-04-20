@@ -1,5 +1,7 @@
 package com.tdt4240.RawHeroes.gameLogic.models;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitCombatController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitMovementController;
@@ -22,10 +24,15 @@ public interface IUnit extends Serializable{
     int getWeight();
     void setAttackLogic(IUnitCombatController controller);
     void setMovementLogic(IUnitMovementController controller);
-    void setHasAttacked();
+    void setHasAttacked(boolean value);
     boolean isPlayer1Unit();
 
     ArrayList<Position> getAttackablePositions(Position pos, int movesLeft, IBoard board);
 
     int getHealth();
+
+    boolean hasAttacked();
+    IUnit getCopy();
+
+    TextureRegion getActiveFrame(Texture texture);
 }

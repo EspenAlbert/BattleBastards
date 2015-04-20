@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Vector2;
 import com.tdt4240.RawHeroes.createGame.factory.BoardFactory;
 import com.tdt4240.RawHeroes.independent.GameConstants;
@@ -22,7 +23,6 @@ public class BattleBastards extends ApplicationAdapter {
     @Override
 	public void create () {
 		batch = new SpriteBatch();
-        //TODO: This depends on your computer... Therefore keeping both options available...
         //board = new BoardRenderer(BoardFactory.getInstance().getBoard("STANDARD-BOARD"), true);
         Gdx.graphics.setTitle("GAME NAME");
 		img = new Texture("badlogic.jpg");

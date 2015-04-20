@@ -8,6 +8,7 @@ import com.tdt4240.RawHeroes.event.events.BoardEvent;
 import com.tdt4240.RawHeroes.independent.Position;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by espen1 on 27.02.2015.
@@ -21,7 +22,11 @@ public interface IBoard extends Serializable{
     int getWidth();
     int getHeight();
 
-    IBoard deepCopy();
+    ICell[][] deepCopy();
 
     void convertCellsToOtherPlayer();
+
+    void changeCells(ICell[][] initialBoard);
+
+    ArrayList<Position> getUnitPositions();
 }

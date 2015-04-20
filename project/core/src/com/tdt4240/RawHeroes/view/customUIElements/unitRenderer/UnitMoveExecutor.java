@@ -99,6 +99,10 @@ public class UnitMoveExecutor {
         return difference < margin;
     }
 
+    public Vector2 getCurrentPos(){
+        return this.currentPos;
+    }
+
     private boolean movementIsComplete() {
         if(currentIndex==path.size()&&currentActor instanceof ActualRenderObject) {
             ((ActualRenderObject) currentActor).setWalkingFalse();

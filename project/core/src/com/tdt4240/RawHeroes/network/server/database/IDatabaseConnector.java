@@ -22,4 +22,6 @@ public interface IDatabaseConnector {
     boolean isActiveGame(int gameId) throws SQLException;
 
     void updateGame(Game game) throws Exception;
+
+    void updateJavaObject(String table, String primaryKey, String primaryKeyValue, Object javaObject) throws Exception;
 }

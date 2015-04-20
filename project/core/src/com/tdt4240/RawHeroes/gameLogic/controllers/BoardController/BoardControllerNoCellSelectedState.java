@@ -20,7 +20,7 @@ public class BoardControllerNoCellSelectedState extends BoardControllerState {
 
     @Override
     public void cellSelected(ICell cell) {
-        if (cell.getUnit() != null){
+        if (cell.getUnit() != null && cell.getUnit().isPlayer1Unit() == boardController.iAmPlayer1() ){
             this.boardController.setState(new BoardControllerCellSelectedState(this.boardController, this.board, cell));
         }
     }
