@@ -1,6 +1,7 @@
 package com.tdt4240.RawHeroes.view.customUIElements.unitRenderer;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
 import com.tdt4240.RawHeroes.gameLogic.models.ICamera;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
@@ -97,8 +98,6 @@ public class UnitRenderer implements IMoveListener {
         for(Position key : keys) {
             unitPositionsAndRenderObjects.get(key).render(batch, key.getVec2Pos());
         }
-
-
         if(!animationIsActive && !currentAnimations.isEmpty()) {
             executeMove(currentAnimations.poll());
         }

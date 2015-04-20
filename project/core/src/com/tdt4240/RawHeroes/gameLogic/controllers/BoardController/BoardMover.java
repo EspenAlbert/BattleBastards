@@ -1,8 +1,8 @@
 package com.tdt4240.RawHeroes.gameLogic.controllers.boardController;
 
 import com.tdt4240.RawHeroes.event.move.AttackMove;
-import com.tdt4240.RawHeroes.event.move.MovementMove;
 import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
+import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.CellConverter;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.event.listener.IMoveListener;
 import com.tdt4240.RawHeroes.event.move.Move;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class BoardMover implements IBoardMover {
 
     private ArrayList<Move> moves;
-    private final IBoard board;
+    private IBoard board;
     private ICell[][] initialBoard;
     private ArrayList<IMoveListener> listeners;
 
@@ -76,24 +76,22 @@ public class BoardMover implements IBoardMover {
 
 
 
-    ///Methods that are called when a new ActiveGameScreen is initialized:
+    ///Method that are called when a new ActiveGameScreen is initialized:
     @Override
-    public void executeMoves(ArrayList<Move> lastMoves) {
-        initialBoard = board.deepCopy();
-        if(lastMoves == null) return;
+    public void executeMovesFromOtherPlayer(ArrayList<Move> lastMoves, boolean iAmPlayer1) {
+        BoardController.resetUnitAttacks(board);
+        if(lastMoves == null) lastMoves = new ArrayList<Move>();
+        CellConverter converter = null;
+        if(!iAmPlayer1) converter = new CellConverter(board.getWidth(), board.getHeight());
         for(Move move : lastMoves) {
+            if(!iAmPlayer1) move.convertPositions(converter);
+            if(move instanceof AttackMove) {
+                move.execute(board);
+            }
             doMove(move);
+
         }
-    }
-    @Override
-    public void executeMovesFromOtherPlayer(ArrayList<Move> lastMoves) {
+        BoardController.resetUnitAttacks(board);
         initialBoard = board.deepCopy();
-        if(lastMoves == null) return;
-        for(Move move : lastMoves) {
-            move.convertPositions(board.getWidth(), board.getHeight());
-            doMove(move);
-        }
     }
-
-
 }

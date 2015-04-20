@@ -1,9 +1,12 @@
 package com.tdt4240.RawHeroes.event.move;
 
 import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
+import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.CellConverter;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
+import com.tdt4240.RawHeroes.independent.Position;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by espen1 on 27.02.2015.
@@ -44,5 +47,5 @@ public abstract class Move implements Serializable{
 
     public abstract void undo(IBoard board);
 
-    public abstract void convertPositions(int boardWidth, int boardHeight);
+    public abstract void convertPositions(CellConverter converter); //Used by server
 }

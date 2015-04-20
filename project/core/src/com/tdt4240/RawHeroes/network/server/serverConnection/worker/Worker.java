@@ -123,14 +123,7 @@ public class Worker extends Thread {
     private ResponseMessage deleteGame(RequestMessage request)throws Exception{
         GameHandler gameHandler = GameHandler.getInstance();
         Integer gameId = (Integer) request.getParameters().get(0);
-        try {
-            
-            return ResponseCreator.getGameSuccess(game);
-        } catch (GameNotFoundException e) {
-            return ResponseCreator.getInvalidGameException(gameId);
-        } catch (NotYourGameException e) {
-            return ResponseCreator.getNotYourGameException(gameId);
-        }
+        return null;
     }
 
     private ResponseMessage getGameIds(RequestMessage request) throws Exception {

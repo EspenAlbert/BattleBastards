@@ -28,4 +28,5 @@ public class GameConstants {
     public static final float CAMERA_SPEED = 0.03f;
 
     public static String SERVER_IP = "129.241.134.184";
+   // public static String SERVER_IP = "localhost";
 }
