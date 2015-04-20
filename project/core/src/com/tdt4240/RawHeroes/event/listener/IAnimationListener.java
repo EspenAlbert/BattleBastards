@@ -7,5 +7,4 @@ import com.tdt4240.RawHeroes.event.events.AnimationEvent;
  */
 public interface IAnimationListener {
     void animationChanged(AnimationEvent event);
-    void nextFrame();
 }

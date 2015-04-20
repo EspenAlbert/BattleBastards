@@ -8,6 +8,7 @@ import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitCombatCon
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitMovementController;
 import com.tdt4240.RawHeroes.gameLogic.unit.UnitName;
 import com.tdt4240.RawHeroes.independent.Position;
+import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.RenderMode;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public interface IUnit extends Serializable{
     boolean isPlayer1Unit();
     void nextFrame();
     void addAnimationListener(IAnimationListener animationListener);
+    void setActiveAnimation(RenderMode renderMode);
 
     ArrayList<Position> getAttackablePositions(Position pos, int movesLeft, IBoard board);
 

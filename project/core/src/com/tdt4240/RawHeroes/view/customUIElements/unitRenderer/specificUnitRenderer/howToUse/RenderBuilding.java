@@ -19,7 +19,7 @@ public class RenderBuilding implements IRenderBulding {
         UnitName unitName = unit.getIdentifier();
         switch (unitName) {
             case STANDARD_UNIT:
-                return new ActualRenderObject(unit.isPlayer1Unit());
+                return new ActualRenderObject(unit);
             case UNIT2:
                 break;
         }

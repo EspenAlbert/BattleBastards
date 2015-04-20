@@ -150,11 +150,11 @@ public class ActiveGameScreen extends ScreenState{
 
     public void confirmTurn() {
         ArrayList<Move> moves = boardMover.confirmMoves();
-        ResponseMessage responseMessage = clientConnection.doMoves(game.getId(), moves);
-        System.out.println(responseMessage.getType() + ", " + responseMessage.getContent());
+        //ResponseMessage responseMessage = clientConnection.doMoves(game.getId(), moves);
+        //System.out.println(responseMessage.getType() + ", " + responseMessage.getContent());
         boardController.setState(new BoardControllerReplayState(boardController, board));
-        MainMenuScreen main = (MainMenuScreen) gsm.peek(0);
-        main.setMsg((String) responseMessage.getContent());
+        //MainMenuScreen main = (MainMenuScreen) gsm.peek(0);
+        //main.setMsg((String) responseMessage.getContent());
         endGameState = true;
 
     }

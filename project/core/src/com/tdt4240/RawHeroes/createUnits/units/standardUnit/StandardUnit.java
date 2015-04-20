@@ -15,7 +15,9 @@ import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.gameLogic.models.ISpritesheet;
 import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
 import com.tdt4240.RawHeroes.gameLogic.unit.UnitName;
+import com.tdt4240.RawHeroes.independent.AnimationConstants;
 import com.tdt4240.RawHeroes.independent.Position;
+import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.RenderMode;
 
 import java.util.ArrayList;
 
@@ -164,6 +166,28 @@ public class StandardUnit implements IUnit {
     @Override
     public void nextFrame(){
         this.unitAnimationController.nextFrame();
+    }
+
+    @Override
+    public void setActiveAnimation(RenderMode renderMode){
+        switch (renderMode){
+
+            case STATIC:
+                this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_RIGHT);
+                break;
+            case MOVING:
+                this.unitAnimationController.setActiveAnimation(AnimationConstants.MOVE_RIGHT);
+                break;
+            case ATTACKING:
+                this.unitAnimationController.setActiveAnimation(AnimationConstants.ATK_RIGHT);
+                break;
+            case HURT:
+                this.unitAnimationController.setActiveAnimation(AnimationConstants.HURT_RIGHT);
+                break;
+            case KILLED:
+                this.unitAnimationController.setActiveAnimation(AnimationConstants.DEAD);
+                break;
+        }
     }
     @Override
     public void addAnimationListener(IAnimationListener animationListener){

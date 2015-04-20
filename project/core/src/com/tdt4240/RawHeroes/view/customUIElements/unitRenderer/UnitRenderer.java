@@ -37,7 +37,7 @@ public class UnitRenderer implements IMoveListener {
 
     private ArrayList<IUnit> units;
 
-    private IRenderBulding renderBulding = RenderBuilding.getInstance();
+    private IRenderBulding renderBuilding = RenderBuilding.getInstance();
     private HashMap<Position, IRenderObject> unitPositionsAndRenderObjects;
     private Queue<Move> currentAnimations = new LinkedList<Move>();
     private boolean animationIsActive = false;
@@ -58,7 +58,7 @@ public class UnitRenderer implements IMoveListener {
         for (Position pos : unitPositions) {
             IUnit unit = board.getCell(pos).getUnit();
             units.add(unit);
-            IRenderObject renderObject = renderBulding.getRenderObject(unit);
+            IRenderObject renderObject = renderBuilding.getRenderObject(unit);
             unitPositionsAndRenderObjects.put(pos, renderObject);
             unit.addAnimationListener(renderObject);
         }
@@ -83,6 +83,7 @@ public class UnitRenderer implements IMoveListener {
             moveExecutor.attackMove(attacker, victims);
         }
         else if(move instanceof MovementMove) {
+
             IRenderObject mover = unitPositionsAndRenderObjects.get(startPos);
             unitPositionsAndRenderObjects.remove(startPos);
             moveExecutor.movementMove(mover, (MovementMove) move);
@@ -106,7 +107,6 @@ public class UnitRenderer implements IMoveListener {
         AnimationConstants.timer += dt*1000;
         if (AnimationConstants.timer > AnimationConstants.FRAME_TIME){
             AnimationConstants.timer = 0;
-            //TODO actually change the active frame
             for (IUnit unit : this.units){
                 unit.nextFrame();
             }
