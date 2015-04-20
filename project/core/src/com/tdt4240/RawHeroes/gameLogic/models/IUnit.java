@@ -27,7 +27,10 @@ public interface IUnit extends Serializable{
 
     ArrayList<Position> getAttackablePositions(Position pos, int movesLeft, IBoard board);
 
+    int[] getAttackDmg();
+    int getArmor();
     int getHealth();
+    int getMaxHealth();
 
     boolean hasAttacked();
     IUnit getCopy();

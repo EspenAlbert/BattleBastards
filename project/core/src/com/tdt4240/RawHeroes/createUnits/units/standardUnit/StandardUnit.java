@@ -18,7 +18,6 @@ import java.util.ArrayList;
  */
 public class StandardUnit implements IUnit {
 
-
     private final int MAX_HEALTH = 20;
 
     private final int MIN_DMG = 5;
@@ -41,7 +40,7 @@ public class StandardUnit implements IUnit {
         this.remainingMoves = 3;
         this.weight = 5;
 
-        this.unitCombatController = new SimpleUnitCombatController(this, MIN_DMG, MAX_DMG, 1);
+        this.unitCombatController = new SimpleUnitCombatController(this, MIN_DMG, MAX_DMG, 1, MAX_HEALTH);
         this.unitMoveController = new WalkingUnitMovementController();
         System.out.println("Created a standard unit");
     }
@@ -82,9 +81,7 @@ public class StandardUnit implements IUnit {
 
     @Override
     public int attacked(int damage) {
-        int dmgReceived = unitCombatController.attacked(damage); //Final dmg received (after armor etc. reductions)
-        health -= dmgReceived;
-        return dmgReceived;
+        return this.unitCombatController.attacked(damage);
     }
 
     @Override
@@ -119,7 +116,25 @@ public class StandardUnit implements IUnit {
 
     @Override
     public int getHealth() {
-        return health;
+        return unitCombatController.getHealth();
+    }
+
+    @Override
+    public int getMaxHealth() {
+        return this.unitCombatController.getMaxHealth();
+    }
+
+    @Override
+    public int[] getAttackDmg() {
+        int[] a = new int[2];
+        a[0] = this.unitCombatController.getMinAttackDmg();
+        a[1] = this.unitCombatController.getMaxAttackDmg();
+        return a;
+    }
+
+    @Override
+    public int getArmor() {
+        return this.unitCombatController.getArmor();
     }
 
     @Override
