@@ -101,7 +101,7 @@ public class ActiveGameScreen extends ScreenState{
 
     @Override
     public void update(float dt) {
-
+        gameView.update(dt);
     }
 
     @Override

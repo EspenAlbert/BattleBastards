@@ -2,6 +2,8 @@ package com.tdt4240.RawHeroes.view.customUIElements.unitRenderer;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.tdt4240.RawHeroes.event.events.AnimationEvent;
+import com.tdt4240.RawHeroes.event.listener.IAnimationListener;
 import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
 import com.tdt4240.RawHeroes.gameLogic.models.ICamera;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
@@ -9,6 +11,8 @@ import com.tdt4240.RawHeroes.event.move.AttackMove;
 import com.tdt4240.RawHeroes.event.listener.IMoveListener;
 import com.tdt4240.RawHeroes.event.move.Move;
 import com.tdt4240.RawHeroes.event.move.MovementMove;
+import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
+import com.tdt4240.RawHeroes.independent.AnimationConstants;
 import com.tdt4240.RawHeroes.independent.Position;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.IRenderBulding;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.IRenderObject;
@@ -31,14 +35,18 @@ public class UnitRenderer implements IMoveListener {
     private IBoard board;
     private ICamera camera;
 
+    private ArrayList<IUnit> units;
+
     private IRenderBulding renderBulding = RenderBuilding.getInstance();
     private HashMap<Position, IRenderObject> unitPositionsAndRenderObjects;
     private Queue<Move> currentAnimations = new LinkedList<Move>();
     private boolean animationIsActive = false;
 
+
     public UnitRenderer(IBoard board, ICamera camera, boolean iAmPlayer1) {
         this.board = board;
         this.camera = camera;
+        this.units = new ArrayList<IUnit>();
         setupUnitRenderer();
     }
 
@@ -48,7 +56,11 @@ public class UnitRenderer implements IMoveListener {
         ArrayList<Position> unitPositions = board.getUnitPositions();
         unitPositionsAndRenderObjects = new HashMap<Position, IRenderObject>();
         for (Position pos : unitPositions) {
-            unitPositionsAndRenderObjects.put(pos, renderBulding.getRenderObject(board.getCell(pos).getUnit()));
+            IUnit unit = board.getCell(pos).getUnit();
+            units.add(unit);
+            IRenderObject renderObject = renderBulding.getRenderObject(unit);
+            unitPositionsAndRenderObjects.put(pos, renderObject);
+            unit.addAnimationListener(renderObject);
         }
         moveExecutor = new UnitMoveExecutor(this);
     }
@@ -90,7 +102,16 @@ public class UnitRenderer implements IMoveListener {
         return victimsRenderObjects;
     }
 
-
+    public void update(float dt){
+        AnimationConstants.timer += dt*1000;
+        if (AnimationConstants.timer > AnimationConstants.FRAME_TIME){
+            AnimationConstants.timer = 0;
+            //TODO actually change the active frame
+            for (IUnit unit : this.units){
+                unit.nextFrame();
+            }
+        }
+    }
     public void render(SpriteBatch batch) {
         boolean hasRenderedActor = false;
         ArrayList<Position> keys = new ArrayList<Position>(unitPositionsAndRenderObjects.keySet());
