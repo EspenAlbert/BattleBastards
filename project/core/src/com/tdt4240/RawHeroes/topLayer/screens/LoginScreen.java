@@ -32,6 +32,7 @@ public class LoginScreen extends ScreenState {
     private final CheckBox checkBoxNewuser;
     private final Label labelInstruction;
     private final Label failedLogInLabel;
+    private final Skin skin;
     private Stage stage;
     private boolean failedToLogIn;
     private TextButton buttonPlay, buttonLogin;
@@ -44,6 +45,7 @@ public class LoginScreen extends ScreenState {
 
     protected LoginScreen(ScreenStateManager gsm) {
         super(gsm);
+        skin = new Skin(Gdx.files.internal("uiskin.json"), new TextureAtlas(Gdx.files.internal("uiskin.atlas")));
         img = new Texture("badlogic.jpg");
         //skin = new Skin(Gdx.files.internal("uiskin.json"), new TextureAtlas(Gdx.files.internal("uiskin.atlas")));
         stage = new Stage();

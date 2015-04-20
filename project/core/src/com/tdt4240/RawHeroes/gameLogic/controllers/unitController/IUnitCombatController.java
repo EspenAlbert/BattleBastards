@@ -14,4 +14,10 @@ public interface IUnitCombatController {
     ArrayList<Position> getInflictionZone(Position myPos, Position target);
     int inflictDamage(Position myPos, Position targetPos);
     int attacked(int damage);
+
+    int getMinAttackDmg();
+    int getMaxAttackDmg();
+    int getArmor();
+    int getHealth();
+    int getMaxHealth();
 }
