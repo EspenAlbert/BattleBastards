@@ -12,6 +12,7 @@ import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.CellConverte
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.gameLogic.unit.UnitName;
 import com.tdt4240.RawHeroes.independent.Position;
+import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.IRenderObject;
 
 import java.util.ArrayList;
 
@@ -120,6 +121,7 @@ public class StandardBoard implements IBoard {
         }
         return unitPositions;
     }
+
 
 
 }

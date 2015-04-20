@@ -48,6 +48,10 @@ public class GameView implements IView, IBoardListener, ICameraListener, IMoveLi
         }
     }
 
+    public void update(float dt){
+        unitRenderer.update(dt);
+    }
+
     @Override
     public void render(SpriteBatch batch) {
         boardRenderer.render(batch);

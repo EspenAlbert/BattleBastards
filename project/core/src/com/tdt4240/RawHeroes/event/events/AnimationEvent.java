@@ -12,4 +12,10 @@ public class AnimationEvent {
         this.activeAnimation = activeAnimation;
         this.activeFrame = activeFrame;
     }
+    public int getActiveAnimation(){
+        return activeAnimation;
+    }
+    public int getActiveFrame(){
+        return activeFrame;
+    }
 }

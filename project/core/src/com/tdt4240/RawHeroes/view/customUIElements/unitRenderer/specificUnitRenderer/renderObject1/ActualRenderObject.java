@@ -7,8 +7,11 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.tdt4240.RawHeroes.createUnits.units.standardUnit.StandardUnitSheet;
+import com.tdt4240.RawHeroes.event.events.AnimationEvent;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitAnimationController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.SimpleUnitAnimationController;
+import com.tdt4240.RawHeroes.gameLogic.models.ISpritesheet;
 import com.tdt4240.RawHeroes.independent.TextureChanger;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.IRenderObject;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.RenderMode;
@@ -18,16 +21,14 @@ import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRend
  */
 public class ActualRenderObject implements IRenderObject{
 
-    public static Texture texture;
+    public ISpritesheet sheet;
     private Sprite sprite;
-    private IUnitAnimationController anicont;
 
     public ActualRenderObject(boolean isPlayer1) {
-        anicont = new SimpleUnitAnimationController();
-        texture = new Texture(Gdx.files.internal("units/soldierSheet.png"));
-        if (isPlayer1)texture = TextureChanger.changeColor(texture, Color.RED);
-        else texture = TextureChanger.changeColor(texture, Color.BLUE);
-        TextureRegion region = anicont.getActiveFrame(texture);
+        sheet = new StandardUnitSheet("units/soldierSheet.png");
+        if (isPlayer1)sheet.setTexture (TextureChanger.changeColor(sheet.getTexture(), Color.RED));
+        else sheet.setTexture (TextureChanger.changeColor(sheet.getTexture(), Color.BLUE));
+        TextureRegion region = sheet.getActiveFrame(0, 0);
         sprite = new Sprite(region);
         sprite.setSize(1,2);
         System.out.println("A render object has been created");
@@ -35,7 +36,7 @@ public class ActualRenderObject implements IRenderObject{
 
     @Override
     public void changeRenderMode(RenderMode renderMode) {
-        System.out.println("Switched render mode to:"  + renderMode);
+        System.out.println("Switched render mode to:" + renderMode);
     }
 
     @Override
@@ -50,17 +51,13 @@ public class ActualRenderObject implements IRenderObject{
     }
 
     @Override
-    public void animationChanged() {
-
+    public void animationChanged(AnimationEvent event) {
+        this.sprite = new Sprite(sheet.getActiveFrame(event.getActiveFrame(), event.getActiveAnimation()));
+        sprite.setSize(1,2);
     }
 
     @Override
     public void nextFrame() {
-
-    }
-
-    @Override
-    public void frameChanged() {
 
     }
 }
