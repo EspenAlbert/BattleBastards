@@ -88,5 +88,10 @@ public class SimpleUnitAnimationController implements IUnitAnimationController{
         }
     }
 
+    @Override
+    public int getActiveAnimation(){
+        return this.activeAnimation;
+    }
+
 
 }
