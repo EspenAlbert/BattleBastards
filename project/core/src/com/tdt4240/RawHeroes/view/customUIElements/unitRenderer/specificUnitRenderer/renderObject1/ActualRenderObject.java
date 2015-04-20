@@ -12,6 +12,8 @@ import com.tdt4240.RawHeroes.event.events.AnimationEvent;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitAnimationController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.SimpleUnitAnimationController;
 import com.tdt4240.RawHeroes.gameLogic.models.ISpritesheet;
+import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
+import com.tdt4240.RawHeroes.independent.AnimationConstants;
 import com.tdt4240.RawHeroes.independent.TextureChanger;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.IRenderObject;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.RenderMode;
@@ -22,11 +24,14 @@ import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRend
 public class ActualRenderObject implements IRenderObject{
 
     public ISpritesheet sheet;
+    private IUnit unit;
     private Sprite sprite;
+    private RenderMode renderMode;
 
-    public ActualRenderObject(boolean isPlayer1) {
+    public ActualRenderObject(IUnit unit) {
+        this.unit = unit;
         sheet = new StandardUnitSheet("units/soldierSheet.png");
-        if (isPlayer1)sheet.setTexture (TextureChanger.changeColor(sheet.getTexture(), Color.RED));
+        if (unit.isPlayer1Unit())sheet.setTexture (TextureChanger.changeColor(sheet.getTexture(), Color.RED));
         else sheet.setTexture (TextureChanger.changeColor(sheet.getTexture(), Color.BLUE));
         TextureRegion region = sheet.getActiveFrame(0, 0);
         sprite = new Sprite(region);
@@ -36,12 +41,13 @@ public class ActualRenderObject implements IRenderObject{
 
     @Override
     public void changeRenderMode(RenderMode renderMode) {
-        System.out.println("Switched render mode to:" + renderMode);
+        this.renderMode = renderMode;
+        unit.setActiveAnimation(renderMode);
     }
 
     @Override
     public RenderMode getRenderMode() {
-        return null;
+        return this.renderMode;
     }
 
     @Override
@@ -56,8 +62,4 @@ public class ActualRenderObject implements IRenderObject{
         sprite.setSize(1,2);
     }
 
-    @Override
-    public void nextFrame() {
-
-    }
 }
