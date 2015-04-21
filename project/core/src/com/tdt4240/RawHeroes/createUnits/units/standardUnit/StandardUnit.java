@@ -30,6 +30,7 @@ public class StandardUnit implements IUnit {
 
     private final int MIN_DMG = 5;
     private final int MAX_DMG = 10;
+    private final int MAX_MOVES = 3;
 
     private boolean turnedRight;
 
@@ -48,9 +49,9 @@ public class StandardUnit implements IUnit {
         this.hasAttacked = false;
         this.player1Unit = player1Unit;
 
-        this.remainingMoves = 3;
+        this.remainingMoves = MAX_MOVES;
         this.weight = 5;
-        this.unitCombatController = new SimpleUnitCombatController(this, MIN_DMG, MAX_DMG, 1, MAX_HEALTH);
+        this.unitCombatController = new SimpleUnitCombatController(this, MIN_DMG, MAX_DMG, 1, MAX_HEALTH, MAX_MOVES);
         this.turnedRight = player1Unit;
         this.unitMoveController = new WalkingUnitMovementController();
         this.unitAnimationController = new SimpleUnitAnimationController();
@@ -145,6 +146,11 @@ public class StandardUnit implements IUnit {
     @Override
     public int getMaxHealth() {
         return this.unitCombatController.getMaxHealth();
+    }
+
+    @Override
+    public int getMovesLeft() {
+        return unitCombatController.getMovesLeft();
     }
 
     @Override
