@@ -28,6 +28,8 @@ public interface IUnit extends Serializable{
     void setMovementLogic(IUnitMovementController controller);
     void setHasAttacked(boolean value);
     boolean isPlayer1Unit();
+    boolean isTurnedRight();
+    void turnDirection();
     void nextFrame();
     void addAnimationListener(IAnimationListener animationListener);
     void setActiveAnimation(RenderMode renderMode);

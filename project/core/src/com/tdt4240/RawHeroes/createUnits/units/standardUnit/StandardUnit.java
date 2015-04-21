@@ -31,6 +31,8 @@ public class StandardUnit implements IUnit {
     private final int MIN_DMG = 5;
     private final int MAX_DMG = 10;
 
+    private boolean turnedRight;
+
     private int health;
     private boolean player1Unit;
     private boolean hasAttacked;
@@ -48,7 +50,6 @@ public class StandardUnit implements IUnit {
 
         this.remainingMoves = 3;
         this.weight = 5;
-
         this.unitCombatController = new SimpleUnitCombatController(this, MIN_DMG, MAX_DMG, 1, MAX_HEALTH);
         this.unitMoveController = new WalkingUnitMovementController();
         this.unitAnimationController = new SimpleUnitAnimationController();
@@ -121,6 +122,16 @@ public class StandardUnit implements IUnit {
     }
 
     @Override
+    public boolean isTurnedRight() {
+        return turnedRight;
+    }
+
+    @Override
+    public void turnDirection() {
+        turnedRight = !turnedRight;
+    }
+
+    @Override
     public ArrayList<Position> getAttackablePositions(Position pos, int movesLeft, IBoard board) {
         return this.unitCombatController.getAttackablePositions(pos, movesLeft, board);
     }
@@ -174,15 +185,19 @@ public class StandardUnit implements IUnit {
 
             case STATIC:
                 if (this.unitAnimationController.getActiveAnimation() == AnimationConstants.MOVE_RIGHT)this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_RIGHT);
+                if (this.unitAnimationController.getActiveAnimation() == AnimationConstants.MOVE_LEFT)this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_LEFT);
                 break;
             case MOVING:
-                this.unitAnimationController.setActiveAnimation(AnimationConstants.MOVE_RIGHT);
+                if(this.turnedRight)this.unitAnimationController.setActiveAnimation(AnimationConstants.MOVE_RIGHT);
+                else this.unitAnimationController.setActiveAnimation(AnimationConstants.MOVE_LEFT);
                 break;
             case ATTACKING:
-                this.unitAnimationController.setActiveAnimation(AnimationConstants.ATK_RIGHT);
+                if(this.turnedRight)this.unitAnimationController.setActiveAnimation(AnimationConstants.ATK_RIGHT);
+                else this.unitAnimationController.setActiveAnimation(AnimationConstants.ATK_RIGHT);
                 break;
             case HURT:
-                this.unitAnimationController.setActiveAnimation(AnimationConstants.HURT_RIGHT);
+                if(this.turnedRight)this.unitAnimationController.setActiveAnimation(AnimationConstants.HURT_RIGHT);
+                else this.unitAnimationController.setActiveAnimation(AnimationConstants.HURT_RIGHT);
                 break;
             case KILLED:
                 this.unitAnimationController.setActiveAnimation(AnimationConstants.DEAD);
