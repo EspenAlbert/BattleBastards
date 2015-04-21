@@ -19,6 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
 import com.tdt4240.RawHeroes.independent.GameConstants;
+import com.tdt4240.RawHeroes.independent.MyInputProcessor;
 import com.tdt4240.RawHeroes.independent.Position;
 import com.tdt4240.RawHeroes.independent.TextureChanger;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.IRenderNoPos;
@@ -59,7 +60,10 @@ public class UnitDetailRenderer implements IRenderNoPos {
     }
 
     public void hideUnitDetails(){
+        if(hide) return;
+        System.out.println("hiding unit details");
         hide = true;
+        MyInputProcessor.getInstance().activateListeners();
     }
 
     public void showUnitDetails(Position pos){

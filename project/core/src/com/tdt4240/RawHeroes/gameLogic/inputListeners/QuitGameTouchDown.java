@@ -23,24 +23,23 @@ public class QuitGameTouchDown implements TouchDown {
         this.message = message;
         this.cameraController = cameraController;
         this.activeGameScreen = activeGameScreen;
+        MyInputProcessor.getInstance().deactivateListenersExcept(this);
     }
 
     @Override
     public boolean touchDown(float screenX, float screenY, int pointer, int button) {
         Position coordinates = cameraController.convertPixelCoordinateToCell(new Vector2(screenX, screenY));
-        System.out.println(coordinates);
-        System.out.println(message);
         if(FinishScreenRenderer.isNoOptionMessage(message)) {
-            System.out.println("No option");
             if(coordinates.getY() < GameConstants.GAME_VISIBLE_HEIGHT-1 && coordinates.getX() < GameConstants.GAME_VISIBLE_WIDTH) activeGameScreen.backToMainMenu();
+            return false;
         }
         if(coordinates.getY() < GameConstants.GAME_VISIBLE_HEIGHT-1 && coordinates.getX() < GameConstants.GAME_VISIBLE_WIDTH) {
-            System.out.println("options..");
             if(coordinates.getX() < (GameConstants.GAME_VISIBLE_WIDTH/ 2)) {
                 activeGameScreen.backToMainMenu();
             }
             else {
                 activeGameScreen.abortFinish();
+                MyInputProcessor.getInstance().removeListener(this);
             }
         }
         return false;

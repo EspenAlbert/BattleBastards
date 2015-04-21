@@ -13,17 +13,20 @@ import com.tdt4240.RawHeroes.view.customUIElements.unitDetailRenderer.UnitDetail
 public class ActivateUnitDetails implements ILongPress {
 
     private CameraController camera;
+    private TouchDownRemoveUnitDetails removeUnitDetails;
     private UnitDetailRenderer unitDetailRenderer;
 
     public ActivateUnitDetails(UnitDetailRenderer unitDetailRenderer, CameraController camera) {
         this.unitDetailRenderer = unitDetailRenderer;
         this.camera = camera;
+        this.removeUnitDetails = removeUnitDetails;
     }
 
     @Override
     public void longPress(float x, float y) {
         Position pos = camera.convertPixelCoordinateToCell(new Vector2(x, y));
         unitDetailRenderer.showUnitDetails(pos);
-        MyInputProcessor.getInstance().deactivateListeners();
+        MyInputProcessor.getInstance().deactivateListenersExcept(new TouchDownRemoveUnitDetails(unitDetailRenderer));
+
     }
 }

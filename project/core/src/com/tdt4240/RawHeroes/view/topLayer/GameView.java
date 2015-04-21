@@ -61,7 +61,7 @@ public class GameView implements IView, IBoardListener, ICameraListener, IMoveLi
         unitRenderer.render(batch);
         unitDetails.render(batch);
 
-        if(finishScreenRenderer != null) {
+        if(finishScreenRenderer != null && unitRenderer.noAnimationWaiting()) {
             finishScreenRenderer.render(batch);
         }
     }
@@ -89,7 +89,6 @@ public class GameView implements IView, IBoardListener, ICameraListener, IMoveLi
 
     public void initializeTouchListeners(CameraController camera){
         MyInputProcessor.getInstance().AddLongListener(new ActivateUnitDetails(unitDetails, camera));
-        MyInputProcessor.getInstance().AddTouchDownListener(new TouchDownRemoveUnitDetails(unitDetails));
     }
 
     public void finishRoutine(String message) {

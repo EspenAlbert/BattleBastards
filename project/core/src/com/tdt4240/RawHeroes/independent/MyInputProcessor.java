@@ -3,6 +3,7 @@ package com.tdt4240.RawHeroes.independent;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Vector2;
+import com.tdt4240.RawHeroes.gameLogic.inputListeners.QuitGameTouchDown;
 import com.tdt4240.RawHeroes.independent.inputListeners.IFlingListener;
 import com.tdt4240.RawHeroes.independent.inputListeners.ILongPress;
 import com.tdt4240.RawHeroes.independent.inputListeners.IPanListener;
@@ -19,7 +20,9 @@ import java.util.ArrayList;
 public class MyInputProcessor implements GestureDetector.GestureListener, InputProcessor {
     private static MyInputProcessor instance;
     private boolean active;
-    private boolean touchDownsListenersRemoveLast = false;
+    private ArrayList<TouchDown> exceptionList = new ArrayList<TouchDown>();
+    private TouchDown toBeRemoved;
+    private boolean removeListener;
 
 
     private MyInputProcessor() {
@@ -62,16 +65,22 @@ public class MyInputProcessor implements GestureDetector.GestureListener, InputP
 
     @Override
     public boolean touchDown(float x, float y, int pointer, int button) {
-        if(!active) active = true;
+        //if(!active) //active = true;
         return false;
     }
 
     @Override
     public boolean tap(float x, float y, int count, int button) {
-        if(!active) return false;
-        if(touchDownsListenersRemoveLast) {
-            touchDownsListeners.remove(touchDownsListeners.size() -1);
-            touchDownsListenersRemoveLast = false;
+        if(!active) {
+            for(TouchDown exceptionListener: exceptionList) {
+                exceptionListener.touchDown(x, y, count, button);
+            }
+            return false;
+        }
+        if(removeListener) {
+            touchDownsListeners.remove(toBeRemoved);
+            toBeRemoved = null;
+            removeListener = false;
         }
         for(TouchDown listener: touchDownsListeners) {
             listener.touchDown(x, y, count, button);
@@ -165,8 +174,17 @@ public class MyInputProcessor implements GestureDetector.GestureListener, InputP
     public void deactivateListeners() {
         active = false;
     }
+    public void activateListeners() {
+        active = true;
+    }
 
-    public void removeLastTouchListener() {
-        touchDownsListenersRemoveLast = true;
+    public void deactivateListenersExcept(TouchDown onlyActiveListener) {
+        deactivateListeners();
+        exceptionList.add(onlyActiveListener);
+    }
+
+    public void removeListener(TouchDown listener) {
+        toBeRemoved = listener;
+        removeListener = true;
     }
 }
