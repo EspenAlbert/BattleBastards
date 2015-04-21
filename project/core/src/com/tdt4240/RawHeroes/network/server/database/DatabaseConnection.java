@@ -11,7 +11,6 @@ public class DatabaseConnection {
     private final static String connectionString = "jdbc:mysql://localhost:3306/test";
     private final static String userName = "root";
     private final static String password = "ayivcdt4";
-    //private final static String password = "sqlDbHeroes";
 
     public static Connection getConnection() throws Exception {
         try {
