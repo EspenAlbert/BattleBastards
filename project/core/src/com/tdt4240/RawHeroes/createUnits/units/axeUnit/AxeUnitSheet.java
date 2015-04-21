@@ -6,10 +6,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.tdt4240.RawHeroes.gameLogic.models.ISpritesheet;
 
+import java.io.Serializable;
+
 /**
  * Created by Endre on 20.04.2015.
  */
-public class AxeUnitSheet implements ISpritesheet{
+public class AxeUnitSheet implements ISpritesheet, Serializable{
     private Texture sheet;
     private final int NR_OF_FRAMES = 4;
     private final int NR_OF_ANIMATIONS = 9;

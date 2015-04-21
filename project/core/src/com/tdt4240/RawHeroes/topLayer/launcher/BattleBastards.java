@@ -24,7 +24,7 @@ public class BattleBastards extends ApplicationAdapter {
 	public void create () {
 		batch = new SpriteBatch();
         //board = new BoardRenderer(BoardFactory.getInstance().getBoard("STANDARD-BOARD"), true);
-        Gdx.graphics.setTitle("GAME NAME");
+        Gdx.graphics.setTitle("Battle Bastards");
 		img = new Texture("badlogic.jpg");
         Gdx.graphics.setDisplayMode(GameConstants.RESOLUTION_WIDTH, GameConstants.RESOLUTION_HEIGHT, false);
         Gdx.input.setInputProcessor(MyInputProcessor.getInstance());

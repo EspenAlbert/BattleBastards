@@ -26,6 +26,7 @@ public class TouchDownRemoveUnitDetails implements TouchDown {
             return false;
         }
         unitDetailRenderer.hideUnitDetails();
+        firstTouch = true;
         System.out.println("should have hidden unitDetails...");
         return false;
     }
