@@ -109,6 +109,7 @@ public class BoardController implements IBoardController {
         ArrayList<Position> unitPositions = board.getUnitPositions();
         for(Position unitPosition : unitPositions) {
             board.getCell(unitPosition).getUnit().setHasAttacked(false);
+            board.getCell(unitPosition).getUnit().resetMoves();
         }
     }
 }

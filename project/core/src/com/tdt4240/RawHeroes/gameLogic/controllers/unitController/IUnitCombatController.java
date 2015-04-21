@@ -21,4 +21,6 @@ public interface IUnitCombatController {
     int getHealth();
     int getMaxHealth();
     int getMovesLeft();
+    void move(int movesSpent);
+    void resetMoves();
 }
