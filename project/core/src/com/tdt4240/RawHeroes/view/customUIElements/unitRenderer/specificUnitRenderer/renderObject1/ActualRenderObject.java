@@ -17,7 +17,6 @@ import com.tdt4240.RawHeroes.independent.AnimationConstants;
 import com.tdt4240.RawHeroes.independent.TextureChanger;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.IRenderObject;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.RenderMode;
-
 /**
  * Created by espen1 on 27.02.2015.
  */
@@ -60,6 +59,35 @@ public class ActualRenderObject implements IRenderObject{
     public void animationChanged(AnimationEvent event) {
         this.sprite = new Sprite(sheet.getActiveFrame(event.getActiveFrame(), event.getActiveAnimation()));
         sprite.setSize(1.5f,2);
+        switch (event.getActiveAnimation()){
+            case AnimationConstants.IDLE_RIGHT:
+                this.renderMode = RenderMode.STATIC;
+                break;
+            case AnimationConstants.IDLE_LEFT:
+                this.renderMode = RenderMode.STATIC;
+                break;
+            case AnimationConstants.MOVE_LEFT:
+                this.renderMode = RenderMode.MOVING;
+                break;
+            case AnimationConstants.MOVE_RIGHT:
+                this.renderMode = RenderMode.MOVING;
+                break;
+            case AnimationConstants.ATK_LEFT:
+                this.renderMode = RenderMode.ATTACKING;
+                break;
+            case AnimationConstants.ATK_RIGHT:
+                this.renderMode = RenderMode.ATTACKING;
+                break;
+            case AnimationConstants.HURT_LEFT:
+                this.renderMode = RenderMode.HURT;
+                break;
+            case AnimationConstants.HURT_RIGHT:
+                this.renderMode = RenderMode.HURT;
+                break;
+            case AnimationConstants.DEAD:
+                this.renderMode = RenderMode.KILLED;
+                break;
+        }
     }
 
 }
