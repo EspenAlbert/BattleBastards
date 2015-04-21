@@ -13,10 +13,13 @@ import com.tdt4240.RawHeroes.independent.AnimationConstants;
 import com.tdt4240.RawHeroes.independent.TextureChanger;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.IRenderObject;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.RenderMode;
+
+import java.io.Serializable;
+
 /**
  * Created by espen1 on 27.02.2015.
  */
-public class StandardUnitRenderObject implements IRenderObject{
+public class StandardUnitRenderObject implements IRenderObject, Serializable{
 
     public ISpritesheet sheet;
     private IUnit unit;
