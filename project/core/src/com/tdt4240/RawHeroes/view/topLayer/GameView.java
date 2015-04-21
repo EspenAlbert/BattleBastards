@@ -19,6 +19,7 @@ import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.independent.GameConstants;
 import com.tdt4240.RawHeroes.independent.MyInputProcessor;
 import com.tdt4240.RawHeroes.view.customUIElements.boardRenderer.BoardRenderer;
+import com.tdt4240.RawHeroes.view.customUIElements.finishScreenRenderer.FinishScreenRenderer;
 import com.tdt4240.RawHeroes.view.customUIElements.unitDetailRenderer.UnitDetailRenderer;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.UnitRenderer;
 import com.tdt4240.RawHeroes.view.uiElements.DialogFactory;
@@ -28,7 +29,7 @@ import com.tdt4240.RawHeroes.view.uiElements.DialogFactory;
  */
 public class GameView implements IView, IBoardListener, ICameraListener, IMoveListener {
 
-    public  String endMessage = "THIS MESSAGE SHOULD BE DISPLAYED";
+    private FinishScreenRenderer finishScreenRenderer;
     private final UnitRenderer unitRenderer;
     private final BoardRenderer boardRenderer;
     private final IBoard board;
@@ -41,7 +42,7 @@ public class GameView implements IView, IBoardListener, ICameraListener, IMoveLi
         boardRenderer = new BoardRenderer(board, iAmPlayer1);
         unitRenderer = new UnitRenderer(board, camera, iAmPlayer1);
         unitDetails = new UnitDetailRenderer(board);
-        finishRoutine();
+        finishScreenRenderer = null;
     }
 
     public void BoardChanged(BoardEvent event) {
@@ -55,11 +56,9 @@ public class GameView implements IView, IBoardListener, ICameraListener, IMoveLi
         boardRenderer.render(batch);
         unitRenderer.render(batch);
         unitDetails.render(batch);
-        if(font != null) {
-            font.draw(batch, endMessage, GameConstants.RESOLUTION_WIDTH / 2, GameConstants.RESOLUTION_HEIGHT / 2);
-            font.draw(batch, endMessage, 0,100);
-            //TODO: Make the text visible...
-            //System.out.println("Drawing text...");
+
+        if(finishScreenRenderer != null) {
+            finishScreenRenderer.render(batch);
         }
     }
 
@@ -89,9 +88,11 @@ public class GameView implements IView, IBoardListener, ICameraListener, IMoveLi
         MyInputProcessor.getInstance().AddTouchDownListener(new TouchDownRemoveUnitDetails(unitDetails));
     }
 
-    public void finishRoutine() {
-        font = new BitmapFont();
-        font.scale(500);
-        font.setColor(Color.BLUE);
+    public void finishRoutine(String message) {
+        finishScreenRenderer = new FinishScreenRenderer(message);
+    }
+
+    public void abortFinish() {
+        finishScreenRenderer = null;
     }
 }

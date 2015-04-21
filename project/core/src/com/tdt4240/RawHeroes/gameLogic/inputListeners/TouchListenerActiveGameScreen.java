@@ -17,7 +17,7 @@ public class TouchListenerActiveGameScreen implements TouchDown {
     private ActiveGameScreen gameScreen;
     private final IBoardController boardController;
     private boolean firstTouch;
-    private float boardMaxXCoordinate;
+    private static float boardMaxXCoordinate;
     private float boardMinXCoordinate;
 
     public TouchListenerActiveGameScreen(IBoardController boardController, ICameraController cameraController, ActiveGameScreen gameScreen) {
@@ -62,7 +62,7 @@ public class TouchListenerActiveGameScreen implements TouchDown {
         //TODO: If screenY  is within action button y
         if (screenY > 0 && screenY < 1*buttonHeight){
             System.out.println("Quit");
-            this.gameScreen.backToMainMenu();
+            this.gameScreen.finish("Quit");
         }
         else if (screenY > 1*buttonHeight && screenY < 2*buttonHeight){
             System.out.println("Action");
@@ -81,4 +81,7 @@ public class TouchListenerActiveGameScreen implements TouchDown {
         }*/
     }
 
+    public static float getBoardMaxXCoordinate() {
+        return boardMaxXCoordinate;
+    }
 }

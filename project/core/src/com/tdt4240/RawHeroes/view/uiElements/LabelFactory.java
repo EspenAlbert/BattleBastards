@@ -17,6 +17,12 @@ public class LabelFactory {
         label.setSize(GameConstants.LABEL_WIDTH, GameConstants.LABEL_HEIGHT);
         label.setPosition(xPos, yPos);
 
+        return createLabel(text, xPos, yPos, GameConstants.LABEL_WIDTH, GameConstants.LABEL_HEIGHT);
+    }
+    public static Label createLabel(String text, float xPos, float yPos, float xSize, float ySize) {
+        Label label = new Label(text, skin);
+        label.setSize(xSize, ySize);
+        label.setPosition(xPos, yPos);
         return label;
     }
 }

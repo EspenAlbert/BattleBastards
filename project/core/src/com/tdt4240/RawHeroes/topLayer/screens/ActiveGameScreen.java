@@ -46,6 +46,7 @@ public class ActiveGameScreen extends ScreenState{
     private final StandardCamera camera;
     private SpriteBatch hudBatch;
     private boolean endGameState = false;
+    private String message;
 
     public ActiveGameScreen(ScreenStateManager gsm, Game game){
         super(gsm);
@@ -76,14 +77,12 @@ public class ActiveGameScreen extends ScreenState{
         boolean loser = iAmPlayer1 ? game.player2IsWinner() : game.player1IsWinner();
         if(loser) {
             //TODO: Send a message to main menu about you loosing, forward to server
-            MainMenuScreen main = (MainMenuScreen) gsm.peek(0);
             if(iAmPlayer1){
-                main.setMsg("You lost the game against" + game.getPlayer2Nickname());}
+                message = "You lost the game against" + game.getPlayer2Nickname();}
            else{
-                main.setMsg("You lost the game against" + game.getPlayer1Nickname());
+                message = "You lost the game against" + game.getPlayer1Nickname();
            }
-          // ResponseMessage response = ClientConnection.getInstance().createNewGame(opponent, Games.KILL_ALL_ENEMY_UNITS);
-            gsm.popOnly();
+            backToMainMenu();
         }
         GestureDetector gd = new GestureDetector(MyInputProcessor.getInstance());
         Gdx.input.setInputProcessor(gd);
@@ -105,13 +104,13 @@ public class ActiveGameScreen extends ScreenState{
         initializeWhenViewReady();
         if(endGameState && gameView.noAnimationWaiting()) {
             boolean winner = iAmPlayer1 ? game.player1IsWinner() : game.player2IsWinner();
-            System.out.println("About to finish game");
-            gameView.finishRoutine();
-            MyInputProcessor.getInstance().AddTouchDownListener(new QuitGameTouchDown(gsm));
+            MyInputProcessor.getInstance().AddTouchDownListener(new QuitGameTouchDown(message, cameraController, this));
             if(winner) {
+                finish("Congratulations you won!");
                 //TODO: PostgameScreen
 
             } else {
+                //finish(null);
             }
         }
         Gdx.gl.glClearColor(0.36f, 0.32f, 0.27f, 1.0f);
@@ -142,17 +141,37 @@ public class ActiveGameScreen extends ScreenState{
 
 
     public void backToMainMenu(){
+        MainMenuScreen main = (MainMenuScreen) gsm.peek(0);
+        main.setMsg(message);
         this.gsm.popOnly();
     }
+
+    public void finish(String message) {
+        endGameState = true;
+        String messageToFinish = message;
+        if(message == null) {
+            messageToFinish = this.message;
+        }
+        else {
+            this.message = messageToFinish;
+        }
+        gameView.finishRoutine(messageToFinish);
+    }
+
+
 
     public void confirmTurn() {
         ArrayList<Move> moves = boardMover.confirmMoves();
         ResponseMessage responseMessage = clientConnection.doMoves(game.getId(), moves);
         System.out.println(responseMessage.getType() + ", " + responseMessage.getContent());
         boardController.setState(new BoardControllerReplayState(boardController, board));
-        MainMenuScreen main = (MainMenuScreen) gsm.peek(0);
-        main.setMsg((String) responseMessage.getContent());
+        message = (String) responseMessage.getContent();
         endGameState = true;
 
+    }
+    public void abortFinish() {
+        gameView.abortFinish();
+        MyInputProcessor.getInstance().removeLastTouchListener();
+        endGameState = false;
     }
 }
