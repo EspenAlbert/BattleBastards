@@ -96,7 +96,7 @@ public class UnitDetailRenderer implements IRenderNoPos {
             sprite = new Sprite(unit.getActiveFrame(TextureChanger.changeColor(texture, Color.BLUE)));
         }
         Image img = new Image(sprite);
-        img.setSize(createUnitDetailsScreenDialog.getWidth()*3/8, createUnitDetailsScreenDialog.getHeight()/2);
+        img.setSize(createUnitDetailsScreenDialog.getHeight()*3/8, createUnitDetailsScreenDialog.getHeight()/2);
         img.setPosition(createUnitDetailsScreenDialog.getWidth()/8, createUnitDetailsScreenDialog.getHeight()*2/8);
 
         //Labels
