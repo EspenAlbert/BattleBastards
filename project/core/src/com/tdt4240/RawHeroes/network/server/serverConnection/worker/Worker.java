@@ -152,7 +152,6 @@ public class Worker extends Thread {
             return ResponseCreator.getNotYourGameException(gameId);
         }
         return ResponseCreator.getDeletedGame();
-
     }
 
     private ResponseMessage getGameIds(RequestMessage request) throws Exception {

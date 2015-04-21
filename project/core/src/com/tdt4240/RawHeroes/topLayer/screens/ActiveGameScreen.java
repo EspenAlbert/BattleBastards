@@ -53,8 +53,7 @@ public class ActiveGameScreen extends ScreenState{
         this.game = game;
         board = game.getBoard();
         System.out.println("in active game screen!!!!!");
-        //iAmPlayer1 = ClientConnection.getInstance().getUsername().equals(game.getPlayer1Nickname());
-        iAmPlayer1 = true;
+        iAmPlayer1 = ClientConnection.getInstance().getUsername().equals(game.getPlayer1Nickname());
         if(!iAmPlayer1) {
             board.convertCellsToOtherPlayer();
         }
@@ -86,8 +85,6 @@ public class ActiveGameScreen extends ScreenState{
                 main.setMsg("You lost the game against" + game.getPlayer1Nickname());
             }
             ResponseMessage response = ClientConnection.getInstance().deleteGame(game.getId());
-          // ResponseMessage response = ClientConnection.getInstance().createNewGame(opponent, Games.KILL_ALL_ENEMY_UNITS);
-
             gsm.popOnly();
         }
         GestureDetector gd = new GestureDetector(MyInputProcessor.getInstance());

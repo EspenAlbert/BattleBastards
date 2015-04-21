@@ -51,6 +51,7 @@ public class StandardUnit implements IUnit {
         this.remainingMoves = 3;
         this.weight = 5;
         this.unitCombatController = new SimpleUnitCombatController(this, MIN_DMG, MAX_DMG, 1, MAX_HEALTH);
+        this.turnedRight = player1Unit;
         this.unitMoveController = new WalkingUnitMovementController();
         this.unitAnimationController = new SimpleUnitAnimationController();
         System.out.println("Created a standard unit");
