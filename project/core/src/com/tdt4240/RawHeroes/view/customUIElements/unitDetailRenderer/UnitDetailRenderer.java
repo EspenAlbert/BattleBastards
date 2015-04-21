@@ -84,8 +84,7 @@ public class UnitDetailRenderer implements IRenderNoPos {
                 texture = new Texture(Gdx.files.internal("units/soldierSheet.png"));
                 break;
             case STANDARD_UNIT_2:
-                //TODO Fyll inn riktig .png-fil under
-                texture = new Texture(Gdx.files.internal("units/soldierSheet.png"));
+                texture = new Texture(Gdx.files.internal("units/soldierAxeSheet.png"));
                 break;
             case UNIT2:
                 //TODO Fyll inn riktig .png-fil under

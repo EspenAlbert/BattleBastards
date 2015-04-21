@@ -30,15 +30,15 @@ public class StandardBoard implements IBoard {
     public StandardBoard() {
         cells = createStandardBoardCells(false);
         //Player 1 unit
-        cells[1][0].setUnit(UnitBuilding.getInstance().createUnit(UnitName.STANDARD_UNIT, true));
-        cells[2][0].setUnit(UnitBuilding.getInstance().createUnit(UnitName.STANDARD_UNIT_2, true));
-        cells[3][0].setUnit(UnitBuilding.getInstance().createUnit(UnitName.STANDARD_UNIT_2, true));
-        cells[4][0].setUnit(UnitBuilding.getInstance().createUnit(UnitName.STANDARD_UNIT, true));
+        cells[0][1].setUnit(UnitBuilding.getInstance().createUnit(UnitName.STANDARD_UNIT, true));
+        cells[0][2].setUnit(UnitBuilding.getInstance().createUnit(UnitName.STANDARD_UNIT_2, true));
+        cells[0][3].setUnit(UnitBuilding.getInstance().createUnit(UnitName.STANDARD_UNIT_2, true));
+        cells[0][4].setUnit(UnitBuilding.getInstance().createUnit(UnitName.STANDARD_UNIT, true));
         //Player 2 unit
-        cells[1][6].setUnit(UnitBuilding.getInstance().createUnit(UnitName.STANDARD_UNIT, false));
-        cells[2][6].setUnit(UnitBuilding.getInstance().createUnit(UnitName.STANDARD_UNIT_2, false));
-        cells[3][6].setUnit(UnitBuilding.getInstance().createUnit(UnitName.STANDARD_UNIT_2, false));
-        cells[4][6].setUnit(UnitBuilding.getInstance().createUnit(UnitName.STANDARD_UNIT, false));
+        cells[6][1].setUnit(UnitBuilding.getInstance().createUnit(UnitName.STANDARD_UNIT, false));
+        cells[6][2].setUnit(UnitBuilding.getInstance().createUnit(UnitName.STANDARD_UNIT_2, false));
+        cells[6][3].setUnit(UnitBuilding.getInstance().createUnit(UnitName.STANDARD_UNIT_2, false));
+        cells[6][4].setUnit(UnitBuilding.getInstance().createUnit(UnitName.STANDARD_UNIT, false));
 
         listeners = new ArrayList<IBoardListener>();
     }
