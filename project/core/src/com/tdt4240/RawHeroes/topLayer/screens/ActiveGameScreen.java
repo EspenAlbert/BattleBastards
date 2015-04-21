@@ -101,6 +101,7 @@ public class ActiveGameScreen extends ScreenState{
         MyInputProcessor.getInstance().AddPanListener(cameraTranslator);
         MyInputProcessor.getInstance().AddPanStopListener(cameraTranslator);
         gameView.initializeTouchListeners(cameraController);
+        boardController.actionButtonTouched();
         initializedInputListeners = true;
     }
     private void checkIfYouHaveLost() {
