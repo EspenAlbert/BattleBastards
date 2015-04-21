@@ -35,12 +35,12 @@ public class BoardController implements IBoardController {
     private String actionButtonText = "Action";
 
 
-    public BoardController(IBoard board, IBoardMover boardMover, int remaining_energy, boolean iAmPlayer1) {
+    public BoardController(IBoard board, int remaining_energy, boolean iAmPlayer1) {
         this.board = board;
         if(!iAmPlayer1) {
             board.convertCellsToOtherPlayer();
         }
-        this.boardMover = boardMover;
+        boardMover = new BoardMover(board);
         this.remaining_energy = remaining_energy;
         this.iAmPlayer1 = iAmPlayer1;
         boardStates = new Stack<BoardControllerState>();
@@ -111,5 +111,19 @@ public class BoardController implements IBoardController {
             board.getCell(unitPosition).getUnit().setHasAttacked(false);
             board.getCell(unitPosition).getUnit().resetMoves();
         }
+    }
+    @Override
+    public IBoardMover getBoardMover() {
+        return boardMover;
+    }
+
+    @Override
+    public void executeMovesFromOtherPlayer(ArrayList<Move> lastMoves, boolean iAmPlayer1) {
+        boardMover.executeMovesFromOtherPlayer(lastMoves, iAmPlayer1);
+    }
+
+    @Override
+    public ArrayList<Move> confirmMoves() {
+        return boardMover.confirmMoves();
     }
 }

@@ -15,7 +15,6 @@ import java.util.ArrayList;
  */
 public interface IBoard extends Serializable{
     void addBoardListener(IBoardListener listener);
-    void fireBoardChanged(BoardEvent event);
     ICell getCell(Position pos);
     ICell[][] getCells();
     void switchModeOnCell(Position pos, CellStatus status);

@@ -6,6 +6,7 @@ import com.tdt4240.RawHeroes.event.events.AnimationEvent;
 import com.tdt4240.RawHeroes.event.listener.IAnimationListener;
 import com.tdt4240.RawHeroes.independent.AnimationConstants;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import static com.tdt4240.RawHeroes.independent.AnimationConstants.*;
@@ -13,7 +14,7 @@ import static com.tdt4240.RawHeroes.independent.AnimationConstants.*;
 /**
  * Created by Endre on 19.04.2015.
  */
-public class SimpleUnitAnimationController implements IUnitAnimationController{
+public class SimpleUnitAnimationController implements IUnitAnimationController, Serializable{
     private int activeAnimation;
     private int activeFrame;
 

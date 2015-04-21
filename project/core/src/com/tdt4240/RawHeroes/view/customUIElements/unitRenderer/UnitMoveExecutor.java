@@ -19,7 +19,6 @@ public class UnitMoveExecutor {
     private Vector2 direction;
     private float speed;
     private Vector2 currentPos;
-    private int movementSteps;
     private ArrayList<Position> path;
     private IRenderObject currentActor;
     private int currentIndex;

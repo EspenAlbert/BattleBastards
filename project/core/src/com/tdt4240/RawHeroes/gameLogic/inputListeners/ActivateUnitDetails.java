@@ -13,13 +13,11 @@ import com.tdt4240.RawHeroes.view.customUIElements.unitDetailRenderer.UnitDetail
 public class ActivateUnitDetails implements ILongPress {
 
     private CameraController camera;
-    private TouchDownRemoveUnitDetails removeUnitDetails;
     private UnitDetailRenderer unitDetailRenderer;
 
     public ActivateUnitDetails(UnitDetailRenderer unitDetailRenderer, CameraController camera) {
         this.unitDetailRenderer = unitDetailRenderer;
         this.camera = camera;
-        this.removeUnitDetails = removeUnitDetails;
     }
 
     @Override

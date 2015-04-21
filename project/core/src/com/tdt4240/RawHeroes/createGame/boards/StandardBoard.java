@@ -58,7 +58,6 @@ public class StandardBoard implements IBoard {
         listeners.add(listener);
     }
 
-    @Override
     public void fireBoardChanged(BoardEvent event) {
         for(IBoardListener listener : listeners) {
             listener.boardChanged(event);

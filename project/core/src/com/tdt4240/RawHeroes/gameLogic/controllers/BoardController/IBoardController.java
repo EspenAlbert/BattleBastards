@@ -6,6 +6,8 @@ import com.tdt4240.RawHeroes.event.move.Move;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.independent.Position;
 
+import java.util.ArrayList;
+
 /**
  * Created by espen1 on 27.02.2015.
  */
@@ -20,4 +22,9 @@ public interface IBoardController {
     public void addBoardControllerStateListener(BoardControllerStateListener listener);
     int getRemaining_energy();
     boolean iAmPlayer1();
+    IBoardMover getBoardMover();
+
+    void executeMovesFromOtherPlayer(ArrayList<Move> lastMoves, boolean iAmPlayer1);
+
+    ArrayList<Move> confirmMoves();
 }

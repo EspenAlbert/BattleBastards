@@ -17,7 +17,7 @@ import com.tdt4240.RawHeroes.view.uiElements.MainMenuButtonsFactory;
  */
 public class FinishScreenRenderer implements IRenderNoPos {
 
-    public static String[] noOptionMessages = {"It is not your turn to do a move!", "You successfully did moves to game: "};
+    public static String[] noOptionMessages = {"It is not your turn to do a move!", "You successfully did moves to game:", "You lost the game against"};
 
     private TextButton cancelButton;
     private TextButton acceptButton;

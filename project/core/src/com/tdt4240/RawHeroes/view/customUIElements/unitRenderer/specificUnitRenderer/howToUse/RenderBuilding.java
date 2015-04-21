@@ -8,10 +8,10 @@ import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRend
 /**
  * Created by espen1 on 27.02.2015.
  */
-public class RenderBuilding implements IRenderBulding {
-    private static IRenderBulding instance;
+public class RenderBuilding implements IRenderBuilding {
+    private static IRenderBuilding instance;
 
-    public static IRenderBulding getInstance() {
+    public static IRenderBuilding getInstance() {
         return instance == null ? new RenderBuilding(): instance;
     }
 

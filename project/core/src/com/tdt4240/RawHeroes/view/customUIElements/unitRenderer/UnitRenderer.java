@@ -11,7 +11,7 @@ import com.tdt4240.RawHeroes.event.move.MovementMove;
 import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
 import com.tdt4240.RawHeroes.independent.AnimationConstants;
 import com.tdt4240.RawHeroes.independent.Position;
-import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.IRenderBulding;
+import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.IRenderBuilding;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.IRenderObject;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.RenderBuilding;
 
@@ -31,7 +31,7 @@ public class UnitRenderer implements IMoveListener {
 
     private ArrayList<IUnit> units;
 
-    private IRenderBulding renderBuilding = RenderBuilding.getInstance();
+    private IRenderBuilding renderBuilding = RenderBuilding.getInstance();
     private HashMap<Position, IRenderObject> unitPositionsAndRenderObjects;
     private Queue<Move> currentAnimations = new LinkedList<Move>();
     private boolean animationIsActive = false;
@@ -59,42 +59,7 @@ public class UnitRenderer implements IMoveListener {
     }
 
 
-    @Override
-    public void moveExecuted(Move move) {
-        currentAnimations.add(move);
-    }
 
-    private void executeMove(Move move) {
-        animationIsActive = true;
-        Position startPos = move.getStartCell().getPos();
-        Position endPos = move.getTargetCell().getPos();
-        camera.makeSureVisible(startPos, endPos);
-
-        if (move instanceof AttackMove) {
-            IRenderObject attacker = unitPositionsAndRenderObjects.get(startPos);
-            ArrayList<IRenderObject> victims = getVictims((AttackMove) move);
-            moveExecutor.attackMove(attacker, victims);
-        }
-        else if(move instanceof MovementMove) {
-
-            IRenderObject mover = unitPositionsAndRenderObjects.get(startPos);
-            unitPositionsAndRenderObjects.remove(startPos);
-            moveExecutor.movementMove(mover, (MovementMove) move);
-        }
-    }
-
-    private ArrayList<IRenderObject> getVictims(AttackMove move) {
-        Iterable<Position> victims = move.getVictims();
-        ArrayList<IRenderObject> victimsRenderObjects = new ArrayList<IRenderObject>();
-        if(victims != null) {
-            for(Position pos : victims){
-                if(unitPositionsAndRenderObjects.containsKey(pos)) {
-                    victimsRenderObjects.add(unitPositionsAndRenderObjects.get(pos));
-                }
-            }
-        }
-        return victimsRenderObjects;
-    }
 
     public void update(float dt){
         AnimationConstants.timer += dt*1000;
@@ -125,6 +90,28 @@ public class UnitRenderer implements IMoveListener {
         }
     }
 
+    @Override
+    public void moveExecuted(Move move) {
+        currentAnimations.add(move);
+    }
+
+    private void executeMove(Move move) {
+        animationIsActive = true;
+        Position startPos = move.getStartCell().getPos();
+        Position endPos = move.getTargetCell().getPos();
+        camera.makeSureVisible(startPos, endPos);
+
+        if (move instanceof AttackMove) {
+            IRenderObject attacker = unitPositionsAndRenderObjects.get(startPos);
+            ArrayList<IRenderObject> victims = getVictims((AttackMove) move);
+            moveExecutor.attackMove(attacker, victims);
+        }
+        else if(move instanceof MovementMove) {
+            IRenderObject mover = unitPositionsAndRenderObjects.get(startPos);
+            unitPositionsAndRenderObjects.remove(startPos);
+            moveExecutor.movementMove(mover, (MovementMove) move);
+        }
+    }
     public boolean noAnimationWaiting() {
         return currentAnimations.size() < 1 && !animationIsActive;
     }
@@ -136,5 +123,17 @@ public class UnitRenderer implements IMoveListener {
 
     public void attackMoveFinished() {
         animationIsActive = false;
+    }
+    private ArrayList<IRenderObject> getVictims(AttackMove move) {
+        Iterable<Position> victims = move.getVictims();
+        ArrayList<IRenderObject> victimsRenderObjects = new ArrayList<IRenderObject>();
+        if(victims != null) {
+            for(Position pos : victims){
+                if(unitPositionsAndRenderObjects.containsKey(pos)) {
+                    victimsRenderObjects.add(unitPositionsAndRenderObjects.get(pos));
+                }
+            }
+        }
+        return victimsRenderObjects;
     }
 }

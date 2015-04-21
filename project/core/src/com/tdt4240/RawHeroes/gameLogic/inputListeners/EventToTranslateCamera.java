@@ -9,13 +9,13 @@ import com.tdt4240.RawHeroes.independent.inputListeners.IPanStopListener;
 /**
  * Created by espen1 on 17.04.2015.
  */
-public class TranslateCamera implements IFlingListener, IPanListener, IPanStopListener {
+public class EventToTranslateCamera implements IFlingListener, IPanListener, IPanStopListener {
 
     private final CameraController camera;
     private boolean active;
     private Vector2 startPos;
 
-    public TranslateCamera(CameraController controller) {
+    public EventToTranslateCamera(CameraController controller) {
         camera = controller;
         active = false;
     }

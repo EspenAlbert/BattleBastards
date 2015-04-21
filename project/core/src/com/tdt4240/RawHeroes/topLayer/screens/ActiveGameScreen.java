@@ -2,19 +2,16 @@ package com.tdt4240.RawHeroes.topLayer.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import com.badlogic.gdx.input.GestureDetector;
 import com.tdt4240.RawHeroes.event.move.Move;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardControllerReplayState;
-import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardMover;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.IBoardController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.CameraController;
 import com.tdt4240.RawHeroes.gameLogic.inputListeners.QuitGameTouchDown;
 import com.tdt4240.RawHeroes.gameLogic.inputListeners.TouchListenerActiveGameScreen;
-import com.tdt4240.RawHeroes.gameLogic.inputListeners.TranslateCamera;
-import com.tdt4240.RawHeroes.gameLogic.models.ICamera;
+import com.tdt4240.RawHeroes.gameLogic.inputListeners.EventToTranslateCamera;
 import com.tdt4240.RawHeroes.gameLogic.models.StandardCamera;
 import com.tdt4240.RawHeroes.independent.GameConstants;
 import com.tdt4240.RawHeroes.independent.MyInputProcessor;
@@ -23,7 +20,6 @@ import com.tdt4240.RawHeroes.network.communication.Response.ResponseMessage;
 import com.tdt4240.RawHeroes.topLayer.commonObjects.Game;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 
-import com.tdt4240.RawHeroes.view.customUIElements.hudRenderer.hudRenderer;
 import com.tdt4240.RawHeroes.view.topLayer.GameView;
 
 import java.util.ArrayList;
@@ -36,15 +32,12 @@ public class ActiveGameScreen extends ScreenState{
 
 
     private final GameView gameView;
-    private final hudRenderer hud;
-    private final BoardMover boardMover;
     private final IBoardController boardController;
     private final IBoard board;
     private final boolean iAmPlayer1;
     private final CameraController cameraController;
     private final Game game;
     private final StandardCamera camera;
-    private SpriteBatch hudBatch;
     private boolean endGameState = false;
     private String message;
     private boolean addedListener = true;
@@ -53,73 +46,32 @@ public class ActiveGameScreen extends ScreenState{
         super(gsm);
         this.game = game;
         board = game.getBoard();
-        System.out.println("in active game screen!!!!!");
         iAmPlayer1 = ClientConnection.getInstance().getUsername().equals(game.getPlayer1Nickname());
-        if(!iAmPlayer1) {
-            board.convertCellsToOtherPlayer();
-        }
-        boardMover = new BoardMover(board);
-        boardController = new BoardController(board, boardMover, game.getMoveCount(), iAmPlayer1);//MUST ALWAYS BE EXECUTED BEFORE creating gameView!!
+        boardController = new BoardController(board, game.getMoveCount(), iAmPlayer1);//MUST ALWAYS BE EXECUTED BEFORE creating gameView!!
 
         camera = new StandardCamera();
         cameraController = new CameraController(camera);
-        gameView = new GameView(board, iAmPlayer1, cameraController);
+        gameView = new GameView(board, iAmPlayer1, cameraController, boardController);
 
-        hud = new hudRenderer(boardController);
-
-        boardMover.addMoveListener(gameView);
-        boardMover.addMoveListener(hud);
-        board.addBoardListener(gameView);
-
-        boardMover.executeMovesFromOtherPlayer(game.getLastMoves(), iAmPlayer1);
-        hudBatch = new SpriteBatch(5);
+        boardController.executeMovesFromOtherPlayer(game.getLastMoves(), iAmPlayer1);
         resize(GameConstants.RESOLUTION_WIDTH, GameConstants.RESOLUTION_HEIGHT);
     }
-    private void initializeTouchListener() {
-        //Check if you have lost:
-        game.setBoard(board);
-        boolean loser = iAmPlayer1 ? game.player2IsWinner() : game.player1IsWinner();
-        if(loser) {
-            //TODO: Send a message to main menu about you loosing, forward to server
-            if(iAmPlayer1){
-                message = "You lost the game against" + game.getPlayer2Nickname();}
-           else{
-                message = "You lost the game against" + game.getPlayer1Nickname();
-           }
-            backToMainMenu();
-        }
-        GestureDetector gd = new GestureDetector(MyInputProcessor.getInstance());
-        Gdx.input.setInputProcessor(gd);
-        MyInputProcessor.getInstance().AddTouchDownListener(new TouchListenerActiveGameScreen(boardController, cameraController, this));
-        TranslateCamera cameraTanslator = new TranslateCamera(cameraController);
-        MyInputProcessor.getInstance().AddPanListener(cameraTanslator);
-        MyInputProcessor.getInstance().AddPanStopListener(cameraTanslator);
-        gameView.initializeTouchListeners(cameraController);
-        initialized = true;
-    }
+
 
     @Override
     public void update(float dt){
+        initializeWhenViewReady();
+        if(endGameState && gameView.noAnimationWaiting()) {
+            endGameLogic();
+        }
         gameView.update(dt);
         if(!addedListener) {
             MyInputProcessor.getInstance().AddTouchDownListener(new QuitGameTouchDown(this.message, cameraController, this));
             addedListener = true;
         }
     }
-
     @Override
     public void render() {
-        initializeWhenViewReady();
-        if(endGameState && gameView.noAnimationWaiting()) {
-            boolean winner = iAmPlayer1 ? game.player1IsWinner() : game.player2IsWinner();
-            if(winner) {
-                finish("Congratulations you won!");
-                //TODO: PostgameScreen
-
-            } else {
-                //finish(null);
-            }
-        }
         Gdx.gl.glClearColor(0.36f, 0.32f, 0.27f, 1.0f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -128,12 +80,6 @@ public class ActiveGameScreen extends ScreenState{
         spriteBatch.setProjectionMatrix(camera.getProjectionMatrix());
         gameView.render(spriteBatch);
         spriteBatch.end();
-        hud.render(hudBatch);
-    }
-
-    private boolean initialized = false;
-    private void initializeWhenViewReady() {
-        if(!initialized && gameView.noAnimationWaiting()) initializeTouchListener();
     }
 
     @Override
@@ -146,6 +92,44 @@ public class ActiveGameScreen extends ScreenState{
         cameraController.resize(width, height);
     }
 
+    private void initializeTouchListeners() {
+        checkIfYouHaveLost();
+        GestureDetector gd = new GestureDetector(MyInputProcessor.getInstance());
+        Gdx.input.setInputProcessor(gd);
+        MyInputProcessor.getInstance().AddTouchDownListener(new TouchListenerActiveGameScreen(boardController, cameraController, this));
+        EventToTranslateCamera cameraTranslator = new EventToTranslateCamera(cameraController);
+        MyInputProcessor.getInstance().AddPanListener(cameraTranslator);
+        MyInputProcessor.getInstance().AddPanStopListener(cameraTranslator);
+        gameView.initializeTouchListeners(cameraController);
+        initializedInputListeners = true;
+    }
+    private void checkIfYouHaveLost() {
+        game.setBoard(board);
+        boolean loser = iAmPlayer1 ? game.player2IsWinner() : game.player1IsWinner();
+        if(loser) {
+            if(iAmPlayer1){
+                message = "You lost the game against" + game.getPlayer2Nickname();}
+           else{
+                message = "You lost the game against" + game.getPlayer1Nickname();
+           }
+            finish(null);
+        }
+    }
+    private void endGameLogic() {
+        boolean winner = iAmPlayer1 ? game.player1IsWinner() : game.player2IsWinner();
+        if(winner) {
+            finish("Congratulations you won!");
+        } else {
+            finish(null);
+        }
+    }
+
+
+    private boolean initializedInputListeners = false;
+    private void initializeWhenViewReady() {
+        if(!initializedInputListeners && gameView.noAnimationWaiting()) initializeTouchListeners();
+    }
+
 
     public void backToMainMenu(){
         MainMenuScreen main = (MainMenuScreen) gsm.peek(0);
@@ -155,19 +139,15 @@ public class ActiveGameScreen extends ScreenState{
 
     public void finish(String message) {
         endGameState = true;
-        String messageToFinish = message;
-        if(message == null) {
-            messageToFinish = this.message;
-        }
-        else {
-            this.message = messageToFinish;
+        if(message != null) {
+            this.message = message;
         }
         addedListener = false;
-        gameView.finishRoutine(messageToFinish);
+        gameView.finishRoutine(this.message);
     }
 
     public void confirmTurn() {
-        ArrayList<Move> moves = boardMover.confirmMoves();
+        ArrayList<Move> moves = boardController.confirmMoves();
         ResponseMessage responseMessage = clientConnection.doMoves(game.getId(), moves);
         System.out.println(responseMessage.getType() + ", " + responseMessage.getContent());
         boardController.setState(new BoardControllerReplayState(boardController, board));

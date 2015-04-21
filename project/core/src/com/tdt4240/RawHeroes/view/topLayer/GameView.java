@@ -1,54 +1,47 @@
 package com.tdt4240.RawHeroes.view.topLayer;
 
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.tdt4240.RawHeroes.event.events.BoardResetEvent;
 import com.tdt4240.RawHeroes.event.listener.IBoardListener;
-import com.tdt4240.RawHeroes.event.events.CellChangeEvent;
-import com.tdt4240.RawHeroes.event.listener.ICameraListener;
 import com.tdt4240.RawHeroes.event.listener.IMoveListener;
 import com.tdt4240.RawHeroes.event.move.Move;
+import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.IBoardController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.CameraController;
 import com.tdt4240.RawHeroes.gameLogic.inputListeners.ActivateUnitDetails;
-import com.tdt4240.RawHeroes.gameLogic.inputListeners.TouchDownRemoveUnitDetails;
 import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.ICameraController;
 import com.tdt4240.RawHeroes.event.events.BoardEvent;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
-import com.tdt4240.RawHeroes.independent.GameConstants;
 import com.tdt4240.RawHeroes.independent.MyInputProcessor;
 import com.tdt4240.RawHeroes.view.customUIElements.boardRenderer.BoardRenderer;
 import com.tdt4240.RawHeroes.view.customUIElements.finishScreenRenderer.FinishScreenRenderer;
+import com.tdt4240.RawHeroes.view.customUIElements.hudRenderer.HudRenderer;
 import com.tdt4240.RawHeroes.view.customUIElements.unitDetailRenderer.UnitDetailRenderer;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.UnitRenderer;
-import com.tdt4240.RawHeroes.view.uiElements.DialogFactory;
 
 /**
  * Created by espen1 on 27.02.2015.
  */
-public class GameView implements IView, IBoardListener, ICameraListener, IMoveListener {
+public class GameView implements IView, IBoardListener, IMoveListener {
 
+    private SpriteBatch hudBatch;
     private FinishScreenRenderer finishScreenRenderer;
     private final UnitRenderer unitRenderer;
     private final BoardRenderer boardRenderer;
     private final IBoard board;
     private final UnitDetailRenderer unitDetails;
-    private BitmapFont font;
+    private final HudRenderer hudRenderer;
 
 
-    public GameView(IBoard board, boolean iAmPlayer1, ICameraController camera) {
+    public GameView(IBoard board, boolean iAmPlayer1, ICameraController camera, IBoardController boardController) {
         this.board = board;
         boardRenderer = new BoardRenderer(board, iAmPlayer1);
         unitRenderer = new UnitRenderer(board, camera, iAmPlayer1);
         unitDetails = new UnitDetailRenderer(board);
+        hudRenderer = new HudRenderer(boardController);
+        hudBatch = new SpriteBatch(5);
         finishScreenRenderer = null;
-    }
-
-    public void BoardChanged(BoardEvent event) {
-        if (event instanceof CellChangeEvent) {
-            // change button for cell
-        }
+        boardController.getBoardMover().addMoveListener(this);
+        board.addBoardListener(this);
     }
 
     public void update(float dt){
@@ -64,6 +57,8 @@ public class GameView implements IView, IBoardListener, ICameraListener, IMoveLi
         if(finishScreenRenderer != null && unitRenderer.noAnimationWaiting()) {
             finishScreenRenderer.render(batch);
         }
+
+        hudRenderer.render(hudBatch);
     }
 
     @Override
@@ -73,13 +68,10 @@ public class GameView implements IView, IBoardListener, ICameraListener, IMoveLi
         }
     }
 
-    @Override
-    public void cameraShifted(int dx, int dy) {
-
-    }
 
     @Override
     public void moveExecuted(Move move) {
+        hudRenderer.moveExecuted(move);
         unitRenderer.moveExecuted(move);
     }
 
