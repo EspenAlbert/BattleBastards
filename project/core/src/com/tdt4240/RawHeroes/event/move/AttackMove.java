@@ -23,6 +23,9 @@ public class AttackMove extends Move {
         super(selectedCell, target);
         this.damages = new HashMap<Position, Integer>();
         originalPosition = new Pair<Position, Position>(new Position(selectedCell.getPos().getX(), selectedCell.getPos().getY()),new Position(target.getPos().getX(), target.getPos().getY()));
+        if (getTargetCell().getPos().getX() < getStartCell().getPos().getX() && this.getStartCell().getUnit().isTurnedRight()){
+            this.getStartCell().getUnit().turnDirection();
+        }else if (!this.getStartCell().getUnit().isTurnedRight()) this.getStartCell().getUnit().turnDirection();
     }
 
 

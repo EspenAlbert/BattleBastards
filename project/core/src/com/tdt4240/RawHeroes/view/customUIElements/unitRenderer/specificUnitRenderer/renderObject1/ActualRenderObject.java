@@ -26,15 +26,18 @@ public class ActualRenderObject implements IRenderObject{
     private IUnit unit;
     private Sprite sprite;
     private RenderMode renderMode;
+    private float leftShift;
 
     public ActualRenderObject(IUnit unit) {
         this.unit = unit;
+        leftShift = this.unit.isTurnedRight() ? 0 : 0.5f;
         sheet = new StandardUnitSheet("units/soldierSheet.png");
         if (unit.isPlayer1Unit())sheet.setTexture (TextureChanger.changeColor(sheet.getTexture(), Color.RED));
         else sheet.setTexture (TextureChanger.changeColor(sheet.getTexture(), Color.BLUE));
         TextureRegion region = sheet.getActiveFrame(0, 0);
         sprite = new Sprite(region);
         sprite.setSize(1.5f,2);
+        this.changeRenderMode(RenderMode.STATIC);
         System.out.println("A render object has been created");
     }
 
@@ -51,7 +54,7 @@ public class ActualRenderObject implements IRenderObject{
 
     @Override
     public void render(SpriteBatch batch, Vector2 pos) {
-        sprite.setPosition(pos.x, pos.y);
+        sprite.setPosition(pos.x - leftShift, pos.y);
         sprite.draw(batch);
     }
 
@@ -59,6 +62,7 @@ public class ActualRenderObject implements IRenderObject{
     public void animationChanged(AnimationEvent event) {
         this.sprite = new Sprite(sheet.getActiveFrame(event.getActiveFrame(), event.getActiveAnimation()));
         sprite.setSize(1.5f,2);
+        leftShift = this.unit.isTurnedRight() ? 0 : 0.5f;
         switch (event.getActiveAnimation()){
             case AnimationConstants.IDLE_RIGHT:
                 this.renderMode = RenderMode.STATIC;
