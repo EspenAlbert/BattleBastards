@@ -124,7 +124,8 @@ public class StandardUnit implements IUnit {
 
     @Override
     public boolean isTurnedRight() {
-        return turnedRight;
+        //return turnedRight;
+        return false;
     }
 
     @Override
