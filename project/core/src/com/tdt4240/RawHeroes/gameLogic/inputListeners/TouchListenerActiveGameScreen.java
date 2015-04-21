@@ -57,11 +57,16 @@ public class TouchListenerActiveGameScreen implements TouchDown {
         int buttonHeight = GameConstants.RESOLUTION_HEIGHT /4;
         if (screenY > 0 && screenY < 1*buttonHeight){
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.gameScreen.backToMainMenu();
 =======
             System.out.println("Quit");
             this.gameScreen.finish("Quit");
 >>>>>>> Temporary commit for rebase
+=======
+            System.out.println("Quit");
+            this.gameScreen.finish("Quit");
+>>>>>>> d4198269fe2dc6378ea032dee10b3dbb2fd964d4
         }
         else if (screenY > 1*buttonHeight && screenY < 2*buttonHeight){
             this.boardController.actionButtonTouched();

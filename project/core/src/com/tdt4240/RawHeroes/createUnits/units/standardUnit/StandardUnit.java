@@ -40,7 +40,6 @@ public class StandardUnit extends Unit {
     public StandardUnit(boolean player1Unit) {
         super(player1Unit);
         health = MAX_HEALTH;
-
         this.remainingMoves = MAX_MOVES;
         this.weight = 10;
         this.unitCombatController = new SimpleUnitCombatController(this, MIN_DMG, MAX_DMG, 1, MAX_HEALTH, MAX_MOVES);
@@ -147,7 +146,7 @@ public class StandardUnit extends Unit {
     }
 
     @Override
-    public void addAnimationListener(IAnimationListener animationListener){
+    public void addAnimationListener(IAnimationListener animationListener) {
         this.unitAnimationController.addAnimationListener(animationListener);
     }
 }

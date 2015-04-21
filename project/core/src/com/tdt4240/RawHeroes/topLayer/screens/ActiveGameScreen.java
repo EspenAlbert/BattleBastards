@@ -89,6 +89,7 @@ public class ActiveGameScreen extends ScreenState{
            else{
                 message = "You lost the game against" + game.getPlayer1Nickname();
            }
+            backToMainMenu();
         }
         GestureDetector gd = new GestureDetector(MyInputProcessor.getInstance());
         Gdx.input.setInputProcessor(gd);
