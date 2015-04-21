@@ -26,11 +26,11 @@ public class UnitBuilding implements IUnitBuilding {
     public IUnit createUnit(UnitName name, boolean player1Unit) {
         switch (name) {
             case STANDARD_UNIT:
-                return unitFactory.createUnit(unitFactory.TYPE1, player1Unit);
+                return unitFactory.createUnit(name, player1Unit);
             case UNIT2:
                 break;
             case STANDARD_UNIT_2:
-                break;
+                return unitFactory.createUnit(name, player1Unit);
         }
         return null;
     }

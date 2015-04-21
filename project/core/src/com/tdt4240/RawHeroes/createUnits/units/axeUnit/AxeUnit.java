@@ -25,6 +25,7 @@ import java.util.ArrayList;
 public class AxeUnit implements IUnit {
 
     private final int MAX_HEALTH = 30;
+    private final int MAX_MOVES = 2;
 
     private final int MIN_DMG = 10;
     private final int MAX_DMG = 15;
@@ -48,7 +49,7 @@ public class AxeUnit implements IUnit {
 
         this.remainingMoves = 2;
         this.weight = 10;
-        this.unitCombatController = new SimpleUnitCombatController(this, MIN_DMG, MAX_DMG, 0, MAX_HEALTH);
+        this.unitCombatController = new SimpleUnitCombatController(this, MIN_DMG, MAX_DMG, 0, MAX_HEALTH, MAX_MOVES);
         this.turnedRight = player1Unit;
         this.unitMoveController = new WalkingUnitMovementController();
         this.unitAnimationController = new SimpleUnitAnimationController();
@@ -146,6 +147,16 @@ public class AxeUnit implements IUnit {
     }
 
     @Override
+    public int getMovesLeft() {
+        return this.unitCombatController.getMovesLeft();
+    }
+
+    @Override
+    public void move(int movesSpent) {
+        this.unitCombatController.move(movesSpent);
+    }
+
+    @Override
     public int[] getAttackDmg() {
         int[] a = new int[2];
         a[0] = this.unitCombatController.getMinAttackDmg();
@@ -203,6 +214,13 @@ public class AxeUnit implements IUnit {
                 break;
         }
     }
+
+    @Override
+    public void resetMoves() {
+        unitCombatController.resetMoves();
+
+    }
+
     @Override
     public void addAnimationListener(IAnimationListener animationListener){
         this.unitAnimationController.addAnimationListener(animationListener);
