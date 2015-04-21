@@ -41,7 +41,7 @@ public class SettingScreen extends ScreenState {
         final Slider slider = SliderFactory.createSlider();
         slider.setPosition(GameConstants.RESOLUTION_WIDTH/2 - slider.getWidth()/2, GameConstants.RESOLUTION_HEIGHT/2 + GameConstants.SCALE_HEIGHT);
         Label sliderTitle = LabelFactory.createLabel("Camera speed", GameConstants.RESOLUTION_WIDTH/2 - (int)slider.getWidth()/2,(int) slider.getY() + (int)slider.getHeight());
-        final Label sliderValue = LabelFactory.createLabel(Double.toString(Math.floor(slider.getValue() * 1e1)/1e1), (int) slider.getX() - GameConstants.LABEL_WIDTH/2, (int) slider.getY() - (int)slider.getHeight());
+        final Label sliderValue = LabelFactory.createLabel(Double.toString(Math.floor(slider.getValue() * 1e1)/1e1), (int) slider.getX() - GameConstants.LABEL_WIDTH, (int) slider.getY() - (int)slider.getHeight());
 
         stage = new Stage();
         changePasswordButton = MainMenuButtonsFactory.createButton("Change password", GameConstants.RESOLUTION_WIDTH/2 - GameConstants.BUTTON_WIDTH/2, GameConstants.RESOLUTION_HEIGHT/2);

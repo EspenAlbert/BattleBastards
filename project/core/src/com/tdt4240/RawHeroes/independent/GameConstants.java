@@ -7,7 +7,7 @@ import com.badlogic.gdx.Gdx;
  */
 public class GameConstants {
 
-    private static final boolean useAndroid = false;
+    private static final boolean useAndroid = true;
     public static final int RESOLUTION_WIDTH = useAndroid ? Gdx.graphics.getWidth() : 960;
     public static final int RESOLUTION_HEIGHT = useAndroid ? Gdx.graphics.getHeight() : 540;
     public static final int BUTTON_WIDTH = Math.round(GameConstants.RESOLUTION_WIDTH  / 5);
@@ -21,6 +21,8 @@ public class GameConstants {
     public static final int SCALE_HEIGHT = GameConstants.RESOLUTION_HEIGHT/5;
     public static final int SPACE_BETWEEN = 0;
     public static final int MAX_ENERGY = 100;
+    public static final int SLIDER_WIDTH = Math.round(GameConstants.RESOLUTION_WIDTH  / 4);
+    public static final int SLIDER_HEIGHT = Math.round(GameConstants.RESOLUTION_HEIGHT  / 9);
 
     public static final float GAME_WIDTH = 7; //Says how many cells visible at the same time
     public static final float GAME_HEIGHT = 5;

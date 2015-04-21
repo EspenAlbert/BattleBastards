@@ -152,7 +152,7 @@ public class CreateGameScreen extends ScreenState {
                     scrollTable.add(challangeButton);
                 }
                 else{
-                    scrollTable.row().height(GameConstants.BUTTON_WIDTH);
+                    scrollTable.row().height(GameConstants.BUTTON_HEIGHT);
                     scrollTable.add(p.getUsername()).width(GameConstants.TEXTFIELD_WIDTH/2).expandX();
                 }
             }
