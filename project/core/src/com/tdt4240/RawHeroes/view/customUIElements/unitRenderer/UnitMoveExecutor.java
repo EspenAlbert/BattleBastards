@@ -27,6 +27,7 @@ public class UnitMoveExecutor {
 
     public UnitMoveExecutor(UnitRenderer unitRenderer) {
         this.unitRenderer = unitRenderer;
+        this.currentPos = new Vector2(0 ,0);
         speed = 0.05f;
     }
 

@@ -54,6 +54,9 @@ public class StandardUnit implements IUnit {
         this.turnedRight = player1Unit;
         this.unitMoveController = new WalkingUnitMovementController();
         this.unitAnimationController = new SimpleUnitAnimationController();
+        if(!turnedRight){
+            this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_LEFT);
+        }
         System.out.println("Created a standard unit");
     }
     private StandardUnit(boolean player1Unit, int health, boolean hasAttacked, IUnitCombatController unitCombatController, IUnitMovementController unitMoveController, int remainingMoves, int weight, IUnitAnimationController unitAnimationController) {
