@@ -33,7 +33,9 @@ public class BoardControllerCellSelectedState extends BoardControllerState {
 
     @Override
     public void actionButtonPressed() { //Attack button
-        this.boardController.setState(new BoardControllerCellAndAttackSelectedState(this.boardController, this.board, this.selectedCell));
+        if (!selectedCell.getUnit().hasAttacked()){
+            this.boardController.setState(new BoardControllerCellAndAttackSelectedState(this.boardController, this.board, this.selectedCell));
+        }
     }
 
     @Override
@@ -63,7 +65,9 @@ public class BoardControllerCellSelectedState extends BoardControllerState {
 
     @Override
     public BoardControllerStateEvent getEvent() {
-        //TODO finne en bedre måte å gjøre energy parameteren på
+        if (selectedCell.getUnit().hasAttacked()) {
+            return new BoardControllerStateEvent(0, "No \n Attacks \n Left");
+        }
         return new BoardControllerStateEvent(0, "Attack");
     }
 
