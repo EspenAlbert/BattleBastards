@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -19,6 +20,7 @@ import com.tdt4240.RawHeroes.network.communication.Response.ResponseType;
 import com.tdt4240.RawHeroes.view.uiElements.DialogFactory;
 import com.tdt4240.RawHeroes.view.uiElements.LabelFactory;
 import com.tdt4240.RawHeroes.view.uiElements.MainMenuButtonsFactory;
+import com.tdt4240.RawHeroes.view.uiElements.SliderFactory;
 import com.tdt4240.RawHeroes.view.uiElements.TextFieldFactory;
 
 import java.security.NoSuchAlgorithmException;
@@ -36,10 +38,14 @@ public class SettingScreen extends ScreenState {
     public SettingScreen(ScreenStateManager gsm) {
         super(gsm);
 
+        final Slider slider = SliderFactory.createSlider();
+        slider.setPosition(GameConstants.RESOLUTION_WIDTH/2 - slider.getWidth()/2, GameConstants.RESOLUTION_HEIGHT/2 + GameConstants.SCALE_HEIGHT);
+        Label sliderTitle = LabelFactory.createLabel("Camera speed", GameConstants.RESOLUTION_WIDTH/2 - (int)slider.getWidth()/2,(int) slider.getY() + (int)slider.getHeight());
+        final Label sliderValue = LabelFactory.createLabel(Double.toString(Math.floor(slider.getValue() * 1e1)/1e1), (int) slider.getX() - GameConstants.LABEL_WIDTH/2, (int) slider.getY() - (int)slider.getHeight());
+
         stage = new Stage();
         changePasswordButton = MainMenuButtonsFactory.createButton("Change password", GameConstants.RESOLUTION_WIDTH/2 - GameConstants.BUTTON_WIDTH/2, GameConstants.RESOLUTION_HEIGHT/2);
         backToMainMenu = MainMenuButtonsFactory.createButton("Main menu", GameConstants.RESOLUTION_WIDTH/2 - GameConstants.BUTTON_WIDTH/2, GameConstants.SCALE_HEIGHT);
-
         changePasswordButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -52,10 +58,21 @@ public class SettingScreen extends ScreenState {
                 backToMainMenu();
             }
         });
+        slider.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                sliderValue.setText(Double.toString(Math.floor(slider.getValue() * 1e1)/1e1));
+                GameConstants.setCameraSpeed(slider.getValue());
+            }
+        });
         Gdx.input.setInputProcessor(stage);
         stage.addActor(changePasswordButton);
+        stage.addActor(sliderTitle);
         stage.addActor(backToMainMenu);
+        stage.addActor(sliderValue);
+        stage.addActor(slider);
     }
+
 
     public void backToMainMenu(){
         gsm.popOnly();
@@ -64,10 +81,17 @@ public class SettingScreen extends ScreenState {
         System.out.println("clicked create game...");
         final Dialog createGameDialog = DialogFactory.createDialogFactory("Create game");
 
-        final TextField oldPasswordTextField = TextFieldFactory.createTextField("Old password", (int) createGameDialog.getWidth() / 2 - GameConstants.RESOLUTION_WIDTH / 10, (int) createGameDialog.getHeight() / 2 + GameConstants.RESOLUTION_HEIGHT/7, false);
-        final TextField newPasswordTextField = TextFieldFactory.createTextField("New password", (int) createGameDialog.getWidth() / 2 - GameConstants.RESOLUTION_WIDTH / 10, (int) createGameDialog.getHeight() / 2, false);
-        final TextField confirmPasswordTextField = TextFieldFactory.createTextField("Confirm password", (int) createGameDialog.getWidth() / 2 - GameConstants.RESOLUTION_WIDTH / 10, (int) createGameDialog.getHeight() / 2 - GameConstants.RESOLUTION_HEIGHT/7, false);
+        final TextField oldPasswordTextField = TextFieldFactory.createTextField("", (int) createGameDialog.getWidth() / 2 - GameConstants.RESOLUTION_WIDTH / 10, (int) createGameDialog.getHeight() / 2 + GameConstants.RESOLUTION_HEIGHT/7, false);
+        final TextField newPasswordTextField = TextFieldFactory.createTextField("", (int) createGameDialog.getWidth() / 2 - GameConstants.RESOLUTION_WIDTH / 10, (int) createGameDialog.getHeight() / 2, false);
+        final TextField confirmPasswordTextField = TextFieldFactory.createTextField("", (int) createGameDialog.getWidth() / 2 - GameConstants.RESOLUTION_WIDTH / 10, (int) createGameDialog.getHeight() / 2 - GameConstants.RESOLUTION_HEIGHT/7, false);
         TextButton changePasswordButton = MainMenuButtonsFactory.createButton("Change password",GameConstants.RESOLUTION_WIDTH*2/3 -GameConstants.RESOLUTION_WIDTH/10, GameConstants.RESOLUTION_HEIGHT/10);
+        oldPasswordTextField.setPasswordCharacter('x');
+        oldPasswordTextField.setPasswordMode(true);
+        newPasswordTextField.setPasswordCharacter('x');
+        newPasswordTextField.setPasswordMode(true);
+        confirmPasswordTextField.setPasswordCharacter('x');
+        confirmPasswordTextField.setPasswordMode(true);
+
         changePasswordButton.addListener(new ClickListener() {
 
             @Override

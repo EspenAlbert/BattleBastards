@@ -55,11 +55,9 @@ public class CreateGameScreen extends ScreenState {
 
 
         int xPos = GameConstants.RESOLUTION_WIDTH/20;
-        int scaleY = GameConstants.RESOLUTION_HEIGHT/5;
         int yPosLabelInstruction = GameConstants.RESOLUTION_HEIGHT*4/5;
-        int yPosButtonCreateGame =  yPosLabelInstruction - scaleY;
 
-        buttonAddFriend = MainMenuButtonsFactory.createTableButton("Add Friend", GameConstants.RESOLUTION_WIDTH / 2, GameConstants.RESOLUTION_HEIGHT - 100, false);
+        buttonAddFriend = MainMenuButtonsFactory.createTableButton("Add Friend", GameConstants.RESOLUTION_WIDTH / 2, GameConstants.RESOLUTION_HEIGHT - GameConstants.SCALE_HEIGHT, false);
         scrollTable = ScrollTableFactory.createScrollTable();
         scrollTable.add("Friend list");
 
@@ -88,7 +86,7 @@ public class CreateGameScreen extends ScreenState {
             }
         });
 
-        labelInstruction = LabelFactory.createLabel("Create game", (int)buttonCreateGame.getX(), yPosLabelInstruction);
+        labelInstruction = LabelFactory.createLabel("Create game", xPos, yPosLabelInstruction);
         final TextButton buttonBackToMainMenu = MainMenuButtonsFactory.createButton("Back", xPos, GameConstants.RESOLUTION_HEIGHT/10);
         buttonBackToMainMenu.addListener(new ChangeListener() {
             @Override
@@ -119,9 +117,9 @@ public class CreateGameScreen extends ScreenState {
             System.out.println("New game has id: " + gameId);
             MainMenuScreen main = (MainMenuScreen) gsm.peek(0);
             main.addGameToTable(opponent, "Opponents turn", gameId);
+            backToMainMenu();
         }
         System.out.println("create game button dialog clicked" + " challenged player: " + opponent);
-        backToMainMenu();
     }
 
     public void backToMainMenu() {
@@ -149,14 +147,13 @@ public class CreateGameScreen extends ScreenState {
                 if(responseGame.getType() == ResponseType.SUCCESS){
                     TextButton challangeButton = MainMenuButtonsFactory.createTableButton("Challange?", GameConstants.RESOLUTION_WIDTH/2 - GameConstants.RESOLUTION_WIDTH/10, GameConstants.RESOLUTION_HEIGHT, false);
                     challangeButton.addListener( new ChallangeGameClickedListener(this, p.getUsername()));
-                    scrollTable.row().height(challangeButton.getHeight() + GameConstants.RESOLUTION_HEIGHT / 10);
-                    scrollTable.row().width(100);
-                    scrollTable.add(p.getUsername());
+                    scrollTable.row().height(GameConstants.BUTTON_HEIGHT);
+                    scrollTable.add(p.getUsername()).width(GameConstants.TEXTFIELD_WIDTH/2).expandX();
                     scrollTable.add(challangeButton);
                 }
                 else{
-                    scrollTable.add(p.getUsername());
-                    scrollTable.row().height(GameConstants.BUTTON_WIDTH + GameConstants.RESOLUTION_HEIGHT / 10);
+                    scrollTable.row().height(GameConstants.BUTTON_WIDTH);
+                    scrollTable.add(p.getUsername()).width(GameConstants.TEXTFIELD_WIDTH/2).expandX();
                 }
             }
         }

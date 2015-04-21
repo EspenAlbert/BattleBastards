@@ -20,5 +20,6 @@ public class SurrenderGameClickListener extends ClickListener {
     @Override
     public void clicked(InputEvent event, float x, float y) {
         screenState.deleteGame(gameId);
+        screenState.getAllGames();
     }
 }

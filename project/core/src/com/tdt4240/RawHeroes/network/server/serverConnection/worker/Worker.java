@@ -248,6 +248,9 @@ public class Worker extends Thread {
     private ResponseMessage addToFriendList(RequestMessage request) throws Exception {
         PlayerHandler playerHandler = PlayerHandler.getInstance();
         Player user = request.getPlayer();
+        String challengedPlayer = (String) request.getParameters().get(0);
+        boolean challengedPlayerIsReal = !playerHandler.usernameIsAvailable(challengedPlayer);
+        if(!challengedPlayerIsReal) return ResponseCreator.getChallengePlayerDoesNotExist();
         Player playerFriend = PlayerHandler.getInstance().getPlayer((String) request.getParameters().get(0));
         boolean addedSuccessfully = playerHandler.addFriend(user, playerFriend);
         if(addedSuccessfully) return ResponseCreator.getAddedSucess();

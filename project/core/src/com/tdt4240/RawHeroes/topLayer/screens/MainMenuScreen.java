@@ -143,6 +143,7 @@ public class MainMenuScreen extends ScreenState {
     @Override
     public void setInputProcessor(){
         Gdx.input.setInputProcessor(stage);
+        getAllGames();
     }
 
     public void setMsg(String msg){
