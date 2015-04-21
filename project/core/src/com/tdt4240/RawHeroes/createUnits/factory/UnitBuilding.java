@@ -1,6 +1,6 @@
 package com.tdt4240.RawHeroes.createUnits.factory;
 
-import com.tdt4240.RawHeroes.createUnits.units.standardUnit.StandardUnitFactory;
+import com.tdt4240.RawHeroes.createUnits.units.UnitFactory;
 import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
 import com.tdt4240.RawHeroes.gameLogic.unit.UnitName;
 
@@ -10,7 +10,7 @@ import com.tdt4240.RawHeroes.gameLogic.unit.UnitName;
 public class UnitBuilding implements IUnitBuilding {
 
     private static UnitBuilding instance;
-    private final StandardUnitFactory standardUnitFactory;
+    private final UnitFactory unitFactory;
 
     public static UnitBuilding getInstance() {
         if(instance == null) {
@@ -19,14 +19,14 @@ public class UnitBuilding implements IUnitBuilding {
         return instance;
     }
     private UnitBuilding() {
-        standardUnitFactory = new StandardUnitFactory();
+        unitFactory = new UnitFactory();
     }
 
     @Override
     public IUnit createUnit(UnitName name, boolean player1Unit) {
         switch (name) {
             case STANDARD_UNIT:
-                return standardUnitFactory.createUnit(standardUnitFactory.TYPE1, player1Unit);
+                return unitFactory.createUnit(unitFactory.TYPE1, player1Unit);
             case UNIT2:
                 break;
             case STANDARD_UNIT_2:

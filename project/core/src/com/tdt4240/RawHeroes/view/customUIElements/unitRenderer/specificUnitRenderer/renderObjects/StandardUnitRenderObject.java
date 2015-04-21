@@ -1,16 +1,12 @@
-package com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.renderObject1;
+package com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.renderObjects;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.tdt4240.RawHeroes.createUnits.units.standardUnit.StandardUnitSheet;
 import com.tdt4240.RawHeroes.event.events.AnimationEvent;
-import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitAnimationController;
-import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.SimpleUnitAnimationController;
 import com.tdt4240.RawHeroes.gameLogic.models.ISpritesheet;
 import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
 import com.tdt4240.RawHeroes.independent.AnimationConstants;
@@ -20,7 +16,7 @@ import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRend
 /**
  * Created by espen1 on 27.02.2015.
  */
-public class ActualRenderObject implements IRenderObject{
+public class StandardUnitRenderObject implements IRenderObject{
 
     public ISpritesheet sheet;
     private IUnit unit;
@@ -28,7 +24,7 @@ public class ActualRenderObject implements IRenderObject{
     private RenderMode renderMode;
     private float leftShift;
 
-    public ActualRenderObject(IUnit unit) {
+    public StandardUnitRenderObject(IUnit unit) {
         this.unit = unit;
         leftShift = this.unit.isTurnedRight() ? 0 : 0.5f;
         sheet = new StandardUnitSheet("units/soldierSheet.png");
