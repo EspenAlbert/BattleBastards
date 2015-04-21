@@ -39,7 +39,7 @@ public class EspenSuperTesterScreen extends ScreenState {
 
         board = game.getBoard();
         movementController = new WalkingUnitMovementController();
-        simpleUnitCombatController = new SimpleUnitCombatController(attackUnit, 5, 9, 1);
+        simpleUnitCombatController = new SimpleUnitCombatController(attackUnit, 5, 9, 1, 20);
         boardMover = new BoardMover(board);
 
 
