@@ -2,6 +2,7 @@ package com.tdt4240.RawHeroes.view.customUIElements.unitRenderer;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.tdt4240.RawHeroes.event.move.SkipMove;
 import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.ICameraController;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.event.move.AttackMove;
@@ -92,6 +93,9 @@ public class UnitRenderer implements IMoveListener {
 
     @Override
     public void moveExecuted(Move move) {
+        if(move instanceof SkipMove){
+            currentAnimations.clear();
+        }
         currentAnimations.add(move);
     }
 
