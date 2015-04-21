@@ -124,8 +124,7 @@ public class StandardUnit implements IUnit {
 
     @Override
     public boolean isTurnedRight() {
-        //return turnedRight;
-        return false;
+        return turnedRight;
     }
 
     @Override
@@ -195,11 +194,11 @@ public class StandardUnit implements IUnit {
                 break;
             case ATTACKING:
                 if(this.turnedRight)this.unitAnimationController.setActiveAnimation(AnimationConstants.ATK_RIGHT);
-                else this.unitAnimationController.setActiveAnimation(AnimationConstants.ATK_RIGHT);
+                else this.unitAnimationController.setActiveAnimation(AnimationConstants.ATK_LEFT);
                 break;
             case HURT:
-                if(this.turnedRight)this.unitAnimationController.setActiveAnimation(AnimationConstants.HURT_RIGHT);
-                else this.unitAnimationController.setActiveAnimation(AnimationConstants.HURT_RIGHT);
+                if (this.unitAnimationController.getActiveAnimation() == AnimationConstants.IDLE_RIGHT)this.unitAnimationController.setActiveAnimation(AnimationConstants.HURT_RIGHT);
+                else this.unitAnimationController.setActiveAnimation(AnimationConstants.HURT_LEFT);
                 break;
             case KILLED:
                 this.unitAnimationController.setActiveAnimation(AnimationConstants.DEAD);

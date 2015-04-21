@@ -23,6 +23,9 @@ public class MovementMove extends Move {
         this.path = path;
         length=path.size();
         this.setCost((length-1) * this.getStartCell().getUnit().getWeight());
+        if (getTargetCell().getPos().getX() < getStartCell().getPos().getX() && this.getStartCell().getUnit().isTurnedRight()){
+            this.getStartCell().getUnit().turnDirection();
+        }else if (!this.getStartCell().getUnit().isTurnedRight()) this.getStartCell().getUnit().turnDirection();
 
     }
 
