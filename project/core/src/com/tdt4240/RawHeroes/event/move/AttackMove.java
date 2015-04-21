@@ -2,6 +2,7 @@ package com.tdt4240.RawHeroes.event.move;
 
 import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
 import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.CellConverter;
+import com.tdt4240.RawHeroes.independent.Pair;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
 import com.tdt4240.RawHeroes.independent.Position;
@@ -15,11 +16,13 @@ import java.util.HashMap;
 public class AttackMove extends Move {
 
     private HashMap<Position, Integer> damages;
+    private Pair<Position, Position> originalPosition;
 
 
     public AttackMove(ICell selectedCell, ICell target) {
         super(selectedCell, target);
         this.damages = new HashMap<Position, Integer>();
+        originalPosition = new Pair<Position, Position>(new Position(selectedCell.getPos().getX(), selectedCell.getPos().getY()),new Position(target.getPos().getX(), target.getPos().getY()));
     }
 
 
@@ -37,7 +40,9 @@ public class AttackMove extends Move {
         }
         initializeDamages(board);
         for (Position key : damages.keySet()) {
-                board.getCell(key).getUnit().attacked(damages.get(key));
+            System.out.println("Attacking: " + key.getX() + "," + key.getY() +  " with damage: " + damages.get(key));
+            board.getCell(key).getUnit().attacked(damages.get(key));
+            if(board.getCell(key).getUnit().getHealth() < 1) board.getCell(key).setUnit(null);
             }
     }
 
@@ -46,12 +51,17 @@ public class AttackMove extends Move {
         getStartCell().getUnit().setHasAttacked(false);
     }
 
+
     @Override
-    public void convertPositions(int boardWidth, int boardHeight) {
+    public void convertPositions(CellConverter converter) {
         HashMap<Position, Integer> newDamages = new HashMap<Position, Integer>();
         for(Position pos : damages.keySet()) {
-            newDamages.put(CellConverter.switchPosition(pos, boardWidth, boardHeight), damages.get(pos));
+            newDamages.put(converter.switchPosition(pos), damages.get(pos));
         }
+        getStartCell().setPos(converter.switchPosition(getStartCell().getPos()));
+        if(getStartCell().getPos().equals(originalPosition.getKey())) getStartCell().setPos(converter.switchPosition(getStartCell().getPos()));
+        getTargetCell().setPos(converter.switchPosition(getTargetCell().getPos()));
+        if(getTargetCell().getPos().equals(originalPosition.getValue())) getTargetCell().setPos(converter.switchPosition(getTargetCell().getPos()));
         damages = newDamages;
     }
 

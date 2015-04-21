@@ -3,6 +3,7 @@ package com.tdt4240.RawHeroes.network.server.serverConnection.worker;
 import com.tdt4240.RawHeroes.createGame.factory.GameBuilding;
 import com.tdt4240.RawHeroes.event.move.Move;
 import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardMover;
+import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.CellConverter;
 import com.tdt4240.RawHeroes.network.server.database.DatabaseConnector;
 import com.tdt4240.RawHeroes.network.server.serverConnection.player.Player;
 import com.tdt4240.RawHeroes.network.server.serverConnection.worker.exceptions.GameNotFoundException;
@@ -78,13 +79,11 @@ public class GameHandler implements IGameHandler{
         if(iAmPlayer1 != game.getNextTurnIsPlayer1()) throw new NotYourTurnException();
         //Move was ok...
         if(!iAmPlayer1) {//Means that player 2 has done moves
-            for(Move move : moves) {
-                move.convertPositions(game.getBoard().getWidth(), game.getBoard().getHeight());
-            }
+            convertMoves(moves, game.getBoard().getWidth(), game.getBoard().getHeight());
         }
         game.setNextTurnIsPlayer1(!game.getNextTurnIsPlayer1());//Set the turn to other player
         BoardMover mover = new BoardMover(game.getBoard());
-        mover.executeMoves(game.getLastMoves());
+        mover.executeMovesFromOtherPlayer(game.getLastMoves(), true);
         game.setLastMoves(moves);
         boolean won = iAmPlayer1 ? game.player1IsWinner() : game.player2IsWinner();
         if(won) {
@@ -99,5 +98,13 @@ public class GameHandler implements IGameHandler{
     public ArrayList<Integer> getGameIds(String username) throws SQLException {
         ArrayList<Integer> gameIds = databaseConnector.getAllKeys(username);
         return gameIds;
+    }
+
+    private  ArrayList<Move> convertMoves(ArrayList<Move> moves, int xLength, int yLength) {
+        CellConverter converter = new CellConverter(xLength, yLength);
+        for(Move move: moves) {
+            move.convertPositions(converter);
+        }
+        return moves;
     }
 }

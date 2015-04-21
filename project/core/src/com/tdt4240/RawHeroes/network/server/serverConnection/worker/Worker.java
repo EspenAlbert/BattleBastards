@@ -144,6 +144,7 @@ public class Worker extends Thread {
     private ResponseMessage deleteGame(RequestMessage request)throws Exception{
         GameHandler gameHandler = GameHandler.getInstance();
         Integer gameId = (Integer) request.getParameters().get(0);
+<<<<<<< HEAD
         try {
             gameHandler.deleteGame(gameId);
         } catch (GameNotFoundException e) {
@@ -152,6 +153,9 @@ public class Worker extends Thread {
             return ResponseCreator.getNotYourGameException(gameId);
         }
         return ResponseCreator.getDeletedGame();
+=======
+        return null;
+>>>>>>> development
     }
 
     private ResponseMessage getGameIds(RequestMessage request) throws Exception {

@@ -81,4 +81,8 @@ public class Position implements Serializable, Comparable<Position>{
         if(this.getY() < p.getY()) return 1;
         return 0;
     }
+    @Override
+    public String toString() {
+        return x + "," + y;
+    }
 }

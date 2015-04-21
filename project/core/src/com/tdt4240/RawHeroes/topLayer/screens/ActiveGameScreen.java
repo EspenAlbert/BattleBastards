@@ -39,7 +39,7 @@ public class ActiveGameScreen extends ScreenState{
 
     private final GameView gameView;
     private final hudRenderer hud;
-    private final IBoardMover boardMover;
+    private final BoardMover boardMover;
     private final IBoardController boardController;
     private final IBoard board;
     private final boolean iAmPlayer1;
@@ -54,14 +54,11 @@ public class ActiveGameScreen extends ScreenState{
         board = game.getBoard();
         System.out.println("in active game screen!!!!!");
         iAmPlayer1 = ClientConnection.getInstance().getUsername().equals(game.getPlayer1Nickname());
-        if(!iAmPlayer1) {
-            board.convertCellsToOtherPlayer();
-        }
         boardMover = new BoardMover(board);
+        boardController = new BoardController(board, boardMover, game.getMoveCount(), iAmPlayer1);//MUST ALWAYS BE EXECUTED BEFORE creating gameView!!
 
         cameraController = new CameraController();
         gameView = new GameView(board, iAmPlayer1, cameraController);
-        boardController = new BoardController(board, boardMover, game.getMoveCount(), iAmPlayer1);
 
         hud = new hudRenderer(boardController);
 
@@ -69,22 +66,24 @@ public class ActiveGameScreen extends ScreenState{
         boardMover.addMoveListener(hud);
         board.addBoardListener(gameView);
 
-        if(!iAmPlayer1) boardMover.executeMovesFromOtherPlayer(game.getLastMoves());
-        else boardMover.executeMoves(game.getLastMoves());
+        boardMover.executeMovesFromOtherPlayer(game.getLastMoves(), iAmPlayer1);
         hudBatch = new SpriteBatch(5);
         resize(GameConstants.RESOLUTION_WIDTH, GameConstants.RESOLUTION_HEIGHT);
     }
     private void initializeTouchListener() {
         //Check if you have lost:
+        game.setBoard(board);
         boolean loser = iAmPlayer1 ? game.player2IsWinner() : game.player1IsWinner();
         if(loser) {
             MainMenuScreen main = (MainMenuScreen) gsm.peek(0);
             if(iAmPlayer1){
                 main.setMsg("You lost the game against" + game.getPlayer2Nickname());}
-            else{
+           else{
                 main.setMsg("You lost the game against" + game.getPlayer1Nickname());
             }
             ResponseMessage response = ClientConnection.getInstance().deleteGame(game.getId());
+          // ResponseMessage response = ClientConnection.getInstance().createNewGame(opponent, Games.KILL_ALL_ENEMY_UNITS);
+
             gsm.popOnly();
         }
         GestureDetector gd = new GestureDetector(MyInputProcessor.getInstance());
@@ -107,11 +106,11 @@ public class ActiveGameScreen extends ScreenState{
         if(endGameState && gameView.noAnimationWaiting()) {
             boolean winner = iAmPlayer1 ? game.player1IsWinner() : game.player2IsWinner();
             System.out.println("About to finish game");
+            gsm.popOnly();
             if(winner) {
                 //TODO: PostgameScreen
 
             } else {
-                gsm.popOnly();
             }
         }
         Gdx.gl.glClearColor(0.36f, 0.32f, 0.27f, 1.0f);

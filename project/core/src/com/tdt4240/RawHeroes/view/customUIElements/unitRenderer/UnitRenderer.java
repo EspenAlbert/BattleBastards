@@ -105,7 +105,8 @@ public class UnitRenderer implements IMoveListener {
             }
             unitPositionsAndRenderObjects.get(key).render(batch, key.getVec2Pos());
         }
-        if(!hasRenderedActor && animationIsActive)moveExecutor.update(batch);
+        //if(!hasRenderedActor && animationIsActive)moveExecutor.update(batch);
+
         if(!animationIsActive && !currentAnimations.isEmpty()) {
             executeMove(currentAnimations.poll());
         }
