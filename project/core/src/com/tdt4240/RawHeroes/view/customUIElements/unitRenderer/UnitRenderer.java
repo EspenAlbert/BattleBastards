@@ -28,7 +28,7 @@ import java.util.Queue;
 public class UnitRenderer implements IMoveListener {
     private UnitMoveExecutor moveExecutor;
     private IBoard board;
-    private ICameraController camera;
+    private ICameraController cameraController;
 
     private ArrayList<IUnit> units;
 
@@ -37,9 +37,9 @@ public class UnitRenderer implements IMoveListener {
     private Queue<Move> currentAnimations = new LinkedList<Move>();
     private boolean animationIsActive = false;
 
-    public UnitRenderer(IBoard board, ICameraController camera, boolean iAmPlayer1) {
+    public UnitRenderer(IBoard board, ICameraController cameraController, boolean iAmPlayer1) {
         this.board = board;
-        this.camera = camera;
+        this.cameraController = cameraController;
         this.units = new ArrayList<IUnit>();
         setupUnitRenderer();
     }
@@ -103,7 +103,7 @@ public class UnitRenderer implements IMoveListener {
         animationIsActive = true;
         Position startPos = move.getStartCell().getPos();
         Position endPos = move.getTargetCell().getPos();
-        camera.makeSureVisible(startPos, endPos);
+        cameraController.makeSureVisible(startPos, endPos);
 
         if (move instanceof AttackMove) {
             IRenderObject attacker = unitPositionsAndRenderObjects.get(startPos);

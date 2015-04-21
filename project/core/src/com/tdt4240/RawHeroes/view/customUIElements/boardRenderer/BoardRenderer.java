@@ -33,27 +33,16 @@ public class BoardRenderer implements IBoardListener, IRenderNoPos {
     public static Texture inMovementRangeCell = new Texture(Gdx.files.internal("gridOverlay/gridGreen.png"));
     public static Texture selectedCell = new Texture(Gdx.files.internal("gridOverlay/gridWhite.png"));
 
-    private int cameraY;
-    private int cameraX;
-
     public BoardRenderer(IBoard board, boolean iAmPlayer1) {
         this.board = board;
         board.addBoardListener(this);
-
         ICell[][] cells = board.getCells();
-
-
-
         boardWidth = cells.length;
         boardHeight = cells[0].length;
-
         cellStatuses = new CellStatus[boardWidth][boardHeight];
-
         grassSprites = new ArrayList<ArrayList<Sprite>>();
         overlaySprites = new ArrayList<ArrayList<Sprite>>();
-
         setupSprites(cells);
-
     }
 
     private void setupSprites(ICell[][] cells) {
