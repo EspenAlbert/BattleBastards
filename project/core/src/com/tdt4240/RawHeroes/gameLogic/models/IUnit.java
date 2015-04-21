@@ -40,6 +40,7 @@ public interface IUnit extends Serializable{
     int getArmor();
     int getHealth();
     int getMaxHealth();
+    int getMovesLeft();
 
     boolean hasAttacked();
     IUnit getCopy();
