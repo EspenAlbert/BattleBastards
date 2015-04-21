@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.tdt4240.RawHeroes.event.listener.IMoveListener;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.event.move.Move;
 import com.tdt4240.RawHeroes.independent.Position;
@@ -32,7 +33,6 @@ public class BoardController implements IBoardController {
 
     private int remaining_energy;
     private boolean iAmPlayer1;
-    private String actionButtonText = "Action";
 
 
     public BoardController(IBoard board, int remaining_energy, boolean iAmPlayer1) {
@@ -112,10 +112,6 @@ public class BoardController implements IBoardController {
             board.getCell(unitPosition).getUnit().resetMoves();
         }
     }
-    @Override
-    public IBoardMover getBoardMover() {
-        return boardMover;
-    }
 
     @Override
     public void executeMovesFromOtherPlayer(ArrayList<Move> lastMoves, boolean iAmPlayer1) {
@@ -125,5 +121,11 @@ public class BoardController implements IBoardController {
     @Override
     public ArrayList<Move> confirmMoves() {
         return boardMover.confirmMoves();
+    }
+
+    @Override
+    public void addMoveListener(IMoveListener listener) {
+        boardMover.addMoveListener(listener);
+
     }
 }

@@ -27,20 +27,18 @@ public class GameView implements IView, IBoardListener, IMoveListener {
     private FinishScreenRenderer finishScreenRenderer;
     private final UnitRenderer unitRenderer;
     private final BoardRenderer boardRenderer;
-    private final IBoard board;
     private final UnitDetailRenderer unitDetails;
     private final HudRenderer hudRenderer;
 
 
     public GameView(IBoard board, boolean iAmPlayer1, ICameraController camera, IBoardController boardController) {
-        this.board = board;
         boardRenderer = new BoardRenderer(board, iAmPlayer1);
         unitRenderer = new UnitRenderer(board, camera, iAmPlayer1);
         unitDetails = new UnitDetailRenderer(board);
         hudRenderer = new HudRenderer(boardController);
         hudBatch = new SpriteBatch(5);
         finishScreenRenderer = null;
-        boardController.getBoardMover().addMoveListener(this);
+        boardController.addMoveListener(this);
         board.addBoardListener(this);
     }
 
