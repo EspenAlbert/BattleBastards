@@ -17,7 +17,7 @@ public class TouchListenerActiveGameScreen implements TouchDown {
     private ActiveGameScreen gameScreen;
     private final IBoardController boardController;
     private boolean firstTouch;
-    private float boardMaxXCoordinate;
+    private static float boardMaxXCoordinate;
     private float boardMinXCoordinate;
 
     public TouchListenerActiveGameScreen(IBoardController boardController, ICameraController cameraController, ActiveGameScreen gameScreen) {
@@ -56,7 +56,12 @@ public class TouchListenerActiveGameScreen implements TouchDown {
     private void hudTouch(float screenY) {
         int buttonHeight = GameConstants.RESOLUTION_HEIGHT /4;
         if (screenY > 0 && screenY < 1*buttonHeight){
+<<<<<<< HEAD
             this.gameScreen.backToMainMenu();
+=======
+            System.out.println("Quit");
+            this.gameScreen.finish("Quit");
+>>>>>>> Temporary commit for rebase
         }
         else if (screenY > 1*buttonHeight && screenY < 2*buttonHeight){
             this.boardController.actionButtonTouched();
@@ -72,4 +77,7 @@ public class TouchListenerActiveGameScreen implements TouchDown {
         }*/
     }
 
+    public static float getBoardMaxXCoordinate() {
+        return boardMaxXCoordinate;
+    }
 }

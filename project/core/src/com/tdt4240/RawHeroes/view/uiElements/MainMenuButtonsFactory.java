@@ -28,7 +28,7 @@ public class MainMenuButtonsFactory{
             }
     }
 
-    public static TextButton createButton(String text, int xPos, int yPos, int xSize, int ySize) {
+    public static TextButton createButton(String text, float xPos, float yPos, float xSize, float ySize) {
 
         TextButton button = new TextButton(text, skin);
         button.setPosition(xPos, yPos);

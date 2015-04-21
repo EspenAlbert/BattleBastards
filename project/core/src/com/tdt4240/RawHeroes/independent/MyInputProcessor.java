@@ -19,6 +19,7 @@ import java.util.ArrayList;
 public class MyInputProcessor implements GestureDetector.GestureListener, InputProcessor {
     private static MyInputProcessor instance;
     private boolean active;
+    private boolean touchDownsListenersRemoveLast = false;
 
 
     private MyInputProcessor() {
@@ -68,6 +69,10 @@ public class MyInputProcessor implements GestureDetector.GestureListener, InputP
     @Override
     public boolean tap(float x, float y, int count, int button) {
         if(!active) return false;
+        if(touchDownsListenersRemoveLast) {
+            touchDownsListeners.remove(touchDownsListeners.size() -1);
+            touchDownsListenersRemoveLast = false;
+        }
         for(TouchDown listener: touchDownsListeners) {
             listener.touchDown(x, y, count, button);
         }
@@ -159,5 +164,9 @@ public class MyInputProcessor implements GestureDetector.GestureListener, InputP
 
     public void deactivateListeners() {
         active = false;
+    }
+
+    public void removeLastTouchListener() {
+        touchDownsListenersRemoveLast = true;
     }
 }
