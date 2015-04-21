@@ -86,4 +86,5 @@ public class hudRenderer implements IRenderNoPos, BoardControllerStateListener, 
     public void moveExecuted(Move move) {
         energyChanged=true;
     }
+
 }
