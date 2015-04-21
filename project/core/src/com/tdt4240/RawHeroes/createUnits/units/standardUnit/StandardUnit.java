@@ -56,6 +56,7 @@ public class StandardUnit implements IUnit {
         this.unitAnimationController = new SimpleUnitAnimationController();
         System.out.println("Created a standard unit");
     }
+
     private StandardUnit(boolean player1Unit, int health, boolean hasAttacked, IUnitCombatController unitCombatController, IUnitMovementController unitMoveController, int remainingMoves, int weight, IUnitAnimationController unitAnimationController) {
         this.player1Unit = player1Unit;
         this.health = health;
@@ -181,7 +182,7 @@ public class StandardUnit implements IUnit {
     }
 
     @Override
-    public void setActiveAnimation(RenderMode renderMode){
+    public void setActiveAnimation(RenderMode renderMode){ //Render the units based on which way they are turned
         switch (renderMode){
 
             case STATIC:

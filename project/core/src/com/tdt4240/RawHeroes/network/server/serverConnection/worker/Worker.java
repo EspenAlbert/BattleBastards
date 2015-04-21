@@ -77,7 +77,6 @@ public class Worker extends Thread {
         RequestTypes requestType = request.getType();
         try {
             boolean loginFirst = true;
-            //Login no matter what, woops, not if you want to create a new user...
             if(requestType == RequestTypes.CREATE_USER) {
                 loginFirst = false;
             }

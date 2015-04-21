@@ -8,7 +8,6 @@ import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
  */
 public class StandardUnitFactory implements IUnitFactory{
     public final String TYPE1 = "Type1";
-    public final String TYPE2 = "Type2";
 
 
     @Override
@@ -16,13 +15,8 @@ public class StandardUnitFactory implements IUnitFactory{
         if(unitType.equals(TYPE1)) {
             IUnit unit =  new StandardUnit(player1Unit);
             return unit;
-            //unit.setAttackLogic(new SimpleUnitAttackController(5));
-        }/* else if(unitType.equals(TYPE2)) {
 
-            IUnit unit =  new StandardUnit(player1Unit);
-            unit.setAttackLogic(new SimpleUnitAttackController(10));
         }
-        */
         else {
             return null;
         }

@@ -49,7 +49,7 @@ public class hudRenderer implements IRenderNoPos, BoardControllerStateListener, 
         abortButton.draw(batch, 1);
         actionButton.draw(batch, 1);
         if(energyChanged){
-            energyLabel.setText(this.boardController.getRemaining_energy() + "/100");
+            energyLabel.setText(this.boardController.getRemaining_energy() + "/" + GameConstants.MAX_ENERGY);
             energyChanged = false;
         }
         energyLabel.draw(batch, 1);

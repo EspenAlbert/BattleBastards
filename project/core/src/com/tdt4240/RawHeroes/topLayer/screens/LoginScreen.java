@@ -47,7 +47,6 @@ public class LoginScreen extends ScreenState {
         super(gsm);
         skin = new Skin(Gdx.files.internal("uiskin.json"), new TextureAtlas(Gdx.files.internal("uiskin.atlas")));
         img = new Texture("badlogic.jpg");
-        //skin = new Skin(Gdx.files.internal("uiskin.json"), new TextureAtlas(Gdx.files.internal("uiskin.atlas")));
         stage = new Stage();
         loginAttempts = 0;
 
@@ -63,7 +62,6 @@ public class LoginScreen extends ScreenState {
 
 
         buttonLogin = MainMenuButtonsFactory.createButton("Login", xPos, yPosButton);
-        //buttonLogin.getStyle().font.setScale((float)GameConstants.BUTTON_WIDTH*4/(float)GameConstants.RESOLUTION_WIDTH,(float)GameConstants.BUTTON_WIDTH*4/(float)GameConstants.RESOLUTION_WIDTH);
         buttonLogin.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {

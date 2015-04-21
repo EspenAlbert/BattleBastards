@@ -40,7 +40,7 @@ public class StandardBoard implements IBoard {
     }
 
     private ICell[][] createStandardBoardCells(boolean fromOriginal) {
-        ICell[][] newCells = new ICell[width][height];
+        ICell[][] newCells = new ICell[width][height]; //Creating board with 7X7 cells
         for(int x = 0; x< width; x++) {
             for (int y = 0; y < height; y++) {
                 newCells[x][y] = new Cell(x, y, fromOriginal ? cells[x][y].getStatus() : CellStatus.DEFAULT);
@@ -73,7 +73,7 @@ public class StandardBoard implements IBoard {
 
     @Override
     public void switchModeOnCell(Position pos, CellStatus status) {
-        cells[((int) pos.getX())][((int) pos.getY())].setStatus(status);
+        cells[(pos.getX())][( pos.getY())].setStatus(status);
         fireBoardChanged(new CellChangeEvent(pos));
 
     }

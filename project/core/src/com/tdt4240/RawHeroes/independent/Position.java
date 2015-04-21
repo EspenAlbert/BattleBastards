@@ -44,16 +44,6 @@ public class Position implements Serializable, Comparable<Position>{
         this.y += position.getY();
         return this;
     }
-    public Position sub(int x, int y){
-        this.x -= x;
-        this.y -= y;
-        return this;
-    }
-    public Position sub(Position position){
-        this.x -= position.getX();
-        this.y -= position.getY();
-        return this;
-    }
     public Position cpy(){
         return new Position(this.x, this.y);
     }

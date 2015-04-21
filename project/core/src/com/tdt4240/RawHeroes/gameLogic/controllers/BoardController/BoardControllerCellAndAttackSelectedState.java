@@ -36,7 +36,6 @@ public class BoardControllerCellAndAttackSelectedState extends BoardControllerSt
         if (cell.getStatus() == CellStatus.ATTACKABLE){
             AttackMove move = new AttackMove(selectedCell, cell);
             if (move.getCost() <= this.boardController.getRemaining_energy())this.boardController.addMove(move);
-            //TODO disable så samme unit ikke kan angripe flere ganger per tur
             this.board.switchModeOnCell(selectedCell.getPos(), CellStatus.DEFAULT);
             this.boardController.setState(new BoardControllerNoCellSelectedState(this.boardController, this.board));
         }

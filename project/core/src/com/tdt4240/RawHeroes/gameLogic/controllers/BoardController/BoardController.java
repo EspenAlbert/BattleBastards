@@ -32,7 +32,6 @@ public class BoardController implements IBoardController {
 
     private int remaining_energy;
     private boolean iAmPlayer1;
-    private String actionButtonText = "Action";
 
 
     public BoardController(IBoard board, IBoardMover boardMover, int remaining_energy, boolean iAmPlayer1) {
@@ -83,13 +82,6 @@ public class BoardController implements IBoardController {
     @Override
     public void actionButtonTouched() {
         boardStates.peek().actionButtonPressed();
-    }
-
-    @Override
-    public void cellTouchedLong(Position coordinates){
-        if (board.getCell(coordinates).getUnit() != null){
-            //TODO åpne et nytt vindu med informasjon om denne uniten
-        }
     }
 
     public int getRemaining_energy(){

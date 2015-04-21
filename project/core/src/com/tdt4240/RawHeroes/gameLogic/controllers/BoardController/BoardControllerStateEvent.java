@@ -8,10 +8,6 @@ public class BoardControllerStateEvent {
     private int energy;
     private String actionButtonText;
 
-    public int getEnergy() {
-        return energy;
-    }
-
     public String getActionButtonText() {
         return actionButtonText;
     }

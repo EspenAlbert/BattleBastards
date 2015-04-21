@@ -12,7 +12,6 @@ import com.tdt4240.RawHeroes.independent.Position;
 public interface IBoardController {
 
     void cellTouched(Position coordinates);
-    void cellTouchedLong(Position coordinates);
     void actionButtonTouched();
     void addMove(Move move);
     void undoMove();

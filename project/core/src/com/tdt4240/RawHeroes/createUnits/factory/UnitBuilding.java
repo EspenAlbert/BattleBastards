@@ -23,7 +23,7 @@ public class UnitBuilding implements IUnitBuilding {
     }
 
     @Override
-    public IUnit createUnit(UnitName name, boolean player1Unit) {
+    public IUnit createUnit(UnitName name, boolean player1Unit) { //Creating the units based on unit type
         switch (name) {
             case STANDARD_UNIT:
                 return standardUnitFactory.createUnit(standardUnitFactory.TYPE1, player1Unit);

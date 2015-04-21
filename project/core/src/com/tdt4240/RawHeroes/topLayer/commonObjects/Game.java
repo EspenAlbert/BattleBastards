@@ -3,6 +3,7 @@ package com.tdt4240.RawHeroes.topLayer.commonObjects;
 import com.tdt4240.RawHeroes.createGame.winConditions.IWinCondition;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.event.move.Move;
+import com.tdt4240.RawHeroes.independent.GameConstants;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public abstract class Game implements Serializable{
         this.winCondition = winCondition;
         gameState = GameState.CHALLENGE;
         nextTurnIsPlayer1 = false;
-        moveCount = 100;
+        moveCount = GameConstants.MAX_ENERGY;
     }
 
     public String getPlayer1Nickname() {
@@ -50,10 +51,6 @@ public abstract class Game implements Serializable{
 
     public String getPlayer2Nickname() {
         return player2Nickname;
-    }
-
-    public GameState getGameState() {
-        return gameState;
     }
 
     public void setGameState(GameState gameState) {

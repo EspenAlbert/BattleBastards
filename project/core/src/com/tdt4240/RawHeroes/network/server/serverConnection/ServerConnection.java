@@ -52,8 +52,6 @@ public class ServerConnection {
     public static void main(String args[]) {
         System.out.println("Starting server");
         ServerConnection server = new ServerConnection(3310);
-        //CalendarProperties properties = CalendarProperties.getInstance();
-        //Server server = new Server(properties.getListenport());
     }
 
 

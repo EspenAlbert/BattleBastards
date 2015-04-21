@@ -28,8 +28,6 @@ public class CameraController implements ICamera {
 
     public CameraController() {
 
-        float aspectRatio = (float) GameConstants.RESOLUTION_HEIGHT / GameConstants.RESOLUTION_WIDTH;
-
         camera = new OrthographicCamera();
         viewport = new FitViewport(GameConstants.GAME_WIDTH + GameConstants.EXTRA_SPACE_BUTTONS, GameConstants.GAME_HEIGHT, camera);
 
@@ -112,7 +110,6 @@ public class CameraController implements ICamera {
             ct.newFinishPos(y);
         }
 
-       // camera.translate(x, y);
     }
 
     private final float cameraMaxY = 3;

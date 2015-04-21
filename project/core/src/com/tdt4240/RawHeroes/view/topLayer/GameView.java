@@ -42,12 +42,6 @@ public class GameView implements IView, IBoardListener, ICameraListener, IMoveLi
         unitDetails = new UnitDetailRenderer(board);
     }
 
-    public void BoardChanged(BoardEvent event) {
-        if (event instanceof CellChangeEvent) {
-            // change button for cell
-        }
-    }
-
     public void update(float dt){
         unitRenderer.update(dt);
     }

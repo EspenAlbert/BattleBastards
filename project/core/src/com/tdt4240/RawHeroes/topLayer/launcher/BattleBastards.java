@@ -23,7 +23,6 @@ public class BattleBastards extends ApplicationAdapter {
     @Override
 	public void create () {
 		batch = new SpriteBatch();
-        //board = new BoardRenderer(BoardFactory.getInstance().getBoard("STANDARD-BOARD"), true);
         Gdx.graphics.setTitle("GAME NAME");
 		img = new Texture("badlogic.jpg");
         Gdx.graphics.setDisplayMode(GameConstants.RESOLUTION_WIDTH, GameConstants.RESOLUTION_HEIGHT, false);

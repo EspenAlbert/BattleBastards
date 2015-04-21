@@ -25,6 +25,7 @@ public class ScreenStateManager {
     public ScreenStateManager(BattleBastards game) {
         this.game = game;
         screenStates = new Stack<ScreenState>();
+        //pushState(new ActiveGameScreen(this, GameBuilding.getInstance().createGame(Games.KILL_ALL_ENEMY_UNITS, "player1", "player2")));
         pushState(new LoginScreen(this));
     }
     public BattleBastards getGame() {
@@ -53,12 +54,6 @@ public class ScreenStateManager {
     private ScreenState getState(int state) {
         if(state == MAINMENU) return new MainMenuScreen(this);
         else if(state == GAMESCREEN) return new ActiveGameScreen(this, GameBuilding.getInstance().createGame(Games.KILL_ALL_ENEMY_UNITS, "player1", "player2"));
-        /*
-        else if(state == TASK2) return new Task2State(this);
-        else if(state == TASK3) return new Task3State(this);
-        else if(state == TASK4) return new Task4State(this);
-        else if(state == END_GAME_SCREEN) return new EndGameState(this, ScoreBoard.player1Won);
-        */
         return null;
     }
 

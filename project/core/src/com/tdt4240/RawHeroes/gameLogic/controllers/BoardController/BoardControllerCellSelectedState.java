@@ -38,15 +38,14 @@ public class BoardControllerCellSelectedState extends BoardControllerState {
 
     @Override
     public void cellSelected(ICell cell) {
-        if (cell.getUnit() != null && cell.getUnit().isPlayer1Unit() == boardController.iAmPlayer1() ){ //Velge ny unit
+        if (cell.getUnit() != null && cell.getUnit().isPlayer1Unit() == boardController.iAmPlayer1() ){ //Choose new unit
             this.board.switchModeOnCell(selectedCell.getPos(), CellStatus.DEFAULT);
             selectedCell = cell;
             popped();
             addWalkableCells();
             this.board.switchModeOnCell(selectedCell.getPos(), CellStatus.SELECTED);
         }
-        else if(cell.getStatus()== CellStatus.IN_MOVING_RANGE){ //Bevege valgt unit til ny celle
-            // Vi burde ha en limit på hvor mange ganger man kan flytte en unit også
+        else if(cell.getStatus()== CellStatus.IN_MOVING_RANGE){ //Move unit to selected cell
             ArrayList<Position> path = selectedCell.getUnit().getMovementPath(this.board, selectedCell.getPos(), cell.getPos());
             this.boardController.addMove(new MovementMove(selectedCell, cell, path));
             this.board.switchModeOnCell(selectedCell.getPos(), CellStatus.DEFAULT);
@@ -63,7 +62,6 @@ public class BoardControllerCellSelectedState extends BoardControllerState {
 
     @Override
     public BoardControllerStateEvent getEvent() {
-        //TODO finne en bedre måte å gjøre energy parameteren på
         return new BoardControllerStateEvent(0, "Attack");
     }
 

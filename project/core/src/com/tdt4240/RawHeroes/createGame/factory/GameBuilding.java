@@ -36,10 +36,6 @@ public class GameBuilding implements IGameBuilding {
                 break;
             case CAPTURE_THE_FLAG:
                 break;
-            case KILL_ALL_ENEMY_UNITS_WITH_MOVES:
-                game = eliminateEnemyUnitsFactory.createGame(player1, player2);
-                game.setLastMoves(eliminateEnemyUnitsFactory.createMoves(eliminateEnemyUnitsFactory.TYPE2, board));
-                break;
         }
         game.setBoard(board);
         return game;
