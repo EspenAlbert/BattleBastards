@@ -15,4 +15,5 @@ public class AnimationConstants {
     public final static int ATK_RIGHT = 5;
     public final static int HURT_LEFT = 6;
     public final static int HURT_RIGHT = 7;
+    public final static int DEAD = 8;
 }

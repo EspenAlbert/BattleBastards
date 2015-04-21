@@ -12,6 +12,7 @@ public interface IUnitAnimationController {
     TextureRegion getActiveFrame(Texture texture);
     void setActiveAnimation(int activeAnimation);
     void setActiveFrame(int activeFrame);
+    int getActiveAnimation();
     void nextFrame();
     void addAnimationListener(IAnimationListener listener);
 }

@@ -16,7 +16,7 @@ import com.tdt4240.RawHeroes.gameLogic.models.ISpritesheet;
 public class StandardUnitSheet implements ISpritesheet{
     private Texture sheet;
     private final int NR_OF_FRAMES = 4;
-    private final int NR_OF_ANIMATIONS = 2;
+    private final int NR_OF_ANIMATIONS = 9;
 
     public StandardUnitSheet(String textureLocation){
         this.sheet = new Texture(Gdx.files.internal(textureLocation));

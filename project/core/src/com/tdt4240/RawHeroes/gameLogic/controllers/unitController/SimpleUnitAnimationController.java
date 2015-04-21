@@ -20,7 +20,7 @@ public class SimpleUnitAnimationController implements IUnitAnimationController{
     private ArrayList<IAnimationListener> listeners;
 
     private final int NR_OF_FRAMES = 4;
-    private final int NR_OF_ANIMATIONS = 2;
+    private final int NR_OF_ANIMATIONS = 9;
 
     public SimpleUnitAnimationController(){
         this.activeAnimation = 0;
@@ -40,6 +40,7 @@ public class SimpleUnitAnimationController implements IUnitAnimationController{
         if (activeAnimation >= NR_OF_ANIMATIONS) this.activeAnimation = NR_OF_ANIMATIONS - 1;
         else if (activeAnimation < 0) this.activeAnimation = 0;
         else this.activeAnimation = activeAnimation;
+        this.activeFrame = 0;
         fireAnimationChanged(new AnimationEvent(this.activeAnimation, this.activeFrame));
     }
     public void setActiveFrame(int activeFrame){
@@ -86,4 +87,11 @@ public class SimpleUnitAnimationController implements IUnitAnimationController{
             listener.animationChanged(event);
         }
     }
+
+    @Override
+    public int getActiveAnimation(){
+        return this.activeAnimation;
+    }
+
+
 }
