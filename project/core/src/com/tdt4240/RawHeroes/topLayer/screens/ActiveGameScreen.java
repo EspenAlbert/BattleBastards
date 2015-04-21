@@ -47,6 +47,7 @@ public class ActiveGameScreen extends ScreenState{
     private SpriteBatch hudBatch;
     private boolean endGameState = false;
     private String message;
+    private boolean addedListener = true;
 
     public ActiveGameScreen(ScreenStateManager gsm, Game game){
         super(gsm);
@@ -96,7 +97,10 @@ public class ActiveGameScreen extends ScreenState{
 
     @Override
     public void update(float dt) {
-
+        if(!addedListener) {
+            MyInputProcessor.getInstance().AddTouchDownListener(new QuitGameTouchDown(this.message, cameraController, this));
+            addedListener = true;
+        }
     }
 
     @Override
@@ -104,7 +108,6 @@ public class ActiveGameScreen extends ScreenState{
         initializeWhenViewReady();
         if(endGameState && gameView.noAnimationWaiting()) {
             boolean winner = iAmPlayer1 ? game.player1IsWinner() : game.player2IsWinner();
-            MyInputProcessor.getInstance().AddTouchDownListener(new QuitGameTouchDown(message, cameraController, this));
             if(winner) {
                 finish("Congratulations you won!");
                 //TODO: PostgameScreen
@@ -155,10 +158,9 @@ public class ActiveGameScreen extends ScreenState{
         else {
             this.message = messageToFinish;
         }
+        addedListener = false;
         gameView.finishRoutine(messageToFinish);
     }
-
-
 
     public void confirmTurn() {
         ArrayList<Move> moves = boardMover.confirmMoves();
@@ -166,12 +168,12 @@ public class ActiveGameScreen extends ScreenState{
         System.out.println(responseMessage.getType() + ", " + responseMessage.getContent());
         boardController.setState(new BoardControllerReplayState(boardController, board));
         message = (String) responseMessage.getContent();
-        endGameState = true;
+        finish(null);
 
     }
     public void abortFinish() {
         gameView.abortFinish();
-        MyInputProcessor.getInstance().removeLastTouchListener();
+        MyInputProcessor.getInstance().activateListeners();
         endGameState = false;
     }
 }
