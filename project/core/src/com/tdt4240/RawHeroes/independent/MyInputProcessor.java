@@ -3,12 +3,9 @@ package com.tdt4240.RawHeroes.independent;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Vector2;
-import com.tdt4240.RawHeroes.gameLogic.inputListeners.QuitGameTouchDown;
-import com.tdt4240.RawHeroes.independent.inputListeners.IFlingListener;
 import com.tdt4240.RawHeroes.independent.inputListeners.ILongPress;
 import com.tdt4240.RawHeroes.independent.inputListeners.IPanListener;
 import com.tdt4240.RawHeroes.independent.inputListeners.IPanStopListener;
-import com.tdt4240.RawHeroes.independent.inputListeners.ITouchDragged;
 import com.tdt4240.RawHeroes.independent.inputListeners.TouchDown;
 
 import java.util.ArrayList;
@@ -38,9 +35,7 @@ public class MyInputProcessor implements GestureDetector.GestureListener, InputP
 
     private ArrayList<IPanStopListener> panStopListeners = new ArrayList<IPanStopListener>();
     private ArrayList<IPanListener> panListeners = new ArrayList<IPanListener>();
-    private ArrayList<ITouchDragged> touchDraggedListeners = new ArrayList<ITouchDragged>();
     private ArrayList<TouchDown> touchDownsListeners = new ArrayList<TouchDown>();
-    private ArrayList<IFlingListener> flingListeners = new ArrayList<IFlingListener>();
     private ArrayList<ILongPress> longListeners = new ArrayList<ILongPress>();
 
     public void AddTouchDownListener(TouchDown listener) {
@@ -59,7 +54,10 @@ public class MyInputProcessor implements GestureDetector.GestureListener, InputP
 
     public void removeListeners() {
         touchDownsListeners.clear();
-        touchDraggedListeners.clear();
+        exceptionList.clear();
+        panStopListeners.clear();
+        panListeners.clear();
+        longListeners.clear();
     }
 
 

@@ -2,14 +2,13 @@ package com.tdt4240.RawHeroes.gameLogic.inputListeners;
 
 import com.badlogic.gdx.math.Vector2;
 import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.CameraController;
-import com.tdt4240.RawHeroes.independent.inputListeners.IFlingListener;
 import com.tdt4240.RawHeroes.independent.inputListeners.IPanListener;
 import com.tdt4240.RawHeroes.independent.inputListeners.IPanStopListener;
 
 /**
  * Created by espen1 on 17.04.2015.
  */
-public class EventToTranslateCamera implements IFlingListener, IPanListener, IPanStopListener {
+public class EventToTranslateCamera implements IPanListener, IPanStopListener {
 
     private final CameraController camera;
     private boolean active;
@@ -18,10 +17,6 @@ public class EventToTranslateCamera implements IFlingListener, IPanListener, IPa
     public EventToTranslateCamera(CameraController controller) {
         camera = controller;
         active = false;
-    }
-    @Override
-    public boolean fling(float velocityX, float velocityY, int button) {
-        return false;
     }
 
     @Override
