@@ -3,6 +3,7 @@ package com.tdt4240.RawHeroes.createUnits.units.axeUnit;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.tdt4240.RawHeroes.createUnits.units.Unit;
 import com.tdt4240.RawHeroes.event.listener.IAnimationListener;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitAnimationController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitCombatController;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 /**
  * Created by espen1 on 07.03.2015.
  */
-public class AxeUnit implements IUnit {
+public class AxeUnit extends Unit {
 
     private final int MAX_HEALTH = 30;
     private final int MAX_MOVES = 2;
@@ -33,94 +34,32 @@ public class AxeUnit implements IUnit {
     private boolean turnedRight;
 
     private int health;
-    private boolean player1Unit;
-    private boolean hasAttacked;
-    private IUnitCombatController unitCombatController;
-    private IUnitMovementController unitMoveController;
     private IUnitAnimationController unitAnimationController;
 
     private int remainingMoves;
-    private int weight;
 
     public AxeUnit(boolean player1Unit) {
+        super(player1Unit, 15);
         health = MAX_HEALTH;
-        this.hasAttacked = false;
-        this.player1Unit = player1Unit;
-
         this.remainingMoves = 2;
-        this.weight = 10;
         this.unitCombatController = new SimpleUnitCombatController(this, MIN_DMG, MAX_DMG, 0, MAX_HEALTH, MAX_MOVES);
         this.turnedRight = player1Unit;
         this.unitMoveController = new WalkingUnitMovementController();
         this.unitAnimationController = new SimpleUnitAnimationController();
+        if(!turnedRight){
+            this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_LEFT);
+        }
         System.out.println("Created a standard unit");
     }
     private AxeUnit(boolean player1Unit, int health, boolean hasAttacked, IUnitCombatController unitCombatController, IUnitMovementController unitMoveController, int remainingMoves, int weight, IUnitAnimationController unitAnimationController) {
-        this.player1Unit = player1Unit;
-        this.health = health;
-        this.hasAttacked = hasAttacked;
-        this.unitCombatController = unitCombatController;
-        this.unitMoveController = unitMoveController;
-        this.remainingMoves = remainingMoves;
-        this.weight = weight;
+        super(player1Unit, health, hasAttacked, unitCombatController, unitMoveController, remainingMoves, weight);
         this.unitAnimationController = unitAnimationController;
     }
 
     @Override
     public UnitName getIdentifier() {
-        return UnitName.STANDARD_UNIT;
+        return UnitName.STANDARD_UNIT_2;
     }
-
-    @Override
-    public ArrayList<Position> getInflictionZone(Position myPos, Position target) {
-        return unitCombatController.getInflictionZone(myPos, target);
-    }
-
-    @Override
-    public ArrayList<Position> getMovementZone(IBoard board, Position myPos, int movesLeft) {
-        return this.unitMoveController.getMovementZone(board, myPos, movesLeft, this.remainingMoves);
-    }
-
-    @Override
-    public ArrayList<Position> getMovementPath(IBoard board, Position myPos, Position targetPos){
-        return this.unitMoveController.getMovementPath(board, myPos, targetPos);
-    }
-
-    @Override
-    public int inflictDamage(Position myPos, Position targetPos) {
-        return unitCombatController.inflictDamage(myPos, targetPos);
-    }
-
-    @Override
-    public int attacked(int damage) {
-        return this.unitCombatController.attacked(damage);
-    }
-
-    @Override
-    public int getWeight() {
-        return this.weight;
-    }
-
-    @Override
-    public void setAttackLogic(IUnitCombatController controller) {
-        unitCombatController = controller;
-    }
-
-    @Override
-    public void setMovementLogic(IUnitMovementController controller) {
-        unitMoveController = controller;
-    }
-
-    @Override
-    public void setHasAttacked(boolean value) {
-        hasAttacked = value;
-    }
-
-    @Override
-    public boolean isPlayer1Unit() {
-        return player1Unit;
-    }
-
     @Override
     public boolean isTurnedRight() {
         return turnedRight;
@@ -131,15 +70,6 @@ public class AxeUnit implements IUnit {
         turnedRight = !turnedRight;
     }
 
-    @Override
-    public ArrayList<Position> getAttackablePositions(Position pos, int movesLeft, IBoard board) {
-        return this.unitCombatController.getAttackablePositions(pos, movesLeft, board);
-    }
-
-    @Override
-    public int getHealth() {
-        return unitCombatController.getHealth();
-    }
 
     @Override
     public int getMaxHealth() {
@@ -169,10 +99,6 @@ public class AxeUnit implements IUnit {
         return this.unitCombatController.getArmor();
     }
 
-    @Override
-    public boolean hasAttacked() {
-        return hasAttacked;
-    }
 
     @Override
     public IUnit getCopy() {

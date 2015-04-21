@@ -23,9 +23,10 @@ public abstract class Unit implements IUnit {
     protected int remainingMoves;
     protected int weight;
 
-    public Unit(boolean player1Unit) {
+    public Unit(boolean player1Unit, int weight) {
         this.hasAttacked = false;
         this.player1Unit = player1Unit;
+        this.weight = weight;
     }
     protected Unit(boolean player1Unit, int health, boolean hasAttacked, IUnitCombatController unitCombatController, IUnitMovementController unitMoveController, int remainingMoves, int weight) {
         this.player1Unit = player1Unit;
@@ -47,7 +48,7 @@ public abstract class Unit implements IUnit {
 
     @Override
     public ArrayList<Position> getMovementZone(IBoard board, Position myPos, int movesLeft) {
-        return this.unitMoveController.getMovementZone(board, myPos, movesLeft, this.remainingMoves);
+        return this.unitMoveController.getMovementZone(board, myPos, movesLeft, this.getMovesLeft());
     }
 
     @Override

@@ -34,6 +34,7 @@ public class TranslateCamera implements IFlingListener, IPanListener, IPanStopLi
     }
     @Override
     public boolean panStop(float x, float y, int pointer, int button) {
+        if (startPos == null) return false;
         Vector2 endPos = new Vector2(x, y);
         Vector2 movement = endPos.sub(startPos);
         int translateY = Math.round(movement.y /50);

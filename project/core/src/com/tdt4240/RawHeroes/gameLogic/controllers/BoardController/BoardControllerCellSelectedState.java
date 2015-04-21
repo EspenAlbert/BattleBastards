@@ -43,7 +43,8 @@ public class BoardControllerCellSelectedState extends BoardControllerState {
         if (cell.getUnit() != null && cell.getUnit().isPlayer1Unit() == boardController.iAmPlayer1() ){ //Velge ny unit
             this.board.switchModeOnCell(selectedCell.getPos(), CellStatus.DEFAULT);
             selectedCell = cell;
-            popped();
+            //popped();
+            this.boardController.setState(new BoardControllerCellSelectedState(this.boardController, this.board, this.selectedCell));
             addWalkableCells();
             this.board.switchModeOnCell(selectedCell.getPos(), CellStatus.SELECTED);
         }
