@@ -1,9 +1,11 @@
-package com.tdt4240.RawHeroes.gameLogic.controllers.unitController;
+package com.tdt4240.RawHeroes.independent;
+
+import java.io.Serializable;
 
 /**
  * Created by espen1 on 15.04.2015.
  */
-public class Pair<L,R> {
+public class Pair<L,R> implements Serializable{
 
     private final L key;
     private final R value;
