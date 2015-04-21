@@ -33,6 +33,7 @@ public interface IUnit extends Serializable{
     void nextFrame();
     void addAnimationListener(IAnimationListener animationListener);
     void setActiveAnimation(RenderMode renderMode);
+    void resetMoves();
 
     ArrayList<Position> getAttackablePositions(Position pos, int movesLeft, IBoard board);
 
@@ -41,6 +42,7 @@ public interface IUnit extends Serializable{
     int getHealth();
     int getMaxHealth();
     int getMovesLeft();
+    void move(int movesSpent);
 
     boolean hasAttacked();
     IUnit getCopy();

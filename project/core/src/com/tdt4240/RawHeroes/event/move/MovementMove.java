@@ -40,6 +40,7 @@ public class MovementMove extends Move {
         IUnit mover = getStartCell().getUnit();
         getStartCell().setUnit(null);
         getTargetCell().setUnit(mover);
+        getTargetCell().getUnit().move(length-1);
     }
 
     @Override

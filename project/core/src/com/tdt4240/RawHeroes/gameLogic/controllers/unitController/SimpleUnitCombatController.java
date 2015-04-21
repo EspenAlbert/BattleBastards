@@ -106,6 +106,11 @@ public class SimpleUnitCombatController implements IUnitCombatController, Serial
     }
 
     @Override
+    public void resetMoves() {
+        this.movesLeft = this.maxMoves;
+    }
+
+    @Override
     public int getMovesLeft() {
         return this.movesLeft;
     }
