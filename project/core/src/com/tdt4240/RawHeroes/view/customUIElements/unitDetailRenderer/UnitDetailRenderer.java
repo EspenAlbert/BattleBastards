@@ -64,7 +64,6 @@ public class UnitDetailRenderer implements IRenderNoPos {
 
     public void hideUnitDetails(){
         if(hide) return;
-        System.out.println("hiding unit details");
         hide = true;
         MyInputProcessor.getInstance().activateListeners();
     }
