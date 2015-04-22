@@ -34,15 +34,13 @@ public class AxeUnit extends Unit {
 
     private boolean turnedRight;
 
-    private int health;
-
     private int remainingMoves;
 
     public AxeUnit(boolean player1Unit) {
         super(player1Unit, 15);
         health = MAX_HEALTH;
         this.remainingMoves = MAX_MOVES;
-        this.unitCombatController = new SimpleUnitCombatController(this, MIN_DMG, MAX_DMG, 0, MAX_HEALTH);
+        this.unitCombatController = new SimpleUnitCombatController(MIN_DMG, MAX_DMG, 0);
         this.unitMoveController = new WalkingUnitMovementController();
         this.weight = 15;
         this.turnedRight = player1Unit;
@@ -58,17 +56,9 @@ public class AxeUnit extends Unit {
     }
 
     @Override
-    public int getHealth(){
-        return this.unitCombatController.getHealth();
-    }
-
-
-    @Override
     public int getMaxHealth() {
-        return this.unitCombatController.getMaxHealth();
+        return MAX_HEALTH;
     }
-
-
 
 
     @Override

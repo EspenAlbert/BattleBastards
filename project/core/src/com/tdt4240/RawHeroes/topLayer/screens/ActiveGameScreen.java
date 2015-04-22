@@ -41,12 +41,13 @@ public class ActiveGameScreen extends ScreenState{
     private boolean endGameState = false;
     private String message;
     private boolean addedListener = true;
+    private TouchListenerActiveGameScreen touchListener;
 
     public ActiveGameScreen(ScreenStateManager gsm, Game game){
         super(gsm);
         this.game = game;
         board = game.getBoard();
-        iAmPlayer1 = true;//clientConnection.getUsername().equals(game.getPlayer1Nickname());
+        iAmPlayer1 = clientConnection.getUsername().equals(game.getPlayer1Nickname());
         boardController = new BoardController(board, game.getMoveCount(), iAmPlayer1);//MUST ALWAYS BE EXECUTED BEFORE creating gameView!!
 
         camera = new StandardCamera();
@@ -55,6 +56,9 @@ public class ActiveGameScreen extends ScreenState{
 
         boardController.executeMovesFromOtherPlayer(game.getLastMoves(), iAmPlayer1);
         resize(GameConstants.RESOLUTION_WIDTH, GameConstants.RESOLUTION_HEIGHT);
+        touchListener = new TouchListenerActiveGameScreen(boardController, cameraController, this);
+        MyInputProcessor.getInstance().AddTouchDownListener(touchListener);
+        MyInputProcessor.getInstance().activateListeners();
 
     }
 
@@ -98,8 +102,7 @@ public class ActiveGameScreen extends ScreenState{
         checkIfYouHaveLost();
         GestureDetector gd = new GestureDetector(MyInputProcessor.getInstance());
         Gdx.input.setInputProcessor(gd);
-        MyInputProcessor.getInstance().activateListeners();
-        MyInputProcessor.getInstance().AddTouchDownListener(new TouchListenerActiveGameScreen(boardController, cameraController, this));
+        touchListener.normalOperation();
         EventToTranslateCamera cameraTranslator = new EventToTranslateCamera(cameraController);
         MyInputProcessor.getInstance().AddPanListener(cameraTranslator);
         MyInputProcessor.getInstance().AddPanStopListener(cameraTranslator);

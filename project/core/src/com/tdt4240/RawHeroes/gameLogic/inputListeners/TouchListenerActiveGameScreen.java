@@ -19,6 +19,7 @@ public class TouchListenerActiveGameScreen implements TouchDown {
     private boolean firstTouch;
     private static float boardMaxXCoordinate;
     private float boardMinXCoordinate;
+    private boolean initialState;
 
     public TouchListenerActiveGameScreen(IBoardController boardController, ICameraController cameraController, ActiveGameScreen gameScreen) {
         this.boardController = boardController;
@@ -40,6 +41,7 @@ public class TouchListenerActiveGameScreen implements TouchDown {
             hudTouch(screenY);
             return false;
         }
+        if(initialState) return false;
         else if(screenX < boardMinXCoordinate) {
             return false;
         }
@@ -62,6 +64,7 @@ public class TouchListenerActiveGameScreen implements TouchDown {
         else if (screenY > 1*buttonHeight && screenY < 2*buttonHeight){
             this.boardController.actionButtonTouched();
         }
+        if(initialState) return;
         else if (screenY > 2*buttonHeight && screenY < 3*buttonHeight){
             gameScreen.confirmTurn();
         }
@@ -69,5 +72,9 @@ public class TouchListenerActiveGameScreen implements TouchDown {
 
     public static float getBoardMaxXCoordinate() {
         return boardMaxXCoordinate;
+    }
+
+    public void normalOperation() {
+        initialState = false;
     }
 }

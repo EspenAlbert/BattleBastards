@@ -16,16 +16,10 @@ public class SimpleUnitCombatController implements IUnitCombatController{
     public final static long serialVersionUID = 4567894235239423513l;
 
     private Random rand;
-    private IUnit unit;
     private int attackDmgMin, attackDmgMax, armor;
-    private int health;
-    private final int maxHealth;
 
-    public SimpleUnitCombatController(IUnit u, int minDmg, int maxDmg, int armor, int health) {
+    public SimpleUnitCombatController( int minDmg, int maxDmg, int armor) {
         this.rand = new Random();
-        this.health = health;
-        this.maxHealth = health;
-        this.unit = u;
         this.attackDmgMin = minDmg;
         this.attackDmgMax = maxDmg;
         this.armor = armor;
@@ -63,17 +57,14 @@ public class SimpleUnitCombatController implements IUnitCombatController{
     }
 
     @Override
-    public int inflictDamage(Position myPos, Position attackPos) {
-        return rand.nextInt(this.attackDmgMax - this.attackDmgMin) + this.attackDmgMin + 1;
+    public int inflictDamage() {
+        return rand.nextInt((this.attackDmgMax - this.attackDmgMin) + 1 + attackDmgMin);
     }
 
     @Override
     public int attacked(int damage) {
-        int dmgInflicted = damage - armor;
-        this.health -= dmgInflicted;
-        return dmgInflicted;
+        return damage - armor;
     }
-
     @Override
     public int getMinAttackDmg() {
         return attackDmgMin;
@@ -88,15 +79,6 @@ public class SimpleUnitCombatController implements IUnitCombatController{
         return armor;
     }
 
-    @Override
-    public int getHealth() {
-        return health;
-    }
-
-    @Override
-    public int getMaxHealth() {
-        return maxHealth;
-    }
 
 }
 

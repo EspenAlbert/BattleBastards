@@ -80,11 +80,11 @@ public class UnitDetailRenderer implements IRenderNoPos {
         labelUnit.setPosition(createUnitDetailsScreenDialog.getWidth()/8, createUnitDetailsScreenDialog.getHeight()*6/8);
         UnitRenderModel renderModel;
         if (unit.isPlayer1Unit()){
-            renderModel = new UnitRenderModel(unit.getIdentifier(), true);
+            renderModel = new UnitRenderModel(unit, true);
             renderModel.getSheet().setTexture(TextureChanger.changeColor(renderModel.getSheet().getTexture(), Color.RED));
             sprite = new Sprite(renderModel.getActiveFrame());
         } else {
-            renderModel = new UnitRenderModel(unit.getIdentifier(), true);
+            renderModel = new UnitRenderModel(unit, false);
             renderModel.getSheet().setTexture(TextureChanger.changeColor(renderModel.getSheet().getTexture(), Color.BLUE));
             sprite = new Sprite(renderModel.getActiveFrame());
         }

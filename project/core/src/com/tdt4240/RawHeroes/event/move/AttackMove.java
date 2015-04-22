@@ -76,7 +76,7 @@ public class AttackMove extends Move {
         for (Position victimPos : inflictionZone) {
             IUnit victim = board.getCell(victimPos).getUnit();
             if (victim != null) {
-                int dmg = attacker.inflictDamage(attackerPos, targetPos);
+                int dmg = attacker.inflictDamage();
                 damages.put(victimPos, dmg);
             }
         }
