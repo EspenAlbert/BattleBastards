@@ -37,10 +37,12 @@ public class UnitDetailRenderer implements IRenderNoPos {
     private Skin skin;
     private boolean hide;
     private IBoard board;
+    private boolean iAmPlayer1;
     private Sprite sprite;
 
-    public UnitDetailRenderer(IBoard board){
+    public UnitDetailRenderer(IBoard board, boolean iAmPlayer1){
         this.board = board;
+        this.iAmPlayer1 = iAmPlayer1;
         stage = new Stage();
         hide = true;
         skin = new Skin(Gdx.files.internal("uiskin.json"), new TextureAtlas(Gdx.files.internal("uiskin.atlas")));
@@ -79,15 +81,9 @@ public class UnitDetailRenderer implements IRenderNoPos {
         labelUnit.setSize(GameConstants.TEXTFIELD_WIDTH, GameConstants.TEXTFIELD_HEIGHT);
         labelUnit.setPosition(createUnitDetailsScreenDialog.getWidth()/8, createUnitDetailsScreenDialog.getHeight()*6/8);
         UnitRenderModel renderModel;
-        if (unit.isPlayer1Unit()){
-            renderModel = new UnitRenderModel(unit, true);
-            renderModel.getSheet().setTexture(TextureChanger.changeColor(renderModel.getSheet().getTexture(), Color.RED));
-            sprite = new Sprite(renderModel.getActiveFrame());
-        } else {
-            renderModel = new UnitRenderModel(unit, false);
-            renderModel.getSheet().setTexture(TextureChanger.changeColor(renderModel.getSheet().getTexture(), Color.BLUE));
-            sprite = new Sprite(renderModel.getActiveFrame());
-        }
+        renderModel = new UnitRenderModel(unit, iAmPlayer1);
+        sprite = new Sprite(renderModel.getActiveFrame());
+
         Image img = new Image(sprite);
         img.setSize(createUnitDetailsScreenDialog.getHeight()*3/8, createUnitDetailsScreenDialog.getHeight()/2);
         img.setPosition(createUnitDetailsScreenDialog.getWidth()/8, createUnitDetailsScreenDialog.getHeight()*2/8);

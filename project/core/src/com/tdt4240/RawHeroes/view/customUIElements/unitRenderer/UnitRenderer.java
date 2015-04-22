@@ -15,9 +15,8 @@ import com.tdt4240.RawHeroes.gameLogic.models.UnitRenderModel;
 import com.tdt4240.RawHeroes.gameLogic.unit.UnitName;
 import com.tdt4240.RawHeroes.independent.AnimationConstants;
 import com.tdt4240.RawHeroes.independent.Position;
-import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.IRenderBuilding;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.IRenderObject;
-import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.RenderBuilding;
+import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.renderObjects.RenderObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,7 +33,6 @@ public class UnitRenderer implements IMoveListener {
     private ICameraController cameraController;
     private ArrayList<UnitRenderModel> renderModels;
 
-    private IRenderBuilding renderBuilding = RenderBuilding.getInstance();
     private HashMap<Position, IRenderObject> unitPositionsAndRenderObjects;
     private Queue<Move> currentAnimations = new LinkedList<Move>();
     private boolean animationIsActive = false;
@@ -59,12 +57,13 @@ public class UnitRenderer implements IMoveListener {
             if(unit.getHealth() < 1) continue;
             UnitRenderModel renderModel = new UnitRenderModel(unit, iAmPlayer1);
             renderModels.add(renderModel);
-            IRenderObject renderObject = renderBuilding.getRenderObject(renderModel, board.getCell(pos).getUnit().getIdentifier());
+            IRenderObject renderObject = new RenderObject(renderModel, renderModel.getUnitAnimationController());
             unitPositionsAndRenderObjects.put(pos, renderObject);
             renderModel.addAnimationListener(renderObject);
         }
         //TODO må finne en bedre løsning. hvorfor fungerer dette?
-        unitPositionsAndRenderObjects.put(new Position(-1, -1),renderBuilding.getRenderObject(new UnitRenderModel(UnitFactory.getInstance().createUnit(UnitName.STANDARD_UNIT, true), true), UnitName.STANDARD_UNIT));
+        UnitRenderModel dummyModel = new UnitRenderModel(UnitFactory.getInstance().createUnit(UnitName.STANDARD_UNIT, true), true);
+        unitPositionsAndRenderObjects.put(new Position(-1, -1),new RenderObject(dummyModel, dummyModel.getUnitAnimationController()));
 
         moveExecutor = new UnitMoveExecutor(this);
     }

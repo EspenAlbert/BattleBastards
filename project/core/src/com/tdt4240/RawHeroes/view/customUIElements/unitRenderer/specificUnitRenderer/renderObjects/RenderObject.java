@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.tdt4240.RawHeroes.event.events.AnimationEvent;
+import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitAnimationController;
 import com.tdt4240.RawHeroes.gameLogic.models.UnitRenderModel;
 import com.tdt4240.RawHeroes.independent.AnimationConstants;
 import com.tdt4240.RawHeroes.independent.TextureChanger;
@@ -20,26 +21,25 @@ import java.io.Serializable;
 public class RenderObject implements IRenderObject, Serializable{
 
     private UnitRenderModel renderModel;
+    private IUnitAnimationController animationController;
     private Sprite sprite;
     private RenderMode renderMode;
     private float leftShift;
 
-    public RenderObject(UnitRenderModel renderModel) {
+    public RenderObject(UnitRenderModel renderModel, IUnitAnimationController animationController) {
         this.renderModel = renderModel;
+        this.animationController = animationController;
         leftShift = this.renderModel.isTurnedRight() ? 0 : 0.5f;
-        if (renderModel.isRed())renderModel.getSheet().setTexture (TextureChanger.changeColor(renderModel.getSheet().getTexture(), Color.RED));
-        else renderModel.getSheet().setTexture (TextureChanger.changeColor(renderModel.getSheet().getTexture(), Color.BLUE));
         TextureRegion region = renderModel.getSheet().getActiveFrame(0, 0);
         sprite = new Sprite(region);
-        sprite.setSize(1.5f,2);
+        sprite.setSize(1.5f, 2);
         this.changeRenderMode(RenderMode.STATIC);
-        System.out.println("A render object has been created");
     }
 
     @Override
     public void changeRenderMode(RenderMode renderMode) {
         this.renderMode = renderMode;
-        this.renderModel.setActiveAnimation(renderMode);
+        animationController.setActiveAnimation(renderMode);
     }
 
     @Override
@@ -92,5 +92,4 @@ public class RenderObject implements IRenderObject, Serializable{
                 break;
         }
     }
-
 }

@@ -1,5 +1,6 @@
 package com.tdt4240.RawHeroes.gameLogic.models;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.tdt4240.RawHeroes.createUnits.units.StandardSheet;
 import com.tdt4240.RawHeroes.event.listener.IAnimationListener;
@@ -7,6 +8,7 @@ import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitAnimation
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.SimpleUnitAnimationController;
 import com.tdt4240.RawHeroes.gameLogic.unit.UnitName;
 import com.tdt4240.RawHeroes.independent.AnimationConstants;
+import com.tdt4240.RawHeroes.independent.TextureChanger;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.RenderMode;
 
 /**
@@ -21,7 +23,7 @@ public class UnitRenderModel {
 
     public UnitRenderModel(IUnit unit, boolean iAmPlayer1){
         UnitName name = unit.getIdentifier();
-        this.unitAnimationController = new SimpleUnitAnimationController(unit);
+        this.unitAnimationController = new SimpleUnitAnimationController(unit, this);
         isRed = iAmPlayer1 == unit.isPlayer1Unit();
         if(!isRed){
             this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_LEFT);
@@ -43,34 +45,13 @@ public class UnitRenderModel {
                 this.sheet = new StandardSheet("units/soldierSheet.png");
                 break;
         }
-        turnedRight = isRed;
-        this.isRed = isRed;
-
-    }
-
-
-    public void setActiveAnimation(RenderMode renderMode){
-        switch (renderMode){
-            case STATIC:
-                if (this.unitAnimationController.getActiveAnimation() == AnimationConstants.MOVE_RIGHT)this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_RIGHT);
-                if (this.unitAnimationController.getActiveAnimation() == AnimationConstants.MOVE_LEFT)this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_LEFT);
-                break;
-            case MOVING:
-                if(this.turnedRight)this.unitAnimationController.setActiveAnimation(AnimationConstants.MOVE_RIGHT);
-                else this.unitAnimationController.setActiveAnimation(AnimationConstants.MOVE_LEFT);
-                break;
-            case ATTACKING:
-                if(this.turnedRight)this.unitAnimationController.setActiveAnimation(AnimationConstants.ATK_RIGHT);
-                else this.unitAnimationController.setActiveAnimation(AnimationConstants.ATK_LEFT);
-                break;
-            case HURT:
-                if (this.unitAnimationController.getActiveAnimation() == AnimationConstants.IDLE_RIGHT)this.unitAnimationController.setActiveAnimation(AnimationConstants.HURT_RIGHT);
-                else this.unitAnimationController.setActiveAnimation(AnimationConstants.HURT_LEFT);
-                break;
-            case KILLED:
-                this.unitAnimationController.setActiveAnimation(AnimationConstants.DEAD);
-                break;
+        if(isRed) {
+            sheet.setTexture (TextureChanger.changeColor(sheet.getTexture(), Color.RED));
+        } else {
+            sheet.setTexture (TextureChanger.changeColor(sheet.getTexture(), Color.BLUE));
         }
+        turnedRight = isRed;
+
     }
 
     public void addAnimationListener(IAnimationListener animationListener) {
@@ -101,5 +82,9 @@ public class UnitRenderModel {
 
     public void turnDirection() {
         this.turnedRight = !turnedRight;
+    }
+
+    public IUnitAnimationController getUnitAnimationController() {
+        return unitAnimationController;
     }
 }
