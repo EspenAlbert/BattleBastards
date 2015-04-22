@@ -31,7 +31,7 @@ public class UnitRenderer implements IMoveListener {
     private UnitMoveExecutor moveExecutor;
     private IBoard board;
     private ICameraController cameraController;
-
+    private boolean iAmPlayer1;
     private ArrayList<UnitRenderModel> renderModels;
 
     private IRenderBuilding renderBuilding = RenderBuilding.getInstance();
@@ -41,6 +41,7 @@ public class UnitRenderer implements IMoveListener {
 
     public UnitRenderer(IBoard board, ICameraController cameraController, boolean iAmPlayer1) {
         this.board = board;
+        this.iAmPlayer1 = iAmPlayer1;
         this.cameraController = cameraController;
         this.renderModels = new ArrayList<UnitRenderModel>();
         setupUnitRenderer();
@@ -52,7 +53,13 @@ public class UnitRenderer implements IMoveListener {
         ArrayList<Position> unitPositions = board.getUnitPositions();
         unitPositionsAndRenderObjects = new HashMap<Position, IRenderObject>();
         for (Position pos : unitPositions) {
-            UnitRenderModel renderModel = new UnitRenderModel(board.getCell(pos).getUnit().getIdentifier(), board.getCell(pos).getUnit().isPlayer1Unit());
+            UnitRenderModel renderModel;
+            if (iAmPlayer1) {
+               renderModel = new UnitRenderModel(board.getCell(pos).getUnit().getIdentifier(), board.getCell(pos).getUnit().isPlayer1Unit());
+            }
+            else{
+               renderModel = new UnitRenderModel(board.getCell(pos).getUnit().getIdentifier(), !board.getCell(pos).getUnit().isPlayer1Unit());
+            }
             renderModels.add(renderModel);
             IRenderObject renderObject = renderBuilding.getRenderObject(renderModel, board.getCell(pos).getUnit().getIdentifier());
             unitPositionsAndRenderObjects.put(pos, renderObject);
