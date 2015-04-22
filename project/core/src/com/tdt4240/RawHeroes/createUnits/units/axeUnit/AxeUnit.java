@@ -30,6 +30,7 @@ public class AxeUnit extends Unit {
     private final int MIN_DMG = 10;
     private final int MAX_DMG = 15;
     private final int MAX_MOVES = 2;
+    private boolean convert;
 
     private boolean turnedRight;
 
@@ -47,9 +48,11 @@ public class AxeUnit extends Unit {
         this.weight = 15;
         this.turnedRight = player1Unit;
         this.unitAnimationController = new SimpleUnitAnimationController();
-        if(!turnedRight){
+        if(player1Unit){
+            this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_RIGHT);
+        } else
             this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_LEFT);
-        }
+
         System.out.println("Created a axe unit");
     }
     private AxeUnit(boolean player1Unit, int health, boolean hasAttacked, IUnitCombatController unitCombatController, IUnitMovementController unitMoveController, int remainingMoves, int weight, IUnitAnimationController unitAnimationController) {
@@ -63,7 +66,7 @@ public class AxeUnit extends Unit {
     }
     @Override
     public boolean isTurnedRight() {
-        return turnedRight;
+         return turnedRight;
     }
 
     @Override
@@ -81,6 +84,7 @@ public class AxeUnit extends Unit {
     public int getMaxHealth() {
         return this.unitCombatController.getMaxHealth();
     }
+
 
 
 
@@ -118,8 +122,10 @@ public class AxeUnit extends Unit {
         switch (renderMode){
 
             case STATIC:
-                if (this.unitAnimationController.getActiveAnimation() == AnimationConstants.MOVE_RIGHT)this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_RIGHT);
-                if (this.unitAnimationController.getActiveAnimation() == AnimationConstants.MOVE_LEFT)this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_LEFT);
+                if (this.unitAnimationController.getActiveAnimation() == AnimationConstants.MOVE_RIGHT)
+                    this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_RIGHT);
+                if (this.unitAnimationController.getActiveAnimation() == AnimationConstants.MOVE_LEFT)
+                    this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_LEFT);
                 break;
             case MOVING:
                 if(this.turnedRight)this.unitAnimationController.setActiveAnimation(AnimationConstants.MOVE_RIGHT);
@@ -151,6 +157,16 @@ public class AxeUnit extends Unit {
     @Override
     public void resetMoves() {
         remainingMoves = MAX_MOVES;
+
+    }
+
+    @Override
+    public void convert() {
+        turnDirection();
+        if (player1Unit) {
+            this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_LEFT);
+        } else
+            this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_RIGHT);
 
     }
 

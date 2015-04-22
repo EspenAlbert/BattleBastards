@@ -11,6 +11,7 @@ import com.tdt4240.RawHeroes.gameLogic.inputListeners.ActivateUnitDetails;
 import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.ICameraController;
 import com.tdt4240.RawHeroes.event.events.BoardEvent;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
+import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
 import com.tdt4240.RawHeroes.independent.MyInputProcessor;
 import com.tdt4240.RawHeroes.view.customUIElements.boardRenderer.BoardRenderer;
 import com.tdt4240.RawHeroes.view.customUIElements.finishScreenRenderer.FinishScreenRenderer;
@@ -28,14 +29,14 @@ public class GameView implements IView, IBoardListener, IMoveListener {
     private final UnitRenderer unitRenderer;
     private final BoardRenderer boardRenderer;
     private final UnitDetailRenderer unitDetails;
-    private final HudRenderer hudRenderer;
+    private final HudRenderer HudRenderer;
 
 
     public GameView(IBoard board, boolean iAmPlayer1, ICameraController camera, IBoardController boardController) {
         boardRenderer = new BoardRenderer(board, iAmPlayer1);
         unitRenderer = new UnitRenderer(board, camera, iAmPlayer1);
         unitDetails = new UnitDetailRenderer(board);
-        hudRenderer = new HudRenderer(boardController);
+        HudRenderer = new HudRenderer(boardController);
         hudBatch = new SpriteBatch(5);
         finishScreenRenderer = null;
         boardController.addMoveListener(this);
@@ -56,7 +57,7 @@ public class GameView implements IView, IBoardListener, IMoveListener {
             finishScreenRenderer.render(batch);
         }
 
-        hudRenderer.render(hudBatch);
+        HudRenderer.render(hudBatch);
     }
 
     @Override
@@ -69,7 +70,7 @@ public class GameView implements IView, IBoardListener, IMoveListener {
 
     @Override
     public void moveExecuted(Move move) {
-        hudRenderer.moveExecuted(move);
+        HudRenderer.moveExecuted(move);
         unitRenderer.moveExecuted(move);
     }
 

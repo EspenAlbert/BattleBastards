@@ -36,11 +36,13 @@ public class UnitRenderer implements IMoveListener {
     private HashMap<Position, IRenderObject> unitPositionsAndRenderObjects;
     private Queue<Move> currentAnimations = new LinkedList<Move>();
     private boolean animationIsActive = false;
+    private boolean iAmPlayer1;
 
     public UnitRenderer(IBoard board, ICameraController cameraController, boolean iAmPlayer1) {
         this.board = board;
         this.cameraController = cameraController;
         this.units = new ArrayList<IUnit>();
+        this.iAmPlayer1 = iAmPlayer1;
         setupUnitRenderer();
     }
 
@@ -51,6 +53,8 @@ public class UnitRenderer implements IMoveListener {
         unitPositionsAndRenderObjects = new HashMap<Position, IRenderObject>();
         for (Position pos : unitPositions) {
             IUnit unit = board.getCell(pos).getUnit();
+            if(!iAmPlayer1)
+                unit.convert();
             units.add(unit);
             IRenderObject renderObject = renderBuilding.getRenderObject(unit);
             unitPositionsAndRenderObjects.put(pos, renderObject);

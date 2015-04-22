@@ -36,6 +36,7 @@ public interface IUnit extends Serializable{
     void setRemainingMoves(int moves);
     int getRemainingMoves();
     void resetMoves();
+    void convert();
 
     ArrayList<Position> getAttackablePositions(Position pos, int movesLeft, IBoard board);
 

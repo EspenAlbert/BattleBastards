@@ -125,6 +125,16 @@ public class StandardUnit extends Unit implements Serializable {
     }
 
     @Override
+    public void convert() {
+        turnDirection();
+        if (player1Unit) {
+            this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_LEFT);
+        } else
+            this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_RIGHT);
+
+    }
+
+    @Override
     public int[] getAttackDmg() {
         return new int[]{this.unitCombatController.getMinAttackDmg(), this.unitCombatController.getMaxAttackDmg()};
     }

@@ -3,6 +3,7 @@ package com.tdt4240.RawHeroes.gameLogic.controllers.boardController;
 import com.tdt4240.RawHeroes.event.listener.IMoveListener;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.event.move.Move;
+import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
 import com.tdt4240.RawHeroes.independent.Position;
 
 import java.util.ArrayList;
