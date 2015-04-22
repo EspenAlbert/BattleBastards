@@ -19,7 +19,7 @@ public class BoardController implements IBoardController {
 
     private ArrayList<BoardControllerStateListener> listeners;
 
-    private int remaining_energy, remaining_moves;
+    private int remaining_energy;
     private boolean iAmPlayer1;
 
 

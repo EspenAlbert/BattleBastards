@@ -42,10 +42,10 @@ public class StandardUnit extends Unit implements Serializable {
         super(player1Unit, 10);
         health = MAX_HEALTH;
         this.remainingMoves = MAX_MOVES;
-        this.unitCombatController = new SimpleUnitCombatController(this, MIN_DMG, MAX_DMG, 1, MAX_HEALTH, MAX_MOVES);
-        this.turnedRight = player1Unit;
-        this.weight = 5;
+        this.unitCombatController = new SimpleUnitCombatController(this, MIN_DMG, MAX_DMG, 1, MAX_HEALTH);
         this.unitMoveController = new WalkingUnitMovementController();
+        this.weight = 10;
+        this.turnedRight = player1Unit;
         this.unitAnimationController = new SimpleUnitAnimationController();
         if(!turnedRight){
             this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_LEFT);
@@ -115,6 +115,11 @@ public class StandardUnit extends Unit implements Serializable {
     }
 
     @Override
+    public int getRemainingMoves() {
+        return remainingMoves;
+    }
+
+    @Override
     public void resetMoves() {
         remainingMoves = MAX_MOVES;
     }
@@ -132,15 +137,6 @@ public class StandardUnit extends Unit implements Serializable {
     @Override
     public int getMaxHealth() {
         return this.unitCombatController.getMaxHealth();
-    }
-
-    @Override
-    public int getRemainingMoves() {
-        return remainingMoves;
-    }
-    @Override
-    public void setRemainingMoves(int moves){
-        remainingMoves -= moves;
     }
 
     @Override

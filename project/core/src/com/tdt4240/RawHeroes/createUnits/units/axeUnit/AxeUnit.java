@@ -26,10 +26,10 @@ import java.util.ArrayList;
 public class AxeUnit extends Unit {
 
     private final int MAX_HEALTH = 30;
-    private final int MAX_MOVES = 2;
 
     private final int MIN_DMG = 10;
     private final int MAX_DMG = 15;
+    private final int MAX_MOVES = 2;
 
     private boolean turnedRight;
 
@@ -41,15 +41,16 @@ public class AxeUnit extends Unit {
     public AxeUnit(boolean player1Unit) {
         super(player1Unit, 15);
         health = MAX_HEALTH;
-        this.remainingMoves = 2;
-        this.unitCombatController = new SimpleUnitCombatController(this, MIN_DMG, MAX_DMG, 0, MAX_HEALTH, MAX_MOVES);
-        this.turnedRight = player1Unit;
+        this.remainingMoves = MAX_MOVES;
+        this.unitCombatController = new SimpleUnitCombatController(this, MIN_DMG, MAX_DMG, 0, MAX_HEALTH);
         this.unitMoveController = new WalkingUnitMovementController();
+        this.weight = 15;
+        this.turnedRight = player1Unit;
         this.unitAnimationController = new SimpleUnitAnimationController();
         if(!turnedRight){
             this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_LEFT);
         }
-        System.out.println("Created a standard unit");
+        System.out.println("Created a axe unit");
     }
     private AxeUnit(boolean player1Unit, int health, boolean hasAttacked, IUnitCombatController unitCombatController, IUnitMovementController unitMoveController, int remainingMoves, int weight, IUnitAnimationController unitAnimationController) {
         super(player1Unit, health, hasAttacked, unitCombatController, unitMoveController, remainingMoves, weight);
@@ -79,11 +80,6 @@ public class AxeUnit extends Unit {
     @Override
     public int getRemainingMoves() {
         return remainingMoves;
-    }
-
-    @Override
-    public void setRemainingMoves(int moves) {
-        remainingMoves -= moves;
     }
 
 

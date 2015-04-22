@@ -19,10 +19,8 @@ public class SimpleUnitCombatController implements IUnitCombatController, Serial
     private int attackDmgMin, attackDmgMax, armor;
     private int health;
     private final int maxHealth;
-    private final int maxMoves;
-    private int remainingMoves = 0;
 
-    public SimpleUnitCombatController(IUnit u, int minDmg, int maxDmg, int armor, int health, int remainingMoves) {
+    public SimpleUnitCombatController(IUnit u, int minDmg, int maxDmg, int armor, int health) {
         this.rand = new Random();
         this.health = health;
         this.maxHealth = health;
@@ -30,8 +28,6 @@ public class SimpleUnitCombatController implements IUnitCombatController, Serial
         this.attackDmgMin = minDmg;
         this.attackDmgMax = maxDmg;
         this.armor = armor;
-        this.remainingMoves = remainingMoves;
-        this.maxMoves = remainingMoves;
     }
 
     @Override

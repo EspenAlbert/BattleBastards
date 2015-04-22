@@ -1,5 +1,6 @@
 package com.tdt4240.RawHeroes.event.move;
 
+import com.tdt4240.RawHeroes.createUnits.units.Unit;
 import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
 import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.CellConverter;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
@@ -49,8 +50,7 @@ public class MovementMove extends Move {
         ICell temp = getTargetCell();
         this.setTargetCell(getStartCell());
         this.setStartCell(temp);
-        getStartCell().getUnit().resetMoves();
-        //System.out.println(getStartCell().getUnit().getRemainingMoves());
+        temp.getUnit().setRemainingMoves(-path.size() + (2 - path.size()));
     }
 
     @Override
