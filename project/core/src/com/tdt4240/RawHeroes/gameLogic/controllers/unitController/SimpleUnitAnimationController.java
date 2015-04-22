@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.tdt4240.RawHeroes.event.events.AnimationEvent;
 import com.tdt4240.RawHeroes.event.listener.IAnimationListener;
+import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
 import com.tdt4240.RawHeroes.independent.AnimationConstants;
 
 import java.io.Serializable;
@@ -22,8 +23,10 @@ public class SimpleUnitAnimationController implements IUnitAnimationController, 
 
     private final int NR_OF_FRAMES = 4;
     private final int NR_OF_ANIMATIONS = 9;
+    private IUnit unit;
 
-    public SimpleUnitAnimationController(){
+    public SimpleUnitAnimationController(IUnit unit){
+        this.unit = unit;
         this.activeAnimation = 0;
         this.activeFrame = 0;
         listeners = new ArrayList<IAnimationListener>();
@@ -64,11 +67,14 @@ public class SimpleUnitAnimationController implements IUnitAnimationController, 
 
                 case IDLE_LEFT: break;
                 case IDLE_RIGHT: break;
+                case DEAD: break;
 
                 case HURT_LEFT:
-                    setActiveAnimation(IDLE_LEFT);
+                    if(unit.getHealth() < 1) setActiveAnimation(DEAD);
+                    else setActiveAnimation(IDLE_LEFT);
                     break;
                 case HURT_RIGHT:
+                    if(unit.getHealth() < 1) setActiveAnimation(DEAD);
                     setActiveAnimation(IDLE_RIGHT);
                     break;
 

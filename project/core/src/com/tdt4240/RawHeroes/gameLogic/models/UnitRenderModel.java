@@ -19,13 +19,15 @@ public class UnitRenderModel {
     private boolean turnedRight;
     private boolean isRed;
 
-
-    public UnitRenderModel(){
-        this(UnitName.STANDARD_UNIT, true);
-    }public UnitRenderModel(UnitName name, boolean isRed){
-        this.unitAnimationController = new SimpleUnitAnimationController();
+    public UnitRenderModel(IUnit unit, boolean iAmPlayer1){
+        UnitName name = unit.getIdentifier();
+        this.unitAnimationController = new SimpleUnitAnimationController(unit);
+        isRed = iAmPlayer1 == unit.isPlayer1Unit();
         if(!isRed){
             this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_LEFT);
+        }
+        if(unit.getHealth() < 1) {
+            unitAnimationController.setActiveAnimation(AnimationConstants.DEAD);
         }
         switch (name){
             case STANDARD_UNIT:
@@ -46,9 +48,9 @@ public class UnitRenderModel {
 
     }
 
+
     public void setActiveAnimation(RenderMode renderMode){
         switch (renderMode){
-
             case STATIC:
                 if (this.unitAnimationController.getActiveAnimation() == AnimationConstants.MOVE_RIGHT)this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_RIGHT);
                 if (this.unitAnimationController.getActiveAnimation() == AnimationConstants.MOVE_LEFT)this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_LEFT);

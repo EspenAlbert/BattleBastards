@@ -2,6 +2,7 @@ package com.tdt4240.RawHeroes.view.customUIElements.unitRenderer;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.tdt4240.RawHeroes.createUnits.factory.UnitFactory;
 import com.tdt4240.RawHeroes.event.move.SkipMove;
 import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.ICameraController;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
@@ -54,20 +55,16 @@ public class UnitRenderer implements IMoveListener {
         ArrayList<Position> unitPositions = board.getUnitPositions();
         unitPositionsAndRenderObjects = new HashMap<Position, IRenderObject>();
         for (Position pos : unitPositions) {
-            UnitRenderModel renderModel;
-            if (iAmPlayer1) {
-               renderModel = new UnitRenderModel(board.getCell(pos).getUnit().getIdentifier(), board.getCell(pos).getUnit().isPlayer1Unit());
-            }
-            else{
-               renderModel = new UnitRenderModel(board.getCell(pos).getUnit().getIdentifier(), !board.getCell(pos).getUnit().isPlayer1Unit());
-            }
+            IUnit unit = board.getCell(pos).getUnit();
+            if(unit.getHealth() < 1) continue;
+            UnitRenderModel renderModel = new UnitRenderModel(unit, iAmPlayer1);
             renderModels.add(renderModel);
             IRenderObject renderObject = renderBuilding.getRenderObject(renderModel, board.getCell(pos).getUnit().getIdentifier());
             unitPositionsAndRenderObjects.put(pos, renderObject);
             renderModel.addAnimationListener(renderObject);
         }
         //TODO må finne en bedre løsning. hvorfor fungerer dette?
-        unitPositionsAndRenderObjects.put(new Position(-1, -1),renderBuilding.getRenderObject(new UnitRenderModel(), UnitName.STANDARD_UNIT));
+        unitPositionsAndRenderObjects.put(new Position(-1, -1),renderBuilding.getRenderObject(new UnitRenderModel(UnitFactory.getInstance().createUnit(UnitName.STANDARD_UNIT, true), true), UnitName.STANDARD_UNIT));
 
         moveExecutor = new UnitMoveExecutor(this);
     }
@@ -117,6 +114,7 @@ public class UnitRenderer implements IMoveListener {
         Position startPos = move.getStartCell().getPos();
         Position endPos = move.getTargetCell().getPos();
         cameraController.makeSureVisible(startPos, endPos);
+        if(unitPositionsAndRenderObjects.get(startPos) == null) return;//Probably means the unit has allready been killed
         if (endPos.getX() < startPos.getPos().getX() && unitPositionsAndRenderObjects.get(startPos).getRenderModel().isTurnedRight()){
             unitPositionsAndRenderObjects.get(startPos).getRenderModel().turnDirection();
         }else if (endPos.getX() >= startPos.getX() && !unitPositionsAndRenderObjects.get(startPos).getRenderModel().isTurnedRight())
@@ -145,6 +143,8 @@ public class UnitRenderer implements IMoveListener {
 
     public void attackMoveFinished() {
         animationIsActive = false;
+
+
     }
     private ArrayList<IRenderObject> getVictims(AttackMove move) {
         Iterable<Position> victims = move.getVictims();
