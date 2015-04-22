@@ -94,9 +94,11 @@ public class UnitDetailRenderer implements IRenderNoPos {
                 texture = new Texture(Gdx.files.internal("units/soldierSheet.png"));
         }
         if (unit.isPlayer1Unit()){
-            sprite = new Sprite(unit.getActiveFrame(TextureChanger.changeColor(texture, Color.RED)));
+            sprite = new Sprite(texture);
+            //sprite = new Sprite(unit.getActiveFrame(TextureChanger.changeColor(texture, Color.RED)));
         } else {
-            sprite = new Sprite(unit.getActiveFrame(TextureChanger.changeColor(texture, Color.BLUE)));
+            sprite = new Sprite(texture);
+            //sprite = new Sprite(unit.getActiveFrame(TextureChanger.changeColor(texture, Color.BLUE)));
         }
         Image img = new Image(sprite);
         img.setSize(createUnitDetailsScreenDialog.getHeight()*3/8, createUnitDetailsScreenDialog.getHeight()/2);

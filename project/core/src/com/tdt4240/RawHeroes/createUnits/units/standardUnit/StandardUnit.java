@@ -33,7 +33,6 @@ public class StandardUnit extends Unit implements Serializable {
     private final int MIN_DMG = 5;
     private final int MAX_DMG = 10;
     private final int MAX_MOVES = 3;
-    private final IUnitAnimationController unitAnimationController;
 
     private boolean turnedRight;
 
@@ -46,17 +45,14 @@ public class StandardUnit extends Unit implements Serializable {
         this.unitMoveController = new WalkingUnitMovementController();
         this.weight = 10;
         this.turnedRight = player1Unit;
-        this.unitAnimationController = new SimpleUnitAnimationController();
+        /*this.unitAnimationController = new SimpleUnitAnimationController();
         if(!turnedRight){
             this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_LEFT);
-        }
+        }*/
         System.out.println("Created a standard unit");
     }
-    private StandardUnit(boolean player1Unit, int health, boolean hasAttacked, IUnitCombatController unitCombatController, IUnitMovementController unitMoveController, int remainingMoves, int weight, IUnitAnimationController unitAnimationController) {
+    private StandardUnit(boolean player1Unit, int health, boolean hasAttacked, IUnitCombatController unitCombatController, IUnitMovementController unitMoveController, int remainingMoves, int weight) {
         super(player1Unit, health, hasAttacked, unitCombatController, unitMoveController, remainingMoves, weight);
-
-
-        this.unitAnimationController = unitAnimationController;
     }
 
     @Override
@@ -64,55 +60,11 @@ public class StandardUnit extends Unit implements Serializable {
         return UnitName.STANDARD_UNIT;
     }
 
-    @Override
-    public boolean isTurnedRight() {
-        return turnedRight;
-    }
-
-    @Override
-    public void turnDirection() {
-        this.turnedRight = !turnedRight;
-    }
 
     public IUnit getCopy() {
-        return new StandardUnit(player1Unit, health, hasAttacked, unitCombatController, unitMoveController,remainingMoves, weight, unitAnimationController);
+        return new StandardUnit(player1Unit, health, hasAttacked, unitCombatController, unitMoveController,remainingMoves, weight);
     }
 
-    @Override
-    public TextureRegion getActiveFrame(Texture texture){
-       return this.unitAnimationController.getActiveFrame(texture);
-    }
-
-    @Override
-    public void nextFrame(){
-        this.unitAnimationController.nextFrame();
-    }
-
-    @Override
-    public void setActiveAnimation(RenderMode renderMode){
-        switch (renderMode){
-
-            case STATIC:
-                if (this.unitAnimationController.getActiveAnimation() == AnimationConstants.MOVE_RIGHT)this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_RIGHT);
-                if (this.unitAnimationController.getActiveAnimation() == AnimationConstants.MOVE_LEFT)this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_LEFT);
-                break;
-            case MOVING:
-                if(this.turnedRight)this.unitAnimationController.setActiveAnimation(AnimationConstants.MOVE_RIGHT);
-                else this.unitAnimationController.setActiveAnimation(AnimationConstants.MOVE_LEFT);
-                break;
-            case ATTACKING:
-                if(this.turnedRight)this.unitAnimationController.setActiveAnimation(AnimationConstants.ATK_RIGHT);
-                else this.unitAnimationController.setActiveAnimation(AnimationConstants.ATK_LEFT);
-                break;
-            case HURT:
-                if (this.unitAnimationController.getActiveAnimation() == AnimationConstants.IDLE_RIGHT)this.unitAnimationController.setActiveAnimation(AnimationConstants.HURT_RIGHT);
-                else this.unitAnimationController.setActiveAnimation(AnimationConstants.HURT_LEFT);
-                break;
-            case KILLED:
-                this.unitAnimationController.setActiveAnimation(AnimationConstants.DEAD);
-                break;
-        }
-    }
 
     @Override
     public int getRemainingMoves() {
@@ -122,16 +74,6 @@ public class StandardUnit extends Unit implements Serializable {
     @Override
     public void resetMoves() {
         remainingMoves = MAX_MOVES;
-    }
-
-    @Override
-    public void convert() {
-        turnDirection();
-        if (player1Unit) {
-            this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_LEFT);
-        } else
-            this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_RIGHT);
-
     }
 
     @Override
@@ -147,10 +89,5 @@ public class StandardUnit extends Unit implements Serializable {
     @Override
     public int getMaxHealth() {
         return this.unitCombatController.getMaxHealth();
-    }
-
-    @Override
-    public void addAnimationListener(IAnimationListener animationListener) {
-        this.unitAnimationController.addAnimationListener(animationListener);
     }
 }

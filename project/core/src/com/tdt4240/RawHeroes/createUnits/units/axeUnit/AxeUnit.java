@@ -30,12 +30,10 @@ public class AxeUnit extends Unit {
     private final int MIN_DMG = 10;
     private final int MAX_DMG = 15;
     private final int MAX_MOVES = 2;
-    private boolean convert;
 
     private boolean turnedRight;
 
     private int health;
-    private IUnitAnimationController unitAnimationController;
 
     private int remainingMoves;
 
@@ -47,31 +45,15 @@ public class AxeUnit extends Unit {
         this.unitMoveController = new WalkingUnitMovementController();
         this.weight = 15;
         this.turnedRight = player1Unit;
-        this.unitAnimationController = new SimpleUnitAnimationController();
-        if(player1Unit){
-            this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_RIGHT);
-        } else
-            this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_LEFT);
-
         System.out.println("Created a axe unit");
     }
-    private AxeUnit(boolean player1Unit, int health, boolean hasAttacked, IUnitCombatController unitCombatController, IUnitMovementController unitMoveController, int remainingMoves, int weight, IUnitAnimationController unitAnimationController) {
+    private AxeUnit(boolean player1Unit, int health, boolean hasAttacked, IUnitCombatController unitCombatController, IUnitMovementController unitMoveController, int remainingMoves, int weight) {
         super(player1Unit, health, hasAttacked, unitCombatController, unitMoveController, remainingMoves, weight);
-        this.unitAnimationController = unitAnimationController;
     }
 
     @Override
     public UnitName getIdentifier() {
         return UnitName.STANDARD_UNIT_2;
-    }
-    @Override
-    public boolean isTurnedRight() {
-         return turnedRight;
-    }
-
-    @Override
-    public void turnDirection() {
-        turnedRight = !turnedRight;
     }
 
     @Override
@@ -104,47 +86,8 @@ public class AxeUnit extends Unit {
 
     @Override
     public IUnit getCopy() {
-        return new AxeUnit(player1Unit, health, hasAttacked, unitCombatController, unitMoveController,remainingMoves, weight, unitAnimationController);
+        return new AxeUnit(player1Unit, health, hasAttacked, unitCombatController, unitMoveController,remainingMoves, weight);
     }
-
-    @Override
-    public TextureRegion getActiveFrame(Texture texture){
-       return this.unitAnimationController.getActiveFrame(texture);
-    }
-
-    @Override
-    public void nextFrame(){
-        this.unitAnimationController.nextFrame();
-    }
-
-    @Override
-    public void setActiveAnimation(RenderMode renderMode){
-        switch (renderMode){
-
-            case STATIC:
-                if (this.unitAnimationController.getActiveAnimation() == AnimationConstants.MOVE_RIGHT)
-                    this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_RIGHT);
-                if (this.unitAnimationController.getActiveAnimation() == AnimationConstants.MOVE_LEFT)
-                    this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_LEFT);
-                break;
-            case MOVING:
-                if(this.turnedRight)this.unitAnimationController.setActiveAnimation(AnimationConstants.MOVE_RIGHT);
-                else this.unitAnimationController.setActiveAnimation(AnimationConstants.MOVE_LEFT);
-                break;
-            case ATTACKING:
-                if(this.turnedRight)this.unitAnimationController.setActiveAnimation(AnimationConstants.ATK_RIGHT);
-                else this.unitAnimationController.setActiveAnimation(AnimationConstants.ATK_LEFT);
-                break;
-            case HURT:
-                if (this.unitAnimationController.getActiveAnimation() == AnimationConstants.IDLE_RIGHT)this.unitAnimationController.setActiveAnimation(AnimationConstants.HURT_RIGHT);
-                else this.unitAnimationController.setActiveAnimation(AnimationConstants.HURT_LEFT);
-                break;
-            case KILLED:
-                this.unitAnimationController.setActiveAnimation(AnimationConstants.DEAD);
-                break;
-        }
-    }
-
     @Override
     public int getRemainingMoves() {
         return remainingMoves;
@@ -158,20 +101,5 @@ public class AxeUnit extends Unit {
     public void resetMoves() {
         remainingMoves = MAX_MOVES;
 
-    }
-
-    @Override
-    public void convert() {
-        turnDirection();
-        if (player1Unit) {
-            this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_LEFT);
-        } else
-            this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_RIGHT);
-
-    }
-
-    @Override
-    public void addAnimationListener(IAnimationListener animationListener){
-        this.unitAnimationController.addAnimationListener(animationListener);
     }
 }

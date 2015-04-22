@@ -9,6 +9,7 @@ import com.tdt4240.RawHeroes.createUnits.units.standardUnit.StandardUnitSheet;
 import com.tdt4240.RawHeroes.event.events.AnimationEvent;
 import com.tdt4240.RawHeroes.gameLogic.models.ISpritesheet;
 import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
+import com.tdt4240.RawHeroes.gameLogic.models.UnitRenderModel;
 import com.tdt4240.RawHeroes.independent.AnimationConstants;
 import com.tdt4240.RawHeroes.independent.TextureChanger;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.IRenderObject;
@@ -21,19 +22,17 @@ import java.io.Serializable;
  */
 public class StandardUnitRenderObject implements IRenderObject, Serializable{
 
-    public ISpritesheet sheet;
-    private IUnit unit;
+    private UnitRenderModel renderModel;
     private Sprite sprite;
     private RenderMode renderMode;
     private float leftShift;
 
-    public StandardUnitRenderObject(IUnit unit) {
-        this.unit = unit;
-        leftShift = this.unit.isTurnedRight() ? 0 : 0.5f;
-        sheet = new StandardUnitSheet("units/soldierSheet.png");
-        if (unit.isPlayer1Unit())sheet.setTexture (TextureChanger.changeColor(sheet.getTexture(), Color.RED));
-        else sheet.setTexture (TextureChanger.changeColor(sheet.getTexture(), Color.BLUE));
-        TextureRegion region = sheet.getActiveFrame(0, 0);
+    public StandardUnitRenderObject(UnitRenderModel renderModel) {
+        this.renderModel = renderModel;
+        leftShift = this.renderModel.isTurnedRight() ? 0 : 0.5f;
+        if (renderModel.isRed())renderModel.getSheet().setTexture (TextureChanger.changeColor(renderModel.getSheet().getTexture(), Color.RED));
+        else renderModel.getSheet().setTexture (TextureChanger.changeColor(renderModel.getSheet().getTexture(), Color.BLUE));
+        TextureRegion region = renderModel.getSheet().getActiveFrame(0, 0);
         sprite = new Sprite(region);
         sprite.setSize(1.5f,2);
         this.changeRenderMode(RenderMode.STATIC);
@@ -43,7 +42,7 @@ public class StandardUnitRenderObject implements IRenderObject, Serializable{
     @Override
     public void changeRenderMode(RenderMode renderMode) {
         this.renderMode = renderMode;
-        unit.setActiveAnimation(renderMode);
+        this.renderModel.setActiveAnimation(renderMode);
     }
 
     @Override
@@ -56,12 +55,16 @@ public class StandardUnitRenderObject implements IRenderObject, Serializable{
         sprite.setPosition(pos.x - leftShift, pos.y);
         sprite.draw(batch);
     }
+    @Override
+    public UnitRenderModel getRenderModel(){
+        return this.renderModel;
+    }
 
     @Override
     public void animationChanged(AnimationEvent event) {
-        this.sprite = new Sprite(sheet.getActiveFrame(event.getActiveFrame(), event.getActiveAnimation()));
+        this.sprite = new Sprite(renderModel.getSheet().getActiveFrame(event.getActiveFrame(), event.getActiveAnimation()));
         sprite.setSize(1.5f,2);
-        leftShift = this.unit.isTurnedRight() ? 0 : 0.5f;
+        leftShift = this.renderModel.isTurnedRight() ? 0 : 0.5f;
         switch (event.getActiveAnimation()){
             case AnimationConstants.IDLE_RIGHT:
                 this.renderMode = RenderMode.STATIC;

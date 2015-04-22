@@ -10,6 +10,8 @@ import com.tdt4240.RawHeroes.event.listener.IMoveListener;
 import com.tdt4240.RawHeroes.event.move.Move;
 import com.tdt4240.RawHeroes.event.move.MovementMove;
 import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
+import com.tdt4240.RawHeroes.gameLogic.models.UnitRenderModel;
+import com.tdt4240.RawHeroes.gameLogic.unit.UnitName;
 import com.tdt4240.RawHeroes.independent.AnimationConstants;
 import com.tdt4240.RawHeroes.independent.Position;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.IRenderBuilding;
@@ -30,7 +32,7 @@ public class UnitRenderer implements IMoveListener {
     private IBoard board;
     private ICameraController cameraController;
 
-    private ArrayList<IUnit> units;
+    private ArrayList<UnitRenderModel> renderModels;
 
     private IRenderBuilding renderBuilding = RenderBuilding.getInstance();
     private HashMap<Position, IRenderObject> unitPositionsAndRenderObjects;
@@ -41,8 +43,8 @@ public class UnitRenderer implements IMoveListener {
     public UnitRenderer(IBoard board, ICameraController cameraController, boolean iAmPlayer1) {
         this.board = board;
         this.cameraController = cameraController;
-        this.units = new ArrayList<IUnit>();
         this.iAmPlayer1 = iAmPlayer1;
+        this.renderModels = new ArrayList<UnitRenderModel>();
         setupUnitRenderer();
     }
 
@@ -52,14 +54,15 @@ public class UnitRenderer implements IMoveListener {
         ArrayList<Position> unitPositions = board.getUnitPositions();
         unitPositionsAndRenderObjects = new HashMap<Position, IRenderObject>();
         for (Position pos : unitPositions) {
-            IUnit unit = board.getCell(pos).getUnit();
-            if(!iAmPlayer1)
-                unit.convert();
-            units.add(unit);
-            IRenderObject renderObject = renderBuilding.getRenderObject(unit);
+            UnitRenderModel renderModel = new UnitRenderModel(board.getCell(pos).getUnit().getIdentifier(), board.getCell(pos).getUnit().isPlayer1Unit());
+            renderModels.add(renderModel);
+            IRenderObject renderObject = renderBuilding.getRenderObject(renderModel, board.getCell(pos).getUnit().getIdentifier());
             unitPositionsAndRenderObjects.put(pos, renderObject);
-            unit.addAnimationListener(renderObject);
+            renderModel.addAnimationListener(renderObject);
         }
+        //TODO må finne en bedre løsning. hvorfor fungerer dette?
+        unitPositionsAndRenderObjects.put(new Position(-1, -1),renderBuilding.getRenderObject(new UnitRenderModel(), UnitName.STANDARD_UNIT));
+
         moveExecutor = new UnitMoveExecutor(this);
     }
 
@@ -70,8 +73,8 @@ public class UnitRenderer implements IMoveListener {
         AnimationConstants.timer += dt*1000;
         if (AnimationConstants.timer > AnimationConstants.FRAME_TIME){
             AnimationConstants.timer = 0;
-            for (IUnit unit : this.units){
-                unit.nextFrame();
+            for (UnitRenderModel renderModel : this.renderModels){
+                renderModel.nextFrame();
             }
         }
     }
@@ -108,6 +111,11 @@ public class UnitRenderer implements IMoveListener {
         Position startPos = move.getStartCell().getPos();
         Position endPos = move.getTargetCell().getPos();
         cameraController.makeSureVisible(startPos, endPos);
+        if (endPos.getX() < startPos.getPos().getX() && unitPositionsAndRenderObjects.get(startPos).getRenderModel().isTurnedRight()){
+            unitPositionsAndRenderObjects.get(startPos).getRenderModel().turnDirection();
+        }else if (endPos.getX() >= startPos.getX() && !unitPositionsAndRenderObjects.get(startPos).getRenderModel().isTurnedRight())
+            unitPositionsAndRenderObjects.get(endPos).getRenderModel().turnDirection();
+
 
         if (move instanceof AttackMove) {
             IRenderObject attacker = unitPositionsAndRenderObjects.get(startPos);

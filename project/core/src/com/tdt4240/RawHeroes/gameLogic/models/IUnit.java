@@ -28,15 +28,9 @@ public interface IUnit extends Serializable{
     void setMovementLogic(IUnitMovementController controller);
     void setHasAttacked(boolean value);
     boolean isPlayer1Unit();
-    boolean isTurnedRight();
-    void turnDirection();
-    void nextFrame();
-    void addAnimationListener(IAnimationListener animationListener);
-    void setActiveAnimation(RenderMode renderMode);
     void setRemainingMoves(int moves);
     int getRemainingMoves();
     void resetMoves();
-    void convert();
 
     ArrayList<Position> getAttackablePositions(Position pos, int movesLeft, IBoard board);
 
@@ -48,5 +42,5 @@ public interface IUnit extends Serializable{
     boolean hasAttacked();
     IUnit getCopy();
 
-    TextureRegion getActiveFrame(Texture texture);
+    //TextureRegion getActiveFrame(Texture texture);
 }
