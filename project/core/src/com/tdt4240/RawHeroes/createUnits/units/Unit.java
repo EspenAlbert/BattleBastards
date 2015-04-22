@@ -13,7 +13,7 @@ import java.util.ArrayList;
 /**
  * Created by espen1 on 21.04.2015.
  */
-public abstract class Unit implements IUnit, Serializable{
+public abstract class Unit implements IUnit{
 
     protected int health;
     protected boolean player1Unit;

@@ -24,6 +24,7 @@ import java.util.ArrayList;
  * Created by espen1 on 07.03.2015.
  */
 public class AxeUnit extends Unit {
+    public final static long serialVersionUID = 7283909333728948372l;
 
     private final int MAX_HEALTH = 30;
 

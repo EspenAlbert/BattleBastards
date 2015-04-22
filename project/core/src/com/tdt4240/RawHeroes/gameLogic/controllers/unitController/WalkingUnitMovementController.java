@@ -14,7 +14,8 @@ import java.util.HashMap;
 /**
  * Created by espen1 on 12.04.2015.
  */
-public class WalkingUnitMovementController implements IUnitMovementController, Serializable {
+public class WalkingUnitMovementController implements IUnitMovementController{
+    public final static long serialVersionUID = 987653454249623536l;
     private ArrayList<Position> directions;
 
     public WalkingUnitMovementController(){
