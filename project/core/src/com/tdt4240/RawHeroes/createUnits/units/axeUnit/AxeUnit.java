@@ -59,7 +59,7 @@ public class AxeUnit extends Unit {
 
     @Override
     public int getHealth(){
-        return health;
+        return this.unitCombatController.getHealth();
     }
 
 
