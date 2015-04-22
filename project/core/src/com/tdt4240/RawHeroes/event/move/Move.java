@@ -21,7 +21,7 @@ public abstract class Move implements Serializable{
         targetCell = end;
     }
 
-    public int getCost() {
+    public int getEnergyCost() {
         return cost;
     }
 
