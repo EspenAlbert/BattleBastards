@@ -13,8 +13,6 @@ public class BoardControllerReplayState extends BoardControllerState{
 
     @Override
     public void actionButtonPressed() { //Skip button
-        //TODO trenger en quick do move funksjon som gjør alle moves i lista uten å se det på skjerm
-        // kan kanskje gjøres i popped()
         BoardController.resetUnitAttacks(board);
         this.boardController.setState(new BoardControllerNoCellSelectedState(this.boardController, this.board));
     }

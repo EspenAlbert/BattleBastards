@@ -34,6 +34,7 @@ public interface IUnit extends Serializable{
     void addAnimationListener(IAnimationListener animationListener);
     void setActiveAnimation(RenderMode renderMode);
     void setRemainingMoves(int moves);
+    int getRemainingMoves();
     void resetMoves();
 
     ArrayList<Position> getAttackablePositions(Position pos, int movesLeft, IBoard board);

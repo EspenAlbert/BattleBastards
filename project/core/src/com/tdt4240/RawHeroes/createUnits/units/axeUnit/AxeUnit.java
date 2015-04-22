@@ -77,10 +77,6 @@ public class AxeUnit extends Unit {
         return this.unitCombatController.getMaxHealth();
     }
 
-    @Override
-    public int getRemainingMoves() {
-        return remainingMoves;
-    }
 
 
     @Override
@@ -136,6 +132,15 @@ public class AxeUnit extends Unit {
                 this.unitAnimationController.setActiveAnimation(AnimationConstants.DEAD);
                 break;
         }
+    }
+
+    @Override
+    public int getRemainingMoves() {
+        return remainingMoves;
+    }
+    @Override
+    public void setRemainingMoves(int moves){
+        remainingMoves = remainingMoves -  moves;
     }
 
     @Override

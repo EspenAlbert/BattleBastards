@@ -36,8 +36,6 @@ public abstract class Unit implements IUnit {
         this.unitMoveController = unitMoveController;
         this.remainingMoves = remainingMoves;
         this.weight = weight;
-        System.out.println("HP: " + this.health);
-        System.out.println("REMAINING MOVES: " + this.remainingMoves );
     }
 
     @Override
@@ -50,8 +48,8 @@ public abstract class Unit implements IUnit {
 
     @Override
     public ArrayList<Position> getMovementZone(IBoard board, Position myPos, int energyRemain) {
-        System.out.println("REMAINING MOVES: " + this.remainingMoves );
-        return this.unitMoveController.getMovementZone(board, myPos, energyRemain, remainingMoves);
+        System.out.println("REMAINING MOVES: " + board.getCell(myPos).getUnit().getRemainingMoves() );
+        return this.unitMoveController.getMovementZone(board, myPos, energyRemain,  board.getCell(myPos).getUnit().getRemainingMoves());
     }
 
     @Override
@@ -113,6 +111,6 @@ public abstract class Unit implements IUnit {
 
     @Override
     public void setRemainingMoves(int moves){
-        remainingMoves -= moves;
+        remainingMoves = remainingMoves -  moves;
     }
 }
