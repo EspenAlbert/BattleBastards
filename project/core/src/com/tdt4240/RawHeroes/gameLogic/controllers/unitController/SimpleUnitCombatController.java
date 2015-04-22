@@ -64,7 +64,7 @@ public class SimpleUnitCombatController implements IUnitCombatController{
 
     @Override
     public int inflictDamage(Position myPos, Position attackPos) {
-        return rand.nextInt((this.attackDmgMax - this.attackDmgMin) + 1 + attackDmgMin);
+        return rand.nextInt(this.attackDmgMax - this.attackDmgMin) + this.attackDmgMin + 1;
     }
 
     @Override
