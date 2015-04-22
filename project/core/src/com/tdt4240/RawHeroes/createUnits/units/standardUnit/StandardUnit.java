@@ -74,42 +74,6 @@ public class StandardUnit extends Unit implements Serializable {
         return new StandardUnit(player1Unit, health, hasAttacked, unitCombatController, unitMoveController,remainingMoves, weight);
     }
 
-    /*@Override
-    public TextureRegion getActiveFrame(Texture texture){
-       return this.unitAnimationController.getActiveFrame(texture);
-    }*/
-
-    /*@Override
-    public void nextFrame(){
-        this.unitAnimationController.nextFrame();
-    }*/
-
-    /*@Override
-    public void setActiveAnimation(RenderMode renderMode){
-        switch (renderMode){
-
-            case STATIC:
-                if (this.unitAnimationController.getActiveAnimation() == AnimationConstants.MOVE_RIGHT)this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_RIGHT);
-                if (this.unitAnimationController.getActiveAnimation() == AnimationConstants.MOVE_LEFT)this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_LEFT);
-                break;
-            case MOVING:
-                if(this.turnedRight)this.unitAnimationController.setActiveAnimation(AnimationConstants.MOVE_RIGHT);
-                else this.unitAnimationController.setActiveAnimation(AnimationConstants.MOVE_LEFT);
-                break;
-            case ATTACKING:
-                if(this.turnedRight)this.unitAnimationController.setActiveAnimation(AnimationConstants.ATK_RIGHT);
-                else this.unitAnimationController.setActiveAnimation(AnimationConstants.ATK_LEFT);
-                break;
-            case HURT:
-                if (this.unitAnimationController.getActiveAnimation() == AnimationConstants.IDLE_RIGHT)this.unitAnimationController.setActiveAnimation(AnimationConstants.HURT_RIGHT);
-                else this.unitAnimationController.setActiveAnimation(AnimationConstants.HURT_LEFT);
-                break;
-            case KILLED:
-                this.unitAnimationController.setActiveAnimation(AnimationConstants.DEAD);
-                break;
-        }
-    }*/
-
     @Override
     public int getRemainingMoves() {
         return remainingMoves;
@@ -135,8 +99,4 @@ public class StandardUnit extends Unit implements Serializable {
         return this.unitCombatController.getMaxHealth();
     }
 
-    /*@Override
-    public void addAnimationListener(IAnimationListener animationListener) {
-        this.unitAnimationController.addAnimationListener(animationListener);
-    }*/
 }
