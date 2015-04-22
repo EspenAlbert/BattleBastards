@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
+import com.tdt4240.RawHeroes.gameLogic.models.UnitRenderModel;
 import com.tdt4240.RawHeroes.independent.GameConstants;
 import com.tdt4240.RawHeroes.independent.MyInputProcessor;
 import com.tdt4240.RawHeroes.independent.Position;
@@ -93,12 +94,15 @@ public class UnitDetailRenderer implements IRenderNoPos {
             default:
                 texture = new Texture(Gdx.files.internal("units/soldierSheet.png"));
         }
+        UnitRenderModel renderModel;
         if (unit.isPlayer1Unit()){
-            sprite = new Sprite(texture);
-            //sprite = new Sprite(unit.getActiveFrame(TextureChanger.changeColor(texture, Color.RED)));
+            renderModel = new UnitRenderModel(unit.getIdentifier(), true);
+            renderModel.getSheet().setTexture(TextureChanger.changeColor(renderModel.getSheet().getTexture(), Color.RED));
+            sprite = new Sprite(renderModel.getActiveFrame());
         } else {
-            sprite = new Sprite(texture);
-            //sprite = new Sprite(unit.getActiveFrame(TextureChanger.changeColor(texture, Color.BLUE)));
+            renderModel = new UnitRenderModel(unit.getIdentifier(), true);
+            renderModel.getSheet().setTexture(TextureChanger.changeColor(renderModel.getSheet().getTexture(), Color.BLUE));
+            sprite = new Sprite(renderModel.getActiveFrame());
         }
         Image img = new Image(sprite);
         img.setSize(createUnitDetailsScreenDialog.getHeight()*3/8, createUnitDetailsScreenDialog.getHeight()/2);
