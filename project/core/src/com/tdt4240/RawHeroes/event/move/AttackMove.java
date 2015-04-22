@@ -50,6 +50,7 @@ public class AttackMove extends Move {
     @Override
     public void undo(IBoard board) {
         getStartCell().getUnit().setHasAttacked(false);
+
     }
 
 
