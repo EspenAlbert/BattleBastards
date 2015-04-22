@@ -31,7 +31,6 @@ public class UnitRenderer implements IMoveListener {
     private UnitMoveExecutor moveExecutor;
     private IBoard board;
     private ICameraController cameraController;
-    private boolean iAmPlayer1;
     private ArrayList<UnitRenderModel> renderModels;
 
     private IRenderBuilding renderBuilding = RenderBuilding.getInstance();
