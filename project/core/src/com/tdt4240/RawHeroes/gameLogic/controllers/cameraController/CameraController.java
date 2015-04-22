@@ -34,7 +34,7 @@ public class CameraController implements ICameraController {
     }
 
     public void translate(int x, int y) {
-        Position p = convertPixelCoordinateToCell(new Vector2(0,GameConstants.RESOLUTION_HEIGHT-10));
+        Position p = getOrigo();
         if(ct == null) {
             ct = new CameraTranslator(camera, this, y);
             ct.start();
@@ -72,5 +72,9 @@ public class CameraController implements ICameraController {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+    }
+
+    public Position getOrigo() {
+        return convertPixelCoordinateToCell(new Vector2(0,GameConstants.RESOLUTION_HEIGHT-10));
     }
 }
