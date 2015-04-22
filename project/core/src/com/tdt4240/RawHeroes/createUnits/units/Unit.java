@@ -7,12 +7,13 @@ import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
 import com.tdt4240.RawHeroes.gameLogic.unit.UnitName;
 import com.tdt4240.RawHeroes.independent.Position;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by espen1 on 21.04.2015.
  */
-public abstract class Unit implements IUnit {
+public abstract class Unit implements IUnit, Serializable{
 
     protected int health;
     protected boolean player1Unit;

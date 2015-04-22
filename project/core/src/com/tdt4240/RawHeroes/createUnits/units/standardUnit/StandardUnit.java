@@ -20,12 +20,13 @@ import com.tdt4240.RawHeroes.independent.AnimationConstants;
 import com.tdt4240.RawHeroes.independent.Position;
 import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.RenderMode;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by espen1 on 07.03.2015.
  */
-public class StandardUnit extends Unit {
+public class StandardUnit extends Unit implements Serializable {
 
     private final int MAX_HEALTH = 20;
 

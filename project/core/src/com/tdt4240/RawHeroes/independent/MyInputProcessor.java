@@ -129,6 +129,23 @@ public class MyInputProcessor implements GestureDetector.GestureListener, InputP
         return false;
     }
 
+    public void deactivateListeners() {
+        active = false;
+    }
+    public void activateListeners() {
+        active = true;
+    }
+
+    public void deactivateListenersExcept(TouchDown onlyActiveListener) {
+        deactivateListeners();
+        exceptionList.add(onlyActiveListener);
+    }
+
+    public void removeListener(TouchDown listener) {
+        toBeRemoved = listener;
+        removeListener = true;
+    }
+
     @Override
     public boolean keyDown(int keycode) {
         return false;
@@ -167,22 +184,5 @@ public class MyInputProcessor implements GestureDetector.GestureListener, InputP
     @Override
     public boolean scrolled(int amount) {
         return false;
-    }
-
-    public void deactivateListeners() {
-        active = false;
-    }
-    public void activateListeners() {
-        active = true;
-    }
-
-    public void deactivateListenersExcept(TouchDown onlyActiveListener) {
-        deactivateListeners();
-        exceptionList.add(onlyActiveListener);
-    }
-
-    public void removeListener(TouchDown listener) {
-        toBeRemoved = listener;
-        removeListener = true;
     }
 }
