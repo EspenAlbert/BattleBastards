@@ -118,6 +118,10 @@ public class StandardBoard implements IBoard {
         for (int x = 0; x < cells.length; x++) {
             for (int y = 0; y < cells[0].length; y++) {
                 if (cells[x][y].getUnit() != null) {
+                    if(cells[x][y].getUnit().getHealth() < 1) {
+                        cells[x][y].setUnit(null);
+                        continue;
+                    }
                     unitPositions.add(new Position(x, y));
                 }
             }

@@ -35,6 +35,7 @@ public class AttackMove extends Move {
     public void execute(IBoard board) {
         setStartCell(board.getCell(getStartCell().getPos()));
         setTargetCell(board.getCell(getTargetCell().getPos()));
+        if(getStartCell().getUnit() == null || getTargetCell().getUnit() == null) return;//Probably means that the attacker/victim has allready been killed
         if(!getStartCell().getUnit().hasAttacked()) { //First time execute is called
             getStartCell().getUnit().setHasAttacked(true);
             return;

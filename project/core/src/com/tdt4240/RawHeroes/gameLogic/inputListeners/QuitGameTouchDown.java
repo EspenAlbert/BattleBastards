@@ -29,6 +29,8 @@ public class QuitGameTouchDown implements TouchDown {
     @Override
     public boolean touchDown(float screenX, float screenY, int pointer, int button) {
         Position coordinates = cameraController.convertPixelCoordinateToCell(new Vector2(screenX, screenY));
+        Position adjustedCoordinate = cameraController.getOrigo();
+        coordinates.sub(adjustedCoordinate.getX(), adjustedCoordinate.getY());
         if(FinishScreenRenderer.isNoOptionMessage(message)) {
             if(coordinates.getY() < GameConstants.GAME_VISIBLE_HEIGHT-1 && coordinates.getX() < GameConstants.GAME_VISIBLE_WIDTH) activeGameScreen.backToMainMenu();
             return false;

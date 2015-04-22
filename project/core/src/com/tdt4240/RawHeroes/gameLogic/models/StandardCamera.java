@@ -14,7 +14,6 @@ public class StandardCamera implements ICamera{
     public StandardCamera() {
         camera = new OrthographicCamera();
         camera.position.set(GameConstants.GAME_VISIBLE_WIDTH / 2, GameConstants.GAME_VISIBLE_HEIGHT / 2, 0);
-
     }
 
     public Matrix4 getProjectionMatrix() {

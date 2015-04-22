@@ -64,6 +64,7 @@ public class ActiveGameScreen extends ScreenState{
         initializeWhenViewReady();
         if(endGameState && gameView.noAnimationWaiting()) {
             endGameLogic();
+            endGameState = false;
         }
         gameView.update(dt);
         if(!addedListener) {
@@ -97,6 +98,7 @@ public class ActiveGameScreen extends ScreenState{
         checkIfYouHaveLost();
         GestureDetector gd = new GestureDetector(MyInputProcessor.getInstance());
         Gdx.input.setInputProcessor(gd);
+        MyInputProcessor.getInstance().activateListeners();
         MyInputProcessor.getInstance().AddTouchDownListener(new TouchListenerActiveGameScreen(boardController, cameraController, this));
         EventToTranslateCamera cameraTranslator = new EventToTranslateCamera(cameraController);
         MyInputProcessor.getInstance().AddPanListener(cameraTranslator);
