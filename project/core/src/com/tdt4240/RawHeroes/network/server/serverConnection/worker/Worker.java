@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -28,7 +27,6 @@ import java.util.ArrayList;
  */
 public class Worker extends Thread {
 
-    private String username;
     private Socket connection;
     private ObjectOutputStream toClient;
     private ObjectInputStream fromClient;
@@ -45,7 +43,7 @@ public class Worker extends Thread {
                 toClient = new ObjectOutputStream(connection.getOutputStream());
                 fromClient = new ObjectInputStream(connection.getInputStream());
                 JSONObject obj = (JSONObject)fromClient.readObject();
-                decodeMessage(obj);
+                decodeMessageAndReply(obj);
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
@@ -65,7 +63,7 @@ public class Worker extends Thread {
     }
 
 
-    public void decodeMessage(JSONObject obj) {
+    public void decodeMessageAndReply(JSONObject obj) {
         System.out.println(obj);
         JSONObject response = new JSONObject();
         RequestMessage request = null;

@@ -81,6 +81,7 @@ public class DatabaseConnector implements IDatabaseConnector {
         if (!result.next()) return -1;
         return result.getInt("gameId");
     }
+    @Override
     public int deleteGame(int gameId) throws SQLException{
         PreparedStatement ps = null;
         String sql = null;
@@ -98,6 +99,7 @@ public class DatabaseConnector implements IDatabaseConnector {
         return response;
     }
 
+    @Override
     public ArrayList<Integer> getAllKeys(String username) throws SQLException {
         PreparedStatement ps = null;
         String sql = null;
@@ -118,6 +120,7 @@ public class DatabaseConnector implements IDatabaseConnector {
         //return response;
     }
 
+    @Override
     public void updatePlayer(HashMap<String, Object> javaObjectColumns, String primaryKeyValue) throws SQLException, IOException{
         PreparedStatement ps = null;
         String sql = null;

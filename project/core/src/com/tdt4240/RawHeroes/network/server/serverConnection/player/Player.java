@@ -10,7 +10,6 @@ public class Player implements Serializable{
     private String username;
     private String password;
     private PlayerTypes playerType;
-    private Child child;
     private int score;
     private ArrayList<Player> friendList = new ArrayList<Player>();
 
@@ -63,13 +62,6 @@ public class Player implements Serializable{
         this.playerType = playerType;
     }
 
-    public Child getChild() {
-        return child;
-    }
-
-    public void setChild(Child child) {
-        this.child = child;
-    }
 
     public void increaseScore() {
         score += 100;

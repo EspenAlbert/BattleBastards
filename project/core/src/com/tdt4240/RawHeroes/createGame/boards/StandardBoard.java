@@ -1,6 +1,6 @@
 package com.tdt4240.RawHeroes.createGame.boards;
 
-import com.tdt4240.RawHeroes.createUnits.factory.UnitBuilding;
+import com.tdt4240.RawHeroes.createUnits.factory.UnitFactory;
 import com.tdt4240.RawHeroes.event.events.BoardEvent;
 import com.tdt4240.RawHeroes.event.events.BoardResetEvent;
 import com.tdt4240.RawHeroes.event.events.CellChangeEvent;
@@ -12,7 +12,6 @@ import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.CellConverte
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.gameLogic.unit.UnitName;
 import com.tdt4240.RawHeroes.independent.Position;
-import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.IRenderObject;
 
 import java.util.ArrayList;
 
@@ -31,15 +30,15 @@ public class StandardBoard implements IBoard {
     public StandardBoard() {
         cells = createStandardBoardCells(false);
         //Player 1 unit
-        cells[0][1].setUnit(UnitBuilding.getInstance().createUnit(UnitName.STANDARD_UNIT, true));
-        cells[0][2].setUnit(UnitBuilding.getInstance().createUnit(UnitName.STANDARD_UNIT_2, true));
-        cells[0][3].setUnit(UnitBuilding.getInstance().createUnit(UnitName.STANDARD_UNIT_2, true));
-        cells[0][4].setUnit(UnitBuilding.getInstance().createUnit(UnitName.STANDARD_UNIT, true));
+        cells[0][1].setUnit(UnitFactory.getInstance().createUnit(UnitName.STANDARD_UNIT, true));
+        cells[0][2].setUnit(UnitFactory.getInstance().createUnit(UnitName.STANDARD_UNIT_2, true));
+        cells[0][3].setUnit(UnitFactory.getInstance().createUnit(UnitName.STANDARD_UNIT_2, true));
+        cells[0][4].setUnit(UnitFactory.getInstance().createUnit(UnitName.STANDARD_UNIT, true));
         //Player 2 unit
-        cells[6][1].setUnit(UnitBuilding.getInstance().createUnit(UnitName.STANDARD_UNIT, false));
-        cells[6][2].setUnit(UnitBuilding.getInstance().createUnit(UnitName.STANDARD_UNIT_2, false));
-        cells[6][3].setUnit(UnitBuilding.getInstance().createUnit(UnitName.STANDARD_UNIT_2, false));
-        cells[6][4].setUnit(UnitBuilding.getInstance().createUnit(UnitName.STANDARD_UNIT, false));
+        cells[6][1].setUnit(UnitFactory.getInstance().createUnit(UnitName.STANDARD_UNIT, false));
+        cells[6][2].setUnit(UnitFactory.getInstance().createUnit(UnitName.STANDARD_UNIT_2, false));
+        cells[6][3].setUnit(UnitFactory.getInstance().createUnit(UnitName.STANDARD_UNIT_2, false));
+        cells[6][4].setUnit(UnitFactory.getInstance().createUnit(UnitName.STANDARD_UNIT, false));
 
         listeners = new ArrayList<IBoardListener>();
     }

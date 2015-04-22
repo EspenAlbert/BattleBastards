@@ -50,6 +50,7 @@ public class PlayerHandler implements IPlayerHandler{
         Player storedPlayer = (Player) databaseConnector.getJavaObject("players", "username", player.getUsername(), -1);
         return player.getPassword().equals(storedPlayer.getPassword());
     }
+    @Override
     public boolean changePassword(Player player) throws Exception{
         Player storedPlayer = (Player) databaseConnector.getJavaObject("players", "username", player.getUsername(), -1);
         storedPlayer.setPassword(player.getPassword());
@@ -58,11 +59,13 @@ public class PlayerHandler implements IPlayerHandler{
         databaseConnector.updatePlayer(columns, storedPlayer.getUsername());
         return true;
     }
+    @Override
     public ArrayList<Player> getFriendList(String username) throws Exception {
         Player storedPlayer = (Player) databaseConnector.getJavaObject("players", "username", username, -1);
         return storedPlayer.getFriendList();
     }
 
+    @Override
     public boolean addFriend(Player player, Player playerFriend) throws Exception {
         Player storedPlayer = (Player) databaseConnector.getJavaObject("players", "username", player.getUsername(), -1);
         boolean addedToList = storedPlayer.addToFriendList(playerFriend);

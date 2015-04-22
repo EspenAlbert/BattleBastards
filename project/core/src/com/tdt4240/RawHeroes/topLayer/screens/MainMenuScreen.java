@@ -58,7 +58,7 @@ public class MainMenuScreen extends ScreenState {
         int yPosTextFieldGetGame = yPosButtonCreateGame - scaleY;
         int yPosButtonGetGame = yPosTextFieldGetGame - scaleY;
 
-        buttonCreateGame = MainMenuButtonsFactory.createButton("CreateGame", xPos, yPosButtonCreateGame);
+        buttonCreateGame = MainMenuButtonsFactory.createButton("Create Game", xPos, yPosButtonCreateGame);
         buttonSettingScreen = MainMenuButtonsFactory.createButton("Settings" , xPos, yPosButtonGetGame);
         buttonUpdateTable = MainMenuButtonsFactory.createTableButton("Update games", GameConstants.RESOLUTION_WIDTH / 2, GameConstants.RESOLUTION_HEIGHT - 100, false);
         labelInstruction = LabelFactory.createLabel("This is the main menu", xPos, yPosLabelInstruction);
@@ -172,7 +172,7 @@ public class MainMenuScreen extends ScreenState {
         ResponseMessage response = ClientConnection.getInstance().deleteGame(gameId);
         ResponseType type = response.getType();
         if(type.equals(ResponseType.SUCCESS)){
-            labelInstruction.setText("You have surrendred the game! " + gameId);
+            labelInstruction.setText("You have surrendered the game! ");
         }
     }
 

@@ -75,7 +75,7 @@ public abstract class Unit implements IUnit{
     }
 
     @Override
-    public void setAttackLogic(IUnitCombatController controller) {
+    public void setCombatLogic(IUnitCombatController controller) {
         unitCombatController = controller;
     }
 

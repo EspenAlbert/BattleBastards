@@ -24,7 +24,7 @@ public interface IUnit extends Serializable{
     int inflictDamage(Position myPos, Position enemies);
     int attacked(int damage);
     int getWeight();
-    void setAttackLogic(IUnitCombatController controller);
+    void setCombatLogic(IUnitCombatController controller);
     void setMovementLogic(IUnitMovementController controller);
     void setHasAttacked(boolean value);
     boolean isPlayer1Unit();

@@ -78,7 +78,7 @@ public class LoginScreen extends ScreenState {
 
         labelInstruction = LabelFactory.createLabel("Please specify username and password", xPos, yPosLabelInstruction);
         int xPosCheckBox = xPos - (int)buttonLogin.getWidth()/2;
-        title = LabelFactory.createLabel("Game Title", xPos, yPosTitle);
+        title = LabelFactory.createLabel("Battle Bastards", xPos, yPosTitle);
 
         checkBoxNewuser = CheckBoxFactory.createCheckBox("New user", xPosCheckBox, yPosButton);
 
