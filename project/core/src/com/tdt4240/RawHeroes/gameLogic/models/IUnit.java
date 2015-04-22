@@ -41,8 +41,8 @@ public interface IUnit extends Serializable{
     int getArmor();
     int getHealth();
     int getMaxHealth();
-    int getMovesLeft();
-    void move(int movesSpent);
+    int getRemainingMoves();
+    void setRemainingMoves(int moves);
 
     boolean hasAttacked();
     IUnit getCopy();

@@ -20,9 +20,9 @@ public class SimpleUnitCombatController implements IUnitCombatController, Serial
     private int health;
     private final int maxHealth;
     private final int maxMoves;
-    private int movesLeft;
+    private int remainingMoves = 0;
 
-    public SimpleUnitCombatController(IUnit u, int minDmg, int maxDmg, int armor, int health, int moves){
+    public SimpleUnitCombatController(IUnit u, int minDmg, int maxDmg, int armor, int health, int remainingMoves) {
         this.rand = new Random();
         this.health = health;
         this.maxHealth = health;
@@ -30,29 +30,29 @@ public class SimpleUnitCombatController implements IUnitCombatController, Serial
         this.attackDmgMin = minDmg;
         this.attackDmgMax = maxDmg;
         this.armor = armor;
-        this.movesLeft = moves;
-        this.maxMoves = moves;
+        this.remainingMoves = remainingMoves;
+        this.maxMoves = remainingMoves;
     }
 
     @Override
     public ArrayList<Position> getAttackablePositions(Position pos, int movesLeft, IBoard board) {
         ArrayList<Position> temp = new ArrayList<Position>();
         System.out.println("energy: " + movesLeft);
-        if(movesLeft <= 0) return temp;
-        if(pos.getX() < board.getWidth()-1){
-            temp.add(new Position(pos.getX()+1, pos.getY()));
+        if (movesLeft <= 0) return temp;
+        if (pos.getX() < board.getWidth() - 1) {
+            temp.add(new Position(pos.getX() + 1, pos.getY()));
             System.out.println("Added to the right");
         }
-        if(pos.getX() > 0){
-            temp.add(new Position(pos.getX()-1, pos.getY()));
+        if (pos.getX() > 0) {
+            temp.add(new Position(pos.getX() - 1, pos.getY()));
             System.out.println("Added to the left");
         }
-        if(pos.getY() < board.getHeight()-1){
-            temp.add(new Position(pos.getX(), pos.getY()+1));
+        if (pos.getY() < board.getHeight() - 1) {
+            temp.add(new Position(pos.getX(), pos.getY() + 1));
             System.out.println("Added above");
         }
-        if(pos.getY() > 0){
-            temp.add(new Position(pos.getX(), pos.getY()-1));
+        if (pos.getY() > 0) {
+            temp.add(new Position(pos.getX(), pos.getY() - 1));
             System.out.println("Added below");
         }
         return temp;
@@ -87,7 +87,7 @@ public class SimpleUnitCombatController implements IUnitCombatController, Serial
         return attackDmgMax;
     }
 
-    public int getArmor(){
+    public int getArmor() {
         return armor;
     }
 
@@ -101,17 +101,5 @@ public class SimpleUnitCombatController implements IUnitCombatController, Serial
         return maxHealth;
     }
 
-    public void move(int movesSpent){
-        this.movesLeft -= movesSpent;
-    }
-
-    @Override
-    public void resetMoves() {
-        this.movesLeft = this.maxMoves;
-    }
-
-    @Override
-    public int getMovesLeft() {
-        return this.movesLeft;
-    }
 }
+

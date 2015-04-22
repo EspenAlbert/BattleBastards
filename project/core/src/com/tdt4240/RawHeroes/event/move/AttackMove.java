@@ -30,7 +30,7 @@ public class AttackMove extends Move {
 
 
     @Override
-    public int getCost(){
+    public int getEnergyCost(){
         return this.getStartCell().getUnit().getWeight();
     }
     @Override

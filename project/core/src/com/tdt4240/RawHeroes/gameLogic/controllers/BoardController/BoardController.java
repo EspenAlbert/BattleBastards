@@ -1,17 +1,5 @@
 package com.tdt4240.RawHeroes.gameLogic.controllers.boardController;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.tdt4240.RawHeroes.event.listener.IMoveListener;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.event.move.Move;
@@ -31,7 +19,7 @@ public class BoardController implements IBoardController {
 
     private ArrayList<BoardControllerStateListener> listeners;
 
-    private int remaining_energy;
+    private int remaining_energy, remaining_moves;
     private boolean iAmPlayer1;
 
 
@@ -65,13 +53,15 @@ public class BoardController implements IBoardController {
     }
 
     public void addMove(Move move) {
-        remaining_energy = remaining_energy - move.getCost();
+        remaining_energy = remaining_energy - move.getEnergyCost();
         boardMover.add(move);
     }
 
     public void undoMove(){
-        Move move = this.boardMover.undo();
-        if(move != null) remaining_energy += move.getCost();
+        Move move = boardMover.undo();
+        if(move != null){
+            remaining_energy += move.getEnergyCost();
+        }
     }
 
     @Override

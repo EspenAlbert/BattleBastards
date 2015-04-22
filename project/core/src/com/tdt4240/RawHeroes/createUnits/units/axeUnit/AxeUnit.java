@@ -77,14 +77,15 @@ public class AxeUnit extends Unit {
     }
 
     @Override
-    public int getMovesLeft() {
-        return this.unitCombatController.getMovesLeft();
+    public int getRemainingMoves() {
+        return remainingMoves;
     }
 
     @Override
-    public void move(int movesSpent) {
-        this.unitCombatController.move(movesSpent);
+    public void setRemainingMoves(int moves) {
+        remainingMoves -= moves;
     }
+
 
     @Override
     public int[] getAttackDmg() {
@@ -143,7 +144,7 @@ public class AxeUnit extends Unit {
 
     @Override
     public void resetMoves() {
-        unitCombatController.resetMoves();
+        remainingMoves = MAX_MOVES;
 
     }
 

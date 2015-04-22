@@ -33,7 +33,7 @@ public class ActiveGameScreen extends ScreenState{
 
     private final GameView gameView;
     private final IBoardController boardController;
-    private final IBoard board;
+    private final .,IBoard board;
     private final boolean iAmPlayer1;
     private final CameraController cameraController;
     private final Game game;
@@ -46,7 +46,7 @@ public class ActiveGameScreen extends ScreenState{
         super(gsm);
         this.game = game;
         board = game.getBoard();
-        iAmPlayer1 = ClientConnection.getInstance().getUsername().equals(game.getPlayer1Nickname());
+        iAmPlayer1 = true; // ClientConnection.getInstance().getUsername().equals(game.getPlayer1Nickname());
         boardController = new BoardController(board, game.getMoveCount(), iAmPlayer1);//MUST ALWAYS BE EXECUTED BEFORE creating gameView!!
 
         camera = new StandardCamera();
@@ -101,6 +101,7 @@ public class ActiveGameScreen extends ScreenState{
         MyInputProcessor.getInstance().AddPanListener(cameraTranslator);
         MyInputProcessor.getInstance().AddPanStopListener(cameraTranslator);
         gameView.initializeTouchListeners(cameraController);
+        boardController.actionButtonTouched();
         initializedInputListeners = true;
     }
     private void checkIfYouHaveLost() {

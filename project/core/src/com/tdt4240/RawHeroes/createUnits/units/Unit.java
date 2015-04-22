@@ -48,8 +48,8 @@ public abstract class Unit implements IUnit, Serializable{
     }
 
     @Override
-    public ArrayList<Position> getMovementZone(IBoard board, Position myPos, int movesLeft) {
-        return this.unitMoveController.getMovementZone(board, myPos, movesLeft, this.getMovesLeft());
+    public ArrayList<Position> getMovementZone(IBoard board, Position myPos, int energyRemain) {
+        return this.unitMoveController.getMovementZone(board, myPos, energyRemain, remainingMoves);
     }
 
     @Override
