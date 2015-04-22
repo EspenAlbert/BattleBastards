@@ -55,7 +55,6 @@ public class AxeUnit extends Unit {
         return UnitName.STANDARD_UNIT_2;
     }
 
-
     @Override
     public int getMaxHealth() {
         return MAX_HEALTH;

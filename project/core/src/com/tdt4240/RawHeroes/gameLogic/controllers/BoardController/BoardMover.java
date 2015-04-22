@@ -68,8 +68,10 @@ public class BoardMover implements IBoardMover {
     public Move undo() {
         if(moves.size() > 0) {
             moves.get(moves.size()-1).undo(board);
-
-            doMove(moves.get(moves.size()-1));
+            doMove(moves.get(moves.size() - 1));
+            if(moves.get(moves.size()-1) instanceof AttackMove){
+                moves.get(moves.size()-1).getStartCell().getUnit().setHasAttacked(false);
+            }
             return moves.remove(moves.size() -1);
         }
         return null;
