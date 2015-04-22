@@ -26,8 +26,8 @@ public class WalkingUnitMovementController implements IUnitMovementController, S
     }
 
     @Override
-    public ArrayList<Position> getMovementZone(IBoard board, Position myPos, int movesLeft, int unitMaxMoves) {
-        int maxDepth=Math.min(movesLeft/board.getCell(myPos).getUnit().getWeight(), unitMaxMoves); //max moves for unit
+    public ArrayList<Position> getMovementZone(IBoard board, Position myPos, int energyLeft, int movesLeft) {
+        int maxDepth=Math.min(energyLeft/board.getCell(myPos).getUnit().getWeight(), movesLeft); //max moves for unit
         //breadth first search
         ArrayList<Pair<Position, Integer>> queue=new ArrayList<Pair<Position, Integer>>();
         ArrayList<Position> discovered = new ArrayList<Position>();//

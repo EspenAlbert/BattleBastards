@@ -10,6 +10,6 @@ import java.util.ArrayList;
  * Created by espen1 on 12.04.2015.
  */
 public interface IUnitMovementController {
-    ArrayList<Position> getMovementZone(IBoard board, Position myPos, int movesLeft, int unitMaxMoves);
+    ArrayList<Position> getMovementZone(IBoard board, Position myPos, int energy, int remainingMoves);
     ArrayList<Position> getMovementPath(IBoard board, Position myPos, Position targetPos);
 }
