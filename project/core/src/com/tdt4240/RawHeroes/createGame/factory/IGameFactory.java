@@ -7,5 +7,5 @@ import com.tdt4240.RawHeroes.topLayer.commonObjects.Game;
  * Created by espen1 on 08.03.2015.
  */
 public interface IGameFactory {
-    Game createGame(IBoard board, String player1, String player2);
+    Game createGame(String player1, String player2);
 }

@@ -4,14 +4,10 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
-import com.tdt4240.RawHeroes.createGame.factory.BoardFactory;
 import com.tdt4240.RawHeroes.independent.GameConstants;
 import com.tdt4240.RawHeroes.topLayer.screens.ScreenStateManager;
 import com.tdt4240.RawHeroes.independent.MyInputProcessor;
 import com.tdt4240.RawHeroes.view.customUIElements.boardRenderer.BoardRenderer;
-
-import java.util.ArrayList;
 
 public class BattleBastards extends ApplicationAdapter {
 	SpriteBatch batch;
@@ -22,9 +18,8 @@ public class BattleBastards extends ApplicationAdapter {
     @Override
 	public void create () {
 		batch = new SpriteBatch();
-        //TODO: This depends on your computer... Therefore keeping both options available...
         //board = new BoardRenderer(BoardFactory.getInstance().getBoard("STANDARD-BOARD"), true);
-        Gdx.graphics.setTitle("GAME NAME");
+        Gdx.graphics.setTitle("Battle Bastards");
 		img = new Texture("badlogic.jpg");
         Gdx.graphics.setDisplayMode(GameConstants.RESOLUTION_WIDTH, GameConstants.RESOLUTION_HEIGHT, false);
         Gdx.input.setInputProcessor(MyInputProcessor.getInstance());

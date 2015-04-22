@@ -27,7 +27,6 @@ import java.util.ArrayList;
  */
 public class Worker extends Thread {
 
-    private String username;
     private Socket connection;
     private ObjectOutputStream toClient;
     private ObjectInputStream fromClient;
@@ -44,7 +43,7 @@ public class Worker extends Thread {
                 toClient = new ObjectOutputStream(connection.getOutputStream());
                 fromClient = new ObjectInputStream(connection.getInputStream());
                 JSONObject obj = (JSONObject)fromClient.readObject();
-                decodeMessage(obj);
+                decodeMessageAndReply(obj);
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
@@ -64,14 +63,14 @@ public class Worker extends Thread {
     }
 
 
-    public void decodeMessage(JSONObject obj) {
+    public void decodeMessageAndReply(JSONObject obj) {
         System.out.println(obj);
         JSONObject response = new JSONObject();
         RequestMessage request = null;
         try {
             request = (RequestMessage) obj.get("request");
         } catch (ClassCastException exception) {
-            //TODO: Return a invalid request message
+            response.put("response", new ResponseMessage(ResponseType.FAILURE, "You requested an invalid request"));
         }
         RequestTypes requestType = request.getType();
         try {
@@ -105,12 +104,74 @@ public class Worker extends Thread {
                 case GET_GAME:
                     response.put("response", getGame(request));
                     break;
+                case GET_GAMEIDS:
+                    response.put("response", getGameIds(request));
+                    break;
+                case DELETE_GAME:
+                    response.put("response", deleteGame(request));
+                    break;
+                case CHANGE_PASSWORD:
+                    response.put("response", changePassword(request));
+                    break;
+                case ADD_TO_FRIENDLIST:
+                    response.put("response", addToFriendList(request));
+                    break;
+                case GET_FRIENDLIST:
+                    response.put("response", getFriendList(request));
+                    break;
+                case IS_PLAYING:
+                    response.put("response", isPlaying(request));
             }
         }catch(Exception exception) {
             exception.printStackTrace();
             response.put("response", new ResponseMessage(ResponseType.FAILURE, "There was an exception on the server side"));
         }
         sendJSON(response);
+    }
+
+    private ResponseMessage isPlaying(RequestMessage request) throws Exception {
+        String hostUsername = request.getPlayer().getUsername();
+        String challengedPlayer = (String) request.getParameters().get(0);
+        GameHandler gameHandler = GameHandler.getInstance();
+        int id = gameHandler.findGame(hostUsername, challengedPlayer);
+        if(id > -1) return ResponseCreator.getGameAlreadyExist(challengedPlayer);
+        else return new ResponseMessage(ResponseType.SUCCESS, "There are no game between you");
+    }
+
+
+    private ResponseMessage deleteGame(RequestMessage request)throws Exception{
+        GameHandler gameHandler = GameHandler.getInstance();
+        Integer gameId = (Integer) request.getParameters().get(0);
+        try {
+            gameHandler.deleteGame(gameId);
+        } catch (GameNotFoundException e) {
+            return ResponseCreator.getInvalidGameException(gameId);
+        } catch (NotYourGameException e) {
+            return ResponseCreator.getNotYourGameException(gameId);
+        }
+        return ResponseCreator.getDeletedGame();
+    }
+
+    private ResponseMessage getGameIds(RequestMessage request) throws Exception {
+        GameHandler gameHandler = GameHandler.getInstance();
+        String username = (String) request.getParameters().get(0);
+        ArrayList<Integer> gameIds = gameHandler.getGameIds(username);
+        return ResponseCreator.getGameIds(gameIds);
+
+
+
+    }
+
+    private ResponseMessage getFriendList(RequestMessage request) throws Exception{
+        PlayerHandler playerHandler = PlayerHandler.getInstance();
+        String username = (String) request.getParameters().get(0);
+        ArrayList<Player> friends = (ArrayList) playerHandler.getFriendList(username);
+        if(friends.size() > 0) {
+            return ResponseCreator.getFriendListSuccess(friends);
+        }
+        else {
+            return ResponseCreator.getFriendListFailure();
+        }
     }
 
     private ResponseMessage getGame(RequestMessage request) throws Exception {
@@ -145,17 +206,16 @@ public class Worker extends Thread {
     private ResponseMessage createGame(RequestMessage request) throws Exception {
         String hostUsername = request.getPlayer().getUsername();
         //Check challenged player
-
         String challengedPlayer = (String) request.getParameters().get(0);
         PlayerHandler playerHandler = PlayerHandler.getInstance();
         boolean challengedPlayerIsReal = !playerHandler.usernameIsAvailable(challengedPlayer);
         if(!challengedPlayerIsReal) return ResponseCreator.getChallengePlayerDoesNotExist();
         //CreateGame
-        //Check that there is not an existing game
+        //Check that there is not an existing launcher
         GameHandler gameHandler = GameHandler.getInstance();
         int id = gameHandler.findGame(hostUsername, challengedPlayer);
         if(id > -1) return ResponseCreator.getGameAlreadyExist(challengedPlayer);
-        //Create a new game
+        //Create a new launcher
         Games gameType = (Games) request.getParameters().get(1);
         int gameId = gameHandler.createGame(hostUsername, challengedPlayer, gameType);
         if(gameId > 0) return ResponseCreator.getCreateGameSuccess(gameId);
@@ -173,6 +233,26 @@ public class Worker extends Thread {
             return ResponseCreator.getWrongUsernamePassword();
         }
 
+    }
+    private ResponseMessage changePassword(RequestMessage request)throws Exception {
+        PlayerHandler playerHandler = PlayerHandler.getInstance();
+        Player user = request.getPlayer();
+        user.setPassword((String)request.getParameters().get(0));
+        boolean changedSuccessfully =  playerHandler.changePassword(user);
+        if(changedSuccessfully) return ResponseCreator.getChangedPasswordSucess();
+        return ResponseCreator.getChangedPasswordFailed();
+
+    }
+    private ResponseMessage addToFriendList(RequestMessage request) throws Exception {
+        PlayerHandler playerHandler = PlayerHandler.getInstance();
+        Player user = request.getPlayer();
+        String challengedPlayer = (String) request.getParameters().get(0);
+        boolean challengedPlayerIsReal = !playerHandler.usernameIsAvailable(challengedPlayer);
+        if(!challengedPlayerIsReal) return ResponseCreator.getChallengePlayerDoesNotExist();
+        Player playerFriend = PlayerHandler.getInstance().getPlayer((String) request.getParameters().get(0));
+        boolean addedSuccessfully = playerHandler.addFriend(user, playerFriend);
+        if(addedSuccessfully) return ResponseCreator.getAddedSucess();
+        else return ResponseCreator.getAddedFailure();
     }
 
     private ResponseMessage createUser(RequestMessage request) throws Exception {

@@ -21,11 +21,11 @@ import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRend
 public class HudRenderer implements IRenderNoPos, BoardControllerStateListener, IMoveListener{
 
     private Skin skin;
-    private IBoardController boardController;
 
     private TextButton sendButton;
     private TextButton actionButton;
     private TextButton abortButton;
+    private IBoardController boardController;
 
     private Label energyLabel;
     private boolean energyChanged;
@@ -35,6 +35,7 @@ public class HudRenderer implements IRenderNoPos, BoardControllerStateListener, 
         setupUiElements();
         energyChanged = false;
         this.boardController.addBoardControllerStateListener(this);
+
     }
     @Override
     public void stateChanged(BoardControllerStateEvent event) {
@@ -48,7 +49,7 @@ public class HudRenderer implements IRenderNoPos, BoardControllerStateListener, 
         abortButton.draw(batch, 1);
         actionButton.draw(batch, 1);
         if(energyChanged){
-            energyLabel.setText(this.boardController.getRemaining_energy() + "/100");
+            energyLabel.setText(this.boardController.getRemaining_energy() + "/" + GameConstants.MAX_ENERGY);
             energyChanged = false;
         }
         energyLabel.draw(batch, 1);
@@ -59,7 +60,7 @@ public class HudRenderer implements IRenderNoPos, BoardControllerStateListener, 
         skin = new Skin(Gdx.files.internal("uiskin.json"), new TextureAtlas(Gdx.files.internal("uiskin.atlas")));
 
 
-        int buttonWidth = GameConstants.RESOLUTION_WIDTH - 7*GameConstants.CELL_WIDTH;
+        int buttonWidth = GameConstants.RESOLUTION_WIDTH / 8;
         int buttonHeight = GameConstants.RESOLUTION_HEIGHT /4;
 
         sendButton = new TextButton("Done", skin);
@@ -68,7 +69,8 @@ public class HudRenderer implements IRenderNoPos, BoardControllerStateListener, 
         actionButton.setSize(buttonWidth, buttonHeight);
         abortButton= new TextButton("Quit", skin);
         abortButton.setSize(buttonWidth, buttonHeight);
-        energyLabel = new Label(this.boardController.getRemaining_energy() + "/100",skin);
+
+        energyLabel = new Label(this.boardController.getRemaining_energy() + "/" + GameConstants.MAX_ENERGY, skin);
         energyLabel.setSize(buttonWidth, buttonHeight);
         energyLabel.setAlignment(0);
         energyLabel.setColor(1, 1, 1, 1);
@@ -84,4 +86,5 @@ public class HudRenderer implements IRenderNoPos, BoardControllerStateListener, 
     public void moveExecuted(Move move) {
         energyChanged=true;
     }
+
 }

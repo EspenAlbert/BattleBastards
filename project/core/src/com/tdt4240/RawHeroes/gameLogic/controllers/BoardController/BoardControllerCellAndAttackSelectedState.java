@@ -1,6 +1,5 @@
 package com.tdt4240.RawHeroes.gameLogic.controllers.boardController;
 
-import com.badlogic.gdx.math.Vector2;
 import com.tdt4240.RawHeroes.event.move.AttackMove;
 import com.tdt4240.RawHeroes.gameLogic.cell.CellStatus;
 import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
@@ -28,7 +27,6 @@ public class BoardControllerCellAndAttackSelectedState extends BoardControllerSt
 
     @Override
     public void actionButtonPressed() {
-        //TODO forandre knappen, må finne ut av hvordan
         this.boardController.setState(new BoardControllerCellSelectedState(this.boardController, this.board, this.selectedCell));
     }
 
@@ -36,12 +34,11 @@ public class BoardControllerCellAndAttackSelectedState extends BoardControllerSt
     public void cellSelected(ICell cell) {
         if (cell.getStatus() == CellStatus.ATTACKABLE){
             AttackMove move = new AttackMove(selectedCell, cell);
-            if (move.getCost() <= this.boardController.getRemaining_energy())this.boardController.addMove(move);
-            //TODO disable så samme unit ikke kan angripe flere ganger per tur
+            if (move.getEnergyCost() <= this.boardController.getRemaining_energy())
+                this.boardController.addMove(move);
             this.board.switchModeOnCell(selectedCell.getPos(), CellStatus.DEFAULT);
             this.boardController.setState(new BoardControllerNoCellSelectedState(this.boardController, this.board));
         }
-        //TODO også ha tilbakegåing til NoCellSelectedState hvis man trykker på en default
 
     }
 

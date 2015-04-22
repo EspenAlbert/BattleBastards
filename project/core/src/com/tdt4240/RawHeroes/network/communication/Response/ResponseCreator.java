@@ -1,7 +1,12 @@
 package com.tdt4240.RawHeroes.network.communication.Response;
 
 import com.tdt4240.RawHeroes.createGame.boards.StandardBoard;
+import com.tdt4240.RawHeroes.network.server.serverConnection.player.Player;
 import com.tdt4240.RawHeroes.topLayer.commonObjects.Game;
+
+import org.json.simple.JSONObject;
+
+import java.util.ArrayList;
 
 /**
  * Created by espen1 on 06.03.2015.
@@ -9,6 +14,12 @@ import com.tdt4240.RawHeroes.topLayer.commonObjects.Game;
 public class ResponseCreator {
     public static ResponseMessage getLoginSuccess() {
         return new ResponseMessage(ResponseType.SUCCESS, "Logged in successfully!");
+    }
+    public static ResponseMessage getChangedPasswordSucess(){
+        return new ResponseMessage(ResponseType.SUCCESS, "You have sucessfully changed your password");
+    }
+    public static ResponseMessage getChangedPasswordFailed(){
+        return new ResponseMessage(ResponseType.FAILURE, "Something wrong happened!");
     }
     public static ResponseMessage getCreateUserSuccess() {
         return new ResponseMessage(ResponseType.SUCCESS, "Username successfully created!");
@@ -21,6 +32,9 @@ public class ResponseCreator {
     }
     public static ResponseMessage getFailedToCreateUser() {
         return new ResponseMessage(ResponseType.FAILURE, "Failed to create user");
+    }
+    public static ResponseMessage getDeletedGame(){
+        return new ResponseMessage(ResponseType.SUCCESS, "Deleted game from database");
     }
 
     public static ResponseMessage getChallengePlayerDoesNotExist() {
@@ -60,5 +74,22 @@ public class ResponseCreator {
     }
     public static ResponseMessage testBoardResponse(StandardBoard board) {
         return new ResponseMessage(ResponseType.SUCCESS, board);
+    }
+
+    public static ResponseMessage getGameIds(ArrayList<Integer> gameIds) {
+        return new ResponseMessage(ResponseType.SUCCESS, gameIds);
+    }
+    public static ResponseMessage getFriendListSuccess(ArrayList<Player> friends){
+        return new ResponseMessage(ResponseType.SUCCESS, friends);
+    }
+    public static ResponseMessage getFriendListFailure(){
+        return new ResponseMessage(ResponseType.FAILURE, "You have no friends yet");
+    }
+
+    public static ResponseMessage getAddedSucess() {
+        return new ResponseMessage(ResponseType.SUCCESS, "Added friend to list");
+    }
+    public static ResponseMessage getAddedFailure(){
+        return new ResponseMessage(ResponseType.FAILURE, "Friend already in friendlist");
     }
 }

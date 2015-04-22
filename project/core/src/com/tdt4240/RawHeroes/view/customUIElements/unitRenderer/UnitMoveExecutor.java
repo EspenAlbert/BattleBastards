@@ -19,7 +19,6 @@ public class UnitMoveExecutor {
     private Vector2 direction;
     private float speed;
     private Vector2 currentPos;
-    private int movementSteps;
     private ArrayList<Position> path;
     private IRenderObject currentActor;
     private int currentIndex;
@@ -27,6 +26,7 @@ public class UnitMoveExecutor {
 
     public UnitMoveExecutor(UnitRenderer unitRenderer) {
         this.unitRenderer = unitRenderer;
+        this.currentPos = new Vector2(0 ,0);
         speed = 0.05f;
     }
 
@@ -96,6 +96,10 @@ public class UnitMoveExecutor {
         float difference = Math.abs((a.x-b.x) + (a.y - b.y));
 
         return difference < margin;
+    }
+
+    public Vector2 getCurrentPos(){
+        return this.currentPos;
     }
 
     private boolean movementIsComplete() {

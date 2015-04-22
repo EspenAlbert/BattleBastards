@@ -1,7 +1,8 @@
 package com.tdt4240.RawHeroes.event.move;
 
-import com.badlogic.gdx.math.Vector2;
 import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
+import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.CellConverter;
+import com.tdt4240.RawHeroes.independent.Pair;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
 import com.tdt4240.RawHeroes.independent.Position;
@@ -13,53 +14,75 @@ import java.util.HashMap;
  * Created by espen1 on 27.02.2015.
  */
 public class AttackMove extends Move {
+    public final static long serialVersionUID = 119471890293728491l;
 
-    Position attackerPos, targetPos;
-    HashMap<Position, Integer> damages;
+    private HashMap<Position, Integer> damages;
+    private Pair<Position, Position> originalPosition;
 
-    private ArrayList<ICell> victims;
 
     public AttackMove(ICell selectedCell, ICell target) {
         super(selectedCell, target);
         this.damages = new HashMap<Position, Integer>();
-        this.attackerPos = selectedCell.getPos();
-        this.targetPos = target.getPos();
-    }
+        originalPosition = new Pair<Position, Position>(new Position(selectedCell.getPos().getX(), selectedCell.getPos().getY()),new Position(target.getPos().getX(), target.getPos().getY()));
+}
 
 
     @Override
-    public int getCost(){
+    public int getEnergyCost(){
         return this.getStartCell().getUnit().getWeight();
     }
     @Override
     public void execute(IBoard board) {
-        if (damages != null) {
-            for (Position key : damages.keySet()) {
-                board.getCell(key).getUnit().attacked(damages.get(key));
-            }
+        setStartCell(board.getCell(getStartCell().getPos()));
+        setTargetCell(board.getCell(getTargetCell().getPos()));
+        if(getStartCell().getUnit() == null || getTargetCell().getUnit() == null) return;//Probably means that the attacker/victim has allready been killed
+        if(!getStartCell().getUnit().hasAttacked()) { //First time execute is called
+            getStartCell().getUnit().setHasAttacked(true);
+            return;
         }
-        getDamages(board);
+        initializeDamages(board);
+        for (Position key : damages.keySet()) {
+            System.out.println("Attacking: " + key.getX() + "," + key.getY() +  " with damage: " + damages.get(key));
+            board.getCell(key).getUnit().attacked(damages.get(key));
+            if(board.getCell(key).getUnit().getHealth() < 1) board.getCell(key).setUnit(null);
+            }
     }
 
     @Override
     public void undo(IBoard board) {
+        getStartCell().getUnit().setHasAttacked(false);
 
     }
 
-    private void getDamages(IBoard board) {
+
+    @Override
+    public void convertPositions(CellConverter converter) {
+        HashMap<Position, Integer> newDamages = new HashMap<Position, Integer>();
+        for(Position pos : damages.keySet()) {
+            newDamages.put(converter.switchPosition(pos), damages.get(pos));
+        }
+        getStartCell().setPos(converter.switchPosition(getStartCell().getPos()));
+        if(getStartCell().getPos().equals(originalPosition.getKey())) getStartCell().setPos(converter.switchPosition(getStartCell().getPos()));
+        getTargetCell().setPos(converter.switchPosition(getTargetCell().getPos()));
+        if(getTargetCell().getPos().equals(originalPosition.getValue())) getTargetCell().setPos(converter.switchPosition(getTargetCell().getPos()));
+        damages = newDamages;
+    }
+
+    private void initializeDamages(IBoard board) {
+        Position attackerPos = getStartCell().getPos();
+        Position targetPos = getTargetCell().getPos();
         IUnit attacker = board.getCell(attackerPos).getUnit();
         ArrayList<Position> inflictionZone = attacker.getInflictionZone(attackerPos, targetPos);
         for (Position victimPos : inflictionZone) {
             IUnit victim = board.getCell(victimPos).getUnit();
             if (victim != null) {
-                int dmg = attacker.inflictDamage(attackerPos, targetPos);
-                victim.attacked(dmg);
+                int dmg = attacker.inflictDamage();
                 damages.put(victimPos, dmg);
             }
         }
     }
 
-    public ArrayList<ICell> getVictims(){
-        return this.victims;
+    public Iterable<Position> getVictims(){
+        return damages.keySet();
     }
 }
