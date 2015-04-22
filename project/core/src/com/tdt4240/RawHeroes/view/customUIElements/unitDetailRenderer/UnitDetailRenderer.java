@@ -78,22 +78,6 @@ public class UnitDetailRenderer implements IRenderNoPos {
         Label labelUnit = new Label(String.valueOf(unit.getIdentifier()), skin);
         labelUnit.setSize(GameConstants.TEXTFIELD_WIDTH, GameConstants.TEXTFIELD_HEIGHT);
         labelUnit.setPosition(createUnitDetailsScreenDialog.getWidth()/8, createUnitDetailsScreenDialog.getHeight()*6/8);
-        Texture texture;
-        //Image
-        switch (unit.getIdentifier()) {
-            case STANDARD_UNIT:
-                texture = new Texture(Gdx.files.internal("units/soldierSheet.png"));
-                break;
-            case STANDARD_UNIT_2:
-                texture = new Texture(Gdx.files.internal("units/soldierAxeSheet.png"));
-                break;
-            case UNIT2:
-                //TODO Fyll inn riktig .png-fil under
-                texture = new Texture(Gdx.files.internal("units/soldierSheet.png"));
-                break;
-            default:
-                texture = new Texture(Gdx.files.internal("units/soldierSheet.png"));
-        }
         UnitRenderModel renderModel;
         if (unit.isPlayer1Unit()){
             renderModel = new UnitRenderModel(unit.getIdentifier(), true);
