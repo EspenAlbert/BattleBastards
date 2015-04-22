@@ -30,9 +30,9 @@ public interface IUnit extends Serializable{
     boolean isPlayer1Unit();
     boolean isTurnedRight();
     void turnDirection();
-    void nextFrame();
-    void addAnimationListener(IAnimationListener animationListener);
-    void setActiveAnimation(RenderMode renderMode);
+    //void nextFrame();
+    //void addAnimationListener(IAnimationListener animationListener);
+    //void setActiveAnimation(RenderMode renderMode);
     void setRemainingMoves(int moves);
     int getRemainingMoves();
     void resetMoves();
@@ -47,5 +47,5 @@ public interface IUnit extends Serializable{
     boolean hasAttacked();
     IUnit getCopy();
 
-    TextureRegion getActiveFrame(Texture texture);
+    //TextureRegion getActiveFrame(Texture texture);
 }

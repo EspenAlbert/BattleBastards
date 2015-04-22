@@ -33,7 +33,6 @@ public class StandardUnit extends Unit implements Serializable {
     private final int MIN_DMG = 5;
     private final int MAX_DMG = 10;
     private final int MAX_MOVES = 3;
-    private final IUnitAnimationController unitAnimationController;
 
     private boolean turnedRight;
 
@@ -46,17 +45,14 @@ public class StandardUnit extends Unit implements Serializable {
         this.unitMoveController = new WalkingUnitMovementController();
         this.weight = 10;
         this.turnedRight = player1Unit;
-        this.unitAnimationController = new SimpleUnitAnimationController();
+        /*this.unitAnimationController = new SimpleUnitAnimationController();
         if(!turnedRight){
             this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_LEFT);
-        }
+        }*/
         System.out.println("Created a standard unit");
     }
-    private StandardUnit(boolean player1Unit, int health, boolean hasAttacked, IUnitCombatController unitCombatController, IUnitMovementController unitMoveController, int remainingMoves, int weight, IUnitAnimationController unitAnimationController) {
+    private StandardUnit(boolean player1Unit, int health, boolean hasAttacked, IUnitCombatController unitCombatController, IUnitMovementController unitMoveController, int remainingMoves, int weight) {
         super(player1Unit, health, hasAttacked, unitCombatController, unitMoveController, remainingMoves, weight);
-
-
-        this.unitAnimationController = unitAnimationController;
     }
 
     @Override
@@ -75,20 +71,20 @@ public class StandardUnit extends Unit implements Serializable {
     }
 
     public IUnit getCopy() {
-        return new StandardUnit(player1Unit, health, hasAttacked, unitCombatController, unitMoveController,remainingMoves, weight, unitAnimationController);
+        return new StandardUnit(player1Unit, health, hasAttacked, unitCombatController, unitMoveController,remainingMoves, weight);
     }
 
-    @Override
+    /*@Override
     public TextureRegion getActiveFrame(Texture texture){
        return this.unitAnimationController.getActiveFrame(texture);
-    }
+    }*/
 
-    @Override
+    /*@Override
     public void nextFrame(){
         this.unitAnimationController.nextFrame();
-    }
+    }*/
 
-    @Override
+    /*@Override
     public void setActiveAnimation(RenderMode renderMode){
         switch (renderMode){
 
@@ -112,7 +108,7 @@ public class StandardUnit extends Unit implements Serializable {
                 this.unitAnimationController.setActiveAnimation(AnimationConstants.DEAD);
                 break;
         }
-    }
+    }*/
 
     @Override
     public int getRemainingMoves() {
@@ -139,8 +135,8 @@ public class StandardUnit extends Unit implements Serializable {
         return this.unitCombatController.getMaxHealth();
     }
 
-    @Override
+    /*@Override
     public void addAnimationListener(IAnimationListener animationListener) {
         this.unitAnimationController.addAnimationListener(animationListener);
-    }
+    }*/
 }
