@@ -12,7 +12,8 @@ import java.util.Random;
 /**
  * Created by espen1 on 12.04.2015.
  */
-public class SimpleUnitCombatController implements IUnitCombatController, Serializable {
+public class SimpleUnitCombatController implements IUnitCombatController{
+    public final static long serialVersionUID = 4567894235239423513l;
 
     private Random rand;
     private IUnit unit;

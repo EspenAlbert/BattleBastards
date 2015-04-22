@@ -8,6 +8,7 @@ import com.tdt4240.RawHeroes.independent.Position;
  * Created by espen1 on 07.03.2015.
  */
 public class Cell implements ICell {
+    public final static long serialVersionUID = 1185789357236342425l;
     private Position pos;
     private IUnit unit;
     private CellStatus cellStatus;

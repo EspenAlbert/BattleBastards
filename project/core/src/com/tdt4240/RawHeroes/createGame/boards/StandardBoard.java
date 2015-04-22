@@ -20,6 +20,7 @@ import java.util.ArrayList;
  * Created by espen1 on 07.03.2015.
  */
 public class StandardBoard implements IBoard {
+    public final static long serialVersionUID = 987890697978244635l;
 
     private final int width = 7;
     private final int height = 7;

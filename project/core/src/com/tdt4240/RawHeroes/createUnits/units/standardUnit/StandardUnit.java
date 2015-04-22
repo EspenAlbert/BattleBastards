@@ -26,7 +26,8 @@ import java.util.ArrayList;
 /**
  * Created by espen1 on 07.03.2015.
  */
-public class StandardUnit extends Unit implements Serializable {
+public class StandardUnit extends Unit{
+    public final static long serialVersionUID = 827567029933267893l;
 
     private final int MAX_HEALTH = 20;
 

@@ -14,6 +14,7 @@ import java.util.HashMap;
  * Created by espen1 on 27.02.2015.
  */
 public class AttackMove extends Move {
+    public final static long serialVersionUID = 119471890293728491l;
 
     private HashMap<Position, Integer> damages;
     private Pair<Position, Position> originalPosition;
@@ -22,9 +23,6 @@ public class AttackMove extends Move {
     public AttackMove(ICell selectedCell, ICell target) {
         super(selectedCell, target);
         this.damages = new HashMap<Position, Integer>();
-        if (getTargetCell().getPos().getX() < getStartCell().getPos().getX() && this.getStartCell().getUnit().isTurnedRight()){
-            this.getStartCell().getUnit().turnDirection();
-        }else if (getTargetCell().getPos().getX() >= getStartCell().getPos().getX() && !this.getStartCell().getUnit().isTurnedRight()) this.getStartCell().getUnit().turnDirection();
         originalPosition = new Pair<Position, Position>(new Position(selectedCell.getPos().getX(), selectedCell.getPos().getY()),new Position(target.getPos().getX(), target.getPos().getY()));
 }
 

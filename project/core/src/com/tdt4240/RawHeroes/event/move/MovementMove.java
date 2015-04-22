@@ -14,6 +14,7 @@ import java.util.Collections;
  * Created by espen1 on 27.02.2015.
  */
 public class MovementMove extends Move {
+    public final static long serialVersionUID = 195736452920345544l;
     private ArrayList<Position> path;
     private int length;
 
@@ -22,10 +23,7 @@ public class MovementMove extends Move {
         this.path = path;
         length=path.size();
         this.setCost((length-1) * this.getStartCell().getUnit().getWeight());
-        if (getTargetCell().getPos().getX() < getStartCell().getPos().getX() && this.getStartCell().getUnit().isTurnedRight()){
-            this.getStartCell().getUnit().turnDirection();
-        }else if (getTargetCell().getPos().getX() >= getStartCell().getPos().getX() && !this.getStartCell().getUnit().isTurnedRight()) this.getStartCell().getUnit().turnDirection();
-    }
+        }
 
 
     public ArrayList<Position> getPath(){
