@@ -49,7 +49,6 @@ public abstract class Unit implements IUnit, Serializable{
 
     @Override
     public ArrayList<Position> getMovementZone(IBoard board, Position myPos, int energyRemain) {
-        System.out.println("REMAINING MOVES: " + board.getCell(myPos).getUnit().getRemainingMoves() );
         return this.unitMoveController.getMovementZone(board, myPos, energyRemain,  board.getCell(myPos).getUnit().getRemainingMoves());
     }
 

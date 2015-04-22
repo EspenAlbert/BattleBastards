@@ -55,6 +55,7 @@ public class ActiveGameScreen extends ScreenState{
 
         boardController.executeMovesFromOtherPlayer(game.getLastMoves(), iAmPlayer1);
         resize(GameConstants.RESOLUTION_WIDTH, GameConstants.RESOLUTION_HEIGHT);
+
     }
 
 
@@ -143,7 +144,9 @@ public class ActiveGameScreen extends ScreenState{
         if(message != null) {
             this.message = message;
         }
-        addedListener = false;
+        if(iAmPlayer1 == game.getNextTurnIsPlayer1()) {
+            addedListener = false;
+        }
         gameView.finishRoutine(this.message);
     }
 

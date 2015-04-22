@@ -49,7 +49,7 @@ public class HudRenderer implements IRenderNoPos, BoardControllerStateListener, 
         abortButton.draw(batch, 1);
         actionButton.draw(batch, 1);
         if(energyChanged){
-            energyLabel.setText(this.boardController.getRemaining_energy() + "/100");
+            energyLabel.setText(this.boardController.getRemaining_energy() + "/" + GameConstants.MAX_ENERGY);
             energyChanged = false;
         }
         energyLabel.draw(batch, 1);
@@ -70,7 +70,7 @@ public class HudRenderer implements IRenderNoPos, BoardControllerStateListener, 
         abortButton= new TextButton("Quit", skin);
         abortButton.setSize(buttonWidth, buttonHeight);
 
-        energyLabel = new Label(this.boardController.getRemaining_energy() + "/100",skin);
+        energyLabel = new Label(this.boardController.getRemaining_energy() + "/" + GameConstants.MAX_ENERGY, skin);
         energyLabel.setSize(buttonWidth, buttonHeight);
         energyLabel.setAlignment(0);
         energyLabel.setColor(1, 1, 1, 1);

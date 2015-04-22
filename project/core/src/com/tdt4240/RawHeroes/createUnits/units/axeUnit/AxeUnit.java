@@ -71,6 +71,11 @@ public class AxeUnit extends Unit {
         turnedRight = !turnedRight;
     }
 
+    @Override
+    public int getHealth(){
+        return health;
+    }
+
 
     @Override
     public int getMaxHealth() {
