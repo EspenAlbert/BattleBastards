@@ -1,10 +1,8 @@
 package com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse;
 
-import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
 import com.tdt4240.RawHeroes.gameLogic.models.UnitRenderModel;
 import com.tdt4240.RawHeroes.gameLogic.unit.UnitName;
-import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.renderObjects.AxeUnitRenderObject;
-import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.renderObjects.StandardUnitRenderObject;
+import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.renderObjects.RenderObject;
 
 /**
  * Created by espen1 on 27.02.2015.
@@ -20,9 +18,9 @@ public class RenderBuilding implements IRenderBuilding {
     public IRenderObject getRenderObject(UnitRenderModel renderModel, UnitName name) {
         switch (name) {
             case STANDARD_UNIT:
-                return new StandardUnitRenderObject(renderModel);
+                return new RenderObject(renderModel);
             case STANDARD_UNIT_2:
-                return new AxeUnitRenderObject(renderModel);
+                return new RenderObject(renderModel);
         }
         return null;
     }

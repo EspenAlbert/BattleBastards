@@ -64,8 +64,6 @@ public class StandardUnit extends Unit implements Serializable {
     public IUnit getCopy() {
         return new StandardUnit(player1Unit, health, hasAttacked, unitCombatController, unitMoveController,remainingMoves, weight);
     }
-
-
     @Override
     public int getRemainingMoves() {
         return remainingMoves;

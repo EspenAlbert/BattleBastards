@@ -5,11 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
-import com.tdt4240.RawHeroes.createUnits.units.axeUnit.AxeUnitSheet;
-import com.tdt4240.RawHeroes.createUnits.units.standardUnit.StandardUnitSheet;
 import com.tdt4240.RawHeroes.event.events.AnimationEvent;
-import com.tdt4240.RawHeroes.gameLogic.models.ISpritesheet;
-import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
 import com.tdt4240.RawHeroes.gameLogic.models.UnitRenderModel;
 import com.tdt4240.RawHeroes.independent.AnimationConstants;
 import com.tdt4240.RawHeroes.independent.TextureChanger;
@@ -21,18 +17,18 @@ import java.io.Serializable;
 /**
  * Created by espen1 on 27.02.2015.
  */
-public class AxeUnitRenderObject implements IRenderObject, Serializable{
+public class RenderObject implements IRenderObject, Serializable{
 
     private UnitRenderModel renderModel;
     private Sprite sprite;
     private RenderMode renderMode;
     private float leftShift;
 
-    public AxeUnitRenderObject(UnitRenderModel renderModel) {
+    public RenderObject(UnitRenderModel renderModel) {
         this.renderModel = renderModel;
         leftShift = this.renderModel.isTurnedRight() ? 0 : 0.5f;
-        if (renderModel.isRed())renderModel.getSheet().setTexture(TextureChanger.changeColor(renderModel.getSheet().getTexture(), Color.RED));
-        else renderModel.getSheet().setTexture(TextureChanger.changeColor(renderModel.getSheet().getTexture(), Color.BLUE));
+        if (renderModel.isRed())renderModel.getSheet().setTexture (TextureChanger.changeColor(renderModel.getSheet().getTexture(), Color.RED));
+        else renderModel.getSheet().setTexture (TextureChanger.changeColor(renderModel.getSheet().getTexture(), Color.BLUE));
         TextureRegion region = renderModel.getSheet().getActiveFrame(0, 0);
         sprite = new Sprite(region);
         sprite.setSize(1.5f,2);
@@ -45,10 +41,6 @@ public class AxeUnitRenderObject implements IRenderObject, Serializable{
         this.renderMode = renderMode;
         this.renderModel.setActiveAnimation(renderMode);
     }
-    @Override
-    public UnitRenderModel getRenderModel(){
-        return this.renderModel;
-    }
 
     @Override
     public RenderMode getRenderMode() {
@@ -59,6 +51,10 @@ public class AxeUnitRenderObject implements IRenderObject, Serializable{
     public void render(SpriteBatch batch, Vector2 pos) {
         sprite.setPosition(pos.x - leftShift, pos.y);
         sprite.draw(batch);
+    }
+    @Override
+    public UnitRenderModel getRenderModel(){
+        return this.renderModel;
     }
 
     @Override

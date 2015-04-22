@@ -1,9 +1,7 @@
 package com.tdt4240.RawHeroes.gameLogic.models;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.tdt4240.RawHeroes.createUnits.units.axeUnit.AxeUnitSheet;
-import com.tdt4240.RawHeroes.createUnits.units.standardUnit.StandardUnitSheet;
+import com.tdt4240.RawHeroes.createUnits.units.StandardSheet;
 import com.tdt4240.RawHeroes.event.listener.IAnimationListener;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.IUnitAnimationController;
 import com.tdt4240.RawHeroes.gameLogic.controllers.unitController.SimpleUnitAnimationController;
@@ -31,16 +29,16 @@ public class UnitRenderModel {
         }
         switch (name){
             case STANDARD_UNIT:
-                this.sheet = new StandardUnitSheet("units/soldierSheet.png");
+                this.sheet = new StandardSheet("units/soldierSheet.png");
                 break;
             case UNIT2:
-                this.sheet = new StandardUnitSheet("units/soldierSheet.png");
+                this.sheet = new StandardSheet("units/soldierSheet.png");
                 break;
             case STANDARD_UNIT_2:
-                this.sheet = new AxeUnitSheet("units/soldierAxeSheet.png");
+                this.sheet = new StandardSheet("units/soldierAxeSheet.png");
                 break;
             default:
-                this.sheet = new StandardUnitSheet("units/soldierSheet.png");
+                this.sheet = new StandardSheet("units/soldierSheet.png");
                 break;
         }
         turnedRight = isRed;
