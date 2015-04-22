@@ -5,7 +5,9 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.tdt4240.RawHeroes.event.events.AnimationEvent;
 import com.tdt4240.RawHeroes.event.listener.IAnimationListener;
 import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
+import com.tdt4240.RawHeroes.gameLogic.models.UnitRenderModel;
 import com.tdt4240.RawHeroes.independent.AnimationConstants;
+import com.tdt4240.RawHeroes.view.customUIElements.unitRenderer.specificUnitRenderer.howToUse.RenderMode;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -24,9 +26,11 @@ public class SimpleUnitAnimationController implements IUnitAnimationController, 
     private final int NR_OF_FRAMES = 4;
     private final int NR_OF_ANIMATIONS = 9;
     private IUnit unit;
+    private UnitRenderModel unitRenderModel;
 
-    public SimpleUnitAnimationController(IUnit unit){
+    public SimpleUnitAnimationController(IUnit unit, UnitRenderModel unitRenderModel){
         this.unit = unit;
+        this.unitRenderModel = unitRenderModel;
         this.activeAnimation = 0;
         this.activeFrame = 0;
         listeners = new ArrayList<IAnimationListener>();
@@ -38,6 +42,30 @@ public class SimpleUnitAnimationController implements IUnitAnimationController, 
         TextureRegion frame = new TextureRegion(texture, activeFrame*frameWidth, activeAnimation*frameHeight, frameWidth, frameHeight);
         return frame;
 
+    }
+
+    public void setActiveAnimation(RenderMode renderMode){
+        switch (renderMode){
+            case STATIC:
+                if (getActiveAnimation() == AnimationConstants.MOVE_RIGHT)setActiveAnimation(AnimationConstants.IDLE_RIGHT);
+                if (getActiveAnimation() == AnimationConstants.MOVE_LEFT)setActiveAnimation(AnimationConstants.IDLE_LEFT);
+                break;
+            case MOVING:
+                if(unitRenderModel.isTurnedRight())setActiveAnimation(AnimationConstants.MOVE_RIGHT);
+                else setActiveAnimation(AnimationConstants.MOVE_LEFT);
+                break;
+            case ATTACKING:
+                if(unitRenderModel.isTurnedRight())setActiveAnimation(AnimationConstants.ATK_RIGHT);
+                else setActiveAnimation(AnimationConstants.ATK_LEFT);
+                break;
+            case HURT:
+                if (getActiveAnimation() == AnimationConstants.IDLE_RIGHT)setActiveAnimation(AnimationConstants.HURT_RIGHT);
+                else setActiveAnimation(AnimationConstants.HURT_LEFT);
+                break;
+            case KILLED:
+                setActiveAnimation(AnimationConstants.DEAD);
+                break;
+        }
     }
 
     public void setActiveAnimation(int activeAnimation){
