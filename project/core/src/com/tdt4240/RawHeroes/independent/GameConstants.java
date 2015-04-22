@@ -35,6 +35,6 @@ public class GameConstants {
         System.out.println(CAMERA_SPEED);
     }
 
-    //public static String SERVER_IP = "fettleif.ddns.net";
-        public static String SERVER_IP = "battlebastards.ddns.net";
+    public static String SERVER_IP = "fettleif.ddns.net";
+      //  public static String SERVER_IP = "battlebastards.ddns.net";
 }

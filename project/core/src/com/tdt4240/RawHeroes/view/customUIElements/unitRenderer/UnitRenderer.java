@@ -120,7 +120,7 @@ public class UnitRenderer implements IMoveListener {
         if (endPos.getX() < startPos.getPos().getX() && unitPositionsAndRenderObjects.get(startPos).getRenderModel().isTurnedRight()){
             unitPositionsAndRenderObjects.get(startPos).getRenderModel().turnDirection();
         }else if (endPos.getX() >= startPos.getX() && !unitPositionsAndRenderObjects.get(startPos).getRenderModel().isTurnedRight())
-            unitPositionsAndRenderObjects.get(endPos).getRenderModel().turnDirection();
+            unitPositionsAndRenderObjects.get(startPos).getRenderModel().turnDirection();
 
 
         if (move instanceof AttackMove) {
