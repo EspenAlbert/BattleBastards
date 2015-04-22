@@ -46,7 +46,7 @@ public class ActiveGameScreen extends ScreenState{
         super(gsm);
         this.game = game;
         board = game.getBoard();
-        iAmPlayer1 = false;//ClientConnection.getInstance().getUsername().equals(game.getPlayer1Nickname());
+        iAmPlayer1 = ClientConnection.getInstance().getUsername().equals(game.getPlayer1Nickname());
         boardController = new BoardController(board, game.getMoveCount(), iAmPlayer1);//MUST ALWAYS BE EXECUTED BEFORE creating gameView!!
 
         camera = new StandardCamera();
