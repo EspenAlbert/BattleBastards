@@ -15,7 +15,6 @@ import com.tdt4240.RawHeroes.gameLogic.inputListeners.EventToTranslateCamera;
 import com.tdt4240.RawHeroes.gameLogic.models.StandardCamera;
 import com.tdt4240.RawHeroes.independent.GameConstants;
 import com.tdt4240.RawHeroes.independent.MyInputProcessor;
-import com.tdt4240.RawHeroes.network.client.ClientConnection;
 import com.tdt4240.RawHeroes.network.communication.Response.ResponseMessage;
 import com.tdt4240.RawHeroes.topLayer.commonObjects.Game;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
@@ -28,8 +27,6 @@ import java.util.ArrayList;
  * Created by espen1 on 27.02.2015.
  */
 public class ActiveGameScreen extends ScreenState{
-    public static final float ButtonXPos =  ((float) 7 / 8) * GameConstants.RESOLUTION_WIDTH;
-
 
     private final GameView gameView;
     private final IBoardController boardController;
@@ -59,13 +56,12 @@ public class ActiveGameScreen extends ScreenState{
         touchListener = new TouchListenerActiveGameScreen(boardController, cameraController, this);
         MyInputProcessor.getInstance().AddTouchDownListener(touchListener);
         MyInputProcessor.getInstance().activateListeners();
-
     }
 
 
     @Override
     public void update(float dt){
-        initializeWhenViewReady();
+        initializeInputListenersWhenViewReady();
         if(endGameState && gameView.noAnimationWaiting()) {
             endGameLogic();
             endGameState = false;
@@ -133,7 +129,7 @@ public class ActiveGameScreen extends ScreenState{
 
 
     private boolean initializedInputListeners = false;
-    private void initializeWhenViewReady() {
+    private void initializeInputListenersWhenViewReady() {
         if(!initializedInputListeners && gameView.noAnimationWaiting()) initializeTouchListeners();
     }
 
@@ -149,9 +145,7 @@ public class ActiveGameScreen extends ScreenState{
         if(message != null) {
             this.message = message;
         }
-        if(iAmPlayer1 == game.getNextTurnIsPlayer1()) {
-            addedListener = false;
-        }
+        addedListener = false;
         gameView.finishRoutine(this.message);
     }
 
