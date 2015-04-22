@@ -58,8 +58,8 @@ public abstract class Unit implements IUnit{
     }
 
     @Override
-    public int inflictDamage(Position myPos, Position targetPos) {
-        return unitCombatController.inflictDamage(myPos, targetPos);
+    public int inflictDamage() {
+        return unitCombatController.inflictDamage();
     }
 
     @Override

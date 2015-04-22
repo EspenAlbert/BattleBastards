@@ -42,14 +42,10 @@ public class StandardUnit extends Unit{
         super(player1Unit, 10);
         health = MAX_HEALTH;
         this.remainingMoves = MAX_MOVES;
-        this.unitCombatController = new SimpleUnitCombatController(this, MIN_DMG, MAX_DMG, 1, MAX_HEALTH);
+        this.unitCombatController = new SimpleUnitCombatController( MIN_DMG, MAX_DMG, 1);
         this.unitMoveController = new WalkingUnitMovementController();
         this.weight = 10;
         this.turnedRight = player1Unit;
-        /*this.unitAnimationController = new SimpleUnitAnimationController();
-        if(!turnedRight){
-            this.unitAnimationController.setActiveAnimation(AnimationConstants.IDLE_LEFT);
-        }*/
         System.out.println("Created a standard unit");
     }
     private StandardUnit(boolean player1Unit, int health, boolean hasAttacked, IUnitCombatController unitCombatController, IUnitMovementController unitMoveController, int remainingMoves, int weight) {
@@ -87,6 +83,6 @@ public class StandardUnit extends Unit{
 
     @Override
     public int getMaxHealth() {
-        return this.unitCombatController.getMaxHealth();
+        return MAX_HEALTH;
     }
 }

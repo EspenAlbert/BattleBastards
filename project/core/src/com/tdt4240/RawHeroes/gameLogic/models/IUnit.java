@@ -21,7 +21,7 @@ public interface IUnit extends Serializable{
     ArrayList<Position> getInflictionZone(Position myPos, Position target);
     ArrayList<Position> getMovementZone(IBoard board, Position myPos, int movesLeft);
     ArrayList<Position> getMovementPath(IBoard board, Position myPos, Position targetPos);
-    int inflictDamage(Position myPos, Position enemies);
+    int inflictDamage();
     int attacked(int damage);
     int getWeight();
     void setCombatLogic(IUnitCombatController controller);

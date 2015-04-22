@@ -13,12 +13,11 @@ import java.util.ArrayList;
 public interface IUnitCombatController extends Serializable{
     ArrayList<Position> getAttackablePositions(Position pos, int movesLeft, IBoard board);
     ArrayList<Position> getInflictionZone(Position myPos, Position target);
-    int inflictDamage(Position myPos, Position targetPos);
+    int inflictDamage();
+
     int attacked(int damage);
 
     int getMinAttackDmg();
     int getMaxAttackDmg();
     int getArmor();
-    int getHealth();
-    int getMaxHealth();
 }
