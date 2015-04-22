@@ -64,6 +64,7 @@ public class ActiveGameScreen extends ScreenState{
         initializeWhenViewReady();
         if(endGameState && gameView.noAnimationWaiting()) {
             endGameLogic();
+            endGameState = false;
         }
         gameView.update(dt);
         if(!addedListener) {
