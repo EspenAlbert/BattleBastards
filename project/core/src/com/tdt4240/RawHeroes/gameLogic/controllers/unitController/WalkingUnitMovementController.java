@@ -1,23 +1,22 @@
 package com.tdt4240.RawHeroes.gameLogic.controllers.unitController;
 
-import com.badlogic.gdx.math.Vector2;
 import com.tdt4240.RawHeroes.gameLogic.cell.CellStatus;
 import com.tdt4240.RawHeroes.gameLogic.cell.ICell;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
+import com.tdt4240.RawHeroes.independent.Pair;
 import com.tdt4240.RawHeroes.independent.Position;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 
 
 /**
  * Created by espen1 on 12.04.2015.
  */
-public class WalkingUnitMovementController implements IUnitMovementController {
+public class WalkingUnitMovementController implements IUnitMovementController{
+    public final static long serialVersionUID = 987653454249623536l;
     private ArrayList<Position> directions;
-    //TODO check if w is outside the board
 
     public WalkingUnitMovementController(){
         directions=new ArrayList<Position>();
@@ -28,8 +27,8 @@ public class WalkingUnitMovementController implements IUnitMovementController {
     }
 
     @Override
-    public ArrayList<Position> getMovementZone(IBoard board, Position myPos, int movesLeft, int unitMaxMoves) {
-        int maxDepth=Math.min(movesLeft/board.getCell(myPos).getUnit().getWeight(), unitMaxMoves); //max moves for unit
+    public ArrayList<Position> getMovementZone(IBoard board, Position myPos, int energyLeft, int movesLeft) {
+        int maxDepth=Math.min(energyLeft/board.getCell(myPos).getUnit().getWeight(), movesLeft); //max moves for unit
         //breadth first search
         ArrayList<Pair<Position, Integer>> queue=new ArrayList<Pair<Position, Integer>>();
         ArrayList<Position> discovered = new ArrayList<Position>();//
@@ -49,7 +48,7 @@ public class WalkingUnitMovementController implements IUnitMovementController {
                     }
                 }
             }
-            depth=queue.get(0).getValue();
+            if(!queue.isEmpty()) depth=queue.get(0).getValue();
         }
         return discovered;
     }
@@ -70,7 +69,7 @@ public class WalkingUnitMovementController implements IUnitMovementController {
                 w.add(directions.get(i));//v+directions.get(i)
                 if (w.getX()>=0&&w.getY()>=0&&w.getX()<(board.getWidth())&&w.getY()<board.getHeight()){
                     ICell cell=board.getCell(w);
-                    if((!discovered.containsKey(w))&& (cell.getStatus() != CellStatus.NOTMOVEABLE) && (cell.getStatus() != CellStatus.SELECTED)) {//not discovered and not notmoveable.
+                    if((!discovered.containsKey(w))&& (cell.getStatus() != CellStatus.NOTMOVEABLE) && (cell.getStatus() != CellStatus.SELECTED) && (cell.getUnit() == null)) {//not discovered and not notmoveable.
                         if (w.getX()==targetPos.getX()&&w.getY()==targetPos.getY()) {
                             path.add(v);
                             path.add(w);//finds the path

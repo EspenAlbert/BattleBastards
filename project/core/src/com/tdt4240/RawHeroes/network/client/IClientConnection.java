@@ -10,7 +10,6 @@ import java.util.ArrayList;
  * Created by espen1 on 27.02.2015.
  */
 public interface IClientConnection {
-    int[] getMyGames();
     ResponseMessage createNewGame(String opponent, Games gameType);
     ResponseMessage doMoves(int id, ArrayList<Move> moves);
     ResponseMessage login(String userName, String password);
@@ -19,4 +18,5 @@ public interface IClientConnection {
     String getUsername();
     ResponseMessage createUser(String username, String password);
     ResponseMessage getGame(int gameId);
+    ResponseMessage getGameIds();
 }

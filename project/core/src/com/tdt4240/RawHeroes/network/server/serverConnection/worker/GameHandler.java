@@ -2,6 +2,8 @@ package com.tdt4240.RawHeroes.network.server.serverConnection.worker;
 
 import com.tdt4240.RawHeroes.createGame.factory.GameBuilding;
 import com.tdt4240.RawHeroes.event.move.Move;
+import com.tdt4240.RawHeroes.gameLogic.controllers.boardController.BoardMover;
+import com.tdt4240.RawHeroes.gameLogic.controllers.cameraController.CellConverter;
 import com.tdt4240.RawHeroes.network.server.database.DatabaseConnector;
 import com.tdt4240.RawHeroes.network.server.serverConnection.player.Player;
 import com.tdt4240.RawHeroes.network.server.serverConnection.worker.exceptions.GameNotFoundException;
@@ -38,6 +40,9 @@ public class GameHandler implements IGameHandler{
         Game game = GameBuilding.getInstance().createGame(gameType, player1, player2);
         return databaseConnector.insertGame(game);
     }
+    public int deleteGame(int gameId) throws GameNotFoundException, NotYourGameException, SQLException{
+        return databaseConnector.deleteGame(gameId);
+    }
 
     @Override
     public int findGame(String player1, String player2) throws SQLException {
@@ -72,9 +77,34 @@ public class GameHandler implements IGameHandler{
         Game game = getGame(username, gameId);
         boolean iAmPlayer1 = username.equals(game.getPlayer1Nickname());
         if(iAmPlayer1 != game.getNextTurnIsPlayer1()) throw new NotYourTurnException();
-        //TODO: Logic for executing moves
-        game.setNextTurnIsPlayer1(!game.getNextTurnIsPlayer1());
-        //TODO: Check win condition
+        //Move was ok...
+        if(!iAmPlayer1) {//Means that player 2 has done moves
+            convertMoves(moves, game.getBoard().getWidth(), game.getBoard().getHeight());
+        }
+        game.setNextTurnIsPlayer1(!game.getNextTurnIsPlayer1());//Set the turn to other player
+        BoardMover mover = new BoardMover(game.getBoard());
+        mover.executeMovesFromOtherPlayer(game.getLastMoves(), true);
+        game.setLastMoves(moves);
+        boolean won = iAmPlayer1 ? game.player1IsWinner() : game.player2IsWinner();
+        if(won) {
+            Player player = (Player) databaseConnector.getJavaObject(DatabaseConnector.TABLE_PLAYERS, DatabaseConnector.PLAYERS_PRIMARY_KEY, username, -1);
+            player.increaseScore();
+            databaseConnector.updateJavaObject(DatabaseConnector.TABLE_PLAYERS, DatabaseConnector.PLAYERS_PRIMARY_KEY, username, player);
+        }
         databaseConnector.updateGame(game);
+    }
+
+    @Override
+    public ArrayList<Integer> getGameIds(String username) throws SQLException {
+        ArrayList<Integer> gameIds = databaseConnector.getAllKeys(username);
+        return gameIds;
+    }
+
+    private  ArrayList<Move> convertMoves(ArrayList<Move> moves, int xLength, int yLength) {
+        CellConverter converter = new CellConverter(xLength, yLength);
+        for(Move move: moves) {
+            move.convertPositions(converter);
+        }
+        return moves;
     }
 }

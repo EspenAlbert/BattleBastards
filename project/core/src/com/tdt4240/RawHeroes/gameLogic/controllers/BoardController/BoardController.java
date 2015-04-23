@@ -1,8 +1,9 @@
 package com.tdt4240.RawHeroes.gameLogic.controllers.boardController;
 
-import com.badlogic.gdx.math.Vector2;
+import com.tdt4240.RawHeroes.event.listener.IMoveListener;
 import com.tdt4240.RawHeroes.gameLogic.models.IBoard;
 import com.tdt4240.RawHeroes.event.move.Move;
+import com.tdt4240.RawHeroes.gameLogic.models.IUnit;
 import com.tdt4240.RawHeroes.independent.Position;
 
 import java.util.ArrayList;
@@ -20,13 +21,17 @@ public class BoardController implements IBoardController {
     private ArrayList<BoardControllerStateListener> listeners;
 
     private int remaining_energy;
-    private String actionButtonText = "Action";
+    private boolean iAmPlayer1;
 
 
-    public BoardController(IBoard board, IBoardMover boardMover, int remaining_energy) {
+    public BoardController(IBoard board, int remaining_energy, boolean iAmPlayer1) {
         this.board = board;
-        this.boardMover = boardMover;
+        if(!iAmPlayer1) {
+            board.convertCellsToOtherPlayer();
+        }
+        boardMover = new BoardMover(board);
         this.remaining_energy = remaining_energy;
+        this.iAmPlayer1 = iAmPlayer1;
         boardStates = new Stack<BoardControllerState>();
         listeners = new ArrayList<BoardControllerStateListener>();
         boardStates.push(new BoardControllerReplayState(this, this.board));
@@ -49,18 +54,20 @@ public class BoardController implements IBoardController {
     }
 
     public void addMove(Move move) {
-        remaining_energy = remaining_energy - move.getCost();
+        remaining_energy = remaining_energy - move.getEnergyCost();
         boardMover.add(move);
     }
 
     public void undoMove(){
-        Move move = this.boardMover.undo();
-        //TODO FIX
-        if(move != null) remaining_energy += move.getCost();
+        Move move = boardMover.undo();
+        if(move != null){
+            remaining_energy += move.getEnergyCost();
+        }
     }
 
     @Override
     public void cellTouched(Position coordinates) {
+        if(coordinates.getY() > board.getHeight()-1 || coordinates.getX() > board.getWidth()-1) return;
         boardStates.peek().cellSelected(board.getCell(coordinates));
     }
 
@@ -83,5 +90,33 @@ public class BoardController implements IBoardController {
     public void addBoardControllerStateListener(BoardControllerStateListener listener){
         this.listeners.add(listener);
         this.refreshState();
+    }
+
+    public boolean iAmPlayer1() {
+        return iAmPlayer1;
+    }
+
+    public static void resetUnitAttacks(IBoard board) {
+        ArrayList<Position> unitPositions = board.getUnitPositions();
+        for(Position unitPosition : unitPositions) {
+            board.getCell(unitPosition).getUnit().setHasAttacked(false);
+            board.getCell(unitPosition).getUnit().resetMoves();
+        }
+    }
+
+    @Override
+    public void executeMovesFromOtherPlayer(ArrayList<Move> lastMoves, boolean iAmPlayer1) {
+        boardMover.executeMovesFromOtherPlayer(lastMoves, iAmPlayer1);
+    }
+
+    @Override
+    public ArrayList<Move> confirmMoves() {
+        return boardMover.confirmMoves();
+    }
+
+    @Override
+    public void addMoveListener(IMoveListener listener) {
+        boardMover.addMoveListener(listener);
+
     }
 }

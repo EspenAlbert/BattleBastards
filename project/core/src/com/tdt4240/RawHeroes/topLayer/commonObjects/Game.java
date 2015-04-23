@@ -11,6 +11,7 @@ import java.util.ArrayList;
  * Created by espen1 on 27.02.2015.
  */
 public abstract class Game implements Serializable{
+    public final static long serialVersionUID = 6413513420352135231l;
     private int id;
     private String player1Nickname, player2Nickname;
     IBoard board;

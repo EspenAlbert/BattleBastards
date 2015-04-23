@@ -4,8 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Net;
 import com.badlogic.gdx.net.Socket;
 import com.badlogic.gdx.net.SocketHints;
+import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.tdt4240.RawHeroes.event.move.Move;
 import com.tdt4240.RawHeroes.independent.GameConstants;
+import com.tdt4240.RawHeroes.network.communication.Response.ResponseCreator;
 import com.tdt4240.RawHeroes.network.communication.Response.ResponseMessage;
 import com.tdt4240.RawHeroes.network.communication.Response.ResponseType;
 import com.tdt4240.RawHeroes.network.communication.request.RequestCreator;
@@ -16,6 +18,7 @@ import org.json.simple.JSONObject;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.rmi.ServerException;
 import java.util.ArrayList;
 
 /**
@@ -38,7 +41,9 @@ public class ClientConnection implements IClientConnection {
 
     public static ClientConnection getInstance() {
         if (ourInstance == null) {
+
             ourInstance = new ClientConnection(GameConstants.SERVER_IP, GameConstants.SERVER_PORT);
+
         }
         return ourInstance;
     }
@@ -52,35 +57,13 @@ public class ClientConnection implements IClientConnection {
         this.serverAddress = address;
         this.serverPort = port;
         clientSocket = null;
-
-        //ResponseMessage responseMessage= createUser("Espen4", "1234");
-        ResponseMessage responseMessage = sendRequestAndWaitForResponse(RequestCreator.getLoginRequest("Espen4", "1234"));
-
-        //String[] challengers = {"Espen", "Espen2", "Espen3", "XXXX"};
-        username = "Espen4";
-        password = "1234";
-        System.out.println("Got response: " + responseMessage.getType() + responseMessage.getContent());
-        /*
-        ResponseMessage createGameResponse = createNewGame("Espen3", Games.KILL_ALL_ENEMY_UNITS);
-        ResponseMessage responseMessage = getGame((Integer) createGameResponse.getContent());
-        System.out.println("Got response: " + responseMessage.getType() + responseMessage.getContent());
-        ResponseMessage responseMessageDoMoves = doMoves((Integer) createGameResponse.getContent(), null);
-        System.out.println("Got response: " + responseMessageDoMoves.getType() + responseMessageDoMoves.getContent());
-
-*/
-
-
-//        for (String challenger : challengers) {
- //           ResponseMessage responseMessage = createNewGame(challenger, Games.KILL_ALL_ENEMY_UNITS);
- //          System.out.println("Got response: " + responseMessage.getType() + responseMessage.getContent());
-  //      }
-        System.out.println("Done creating client connection");
     }
 
     public ResponseMessage sendRequestAndWaitForResponse(JSONObject json) {
         try {
             SocketHints socketHints = new SocketHints();
             socketHints.connectTimeout = 4000;
+            socketHints.socketTimeout = 10000;
             clientSocket = Gdx.net.newClientSocket(Net.Protocol.TCP, serverAddress, serverPort, socketHints);
             toServer = new ObjectOutputStream(clientSocket.getOutputStream());
             in = new ObjectInputStream(clientSocket.getInputStream());
@@ -92,6 +75,8 @@ public class ClientConnection implements IClientConnection {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+        } catch (GdxRuntimeException e){
+            System.out.println("Did not get response from server");
         }
         return new ResponseMessage(ResponseType.FAILURE, "Didn't get a response from server");
     }
@@ -101,22 +86,26 @@ public class ClientConnection implements IClientConnection {
         return sendRequestAndWaitForResponse(RequestCreator.getCreateUserRequest(username, password));
     }
 
+    public ResponseMessage changePassowrd(String newPassword){
+        return sendRequestAndWaitForResponse(RequestCreator.getChangePassword(username, password, newPassword));
+    }
+
     @Override
-    public int[] getMyGames() {
-        return new int[0];
+    public ResponseMessage getGameIds() {
+        return sendRequestAndWaitForResponse(RequestCreator.getGameIds(username, password));
     }
 
     @Override
     public ResponseMessage createNewGame(String opponent, Games gameType) {
         return sendRequestAndWaitForResponse(RequestCreator.getCreateGameRequest(username, password, opponent, gameType));
     }
+    public ResponseMessage deleteGame(int gameId) {
+        return sendRequestAndWaitForResponse(RequestCreator.getDeleteGame(username, password, gameId));
+    }
 
     @Override
     public ResponseMessage doMoves(int id, ArrayList<Move> moves) {
-        ArrayList<Move> dummyMoves = new ArrayList<Move>();
-        dummyMoves.add(null);
-        dummyMoves.add(null);
-        return sendRequestAndWaitForResponse(RequestCreator.getDoMoveRequest(username, password, id,dummyMoves));
+        return sendRequestAndWaitForResponse(RequestCreator.getDoMoveRequest(username, password, id,moves));
     }
 
     @Override
@@ -140,5 +129,19 @@ public class ClientConnection implements IClientConnection {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPassword(){return password;}
+
+    public ResponseMessage addToFriendList(String username1) {
+        return sendRequestAndWaitForResponse(RequestCreator.getAddedToFriendListRequest(username, password, username1));
+    }
+
+    public ResponseMessage getFriendList() {
+        return sendRequestAndWaitForResponse(RequestCreator.getGetFriendList(username, password));
+    }
+
+    public ResponseMessage isPlaying(String opponent) {
+        return sendRequestAndWaitForResponse(RequestCreator.getIsPlaying(username, password, opponent));
     }
 }
